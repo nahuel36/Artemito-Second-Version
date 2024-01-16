@@ -144,18 +144,20 @@ public class CustomListView : EditorWindow
        
     void OnGUI()
         {
-        if (draggedItem == null || overCursorItem == null) return;
-
         if (
-            Input.mousePosition.y < listContainer.layout.yMin
-        || Input.mousePosition.y > listContainer.layout.yMax
-        || Input.mousePosition.x < listContainer.layout.xMin
-        || Input.mousePosition.x > listContainer.layout.xMax)
+           Event.current.mousePosition.y < listContainer.layout.yMin
+        || Event.current.mousePosition.y > listContainer.layout.yMax
+        || Event.current.mousePosition.x < listContainer.layout.xMin
+        || Event.current.mousePosition.x > listContainer.layout.xMax)
         {
             draggedItem = null;
             overCursorItem = null;
             RestoreColors();
         }
+
+
+        if (draggedItem == null || overCursorItem == null) return;
+
         /*
         if (draggedItem != null)
             {
