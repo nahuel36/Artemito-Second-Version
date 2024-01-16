@@ -10,7 +10,7 @@ public class CustomListView : EditorWindow
     private VisualElement listContainer;
     private VisualElement draggedItem;
     private VisualElement overCursorItem;
-    private int draggingIndex = -1;
+    private bool isBottom = false;
 
     [MenuItem("Window/Custom ListView")]
     public static void ShowExample()
@@ -70,8 +70,28 @@ public class CustomListView : EditorWindow
 
     private void OnMouseUp(MouseUpEvent evt, VisualElement listItem, int i)
     {
-        draggedItem = null;
+        if (draggedItem == null || overCursorItem == null || draggedItem == overCursorItem)
+        {
+            overCursorItem = null;
+            draggedItem = null;
+            RestoreColors();
+            return;
+        }
+
+        int indexDestiny = Mathf.Clamp(listItems.IndexOf(overCursorItem) + (isBottom? 1 : 0), 0, listItems.Count -1);
+
+        listItems.Remove(draggedItem);
+        listItems.Insert(indexDestiny, draggedItem);
         overCursorItem = null;
+        draggedItem = null;
+        listContainer.Clear();
+        foreach (VisualElement item in listItems)
+        {
+            listContainer.Add(item);
+        }
+        Repaint();
+
+
         RestoreColors();
     }
 
@@ -79,9 +99,6 @@ public class CustomListView : EditorWindow
     {
         if (evt.button == 0) // Botón izquierdo del ratón
         {
-            /*draggingIndex = index;
-            draggedItem = listItem;
-            evt.StopPropagation();*/
             draggedItem = listItem;
             evt.StopPropagation();
 
@@ -108,7 +125,9 @@ public class CustomListView : EditorWindow
             RestoreColors();
 
             if (Event.current.mousePosition.y < listContainer.layout.yMin 
-              || Event.current.mousePosition.y > listContainer.layout.yMax)
+              || Event.current.mousePosition.y > listContainer.layout.yMax
+              || Event.current.mousePosition.x < listContainer.layout.xMin
+              || Event.current.mousePosition.x > listContainer.layout.xMax)
             {
                 draggedItem = null;
                 overCursorItem = null;
@@ -125,30 +144,16 @@ public class CustomListView : EditorWindow
             StyleColor color = new StyleColor();
             color.value = Color.red;
             overCursorItem.style.borderBottomColor = color;
-     
+            isBottom = true;
         }
         if (overCursorItem != null && Event.current.mousePosition.y <= overCursorItem.layout.center.y)
         {
             StyleColor color = new StyleColor();
             color.value = Color.red;
             overCursorItem.style.borderTopColor = color;
+            isBottom = false;
         }
-        /*
-        if (Event.current.type == EventType.MouseUp && Event.current.button == 0)
-        {
-            Debug.Log("CLICK UP");
-            listItems.Remove(draggedItem);
-            listItems.Insert(0, draggedItem);
-            draggedItem = null;
-            listContainer.Clear();
-            foreach (VisualElement item in listItems)
-            {
-                listContainer.Add(item);
-            }
-            Repaint();
-        }
-        */
-        /*
+/*
         if (draggedItem != null)
         {
             // Muestra el ícono del cursor de reordenación
@@ -173,25 +178,5 @@ public class CustomListView : EditorWindow
     }
 
 
-
-    void UpdateListOrder()
-    {
-        // Obtener el índice del elemento de destino
-        int endIndex = Mathf.Clamp(draggingIndex, 0, listItems.Count - 1);
-
-        if (endIndex != draggingIndex)
-        {
-            // Mover el elemento arrastrado a la posición deseada
-            listItems.Remove(draggedItem);
-            listItems.Insert(endIndex, draggedItem);
-
-            // Actualizar la visualización de la lista
-            listContainer.Clear();
-            foreach (VisualElement item in listItems)
-            {
-                listContainer.Add(item);
-            }
-        }
-    }
 
 }
