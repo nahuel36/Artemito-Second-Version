@@ -59,6 +59,8 @@ public class CustomListView : EditorWindow
 
     private void OnMouseMove(MouseMoveEvent evt, VisualElement listItem, int index)
     {
+        RestoreColors();
+
         if (draggedItem == null)
         {
             overCursorItem = null;
@@ -66,6 +68,26 @@ public class CustomListView : EditorWindow
         }
 
         overCursorItem = listItem;
+
+        if (Event.current.mousePosition.y > overCursorItem.layout.center.y)
+        {
+            StyleColor color = new StyleColor();
+            color.value = Color.red;
+            overCursorItem.style.borderBottomColor = color;
+            isBottom = true;
+        }
+        if (Event.current.mousePosition.y <= overCursorItem.layout.center.y)
+        {
+            StyleColor color = new StyleColor();
+            color.value = Color.red;
+            overCursorItem.style.borderTopColor = color;
+            isBottom = false;
+        }
+
+        StyleColor bgcolor = new StyleColor();
+        bgcolor.value = Color.black;
+        draggedItem.style.backgroundColor = bgcolor;
+
     }
 
     private void OnMouseUp(MouseUpEvent evt, VisualElement listItem, int i)
@@ -100,6 +122,9 @@ public class CustomListView : EditorWindow
         if (evt.button == 0) // Botón izquierdo del ratón
         {
             draggedItem = listItem;
+            StyleColor bgcolor = new StyleColor();
+            bgcolor.value = Color.black;
+            draggedItem.style.backgroundColor = bgcolor;
             evt.StopPropagation();
 
         }
@@ -116,67 +141,46 @@ public class CustomListView : EditorWindow
             item.style.backgroundColor = color;
         }
     }
-
-
+       
     void OnGUI()
-    {
-        if (draggedItem != null)
         {
+        if (draggedItem == null || overCursorItem == null) return;
+
+        if (
+            Input.mousePosition.y < listContainer.layout.yMin
+        || Input.mousePosition.y > listContainer.layout.yMax
+        || Input.mousePosition.x < listContainer.layout.xMin
+        || Input.mousePosition.x > listContainer.layout.xMax)
+        {
+            draggedItem = null;
+            overCursorItem = null;
             RestoreColors();
-
-            if (Event.current.mousePosition.y < listContainer.layout.yMin 
-              || Event.current.mousePosition.y > listContainer.layout.yMax
-              || Event.current.mousePosition.x < listContainer.layout.xMin
-              || Event.current.mousePosition.x > listContainer.layout.xMax)
-            {
-                draggedItem = null;
-                overCursorItem = null;
-            }
-            else
-            { 
-                StyleColor bgcolor = new StyleColor();
-                bgcolor.value = Color.black;
-                draggedItem.style.backgroundColor = bgcolor;
-            }
         }
-        if (overCursorItem != null && Event.current.mousePosition.y > overCursorItem.layout.center.y)
-        {
-            StyleColor color = new StyleColor();
-            color.value = Color.red;
-            overCursorItem.style.borderBottomColor = color;
-            isBottom = true;
-        }
-        if (overCursorItem != null && Event.current.mousePosition.y <= overCursorItem.layout.center.y)
-        {
-            StyleColor color = new StyleColor();
-            color.value = Color.red;
-            overCursorItem.style.borderTopColor = color;
-            isBottom = false;
-        }
-/*
+        /*
         if (draggedItem != null)
-        {
-            // Muestra el ícono del cursor de reordenación
-            EditorGUIUtility.AddCursorRect(new Rect(0, 0, position.width, position.height), MouseCursor.Pan);
-
-            // Mover el elemento arrastrado
-            Vector2 mousePosition = Event.current.mousePosition;
-            draggedItem.style.position = Position.Absolute;
-            draggedItem.style.left = mousePosition.x - draggedItem.resolvedStyle.width * 0.5f;
-            draggedItem.style.top = mousePosition.y - draggedItem.resolvedStyle.height * 0.5f;
-
-            if (Event.current.type == EventType.MouseUp)
             {
-                // Finalizar el arrastre y reordenar
-                draggingIndex = -1;
-                draggedItem.style.position = Position.Relative;
-                UpdateListOrder();
-                draggedItem = null;
-                Repaint();
-            }
-        }*/
-    }
+                // Muestra el ícono del cursor de reordenación
+                EditorGUIUtility.AddCursorRect(new Rect(0, 0, position.width, position.height), MouseCursor.Pan);
 
+                // Mover el elemento arrastrado
+                Vector2 mousePosition = Event.current.mousePosition;
+                draggedItem.style.position = Position.Absolute;
+                draggedItem.style.left = mousePosition.x - draggedItem.resolvedStyle.width * 0.5f;
+                draggedItem.style.top = mousePosition.y - draggedItem.resolvedStyle.height * 0.5f;
+
+                if (Event.current.type == EventType.MouseUp)
+                {
+                    // Finalizar el arrastre y reordenar
+                    draggingIndex = -1;
+                    draggedItem.style.position = Position.Relative;
+                    UpdateListOrder();
+                    draggedItem = null;
+                    Repaint();
+                }
+            }
+        */
+    }
+    
 
 
 }
