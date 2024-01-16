@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Label tabindex="-1" text="Selected Item" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; white-space: nowrap; height: 49px;" />
+    <ui:TextField picking-mode="Ignore" label="Name" value="name" name="itemName" />
+    <uie:ObjectField label="Normal Image" name="itemImage" />
+    <uie:ObjectField label="Selected Image" name="selectedImage" />
+    <ui:Toggle label="Start with this item" name="startWith" />
+    <ui:FloatField label="Cuantity" value="1" name="cuantity" />
+    <ui:IntegerField label="Priority" value="0" name="priority" />
+</ui:UXML>

@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Inventory/Editor/InventoryListElements.uss?fileID=7433441132597879392&amp;guid=ac59f1351864e1a449070f022906d6e8&amp;type=3#InventoryListElements" />
+    <ui:Label text="Hello World! From UXML" />
+    <ui:Label text="Hello World! With Style" class="custom-label" />
+</ui:UXML>
