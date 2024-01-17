@@ -108,9 +108,10 @@ public class CustomListView<T>
             return;
         }
 
-        int indexDestiny = Mathf.Clamp(listItems.IndexOf(overCursorItem) + (isBottom? 1 : 0), 0, listItems.Count -1);
-
         listItems.Remove(draggedItem);
+
+        int indexDestiny = Mathf.Clamp(listItems.IndexOf(overCursorItem) + (isBottom ? 1 : 0), 0, listItems.Count - 1);
+
         listItems.Insert(indexDestiny, draggedItem);
         overCursorItem = null;
         draggedItem = null;
