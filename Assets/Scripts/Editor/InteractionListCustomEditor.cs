@@ -9,16 +9,18 @@ using UnityEditor.UIElements;
 public class InteractionListCustomEditor : Editor
 {
     VisualElement root;
-    InteractionList interactionList;
+    InteractionList myTarget;
     [SerializeField] VisualTreeAsset visualTree;
     Dictionary<Interaction, VisualElement> subTypeSelectors;
 
+
+    CustomListView<Interaction> listCustom;
 
     public override VisualElement CreateInspectorGUI()
     {
         subTypeSelectors = new Dictionary<Interaction, VisualElement>();
 
-        interactionList = (InteractionList)target;
+        myTarget = (InteractionList)target;
 
         root = new VisualElement();
 
@@ -33,15 +35,15 @@ public class InteractionListCustomEditor : Editor
         {
             InteractionSelect select2 = new InteractionSelect();
             select2.VisualElements();
-            select2.Binding(interactionList.interactions[i], e);
+            select2.Binding(myTarget.interactions[i], e);
             int index = i;
             VisualElement element = e;
             select2.OnChangeTypeEvent += (inter) => { UpdateSelector(inter, index, element); };
-            UpdateSelector(interactionList.interactions[index], index, element);
+            UpdateSelector(myTarget.interactions[index], index, element);
         };
         
         ListView listView = new ListView();
-        listView.itemsSource = interactionList.interactions;
+        listView.itemsSource = myTarget.interactions;
         listView.reorderable = true;
         listView.reorderMode = ListViewReorderMode.Animated;
         listView.showAddRemoveFooter = true;
@@ -74,14 +76,25 @@ public class InteractionListCustomEditor : Editor
         scroll.style.height = EditorGUIUtility.singleLineHeight * 2;
         root.Add(scroll);
 
-        
+
+        listCustom = new();
+        listCustom.ItemsSource = myTarget.interactions;
+        root.Add(listCustom.Init());
 
         return root;
     }
+    public override void OnInspectorGUI()
+    {
+        if (listCustom != null)
+        {
+            listCustom.OnGUI();
+        }
+    }
+
 
     private void OnAdded(IEnumerable<int> obj)
     {
-        interactionList.interactions[interactionList.interactions.Count - 1] = new Interaction();
+        myTarget.interactions[myTarget.interactions.Count - 1] = new Interaction();
     }
 
     private void OnChange(ChangeEvent<string> evt)
@@ -91,7 +104,7 @@ public class InteractionListCustomEditor : Editor
 
     private void UpdateSelector(Interaction interaction, int index, VisualElement element)
     {
-        if (interaction != interactionList.interactions[index]) return;
+        if (interaction != myTarget.interactions[index]) return;
 
         if (!string.IsNullOrEmpty(interaction.type))
         {

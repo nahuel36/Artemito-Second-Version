@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CustomListView : EditorWindow
+public class CustomListView<T> 
 {
     private List<VisualElement> listItems = new List<VisualElement>();
     private VisualElement listContainer;
@@ -12,14 +12,9 @@ public class CustomListView : EditorWindow
     private VisualElement overCursorItem;
     private bool isBottom = false;
 
-    [MenuItem("Window/Custom ListView")]
-    public static void ShowExample()
-    {
-        CustomListView wnd = GetWindow<CustomListView>();
-        wnd.titleContent = new GUIContent("Custom ListView");
-    }
+    public IList<T> ItemsSource { get; set; }
 
-    void OnEnable()
+    public VisualElement Init()
     {
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/InteractionSelect 1.uxml");
         VisualElement root = visualTreeAsset.CloneTree();
@@ -52,9 +47,9 @@ public class CustomListView : EditorWindow
         }
 
         root.Add(scrollView);
-        root.StretchToParentSize();
+       // root.StretchToParentSize();
 
-        this.rootVisualElement.Add(root);
+        return root;
     }
 
     private void OnMouseMove(MouseMoveEvent evt, VisualElement listItem, int index)
@@ -111,7 +106,7 @@ public class CustomListView : EditorWindow
         {
             listContainer.Add(item);
         }
-        Repaint();
+        //Repaint();
 
 
         RestoreColors();
@@ -142,7 +137,7 @@ public class CustomListView : EditorWindow
         }
     }
        
-    void OnGUI()
+    public void OnGUI()
         {
         if (
            Event.current.mousePosition.y < listContainer.layout.yMin
