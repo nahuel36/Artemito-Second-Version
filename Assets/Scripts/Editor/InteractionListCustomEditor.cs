@@ -84,9 +84,8 @@ public class InteractionListCustomEditor : Editor
         {
             int index = i;
 
-            VisualElement visualElem = new VisualElement();
             InteractionSelect select3 = new InteractionSelect();
-            visualElem = select3.BothFunctions(myTarget.interactions[index]);
+            VisualElement visualElem = select3.BothFunctions(myTarget.interactions[index]);
             select3.OnChangeTypeEvent += (inter) => { UpdateSelector(inter, index, visualElem); };
             UpdateSelector(myTarget.interactions[index], index, visualElem);
             return visualElem;
