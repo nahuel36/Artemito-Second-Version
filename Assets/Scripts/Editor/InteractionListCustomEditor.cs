@@ -80,10 +80,16 @@ public class InteractionListCustomEditor : Editor
         listCustom = new();
         listCustom.ItemsSource = myTarget.interactions;
 
-        Func<int, VisualElement> itemContent = (index) =>
+        Func<int, VisualElement> itemContent = (i) =>
         {
+            int index = i;
+
+            VisualElement visualElem = new VisualElement();
             InteractionSelect select3 = new InteractionSelect();
-            return select3.BothFunctions(myTarget.interactions[index]);
+            visualElem = select3.BothFunctions(myTarget.interactions[index]);
+            select3.OnChangeTypeEvent += (inter) => { UpdateSelector(inter, index, visualElem); };
+            UpdateSelector(myTarget.interactions[index], index, visualElem);
+            return visualElem;
         };
 
         listCustom.ItemContent = itemContent;
