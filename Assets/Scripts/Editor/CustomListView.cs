@@ -24,9 +24,9 @@ public class CustomListView<T>
         listContainer = root.Q<VisualElement>("listContainer");
 
         // Crear elementos de la lista con alturas diferentes
-        List<float> itemHeights = new List<float> { 50f, 75f, 100f, 60f };
+        List<float> itemHeights = new List<float> { 50f, 75f, 100f, 60f , 50f};
 
-        for (int i = 0; i < itemHeights.Count; i++)
+        for (int i = 0; i < ItemsSource.Count; i++)
         {
             VisualElement listItem = new VisualElement();
             listItem.style.height = itemHeights[i];
