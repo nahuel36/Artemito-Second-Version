@@ -14,6 +14,7 @@ public class CustomListView<T>
 
     public IList<T> ItemsSource { get; set; }
 
+    public Func<int, VisualElement> ItemContent;
     public VisualElement Init()
     {
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/InteractionSelect 1.uxml");
@@ -29,12 +30,12 @@ public class CustomListView<T>
         {
             VisualElement listItem = new VisualElement();
             listItem.style.height = itemHeights[i];
-            listItem.Add(new Label("Elemento " + i));
-            listItem.Add(new Label("Elemento " + i));
-            listItem.Add(new Label("Elemento " + i));
 
-            // Agregar manipuladores de eventos para la reordenación
             int index = i;
+
+            listItem.Add(ItemContent(index));
+            // Agregar manipuladores de eventos para la reordenación
+            
             listItem.RegisterCallback<MouseDownEvent>(evt => OnMouseDown(evt, listItem, index));
             listItem.RegisterCallback<MouseMoveEvent>(evt => OnMouseMove(evt, listItem, index));
             listItem.RegisterCallback<MouseUpEvent>(evt => OnMouseUp(evt, listItem, index));

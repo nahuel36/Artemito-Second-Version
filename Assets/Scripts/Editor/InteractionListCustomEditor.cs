@@ -79,6 +79,15 @@ public class InteractionListCustomEditor : Editor
 
         listCustom = new();
         listCustom.ItemsSource = myTarget.interactions;
+
+        Func<int, VisualElement> itemContent = (index) =>
+        {
+            InteractionSelect select3 = new InteractionSelect();
+            return select3.BothFunctions(myTarget.interactions[index]);
+        };
+
+        listCustom.ItemContent = itemContent;
+
         root.Add(listCustom.Init());
 
         return root;
