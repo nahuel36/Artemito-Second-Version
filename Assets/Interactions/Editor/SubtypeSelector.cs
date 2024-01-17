@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-public class SubtypeSelector : Editor
+public class SubtypeSelector 
 {
 
 }

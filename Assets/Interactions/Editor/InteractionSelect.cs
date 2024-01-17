@@ -7,7 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 
-public class InteractionSelect : Editor
+public class InteractionSelect 
 {
     Interaction interaction;
     VisualElement labelFromUXML;
