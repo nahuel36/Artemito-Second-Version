@@ -72,17 +72,19 @@ public class CustomListView<T>
             overCursorItem = null;
             return;
         }
-
+        
         overCursorItem = listItem;
 
-        if (Event.current.mousePosition.y > overCursorItem.layout.center.y)
+        float yCenter = overCursorItem.worldBound.yMin + ((overCursorItem.worldBound.yMax - overCursorItem.worldBound.yMin) / 2f);
+
+        if (Event.current.mousePosition.y > yCenter)
         {
             StyleColor color = new StyleColor();
             color.value = Color.red;
             overCursorItem.style.borderBottomColor = color;
             isBottom = true;
         }
-        if (Event.current.mousePosition.y <= overCursorItem.layout.center.y)
+        if (Event.current.mousePosition.y <= yCenter)
         {
             StyleColor color = new StyleColor();
             color.value = Color.red;
