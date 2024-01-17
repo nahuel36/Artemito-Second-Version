@@ -83,14 +83,6 @@ public class InteractionListCustomEditor : Editor
 
         return root;
     }
-    public override void OnInspectorGUI()
-    {
-        if (listCustom != null)
-        {
-            listCustom.OnGUI();
-        }
-    }
-
 
     private void OnAdded(IEnumerable<int> obj)
     {

@@ -46,10 +46,21 @@ public class CustomListView<T>
             listContainer.Add(listItem);
         }
 
+        root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
         root.Add(scrollView);
        // root.StretchToParentSize();
 
         return root;
+    }
+
+    private void OnMouseLeave(MouseLeaveEvent evt)
+    {
+        if (draggedItem != null || overCursorItem != null)
+        { 
+            draggedItem = null;
+            overCursorItem = null;
+            RestoreColors();
+        }
     }
 
     private void OnMouseMove(MouseMoveEvent evt, VisualElement listItem, int index)
@@ -106,8 +117,6 @@ public class CustomListView<T>
         {
             listContainer.Add(item);
         }
-        //Repaint();
-
 
         RestoreColors();
     }
@@ -139,20 +148,6 @@ public class CustomListView<T>
        
     public void OnGUI()
         {
-        if (
-           Event.current.mousePosition.y < listContainer.layout.yMin
-        || Event.current.mousePosition.y > listContainer.layout.yMax
-        || Event.current.mousePosition.x < listContainer.layout.xMin
-        || Event.current.mousePosition.x > listContainer.layout.xMax)
-        {
-            draggedItem = null;
-            overCursorItem = null;
-            RestoreColors();
-        }
-
-
-        if (draggedItem == null || overCursorItem == null) return;
-
         /*
         if (draggedItem != null)
             {
