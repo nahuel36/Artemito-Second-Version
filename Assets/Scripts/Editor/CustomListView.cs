@@ -25,6 +25,8 @@ public class CustomListView<T>
     public event ItemChangeDelegate OnChangeItem;
     public delegate void ItemReorderDelegate(MouseUpEvent evt, VisualElement element, int index);
     public event ItemReorderDelegate OnReorderItem;
+    public delegate void ItemRemoveDelegate(VisualElement element, int index);
+    public event ItemRemoveDelegate OnRemoveItem;
 
 
     public VisualElement Init()
@@ -44,11 +46,26 @@ public class CustomListView<T>
         Button buttonAdd = root.Q<Button>("add");
         buttonAdd.clicked += Add;
 
+        Button buttonRemove = root.Q<Button>("remove");
+        buttonRemove.clicked += Remove;
+
         root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
         root.Add(scrollView);
        // root.StretchToParentSize();
 
         return root;
+    }
+
+    private void Remove()
+    {
+        int index = ItemsSource.Count - 1;
+
+        ItemsSource.RemoveAt(index);
+        VisualElement listItem = listItems[index];
+        listContainer.Remove(listItem);
+        listItems.RemoveAt(index);
+
+        OnRemoveItem?.Invoke(listItem, index);
     }
 
     private void AddNewItem(int i)

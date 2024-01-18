@@ -102,9 +102,17 @@ public class InteractionListCustomEditor : Editor
 
         listCustom.OnReorderItem += OnReorder;
 
+        listCustom.OnRemoveItem += OnRemoveItem;
+
         root.Add(listCustom.Init());
 
         return root;
+    }
+
+    private void OnRemoveItem(VisualElement element, int index)
+    {
+        EditorUtility.SetDirty(target);
+
     }
 
     private void OnReorder(MouseUpEvent evt, VisualElement element, int index)
