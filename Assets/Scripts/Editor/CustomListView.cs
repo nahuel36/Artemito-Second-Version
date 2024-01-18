@@ -42,6 +42,8 @@ public class CustomListView<T>
             listItem.RegisterCallback<MouseDownEvent>(evt => OnMouseDown(evt, listItem, index));
             listItem.RegisterCallback<MouseMoveEvent>(evt => OnMouseMove(evt, listItem, index));
             listItem.RegisterCallback<MouseUpEvent>(evt => OnMouseUp(evt, listItem, index));
+            listItem.RegisterCallback<ChangeEvent<string>>(evt => OnChanged(evt, listItem, index));
+
 
             listItem.style.borderBottomWidth = 5;
             listItem.style.borderTopWidth = 5;
@@ -55,6 +57,12 @@ public class CustomListView<T>
        // root.StretchToParentSize();
 
         return root;
+    }
+
+    private void OnChanged(ChangeEvent<string> evt, VisualElement listItem, int index)
+    {
+        listItem.style.height = ItemHeight(index);
+
     }
 
     private void OnMouseLeave(MouseLeaveEvent evt)
