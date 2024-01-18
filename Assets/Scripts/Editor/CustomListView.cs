@@ -160,34 +160,34 @@ public class CustomListView<T>
             item.style.backgroundColor = color;
         }
     }
-       
-    public void OnGUI()
-        {
-        /*
-        if (draggedItem != null)
-            {
-                // Muestra el ícono del cursor de reordenación
-                EditorGUIUtility.AddCursorRect(new Rect(0, 0, position.width, position.height), MouseCursor.Pan);
+    /*
+     public void OnGUI()
+     {
 
-                // Mover el elemento arrastrado
-                Vector2 mousePosition = Event.current.mousePosition;
-                draggedItem.style.position = Position.Absolute;
-                draggedItem.style.left = mousePosition.x - draggedItem.resolvedStyle.width * 0.5f;
-                draggedItem.style.top = mousePosition.y - draggedItem.resolvedStyle.height * 0.5f;
+     if (draggedItem != null)
+         {
+             // Muestra el ícono del cursor de reordenación
+             EditorGUIUtility.AddCursorRect(new Rect(0, 0, position.width, position.height), MouseCursor.Pan);
 
-                if (Event.current.type == EventType.MouseUp)
-                {
-                    // Finalizar el arrastre y reordenar
-                    draggingIndex = -1;
-                    draggedItem.style.position = Position.Relative;
-                    UpdateListOrder();
-                    draggedItem = null;
-                    Repaint();
-                }
-            }
-        */
+             // Mover el elemento arrastrado
+             Vector2 mousePosition = Event.current.mousePosition;
+             draggedItem.style.position = Position.Absolute;
+             draggedItem.style.left = mousePosition.x - draggedItem.resolvedStyle.width * 0.5f;
+             draggedItem.style.top = mousePosition.y - draggedItem.resolvedStyle.height * 0.5f;
+
+             if (Event.current.type == EventType.MouseUp)
+             {
+                 // Finalizar el arrastre y reordenar
+                 draggingIndex = -1;
+                 draggedItem.style.position = Position.Relative;
+                 UpdateListOrder();
+                 draggedItem = null;
+                 Repaint();
+             }
+         }
+     
     }
-    
+    */
 
 
 }
