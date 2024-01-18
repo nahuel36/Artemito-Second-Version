@@ -100,9 +100,16 @@ public class InteractionListCustomEditor : Editor
 
         listCustom.OnAdd = OnAdded;
 
+        listCustom.OnReorderItem += OnReorder;
+
         root.Add(listCustom.Init());
 
         return root;
+    }
+
+    private void OnReorder(MouseUpEvent evt, VisualElement element, int index)
+    {
+        EditorUtility.SetDirty(target);
     }
 
     private Interaction OnAdded()
