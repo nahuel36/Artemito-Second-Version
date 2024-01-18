@@ -16,6 +16,9 @@ public class CustomListView<T>
     public IList<T> ItemsSource { get; set; }
 
     public Func<int, VisualElement> ItemContent;
+
+    public Func<int, float> ItemHeight;
+
     public VisualElement Init()
     {
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/InteractionSelect 1.uxml");
@@ -24,15 +27,14 @@ public class CustomListView<T>
         ScrollView scrollView = root.Q<ScrollView>("scrollView");
         listContainer = root.Q<VisualElement>("listContainer");
 
-        // Crear elementos de la lista con alturas diferentes
-        List<float> itemHeights = new List<float> { 50f, 75f, 100f, 60f , 50f};
 
         for (int i = 0; i < ItemsSource.Count; i++)
         {
-            VisualElement listItem = new VisualElement();
-            listItem.style.height = itemHeights[i];
-
             int index = i;
+
+            VisualElement listItem = new VisualElement();
+            listItem.style.height = ItemHeight(index);
+                      
 
             listItem.Add(ItemContent(index));
             // Agregar manipuladores de eventos para la reordenación

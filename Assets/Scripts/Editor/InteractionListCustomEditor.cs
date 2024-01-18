@@ -96,9 +96,19 @@ public class InteractionListCustomEditor : Editor
 
         listCustom.ItemContent = itemContent;
 
+        listCustom.ItemHeight = itemHeight;
+
         root.Add(listCustom.Init());
 
         return root;
+    }
+
+    private float itemHeight(int index)
+    {
+        if (myTarget.interactions[index].type == "Inventory")
+            return EditorGUIUtility.singleLineHeight * 5;
+        else
+            return EditorGUIUtility.singleLineHeight * 3;
     }
 
     private void OnAdded(IEnumerable<int> obj)
