@@ -98,9 +98,16 @@ public class InteractionListCustomEditor : Editor
 
         listCustom.OnChangeItem += OnChange;
 
+        listCustom.OnAdd = OnAdded;
+
         root.Add(listCustom.Init());
 
         return root;
+    }
+
+    private Interaction OnAdded()
+    {
+        return new Interaction();
     }
 
     private float itemHeight(int index)

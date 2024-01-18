@@ -19,12 +19,14 @@ public class CustomListView<T>
 
     public Func<int, float> ItemHeight;
 
+    public Func<T> OnAdd;
+
     public delegate void ItemDelegate(ChangeEvent<string> evt, VisualElement element, int index);
     public event ItemDelegate OnChangeItem;
 
     public VisualElement Init()
     {
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/CustomListView.uxml");
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Editor/CustomListView.uxml");
         VisualElement root = visualTreeAsset.CloneTree();
 
         ScrollView scrollView = root.Q<ScrollView>("scrollView");
@@ -35,6 +37,9 @@ public class CustomListView<T>
         {
             AddNewItem(i);
         }
+
+        Button buttonAdd = root.Q<Button>("add");
+        buttonAdd.clicked += Add;
 
         root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
         root.Add(scrollView);
@@ -67,9 +72,9 @@ public class CustomListView<T>
         listContainer.Add(listItem);
     }
 
-    public void Add(T item)
+    public void Add()
     {
-        ItemsSource.Add(item);
+        ItemsSource.Add(OnAdd.Invoke());
         AddNewItem(ItemsSource.Count - 1);
     }
 
