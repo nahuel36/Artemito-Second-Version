@@ -19,6 +19,9 @@ public class CustomListView<T>
 
     public Func<int, float> ItemHeight;
 
+    public delegate void ItemDelegate(ChangeEvent<string> evt, VisualElement element, int index);
+    public event ItemDelegate OnChangeItem;
+
     public VisualElement Init()
     {
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/InteractionSelect 1.uxml");
@@ -62,7 +65,7 @@ public class CustomListView<T>
     private void OnChanged(ChangeEvent<string> evt, VisualElement listItem, int index)
     {
         listItem.style.height = ItemHeight(index);
-
+        OnChangeItem?.Invoke(evt, listItem, index);
     }
 
     private void OnMouseLeave(MouseLeaveEvent evt)

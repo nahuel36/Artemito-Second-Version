@@ -93,8 +93,10 @@ public class InteractionListCustomEditor : Editor
         };
 
         listCustom.ItemContent = itemContent;
-
+    
         listCustom.ItemHeight = itemHeight;
+
+        listCustom.OnChangeItem += OnChange;
 
         root.Add(listCustom.Init());
 
@@ -112,6 +114,11 @@ public class InteractionListCustomEditor : Editor
     private void OnAdded(IEnumerable<int> obj)
     {
         myTarget.interactions[myTarget.interactions.Count - 1] = new Interaction();
+    }
+
+    private void OnChange(ChangeEvent<string> evt, VisualElement itemVE, int index)
+    {
+        EditorUtility.SetDirty(target);
     }
 
     private void OnChange(ChangeEvent<string> evt)
