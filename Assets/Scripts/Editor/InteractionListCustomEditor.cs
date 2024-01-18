@@ -11,14 +11,16 @@ public class InteractionListCustomEditor : Editor
     VisualElement root;
     InteractionList myTarget;
     [SerializeField] VisualTreeAsset visualTree;
-    Dictionary<Interaction, VisualElement> subTypeSelectors;
+    Dictionary<Interaction, SubtypeSelector> subTypeSelectors;
+    Dictionary<Interaction, VisualElement> subTypeVisualElements;
 
 
     CustomListView<Interaction> listCustom;
 
     public override VisualElement CreateInspectorGUI()
     {
-        subTypeSelectors = new Dictionary<Interaction, VisualElement>();
+        subTypeSelectors = new Dictionary<Interaction, SubtypeSelector>();
+        subTypeVisualElements = new Dictionary<Interaction, VisualElement>();
 
         myTarget = (InteractionList)target;
 
@@ -50,7 +52,7 @@ public class InteractionListCustomEditor : Editor
         listView.makeItem = makeItem;
         listView.bindItem = bindItem;
         listView.itemsAdded += OnAdded;
-        //listView.fixedItemHeight = EditorGUIUtility.singleLineHeight * 4;
+        listView.fixedItemHeight = EditorGUIUtility.singleLineHeight * 4;
         listView.selectionType = SelectionType.Multiple;
         listView.RegisterCallback<ChangeEvent<string>>(OnChange);
         /*
@@ -85,7 +87,8 @@ public class InteractionListCustomEditor : Editor
             int index = i;
 
             InteractionSelect select3 = new InteractionSelect();
-            VisualElement visualElem = select3.BothFunctions(myTarget.interactions[index]);
+            VisualElement visualElem = new VisualElement();
+            visualElem.Add(select3.BothFunctions(myTarget.interactions[index]));
             select3.OnChangeTypeEvent += (inter) => { UpdateSelector(inter, index, visualElem); };
             UpdateSelector(myTarget.interactions[index], index, visualElem);
             return visualElem;
@@ -108,32 +111,28 @@ public class InteractionListCustomEditor : Editor
         EditorUtility.SetDirty(target);
     }
 
-    private void UpdateSelector(Interaction interaction, int index, VisualElement element)
+    private void UpdateSelector(Interaction interaction, int index, VisualElement element )
     {
         if (interaction != myTarget.interactions[index]) return;
+
 
         if (!string.IsNullOrEmpty(interaction.type))
         {
             if (interaction.type == "Inventory" && !subTypeSelectors.ContainsKey(interaction))
             {
-                SelectInventory selInv = new SelectInventory();
-                subTypeSelectors.Add(interaction, selInv.VisualElements(interaction, element));
-
+                subTypeSelectors.Add(interaction, new SelectInventory());
             }
             else if (interaction.type != "Inventory" && subTypeSelectors.ContainsKey(interaction))
             {
-                if (element.Contains(subTypeSelectors[interaction]))
-                    element.Remove(subTypeSelectors[interaction]);
+                ((SelectInventory)subTypeSelectors[interaction]).Remove(element);
                 subTypeSelectors.Remove(interaction);
             }
         }
 
         if (subTypeSelectors.ContainsKey(interaction))
         {
-            if (!element.Contains(subTypeSelectors[interaction]))
-                element.Add(subTypeSelectors[interaction]);
+            ((SelectInventory)subTypeSelectors[interaction]).Add(interaction, element);
         }
-
     }
 
 }

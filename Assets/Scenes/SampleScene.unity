@@ -262,19 +262,19 @@ MonoBehaviour:
   interactions:
   - type: Inventory
     subtype: 
-    subtypeObject: inventory-new item 54
-  - type: Inventory
-    subtype: Add
     subtypeObject: inventory-new item 50
-  - type: Dialog
+  - type: Character
+    subtype: 
+    subtypeObject: inventory-new item 66
+  - type: Character
+    subtype: 
+    subtypeObject: inventory-new item 50
+  - type: Inventory
     subtype: 
     subtypeObject: inventory-new item 50
   - type: Character
     subtype: 
     subtypeObject: 
-  - type: Inventory
-    subtype: 
-    subtypeObject: inventory-new item 68
 --- !u!1 &1279160873
 GameObject:
   m_ObjectHideFlags: 0

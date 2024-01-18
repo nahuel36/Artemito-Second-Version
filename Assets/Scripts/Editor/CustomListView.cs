@@ -6,12 +6,13 @@ using UnityEngine.UIElements;
 
 public class CustomListView<T> 
 {
-    private List<VisualElement> listItems = new List<VisualElement>();
-    private VisualElement listContainer;
+    public List<VisualElement> listItems = new List<VisualElement>();
+    public VisualElement listContainer;
     private VisualElement draggedItem;
     private VisualElement overCursorItem;
     private bool isBottom = false;
 
+    
     public IList<T> ItemsSource { get; set; }
 
     public Func<int, VisualElement> ItemContent;
