@@ -12,7 +12,6 @@ public class InteractionListCustomEditor : Editor
     InteractionList myTarget;
     [SerializeField] VisualTreeAsset visualTree;
     Dictionary<Interaction, SubtypeSelector> subTypeSelectors;
-    Dictionary<Interaction, VisualElement> subTypeVisualElements;
 
 
     CustomListView<Interaction> listCustom;
@@ -20,7 +19,6 @@ public class InteractionListCustomEditor : Editor
     public override VisualElement CreateInspectorGUI()
     {
         subTypeSelectors = new Dictionary<Interaction, SubtypeSelector>();
-        subTypeVisualElements = new Dictionary<Interaction, VisualElement>();
 
         myTarget = (InteractionList)target;
 
