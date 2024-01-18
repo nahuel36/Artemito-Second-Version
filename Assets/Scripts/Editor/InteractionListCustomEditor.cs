@@ -53,30 +53,7 @@ public class InteractionListCustomEditor : Editor
         listView.fixedItemHeight = EditorGUIUtility.singleLineHeight * 4;
         listView.selectionType = SelectionType.Multiple;
         listView.RegisterCallback<ChangeEvent<string>>(OnChange);
-        /*
-        IEnumerator<VisualElement> enumerator = ((IEnumerable<VisualElement>)listView.Children()).GetEnumerator();
-        enumerator.Reset();
-        do
-        {
-            Debug.Log(enumerator.Current);
-
-            //enumerator.Current.style.height = EditorGUIUtility.singleLineHeight * 7;
-        } while (enumerator.MoveNext());
-        */
-        //listView.selectionChanged += objects => Debug.Log($"Selected: {string.Join(", ", objects)}");
-
         root.Add(listView);
-
-        ScrollView scroll = new ScrollView();
-        scroll.Add(new Label("PRUEBA1"));
-        scroll.Add(new Label("PRUEBA2"));
-        scroll.Add(new Label("PRUEBA3"));
-        scroll.Add(new Label("PRUEBA4"));
-        scroll.Add(new Label("PRUEBA5"));
-        scroll.style.height = EditorGUIUtility.singleLineHeight * 2;
-        root.Add(scroll);
-
-
         listCustom = new();
         listCustom.ItemsSource = myTarget.interactions;
 
@@ -103,6 +80,13 @@ public class InteractionListCustomEditor : Editor
         listCustom.OnReorderItem += OnReorder;
 
         listCustom.OnRemoveItem += OnRemoveItem;
+
+        //falta un recuadro
+        //falta que haga highlight cuando pasas el mouse
+        //falta poder seleccionar
+        //falta seleccion multiple
+        //falta reordenamiento en realtime y animado
+        //falta que elimine lo seleccionado
 
         root.Add(listCustom.Init());
 
