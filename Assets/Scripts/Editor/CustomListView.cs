@@ -24,7 +24,7 @@ public class CustomListView<T>
 
     public VisualElement Init()
     {
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/InteractionSelect 1.uxml");
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/CustomListView.uxml");
         VisualElement root = visualTreeAsset.CloneTree();
 
         ScrollView scrollView = root.Q<ScrollView>("scrollView");
