@@ -6,12 +6,12 @@ using UnityEngine.UIElements;
 
 public class CustomListView<T> 
 {
-    public List<VisualElement> listItems = new List<VisualElement>();
-    public VisualElement listContainer;
+    private List<VisualElement> listItems = new List<VisualElement>();
+    private VisualElement listContainer;
     private VisualElement draggedItem;
-    private VisualElement overCursorItem;
+    private VisualElement overCursorOnReorderItem;
     private bool isBottom = false;
-
+    private VisualElement highlightedItem = null;
     
     public IList<T> ItemsSource { get; set; }
 
@@ -75,21 +75,25 @@ public class CustomListView<T>
         VisualElement listItem = new VisualElement();
         listItem.style.height = ItemHeight(index);
 
-
         listItem.Add(ItemContent(index));
         // Agregar manipuladores de eventos para la reordenación
 
-        listItem.RegisterCallback<MouseDownEvent>(evt => OnMouseDown(evt, listItem, index));
+        listItem.RegisterCallback<MouseDownEvent>(evt => OnMouseDown(evt, listItem, index), TrickleDown.TrickleDown);
         listItem.RegisterCallback<MouseMoveEvent>(evt => OnMouseMove(evt, listItem, index));
         listItem.RegisterCallback<MouseUpEvent>(evt => OnMouseUp(evt, listItem, index));
         listItem.RegisterCallback<ChangeEvent<string>>(evt => OnChanged(evt, listItem, index));
-
+        listItem.RegisterCallback<MouseEnterEvent>(evt => OnMouseEnterItem(evt, listItem, index));
 
         listItem.style.borderBottomWidth = 5;
         listItem.style.borderTopWidth = 5;
 
         listItems.Add(listItem);
         listContainer.Add(listItem);
+    }
+
+    private void OnMouseEnterItem(MouseEnterEvent evt, VisualElement listItem, int index)
+    {
+        highlightedItem = listItem;
     }
 
     public void Add()
@@ -106,12 +110,11 @@ public class CustomListView<T>
 
     private void OnMouseLeave(MouseLeaveEvent evt)
     {
-        if (draggedItem != null || overCursorItem != null)
-        { 
-            draggedItem = null;
-            overCursorItem = null;
-            RestoreColors();
-        }
+        if (draggedItem != null) draggedItem = null;
+        if (overCursorOnReorderItem != null) overCursorOnReorderItem = null;
+        if (highlightedItem != null) highlightedItem = null;
+        
+        RestoreColors();
     }
 
     private void OnMouseMove(MouseMoveEvent evt, VisualElement listItem, int index)
@@ -120,40 +123,37 @@ public class CustomListView<T>
 
         if (draggedItem == null)
         {
-            overCursorItem = null;
+            overCursorOnReorderItem = null;
             return;
         }
         
-        overCursorItem = listItem;
+        overCursorOnReorderItem = listItem;
 
-        float yCenter = overCursorItem.worldBound.yMin + ((overCursorItem.worldBound.yMax - overCursorItem.worldBound.yMin) / 2f);
+        float yCenter = overCursorOnReorderItem.worldBound.yMin + ((overCursorOnReorderItem.worldBound.yMax - overCursorOnReorderItem.worldBound.yMin) / 2f);
 
         if (Event.current.mousePosition.y > yCenter)
         {
             StyleColor color = new StyleColor();
             color.value = Color.red;
-            overCursorItem.style.borderBottomColor = color;
+            overCursorOnReorderItem.style.borderBottomColor = color;
             isBottom = true;
         }
         if (Event.current.mousePosition.y <= yCenter)
         {
             StyleColor color = new StyleColor();
             color.value = Color.red;
-            overCursorItem.style.borderTopColor = color;
+            overCursorOnReorderItem.style.borderTopColor = color;
             isBottom = false;
         }
-
-        StyleColor bgcolor = new StyleColor();
-        bgcolor.value = Color.black;
-        draggedItem.style.backgroundColor = bgcolor;
+               
 
     }
 
     private void OnMouseUp(MouseUpEvent evt, VisualElement listItem, int i)
     {
-        if (draggedItem == null || overCursorItem == null || draggedItem == overCursorItem)
+        if (draggedItem == null || overCursorOnReorderItem == null || draggedItem == overCursorOnReorderItem)
         {
-            overCursorItem = null;
+            overCursorOnReorderItem = null;
             draggedItem = null;
             RestoreColors();
             return;
@@ -164,11 +164,11 @@ public class CustomListView<T>
         ItemsSource.RemoveAt(listItems.IndexOf(draggedItem));
         listItems.Remove(draggedItem);
 
-        int indexDestiny = Mathf.Clamp(listItems.IndexOf(overCursorItem) + (isBottom ? 1 : 0), 0, ItemsSource.Count - 1);
+        int indexDestiny = Mathf.Clamp(listItems.IndexOf(overCursorOnReorderItem) + (isBottom ? 1 : 0), 0, ItemsSource.Count - 1);
 
         ItemsSource.Insert(indexDestiny, backup);
         listItems.Insert(indexDestiny, draggedItem);
-        overCursorItem = null;
+        overCursorOnReorderItem = null;
         draggedItem = null;
         listContainer.Clear();
         foreach (VisualElement item in listItems)
@@ -186,11 +186,7 @@ public class CustomListView<T>
         if (evt.button == 0) // Botón izquierdo del ratón
         {
             draggedItem = listItem;
-            StyleColor bgcolor = new StyleColor();
-            bgcolor.value = Color.black;
-            draggedItem.style.backgroundColor = bgcolor;
             evt.StopPropagation();
-
         }
     }
 
@@ -202,7 +198,22 @@ public class CustomListView<T>
             color.value = Color.clear;
             item.style.borderBottomColor = color;
             item.style.borderTopColor = color;
-            item.style.backgroundColor = color;
+            if (item != highlightedItem && item != draggedItem)
+                item.style.backgroundColor = color;
+            if(item == highlightedItem)
+            { 
+                StyleColor colorHg = new StyleColor();
+                colorHg.value = Color.black;
+                item.style.backgroundColor = colorHg;
+            }
+            if (item == draggedItem)
+            {
+                StyleColor colorDg = new StyleColor();
+                colorDg.value = Color.blue;
+                item.style.backgroundColor = colorDg;
+            }
+
+
         }
     }
     /*

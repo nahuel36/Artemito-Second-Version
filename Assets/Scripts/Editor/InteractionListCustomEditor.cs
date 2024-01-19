@@ -53,7 +53,10 @@ public class InteractionListCustomEditor : Editor
         listView.fixedItemHeight = EditorGUIUtility.singleLineHeight * 4;
         listView.selectionType = SelectionType.Multiple;
         listView.RegisterCallback<ChangeEvent<string>>(OnChange);
+
         root.Add(listView);
+
+
         listCustom = new();
         listCustom.ItemsSource = myTarget.interactions;
 
