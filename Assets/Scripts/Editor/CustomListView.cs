@@ -12,6 +12,7 @@ public class CustomListView<T>
     private VisualElement overCursorOnReorderItem;
     private bool isBottom = false;
     private VisualElement highlightedItem = null;
+    private VisualElement selectedItem;
     
     public IList<T> ItemsSource { get; set; }
 
@@ -113,7 +114,8 @@ public class CustomListView<T>
         if (draggedItem != null) draggedItem = null;
         if (overCursorOnReorderItem != null) overCursorOnReorderItem = null;
         if (highlightedItem != null) highlightedItem = null;
-        
+        if (selectedItem != null) selectedItem = null;
+
         RestoreColors();
     }
 
@@ -151,7 +153,14 @@ public class CustomListView<T>
 
     private void OnMouseUp(MouseUpEvent evt, VisualElement listItem, int i)
     {
-        if (draggedItem == null || overCursorOnReorderItem == null || draggedItem == overCursorOnReorderItem)
+        if (draggedItem == listItem)
+        {
+            selectedItem = listItem;
+            RestoreColors();
+            return;
+        }
+
+        if (draggedItem == null || overCursorOnReorderItem == null)
         {
             overCursorOnReorderItem = null;
             draggedItem = null;
@@ -212,7 +221,12 @@ public class CustomListView<T>
                 colorDg.value = Color.blue;
                 item.style.backgroundColor = colorDg;
             }
-
+            if (item == selectedItem)
+            {
+                StyleColor colorSl = new StyleColor();
+                colorSl.value = Color.red;
+                item.style.backgroundColor = colorSl;
+            }
 
         }
     }
