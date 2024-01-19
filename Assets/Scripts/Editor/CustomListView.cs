@@ -75,7 +75,7 @@ public class CustomListView<T>
         while (i < 10)
         {
             StyleTranslate translate = new StyleTranslate();
-            translate.value = new Translate(0, directionIsDown?1:-1 * 10 * i);
+            translate.value = new Translate(0, (directionIsDown?1:-1) * 9 * i);
             listItems[index].style.translate = translate;
             i++;
 
