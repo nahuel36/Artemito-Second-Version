@@ -84,12 +84,15 @@ public class InteractionListCustomEditor : Editor
 
         listCustom.OnRemoveItem += OnRemoveItem;
 
+        //probar uxml compuestos
+        //cambiar colores multiplicando por alfa o sumando varios
         //falta un recuadro
-        //falta que haga highlight cuando pasas el mouse
-        //falta poder seleccionar
         //falta seleccion multiple
         //falta reordenamiento en realtime y animado
         //falta que elimine lo seleccionado
+        //DONE
+        //falta que haga highlight cuando pasas el mouse
+        //falta poder seleccionar
 
         root.Add(listCustom.Init());
 

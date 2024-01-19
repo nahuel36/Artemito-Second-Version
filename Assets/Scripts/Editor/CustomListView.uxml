@@ -6,4 +6,5 @@
             <ui:Button text="-" display-tooltip-when-elided="true" name="remove" />
         </uie:Toolbar>
     </ui:ScrollView>
+    <ui:Button text="animate" display-tooltip-when-elided="true" name="anim" />
 </ui:UXML>

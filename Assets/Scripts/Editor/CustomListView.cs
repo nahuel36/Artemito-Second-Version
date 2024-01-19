@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -9,6 +10,7 @@ public class CustomListView<T>
     private List<VisualElement> listItems = new List<VisualElement>();
     private VisualElement listContainer;
     private VisualElement draggedItem;
+    private float draggedItemPosY;
     private VisualElement overCursorOnReorderItem;
     private bool isBottom = false;
     private VisualElement highlightedItem = null;
@@ -50,12 +52,31 @@ public class CustomListView<T>
         Button buttonRemove = root.Q<Button>("remove");
         buttonRemove.clicked += Remove;
 
+        Button animTest = root.Q<Button>("anim");
+        animTest.clicked += () => { MoveVertical(true,0); };
+
         root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
         root.Add(scrollView);
        // root.StretchToParentSize();
 
         return root;
     }
+
+    private async Task MoveVertical(bool directionIsDown, int index)
+    {
+        int i = 0;
+        while (i < 10)
+        {
+            StyleTranslate translate = new StyleTranslate();
+            translate.value = new Translate(0, directionIsDown?1:-1 * 10 * i);
+            listItems[index].style.translate = translate;
+            i++;
+
+            await Task.Delay(75);
+        }
+    }
+
+
 
     private void Remove()
     {
@@ -147,8 +168,11 @@ public class CustomListView<T>
             overCursorOnReorderItem.style.borderTopColor = color;
             isBottom = false;
         }
-               
 
+        StyleTranslate translate = new StyleTranslate();
+        draggedItemPosY += evt.mouseDelta.y;
+        translate.value = new Translate(0, draggedItemPosY);
+        draggedItem.style.translate = translate;
     }
 
     private void OnMouseUp(MouseUpEvent evt, VisualElement listItem, int i)
