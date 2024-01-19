@@ -11,11 +11,12 @@ public class CustomListView<T>
     private VisualElement listContainer;
     private VisualElement draggedItem;
     private float draggedItemPosY;
+    private float initialDraggedItemPosY;
     private VisualElement overCursorOnReorderItem;
     private bool isBottom = false;
     private VisualElement highlightedItem = null;
     private VisualElement selectedItem;
-
+    private bool moving;
     public enum ReOrderModes { 
         withBordersStatic, 
         animatedDynamic
@@ -60,7 +61,7 @@ public class CustomListView<T>
         buttonRemove.clicked += Remove;
 
         Button animTest = root.Q<Button>("anim");
-        animTest.clicked += () => { MoveVertical(true,0); };
+        animTest.clicked += () => { MoveVertical(true,0,listItems[1].worldBound.position.y); };
 
         root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
         root.Add(scrollView);
@@ -69,17 +70,18 @@ public class CustomListView<T>
         return root;
     }
 
-    private async Task MoveVertical(bool directionIsDown, int index)
+    private async Task MoveVertical(bool directionIsDown, int index, float finalPosY)
     {
         int i = 0;
-        while (i < 10)
+        while ((listItems[index].worldBound.position.y < finalPosY && directionIsDown)
+            || (listItems[index].worldBound.position.y > finalPosY && !directionIsDown))
         {
             StyleTranslate translate = new StyleTranslate();
             translate.value = new Translate(0, (directionIsDown?1:-1) * 9 * i);
             listItems[index].style.translate = translate;
             i++;
 
-            await Task.Delay(75);
+            await Task.Delay(50);
         }
     }
 
@@ -139,15 +141,15 @@ public class CustomListView<T>
 
     private void OnMouseLeave(MouseLeaveEvent evt)
     {
-        if (draggedItem != null) draggedItem = null;
+        if (reOrderMode == ReOrderModes.withBordersStatic && draggedItem != null) draggedItem = null;
         if (overCursorOnReorderItem != null) overCursorOnReorderItem = null;
         if (highlightedItem != null) highlightedItem = null;
-        if (selectedItem != null) selectedItem = null;
+        //if (selectedItem != null) selectedItem = null;
 
         RestoreColors();
     }
 
-    private void OnMouseMove(MouseMoveEvent evt, VisualElement listItem, int index)
+    private async Task OnMouseMove(MouseMoveEvent evt, VisualElement listItem, int index)
     {
         RestoreColors();
 
@@ -156,32 +158,80 @@ public class CustomListView<T>
             overCursorOnReorderItem = null;
             return;
         }
-        
-        overCursorOnReorderItem = listItem;
 
-        float yCenter = overCursorOnReorderItem.worldBound.yMin + ((overCursorOnReorderItem.worldBound.yMax - overCursorOnReorderItem.worldBound.yMin) / 2f);
-
-        if (Event.current.mousePosition.y > yCenter)
-        {
-            StyleColor color = new StyleColor();
-            color.value = Color.red;
-            overCursorOnReorderItem.style.borderBottomColor = color;
-            isBottom = true;
-        }
-        if (Event.current.mousePosition.y <= yCenter)
-        {
-            StyleColor color = new StyleColor();
-            color.value = Color.red;
-            overCursorOnReorderItem.style.borderTopColor = color;
-            isBottom = false;
-        }
-
-        if (reOrderMode == ReOrderModes.animatedDynamic)
+        if (reOrderMode == ReOrderModes.withBordersStatic)
         { 
-            StyleTranslate translate = new StyleTranslate();
-            draggedItemPosY += evt.mouseDelta.y;
-            translate.value = new Translate(0, draggedItemPosY);
-            draggedItem.style.translate = translate;
+            overCursorOnReorderItem = listItem;
+
+            float yCenter = overCursorOnReorderItem.worldBound.yMin + ((overCursorOnReorderItem.worldBound.yMax - overCursorOnReorderItem.worldBound.yMin) / 2f);
+
+            if (Event.current.mousePosition.y > yCenter)
+            {
+                StyleColor color = new StyleColor();
+                color.value = Color.red;
+                overCursorOnReorderItem.style.borderBottomColor = color;
+                isBottom = true;
+            }
+            if (Event.current.mousePosition.y <= yCenter)
+            {
+                StyleColor color = new StyleColor();
+                color.value = Color.red;
+                overCursorOnReorderItem.style.borderTopColor = color;
+                isBottom = false;
+            }
+        }
+        if (reOrderMode == ReOrderModes.animatedDynamic)
+        {
+            if (evt.mousePosition.y > listContainer.worldBound.xMin && evt.mousePosition.y < listContainer.worldBound.xMax)
+            { 
+                StyleTranslate translate = new StyleTranslate();
+                draggedItemPosY += evt.mouseDelta.y;
+                translate.value = new Translate(0, draggedItemPosY);
+                draggedItem.style.translate = translate;
+            }
+
+
+            foreach (var item in listItems)
+            {
+                if(listItems.IndexOf(draggedItem) == listItems.IndexOf(item) + 1)
+                    Debug.Log(draggedItem.worldBound.yMin + " " + item.worldBound.center.y  + " " + (listItems.IndexOf(draggedItem)) + " " + (listItems.IndexOf(item)+1));
+
+                if (!moving && draggedItem.worldBound.yMin <= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item)+1)
+                {
+                    moving = true;
+                    float initialItemMovePosY = item.worldBound.center.y;
+
+                    float heightDragged = ItemHeight(listItems.IndexOf(draggedItem));
+                    float heightMove = ItemHeight(listItems.IndexOf(item));
+
+                    float posYToMove;
+
+                    if (heightDragged < heightMove)
+                    {
+                        posYToMove = initialDraggedItemPosY - heightDragged;
+                    }
+                    else
+                    {
+                        posYToMove = initialDraggedItemPosY + heightDragged/2 - heightMove;
+                    }
+                    
+                    await MoveVertical(true, listItems.IndexOf(item), posYToMove);
+
+                    T backup = ItemsSource[listItems.IndexOf(draggedItem)];
+
+                    ItemsSource.RemoveAt(listItems.IndexOf(draggedItem));
+                    listItems.Remove(draggedItem);
+
+                    int indexDestiny = Mathf.Clamp(listItems.IndexOf(item), 0, ItemsSource.Count);
+
+                    ItemsSource.Insert(indexDestiny, backup);
+                    listItems.Insert(indexDestiny, draggedItem);
+
+                    initialDraggedItemPosY = initialItemMovePosY;
+                    moving = false;
+
+                }
+            }
         }
     }
 
@@ -190,6 +240,7 @@ public class CustomListView<T>
         if (draggedItem == listItem)
         {
             selectedItem = listItem;
+            draggedItem = null;
             RestoreColors();
             return;
         }
@@ -229,6 +280,7 @@ public class CustomListView<T>
         if (evt.button == 0) // Botón izquierdo del ratón
         {
             draggedItem = listItem;
+            initialDraggedItemPosY = listItem.worldBound.center.y;
             evt.StopPropagation();
         }
     }
