@@ -182,7 +182,8 @@ public class CustomListView<T>
         }
         if (reOrderMode == ReOrderModes.animatedDynamic)
         {
-            if (evt.mousePosition.y > listContainer.worldBound.xMin && evt.mousePosition.y < listContainer.worldBound.xMax)
+            if ((draggedItem.worldBound.yMin >= listContainer.worldBound.yMin && evt.mouseDelta.y < 0) 
+             || (draggedItem.worldBound.yMax <= listContainer.worldBound.yMax && evt.mouseDelta.y > 0))
             { 
                 StyleTranslate translate = new StyleTranslate();
                 draggedItemPosY += evt.mouseDelta.y;
