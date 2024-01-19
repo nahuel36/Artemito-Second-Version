@@ -84,6 +84,8 @@ public class InteractionListCustomEditor : Editor
 
         listCustom.OnRemoveItem += OnRemoveItem;
 
+        listCustom.reOrderMode = CustomListView<Interaction>.ReOrderModes.withBordersStatic;
+
         //probar uxml compuestos
         //cambiar colores multiplicando por alfa o sumando varios
         //falta un recuadro

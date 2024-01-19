@@ -15,7 +15,14 @@ public class CustomListView<T>
     private bool isBottom = false;
     private VisualElement highlightedItem = null;
     private VisualElement selectedItem;
-    
+
+    public enum ReOrderModes { 
+        withBordersStatic, 
+        animatedDynamic
+    }
+
+    public ReOrderModes reOrderMode = ReOrderModes.animatedDynamic;
+
     public IList<T> ItemsSource { get; set; }
 
     public Func<int, VisualElement> ItemContent;
@@ -169,10 +176,13 @@ public class CustomListView<T>
             isBottom = false;
         }
 
-        StyleTranslate translate = new StyleTranslate();
-        draggedItemPosY += evt.mouseDelta.y;
-        translate.value = new Translate(0, draggedItemPosY);
-        draggedItem.style.translate = translate;
+        if (reOrderMode == ReOrderModes.animatedDynamic)
+        { 
+            StyleTranslate translate = new StyleTranslate();
+            draggedItemPosY += evt.mouseDelta.y;
+            translate.value = new Translate(0, draggedItemPosY);
+            draggedItem.style.translate = translate;
+        }
     }
 
     private void OnMouseUp(MouseUpEvent evt, VisualElement listItem, int i)
