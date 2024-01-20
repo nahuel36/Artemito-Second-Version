@@ -223,7 +223,7 @@ public class CustomListView<T>
                                 posYToMove = initialDraggedItemPosY - heightDragged / 2;
                         }
                     
-                        await MoveVertical(goingUp, listItems.IndexOf(item), posYToMove);
+                        await MoveVertical(goingUp, listItems.IndexOf(item), Mathf.Clamp(posYToMove,listContainer.worldBound.yMin, listContainer.worldBound.yMax));
 
                         T backup = ItemsSource[listItems.IndexOf(draggedItem)];
 
