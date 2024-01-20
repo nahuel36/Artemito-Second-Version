@@ -76,9 +76,10 @@ public class CustomListView<T>
         while ((listItems[index].worldBound.position.y < finalPosY && directionIsDown)
             || (listItems[index].worldBound.position.y > finalPosY && !directionIsDown))
         {
-            StyleTranslate translate = new StyleTranslate();
-            translate.value = new Translate(0, (directionIsDown?1:-1) * 30 * i);
-            listItems[index].style.translate = translate;
+
+            Vector2 pos = listItems[index].transform.position;
+            pos.y += (directionIsDown ? 1 : -1) * 15 * i;
+            listItems[index].transform.position = pos;
             i += 0.25f;
 
             await Task.Delay(1);
