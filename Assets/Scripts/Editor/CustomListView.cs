@@ -196,10 +196,8 @@ public class CustomListView<T>
                 foreach (var item in listItems)
                 {
                     bool goingUp = draggedItem.worldBound.yMin <= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) + 1;
-                    bool goingDown = !goingUp && draggedItem.worldBound.yMax >= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) - 1;
-                    goingUp = goingUp && !goingDown;
-
-                    if ((goingUp || goingDown))
+                    bool goingDown = draggedItem.worldBound.yMax >= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) - 1;
+                    if ((goingUp || goingDown) && goingDown != goingUp)
                     {
                         moving = true;
                         float initialItemMovePosY = item.worldBound.center.y;
