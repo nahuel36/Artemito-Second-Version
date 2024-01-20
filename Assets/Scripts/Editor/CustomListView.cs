@@ -72,16 +72,16 @@ public class CustomListView<T>
 
     private async Task MoveVertical(bool directionIsDown, int index, float finalPosY)
     {
-        int i = 0;
+        float i = 0;
         while ((listItems[index].worldBound.position.y < finalPosY && directionIsDown)
             || (listItems[index].worldBound.position.y > finalPosY && !directionIsDown))
         {
             StyleTranslate translate = new StyleTranslate();
-            translate.value = new Translate(0, (directionIsDown?1:-1) * 9 * i);
+            translate.value = new Translate(0, (directionIsDown?1:-1) * 30 * i);
             listItems[index].style.translate = translate;
-            i++;
+            i += 0.25f;
 
-            await Task.Delay(50);
+            await Task.Delay(1);
         }
     }
 
@@ -191,53 +191,87 @@ public class CustomListView<T>
                 draggedItem.style.translate = translate;
             }
 
-
-            foreach (var item in listItems)
-            {
-                if(listItems.IndexOf(draggedItem) == listItems.IndexOf(item) + 1)
-                    Debug.Log(draggedItem.worldBound.yMin + " " + item.worldBound.center.y  + " " + (listItems.IndexOf(draggedItem)) + " " + (listItems.IndexOf(item)+1));
-
-                if (!moving && draggedItem.worldBound.yMin <= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item)+1)
+            if (!moving)
+            { 
+                foreach (var item in listItems)
                 {
-                    moving = true;
-                    float initialItemMovePosY = item.worldBound.center.y;
+                    bool goingUp = draggedItem.worldBound.yMin <= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) + 1;
+                    bool goingDown = !goingUp && draggedItem.worldBound.yMax >= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) - 1;
+                    goingUp = goingUp && !goingDown;
 
-                    float heightDragged = ItemHeight(listItems.IndexOf(draggedItem));
-                    float heightMove = ItemHeight(listItems.IndexOf(item));
-
-                    float posYToMove;
-
-                    if (heightDragged < heightMove)
+                    if ((goingUp || goingDown))
                     {
-                        posYToMove = initialDraggedItemPosY - heightDragged;
-                    }
-                    else
-                    {
-                        posYToMove = initialDraggedItemPosY + heightDragged/2 - heightMove;
-                    }
+                        moving = true;
+                        float initialItemMovePosY = item.worldBound.center.y;
+
+                        float heightDragged = ItemHeight(listItems.IndexOf(draggedItem));
+                        float heightMove = ItemHeight(listItems.IndexOf(item));
+
+                        float posYToMove;
+
+                        if (heightDragged < heightMove)
+                        {
+                            if(goingUp)
+                                posYToMove = initialDraggedItemPosY - heightDragged;
+                            else
+                                posYToMove = initialDraggedItemPosY - heightDragged/2;
+                        }
+                        else
+                        {
+                            if(goingUp)
+                                posYToMove = initialDraggedItemPosY + heightDragged/2 - heightMove;
+                            else
+                                posYToMove = initialDraggedItemPosY - heightDragged / 2;
+                        }
                     
-                    await MoveVertical(true, listItems.IndexOf(item), posYToMove);
+                        await MoveVertical(goingUp, listItems.IndexOf(item), posYToMove);
 
-                    T backup = ItemsSource[listItems.IndexOf(draggedItem)];
+                        T backup = ItemsSource[listItems.IndexOf(draggedItem)];
 
-                    ItemsSource.RemoveAt(listItems.IndexOf(draggedItem));
-                    listItems.Remove(draggedItem);
+                        ItemsSource.RemoveAt(listItems.IndexOf(draggedItem));
+                        listItems.Remove(draggedItem);
 
-                    int indexDestiny = Mathf.Clamp(listItems.IndexOf(item), 0, ItemsSource.Count);
+                        int indexDestiny = Mathf.Clamp(listItems.IndexOf(item) + (goingDown?1:0), 0, ItemsSource.Count);
 
-                    ItemsSource.Insert(indexDestiny, backup);
-                    listItems.Insert(indexDestiny, draggedItem);
+                        ItemsSource.Insert(indexDestiny, backup);
+                        listItems.Insert(indexDestiny, draggedItem);
 
-                    initialDraggedItemPosY = initialItemMovePosY;
-                    moving = false;
+                        initialDraggedItemPosY = initialItemMovePosY;
 
+                        moving = false;
+                        /*listContainer.Clear();
+                        foreach (VisualElement itemL in listItems)
+                        {
+                            StyleTranslate translate = new StyleTranslate();
+                            translate.value = new Translate(0, 0);
+                            itemL.style.translate = translate;
+                            listContainer.Add(item);
+                        }
+                        */
+                    }
                 }
             }
         }
     }
 
-    private void OnMouseUp(MouseUpEvent evt, VisualElement listItem, int i)
+    private async Task OnMouseUp(MouseUpEvent evt, VisualElement listItem, int i)
     {
+        if (reOrderMode == ReOrderModes.animatedDynamic && draggedItem != null)
+        {
+            while (moving) await Task.Delay(100);
+
+            draggedItem = null;
+            listContainer.Clear();
+            foreach (VisualElement item in listItems)
+            {
+                StyleTranslate translate = new StyleTranslate();
+                translate.value = new Translate(0, 0);
+                item.style.translate = translate;
+                listContainer.Add(item);
+            }
+            return;
+        }
+
         if (draggedItem == listItem)
         {
             selectedItem = listItem;
