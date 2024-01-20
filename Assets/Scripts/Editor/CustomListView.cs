@@ -259,6 +259,8 @@ public class CustomListView<T>
         {
             while (moving) await Task.Delay(100);
 
+            draggedItemPosY = 0;
+
             draggedItem = null;
             listContainer.Clear();
             foreach (VisualElement item in listItems)
