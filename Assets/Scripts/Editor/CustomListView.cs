@@ -116,8 +116,11 @@ public class CustomListView<T>
         listItem.RegisterCallback<ChangeEvent<string>>(evt => OnChanged(evt, listItem, index));
         listItem.RegisterCallback<MouseEnterEvent>(evt => OnMouseEnterItem(evt, listItem, index));
 
-        listItem.style.borderBottomWidth = 5;
-        listItem.style.borderTopWidth = 5;
+        if (reOrderMode == ReOrderModes.withBordersStatic)
+        { 
+            listItem.style.borderBottomWidth = 5;
+            listItem.style.borderTopWidth = 5;
+        }
 
         listItems.Add(listItem);
         listContainer.Add(listItem);
@@ -201,7 +204,8 @@ public class CustomListView<T>
                     if ((draggingUp || draggingDown) && draggingDown != draggingUp)
                     { 
                         moving = true;
-                        float initialItemMovePosY = item.worldBound.yMin;
+                        float initialItemMovePosMinY = item.worldBound.yMin;
+                        float initialItemMovePosMaxY = item.worldBound.yMax;
 
                         float heightDragged = ItemHeight(listItems.IndexOf(draggedItem));
                         float heightMove = ItemHeight(listItems.IndexOf(item));
@@ -211,16 +215,16 @@ public class CustomListView<T>
                         if (heightDragged < heightMove)
                         {
                             if(draggingUp)
-                                posYToMove = initialDraggedItemPosY + heightDragged + heightMove;
+                                posYToMove = initialItemMovePosMinY + heightMove + heightDragged;
                             else
                                 posYToMove = initialDraggedItemPosY;
                         }
                         else
                         {
                             if (draggingUp)
-                                posYToMove = initialDraggedItemPosY + heightDragged + heightMove;
+                                posYToMove = initialItemMovePosMinY + heightMove + heightDragged;
                             else
-                                posYToMove = initialDraggedItemPosY + heightMove / 4.1f ;
+                                posYToMove = initialDraggedItemPosY;
                         }
                     
                         await MoveVertical(draggingUp, listItems.IndexOf(item), Mathf.Clamp(posYToMove,listContainer.worldBound.yMin, listContainer.worldBound.yMax));
@@ -235,8 +239,11 @@ public class CustomListView<T>
                         ItemsSource.Insert(indexDestiny, backup);
                         listItems.Insert(indexDestiny, draggedItem);
 
-                        initialDraggedItemPosY = draggedItem.worldBound.yMin;
-
+                        if(draggingDown)
+                            initialDraggedItemPosY = initialItemMovePosMinY;
+                        else
+                            initialDraggedItemPosY = initialItemMovePosMaxY- heightDragged - heightMove;
+                                                
                         moving = false;
                         /*listContainer.Clear();
                         foreach (VisualElement itemL in listItems)
