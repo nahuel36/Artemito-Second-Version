@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.UIElements.Experimental;
 
 public class CustomListView<T> 
 {
@@ -80,9 +81,10 @@ public class CustomListView<T>
 
             int multiplier = directionIsDown ? 1 : -1;
             Vector2 pos = listItems[index].transform.position;
-            pos.y += multiplier * Mathf.Clamp( 10 - i, 1 , 10);
+            pos.y += multiplier * Easing.InOutQuad(i) * 10;
             listItems[index].transform.position = pos;
-            i += 0.5f;
+            i += 0.1f;
+                      
 
             await Task.Delay(1);
         }
