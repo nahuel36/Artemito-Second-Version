@@ -18,7 +18,6 @@ public class CustomListView<T>
     private VisualElement highlightedItem = null;
     private VisualElement selectedItem;
     private bool moving_all;
-    private bool moving_one;
     public enum ReOrderModes { 
         withBordersStatic, 
         animatedDynamic
@@ -44,7 +43,6 @@ public class CustomListView<T>
 
     public VisualElement Init()
     {
-        moving_one = false;
         moving_all = false;
 
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Editor/CustomListView.uxml");
@@ -83,7 +81,7 @@ public class CustomListView<T>
             Vector2 pos = listItems[index].transform.position;
             pos.y += multiplier * Easing.InOutQuad(i) * 10;
             listItems[index].transform.position = pos;
-            i += 0.1f;
+            i += 0.025f;
                       
 
             await Task.Delay(1);
@@ -239,7 +237,7 @@ public class CustomListView<T>
                     }
                 }
             }
-            if (moving_all == true && moving_one == false)
+            if (moving_all == true)
             {
                 float yPosToMove = firstItemPositionY;
                 float finalYPos = firstItemPositionY;
@@ -252,9 +250,7 @@ public class CustomListView<T>
                 {
                     if (listItems[i] != draggedItem)
                     {
-                        moving_one = true;
-                        await MoveVertical(listItems[i].worldBound.yMin < yPosToMove, i, Mathf.Clamp(yPosToMove, firstItemPositionY, finalYPos));
-                        moving_one = false;
+                        MoveVertical(listItems[i].worldBound.yMin < yPosToMove, i, Mathf.Clamp(yPosToMove, firstItemPositionY, finalYPos));
                     }
                     yPosToMove += ItemHeight(i);
                 }
