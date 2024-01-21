@@ -206,55 +206,47 @@ public class CustomListView<T>
         }
         if (reOrderMode == ReOrderModes.animatedDynamic)
         {
-            if ((draggedItem.worldBound.yMin >= listContainer.worldBound.yMin && evt.mouseDelta.y < 0) 
-             || (draggedItem.worldBound.yMax <= listContainer.worldBound.yMax && evt.mouseDelta.y > 0))
-            { 
-                StyleTranslate translate = new StyleTranslate();
-                draggedItemPosY += evt.mouseDelta.y;
-                translate.value = new Translate(0, draggedItemPosY);
-                draggedItem.style.translate = translate;
-            }
+            StyleTranslate translate = new StyleTranslate();
+            draggedItemPosY += evt.mouseDelta.y;
+            translate.value = new Translate(0, draggedItemPosY);
+            draggedItem.style.translate = translate;
 
-            if (moving_all == false)
-            { 
-                foreach (var item in listItems)
-                {
-                    bool draggingUp = draggedItem.worldBound.yMin <= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) + 1;
-                    bool draggingDown = draggedItem.worldBound.yMax >= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) - 1;
-                    if ((draggingUp || draggingDown) && draggingDown != draggingUp)
-                    { 
-                        T backup = ItemsSource[listItems.IndexOf(draggedItem)];
+            await Task.Delay(Mathf.RoundToInt(Time.deltaTime * 1000f));
 
-                        ItemsSource.RemoveAt(listItems.IndexOf(draggedItem));
-                        listItems.Remove(draggedItem);
-
-                        int indexDestiny = Mathf.Clamp(listItems.IndexOf(item) + (draggingDown?1:0), 0, ItemsSource.Count);
-
-                        ItemsSource.Insert(indexDestiny, backup);
-                        listItems.Insert(indexDestiny, draggedItem);
-
-                        moving_all = true;
-                    }
-                }
-            }
-            if (moving_all == true)
+            foreach (var item in listItems)
             {
-                float yPosToMove = firstItemPositionY;
-                float finalYPos = firstItemPositionY;
-                for (int i = 0; i < listItems.Count; i++)
-                {
-                    finalYPos += ItemHeight(i);
-                }
+                bool draggingUp = draggedItem.worldBound.yMin <= item.worldBound.center.y && listItems.IndexOf(draggedItem) >= listItems.IndexOf(item) + 1;
+                bool draggingDown = draggedItem.worldBound.yMax >= item.worldBound.center.y && listItems.IndexOf(draggedItem) <= listItems.IndexOf(item) - 1;
+                if ((draggingUp || draggingDown) && draggingDown != draggingUp)
+                { 
+                    T backup = ItemsSource[listItems.IndexOf(draggedItem)];
 
-                for (int i = 0; i < listItems.Count; i++)
-                {
-                    if (listItems[i] != draggedItem)
-                    {
-                        MoveVertical(listItems[i].worldBound.yMin < yPosToMove, i, Mathf.Clamp(yPosToMove, firstItemPositionY, finalYPos));
-                    }
-                    yPosToMove += ItemHeight(i);
+                    ItemsSource.RemoveAt(listItems.IndexOf(draggedItem));
+                    listItems.Remove(draggedItem);
+
+                    int indexDestiny = Mathf.Clamp(listItems.IndexOf(item) + (draggingDown?1:0), 0, ItemsSource.Count);
+
+                    ItemsSource.Insert(indexDestiny, backup);
+                    listItems.Insert(indexDestiny, draggedItem);
                 }
-                moving_all = false;
+            }
+
+            await Task.Delay(Mathf.RoundToInt(Time.deltaTime * 1000));
+
+            float yPosToMove = firstItemPositionY;
+            float finalYPos = firstItemPositionY;
+            for (int i = 0; i < listItems.Count; i++)
+            {
+                finalYPos += ItemHeight(i);
+            }
+
+            for (int i = 0; i < listItems.Count; i++)
+            {
+                if (listItems[i] != draggedItem)
+                {
+                    MoveVertical(listItems[i].worldBound.yMin < yPosToMove, i, Mathf.Clamp(yPosToMove, firstItemPositionY, finalYPos));
+                }
+                yPosToMove += ItemHeight(i);
             }
         }
     }
