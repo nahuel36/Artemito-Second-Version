@@ -11,12 +11,13 @@ public class CustomListView<T>
     private VisualElement listContainer;
     private VisualElement draggedItem;
     private float draggedItemPosY;
-    private float initialDraggedItemPosY;
+    private float firstItemPositionY;
     private VisualElement overCursorOnReorderItem;
     private bool isBottom = false;
     private VisualElement highlightedItem = null;
     private VisualElement selectedItem;
-    private bool moving;
+    private bool moving_all;
+    private bool moving_one;
     public enum ReOrderModes { 
         withBordersStatic, 
         animatedDynamic
@@ -42,6 +43,9 @@ public class CustomListView<T>
 
     public VisualElement Init()
     {
+        moving_one = false;
+        moving_all = false;
+
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Editor/CustomListView.uxml");
         VisualElement root = visualTreeAsset.CloneTree();
 
@@ -60,9 +64,6 @@ public class CustomListView<T>
         Button buttonRemove = root.Q<Button>("remove");
         buttonRemove.clicked += Remove;
 
-        Button animTest = root.Q<Button>("anim");
-        animTest.clicked += () => { MoveVertical(true,0,listItems[1].worldBound.position.y); };
-
         root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
         root.Add(scrollView);
        // root.StretchToParentSize();
@@ -73,14 +74,15 @@ public class CustomListView<T>
     private async Task MoveVertical(bool directionIsDown, int index, float finalPosY)
     {
         float i = 0;
-        while ((listItems[index].worldBound.yMax < finalPosY && directionIsDown)
+        while ((listItems[index].worldBound.yMin < finalPosY && directionIsDown)
             || (listItems[index].worldBound.yMin > finalPosY && !directionIsDown))
         {
 
+            int multiplier = directionIsDown ? 1 : -1;
             Vector2 pos = listItems[index].transform.position;
-            pos.y += (directionIsDown ? 1 : -1) * 15 * i;
+            pos.y += multiplier * Mathf.Clamp( 10 - i, 1 , 10);
             listItems[index].transform.position = pos;
-            i += 0.25f;
+            i += 0.5f;
 
             await Task.Delay(1);
         }
@@ -143,8 +145,26 @@ public class CustomListView<T>
         OnChangeItem?.Invoke(evt, listItem, index);
     }
 
-    private void OnMouseLeave(MouseLeaveEvent evt)
+    private async Task OnMouseLeave(MouseLeaveEvent evt)
     {
+        if (reOrderMode == ReOrderModes.animatedDynamic && draggedItem != null)
+        {
+            while (moving_all) await Task.Delay(100);
+
+            draggedItemPosY = 0;
+
+            draggedItem = null;
+            listContainer.Clear();
+            foreach (VisualElement item in listItems)
+            {
+                StyleTranslate translate = new StyleTranslate();
+                translate.value = new Translate(0, 0);
+                item.style.translate = translate;
+                listContainer.Add(item);
+            }
+            return;
+        }
+
         if (reOrderMode == ReOrderModes.withBordersStatic && draggedItem != null) draggedItem = null;
         if (overCursorOnReorderItem != null) overCursorOnReorderItem = null;
         if (highlightedItem != null) highlightedItem = null;
@@ -195,7 +215,7 @@ public class CustomListView<T>
                 draggedItem.style.translate = translate;
             }
 
-            if (!moving)
+            if (moving_all == false)
             { 
                 foreach (var item in listItems)
                 {
@@ -203,31 +223,7 @@ public class CustomListView<T>
                     bool draggingDown = draggedItem.worldBound.yMax >= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) - 1;
                     if ((draggingUp || draggingDown) && draggingDown != draggingUp)
                     { 
-                        moving = true;
-                        float initialItemMovePosMinY = item.worldBound.yMin;
-                        float initialItemMovePosMaxY = item.worldBound.yMax;
-
-                        float heightDragged = ItemHeight(listItems.IndexOf(draggedItem));
-                        float heightMove = ItemHeight(listItems.IndexOf(item));
-
-                        float posYToMove;
-
-                        if (heightDragged < heightMove)
-                        {
-                            if(draggingUp)
-                                posYToMove = initialItemMovePosMinY + heightMove + heightDragged;
-                            else
-                                posYToMove = initialDraggedItemPosY;
-                        }
-                        else
-                        {
-                            if (draggingUp)
-                                posYToMove = initialItemMovePosMinY + heightMove + heightDragged;
-                            else
-                                posYToMove = initialDraggedItemPosY;
-                        }
-                    
-                        await MoveVertical(draggingUp, listItems.IndexOf(item), Mathf.Clamp(posYToMove,listContainer.worldBound.yMin, listContainer.worldBound.yMax));
+                        moving_all = true;
 
                         T backup = ItemsSource[listItems.IndexOf(draggedItem)];
 
@@ -238,24 +234,29 @@ public class CustomListView<T>
 
                         ItemsSource.Insert(indexDestiny, backup);
                         listItems.Insert(indexDestiny, draggedItem);
-
-                        if(draggingDown)
-                            initialDraggedItemPosY = initialItemMovePosMinY;
-                        else
-                            initialDraggedItemPosY = initialItemMovePosMaxY- heightDragged - heightMove;
-                                                
-                        moving = false;
-                        /*listContainer.Clear();
-                        foreach (VisualElement itemL in listItems)
-                        {
-                            StyleTranslate translate = new StyleTranslate();
-                            translate.value = new Translate(0, 0);
-                            itemL.style.translate = translate;
-                            listContainer.Add(item);
-                        }
-                        */
                     }
                 }
+            }
+            if (moving_all == true && moving_one == false)
+            {
+                float yPosToMove = firstItemPositionY;
+                float finalYPos = firstItemPositionY;
+                for (int i = 0; i < listItems.Count; i++)
+                {
+                    finalYPos += ItemHeight(i);
+                }
+
+                for (int i = 0; i < listItems.Count; i++)
+                {
+                    if (listItems[i] != draggedItem)
+                    {
+                        moving_one = true;
+                        await MoveVertical(listItems[i].worldBound.yMin < yPosToMove, i, Mathf.Clamp(yPosToMove, firstItemPositionY, finalYPos));
+                        moving_one = false;
+                    }
+                    yPosToMove += ItemHeight(i);
+                }
+                moving_all = false;
             }
         }
     }
@@ -264,7 +265,7 @@ public class CustomListView<T>
     {
         if (reOrderMode == ReOrderModes.animatedDynamic && draggedItem != null)
         {
-            while (moving) await Task.Delay(100);
+            while (moving_all) await Task.Delay(100);
 
             draggedItemPosY = 0;
 
@@ -323,7 +324,7 @@ public class CustomListView<T>
         if (evt.button == 0) // Botón izquierdo del ratón
         {
             draggedItem = listItem;
-            initialDraggedItemPosY = listItem.worldBound.yMin;
+            firstItemPositionY = listItems[0].worldBound.yMin;
             evt.StopPropagation();
         }
     }
@@ -389,4 +390,4 @@ public class CustomListView<T>
     */
 
 
-}
+                    }
