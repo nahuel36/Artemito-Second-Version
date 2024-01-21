@@ -225,8 +225,6 @@ public class CustomListView<T>
                     bool draggingDown = draggedItem.worldBound.yMax >= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) - 1;
                     if ((draggingUp || draggingDown) && draggingDown != draggingUp)
                     { 
-                        moving_all = true;
-
                         T backup = ItemsSource[listItems.IndexOf(draggedItem)];
 
                         ItemsSource.RemoveAt(listItems.IndexOf(draggedItem));
@@ -236,6 +234,8 @@ public class CustomListView<T>
 
                         ItemsSource.Insert(indexDestiny, backup);
                         listItems.Insert(indexDestiny, draggedItem);
+
+                        moving_all = true;
                     }
                 }
             }
