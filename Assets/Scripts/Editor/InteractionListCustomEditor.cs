@@ -119,8 +119,10 @@ public class InteractionListCustomEditor : Editor
 
     private float itemHeight(int index)
     {
+        if (string.IsNullOrEmpty(myTarget.interactions[index].type))
+            return EditorGUIUtility.singleLineHeight * 2;
         if (myTarget.interactions[index].type == "Inventory")
-            return EditorGUIUtility.singleLineHeight * 5;
+            return EditorGUIUtility.singleLineHeight * 4;
         else
             return EditorGUIUtility.singleLineHeight * 3;
     }

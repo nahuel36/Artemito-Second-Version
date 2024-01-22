@@ -40,6 +40,8 @@ public class InteractionSelect
 
         DropdownField subtype = labelFromUXML.Q<DropdownField>("subtype");
         subtype.RegisterCallback<ChangeEvent<string>>(OnChangeSubtype);
+        if (string.IsNullOrEmpty(interaction.type))
+            subtype.visible = false;
 
 
         return root;
@@ -96,6 +98,7 @@ public class InteractionSelect
         interaction.type = evt.newValue;
         SetSubtypeChoices(true, element);
         OnChangeTypeEvent?.Invoke(interactP);
+        labelFromUXML.Q<DropdownField>("subtype").visible = true;
     }
 
     private void OnChangeSubtype(ChangeEvent<string> evt)
