@@ -45,7 +45,7 @@ public class CustomListView<T>
     {
         moving_all = false;
 
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Editor/CustomListView.uxml");
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Utils/Editor/CustomListView.uxml");
         VisualElement root = visualTreeAsset.CloneTree();
 
         ScrollView scrollView = root.Q<ScrollView>("scrollView");
