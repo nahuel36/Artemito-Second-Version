@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 
-[CustomEditor(typeof(InteractionList))]
-public class InteractionListCustomEditor : Editor
+[CustomEditor(typeof(RoomInteractuable))]
+public class RoomInteractuableCustomEditor : Editor
 {
     VisualElement root;
-    InteractionList myTarget;
+    RoomInteractuable myTarget;
     [SerializeField] VisualTreeAsset visualTree;
     Dictionary<Interaction, SubtypeSelector> subTypeSelectors;
 
@@ -20,7 +20,7 @@ public class InteractionListCustomEditor : Editor
     {
         subTypeSelectors = new Dictionary<Interaction, SubtypeSelector>();
 
-        myTarget = (InteractionList)target;
+        myTarget = (RoomInteractuable)target;
 
         root = new VisualElement();
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionList : MonoBehaviour
+public class RoomInteractuable : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<Interaction> interactions;
