@@ -5,13 +5,14 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using System;
 using System.Linq;
+using UnityEditor.UIElements;
 
 [CustomEditor(typeof(FlagsTest))]
 public class FlagsTestEditor : Editor
 {
 
     public VisualTreeAsset visual;
-
+    public VisualTreeAsset visual2;
     [System.Flags]
     public enum EntityPartial
     {
@@ -24,7 +25,23 @@ public class FlagsTestEditor : Editor
 
     public override VisualElement CreateInspectorGUI()
     {
+        VisualElement root = new VisualElement();
 
+        VisualElement visualTree = visual2.Instantiate();
+
+        EnumFlagsField flags = visualTree.Q<EnumFlagsField>("flags");
+
+        flags.choices = new List<string>() { "Monday", "Tuesday" ,"Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
+        flags.choicesMasks = new List<int>() { (1 << 0) , (1 << 1), 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6 };
+
+        flags.RegisterValueChangedCallback(callback);
+
+        flags.value = (GenericEnum)((FlagsTest)target).enumeratorFlag;
+
+        root.Add(visualTree);
+
+        return root;
 
         /*
         var imguiContainer = new IMGUIContainer(() =>
@@ -65,6 +82,10 @@ public class FlagsTestEditor : Editor
         //dropdown.choices = GetStringArrayFromProperty(serializedObject.FindProperty("myList"));
         //  element.Add(dropdown);
 
+        
+        
+        
+        /*
         VisualElement element = new VisualElement();
         var property = serializedObject.FindProperty("flags");
         var property2 = serializedObject.FindProperty("enumeratorFlag");
@@ -85,8 +106,23 @@ public class FlagsTestEditor : Editor
         element.Add(label);
 
         return element;
+        */
+
+
+
     }
 
+    private void callback(ChangeEvent<Enum> evt)
+    {
+        //((FlagsTest)target).enumerator = evt.newValue;
+
+        ((FlagsTest)target).enumeratorFlag = Convert.ToInt32(evt.newValue);
+
+        Debug.Log(Convert.ToInt32(evt.newValue));
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(target);
+    }
+    /*
     private void onChange(ChangeEvent<Enum> evt)
     {
         serializedObject.FindProperty("enumeratorFlag").intValue = Convert.ToInt32(evt.newValue);
@@ -95,6 +131,8 @@ public class FlagsTestEditor : Editor
         serializedObject.ApplyModifiedProperties();
         EditorUtility.SetDirty(target);
     }
+    */
+
 
     public List<string> GetStringArrayFromProperty(SerializedProperty prop)
     {
