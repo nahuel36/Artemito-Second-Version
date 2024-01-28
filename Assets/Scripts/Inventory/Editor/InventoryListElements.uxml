@@ -1,5 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Template name="InventoryItem" src="project://database/Assets/Scripts/Inventory/Editor/InventoryItem.uxml?fileID=9197481963319205126&amp;guid=272d99dbfd750c64baa0d42323ceaae5&amp;type=3#InventoryItem" />
     <Style src="project://database/Assets/Scripts/Inventory/Editor/InventoryListElements.uss?fileID=7433441132597879392&amp;guid=ac59f1351864e1a449070f022906d6e8&amp;type=3#InventoryListElements" />
-    <ui:Label text="Hello World! From UXML" />
-    <ui:Label text="Hello World! With Style" class="custom-label" />
+    <ui:VisualElement name="ItemsContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+        <ui:Button display-tooltip-when-elided="true" name="Item" style="visibility: visible; width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/Example/Inventory/blister.jpg?fileID=2800000&amp;guid=2c65942e32e9ad24c9fd889064d92ae3&amp;type=3#blister&apos;);" />
+    </ui:VisualElement>
+    <ui:Button text="+" display-tooltip-when-elided="true" name="add" />
+    <ui:Button text="-" display-tooltip-when-elided="true" name="remove" />
+    <ui:Instance template="InventoryItem" name="InventoryItem" />
 </ui:UXML>

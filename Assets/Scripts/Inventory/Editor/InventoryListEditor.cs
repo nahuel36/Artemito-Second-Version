@@ -18,6 +18,7 @@ public class InventoryListEditor : Editor
     List<Image> images;
     int selectedIndex;
     Button eraseButton;
+    StyleLength itemWidth, itemHeight;
 
     public override VisualElement CreateInspectorGUI()
     {
@@ -27,39 +28,45 @@ public class InventoryListEditor : Editor
 
         VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
 
-        root.Add(labelFromUXML);
 
-        imagesContainer = new VisualElement();
+        imagesContainer = labelFromUXML.Q<VisualElement>("ItemsContainer");
 
-        imagesContainer.style.flexDirection = FlexDirection.Row;     
+        imagesContainer.style.flexDirection = FlexDirection.Row;
+
+        VisualElement item = labelFromUXML.Q<VisualElement>("Item");
+        item.visible = false;
+
+        itemWidth = item.style.width;
+        itemHeight = item.style.height;
 
         for (int i = 0; i < serializedObject.FindProperty("items").arraySize; i++)
         {
-            AddImage(i);
+            AddImage(i, itemWidth, itemHeight);
         }
 
-        root.Add(imagesContainer);
 
-        Button addButton = new Button();
-        addButton.text = "+";
+        Button addButton = labelFromUXML.Q<Button>("add");
         addButton.clicked += Add;
-        root.Add(addButton);
 
-        eraseButton = new Button();
-        eraseButton.text = "-";
+        eraseButton = labelFromUXML.Q<Button>("remove");
         eraseButton.clicked += Erase;
         eraseButton.visible = false;
-        root.Add(eraseButton);
+
+        VisualElement selectedItem = labelFromUXML.Q<VisualElement>("InventoryItem");
+        selectedItem.visible = false;
+        selectedItem.StretchToParentSize();
+
+        root.Add(labelFromUXML);
 
         return root;
     }
 
-    private void AddImage(int i)
+    private void AddImage(int i, StyleLength width, StyleLength height)
     {
         
         Image image = new Image();
-        image.style.width = 100;
-        image.style.height = 100; 
+        image.style.width = width;
+        image.style.height = height; 
         image.sprite = ((UnityEngine.Sprite)serializedObject.FindProperty("items").GetArrayElementAtIndex(i).FindPropertyRelative("normalImage").objectReferenceValue);
         image.scaleMode = ScaleMode.ScaleToFit;
         int clickedIndex = serializedObject.FindProperty("items").GetArrayElementAtIndex(i).FindPropertyRelative("specialIndex").intValue;
@@ -99,7 +106,7 @@ public class InventoryListEditor : Editor
 
         OnClick(serializedObject.FindProperty("items").GetArrayElementAtIndex(index).FindPropertyRelative("specialIndex").intValue);
 
-        AddImage(index);
+        AddImage(index,itemWidth,itemHeight);
 
         serializedObject.Update();
     }
@@ -112,7 +119,7 @@ public class InventoryListEditor : Editor
         selectedIndex = ((InventoryList)target).GetIndexBySpecialIndex(specialIndex);
 
         itemSelectedVisualElement = new InventoryItemEditor().Show(((InventoryList)target).items[selectedIndex], serializedObject.FindProperty("items").GetArrayElementAtIndex(selectedIndex));
-                
+
         if (!root.Contains(itemSelectedVisualElement))
         {
             root.Add(itemSelectedVisualElement);
