@@ -85,7 +85,7 @@ public enum GenericEnum
     value27 = 1 << 26,
     value28 = 1 << 27,
     value29 = 1 << 28,
-    value30 = 1 << 29
+    value30 = 1 << 29,
     value31 = 1 << 30,
     value32 = 1 << 31,
     value33 = 1 << 32,
