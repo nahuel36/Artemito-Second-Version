@@ -35,6 +35,7 @@ public class InventoryListEditor : Editor
 
         VisualElement item = labelFromUXML.Q<VisualElement>("Item");
         item.visible = false;
+        item.StretchToParentSize();
 
         itemWidth = item.style.width;
         itemHeight = item.style.height;
