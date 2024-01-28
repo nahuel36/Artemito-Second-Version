@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class RoomInteractuable : PropertiesContainer
+[CustomEditor(typeof(PropertiesContainer))]
+public class PropertiesContainerCustomEditor : Editor
 {
     // Start is called before the first frame update
-    public List<Interaction> interactions;
-
     void Start()
     {
         
