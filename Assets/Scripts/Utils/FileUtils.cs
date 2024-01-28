@@ -17,4 +17,17 @@ public static class FileUtils {
         return dirs;
     }
 
+    public static List<string> GetFilesList(string path)
+    {
+        List<string> dirs = new List<string>();
+
+        DirectoryInfo info = new DirectoryInfo(path);
+
+        foreach (var file in info.GetFiles())
+        {
+            dirs.Add(file.Name);
+        }
+
+        return dirs;
+    }
 }
