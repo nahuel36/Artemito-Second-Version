@@ -19,6 +19,7 @@ public class InventoryListEditor : Editor
     int selectedIndex;
     Button eraseButton;
     StyleLength itemWidth, itemHeight;
+    VisualElement selectedItem;
 
     public override VisualElement CreateInspectorGUI()
     {
@@ -53,9 +54,8 @@ public class InventoryListEditor : Editor
         eraseButton.clicked += Erase;
         eraseButton.visible = false;
 
-        VisualElement selectedItem = labelFromUXML.Q<VisualElement>("InventoryItem");
+        selectedItem = labelFromUXML.Q<VisualElement>("InventoryItem");
         selectedItem.visible = false;
-        selectedItem.StretchToParentSize();
 
         root.Add(labelFromUXML);
 
@@ -83,7 +83,7 @@ public class InventoryListEditor : Editor
     {
         serializedObject.FindProperty("items").DeleteArrayElementAtIndex(selectedIndex);
         serializedObject.ApplyModifiedProperties();
-        root.Remove(itemSelectedVisualElement);
+        selectedItem.visible = false;
         imagesContainer.Remove(images[selectedIndex]);
         images.Remove(images[selectedIndex]);
         selectedIndex = -1;
@@ -114,17 +114,11 @@ public class InventoryListEditor : Editor
 
     private void OnClick(int specialIndex)
     {
-        if (root.Contains(itemSelectedVisualElement))
-            root.Remove(itemSelectedVisualElement);
-
         selectedIndex = ((InventoryList)target).GetIndexBySpecialIndex(specialIndex);
 
-        itemSelectedVisualElement = new InventoryItemEditor().Show(((InventoryList)target).items[selectedIndex], serializedObject.FindProperty("items").GetArrayElementAtIndex(selectedIndex));
+        new InventoryItemEditor().Show(((InventoryList)target).items[selectedIndex], serializedObject.FindProperty("items").GetArrayElementAtIndex(selectedIndex), selectedItem);
 
-        if (!root.Contains(itemSelectedVisualElement))
-        {
-            root.Add(itemSelectedVisualElement);
-        }
+        selectedItem.visible = true;
 
         eraseButton.visible = true;
         

@@ -7,12 +7,9 @@ using UnityEditor.UIElements;
 
 public class InventoryItemEditor : Editor
 {
-    public VisualTreeAsset visualTree;
-    public VisualElement Show(InventoryItem item, SerializedProperty obj)
+    public void Show(InventoryItem item, SerializedProperty obj, VisualElement root)
     {
-        VisualElement root = new VisualElement();
-
-        VisualElement visualElem = visualTree.Instantiate();
+        VisualElement visualElem = root;
         
         TextField text = visualElem.Q<TextField>("itemName");
         text.value = item.itemName;       
@@ -33,10 +30,6 @@ public class InventoryItemEditor : Editor
 
         IntegerField priority = visualElem.Q<IntegerField>("priority");
         priority.value = item.priority;
-
-        root.Add(visualElem);
-
-        return root;
     }
     
 
