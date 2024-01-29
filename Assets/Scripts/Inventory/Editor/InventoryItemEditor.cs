@@ -7,7 +7,7 @@ using UnityEditor.UIElements;
 
 public class InventoryItemEditor : Editor
 {
-    public void Show(InventoryItem item, SerializedProperty obj, VisualElement root)
+    public static void Show(InventoryItem item, SerializedProperty obj, VisualElement root)
     {
         VisualElement visualElem = root;
         

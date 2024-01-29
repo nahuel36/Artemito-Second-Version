@@ -116,7 +116,7 @@ public class InventoryListEditor : Editor
     {
         selectedIndex = ((InventoryList)target).GetIndexBySpecialIndex(specialIndex);
 
-        new InventoryItemEditor().Show(((InventoryList)target).items[selectedIndex], serializedObject.FindProperty("items").GetArrayElementAtIndex(selectedIndex), selectedItem);
+        InventoryItemEditor.Show(((InventoryList)target).items[selectedIndex], serializedObject.FindProperty("items").GetArrayElementAtIndex(selectedIndex), selectedItem);
 
         selectedItem.visible = true;
 
