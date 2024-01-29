@@ -76,13 +76,15 @@ public class RoomInteractuableCustomEditor : Editor
     
         listCustom.ItemHeight = itemHeight;
 
-        listCustom.OnChangeItem += OnChange;
+        //listCustom.OnChangeItem += OnChange;
 
         listCustom.OnAdd = OnAdded;
 
         listCustom.OnReorderItem += OnReorder;
 
         listCustom.OnRemoveItem += OnRemoveItem;
+
+        root.RegisterCallback<ChangeEvent<string>>(OnChange);
 
         listCustom.reOrderMode = CustomListView<Interaction>.ReOrderModes.animatedDynamic;
 
