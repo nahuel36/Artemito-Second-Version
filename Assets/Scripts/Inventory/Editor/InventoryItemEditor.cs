@@ -12,6 +12,8 @@ public class InventoryItemEditor : Editor
     public static InventoryItem actualItem;
     public static void Show(InventoryItem item, SerializedProperty obj, VisualElement root)
     {
+        actualItem = item;
+
         VisualElement visualElem = root;
         
         TextField text = visualElem.Q<TextField>("itemName");
@@ -20,14 +22,7 @@ public class InventoryItemEditor : Editor
         ObjectField itemImage = visualElem.Q<ObjectField>("itemImage");
         itemImage.objectType = typeof(Sprite);
 
-        if (OnChangeItemImageCallback == null)
-            OnChangeItemImageCallback = (evt) => OnChangeItemImage(evt, item);
-        else
-            itemImage.UnregisterValueChangedCallback(OnChangeItemImageCallback);
-
-        actualItem = item;
-
-        itemImage.RegisterValueChangedCallback(OnChangeItemImageCallback);
+        ChangeSomeItemContent(ref OnChangeItemImageCallback, OnChangeItemImage , itemImage, item);
         
         itemImage.value = item.normalImage;
 
@@ -44,6 +39,19 @@ public class InventoryItemEditor : Editor
         IntegerField priority = visualElem.Q<IntegerField>("priority");
         priority.value = item.priority;
     }
+
+    private static void ChangeSomeItemContent(ref EventCallback<ChangeEvent<UnityEngine.Object>> callback,Action<ChangeEvent<UnityEngine.Object>,InventoryItem> function, BaseField<UnityEngine.Object> field, InventoryItem item) 
+    {
+        if (callback == null)
+            callback = (ChangeEvent<UnityEngine.Object> evt) => function(evt, item);
+        else
+            field.UnregisterValueChangedCallback(callback);
+
+        callback = (ChangeEvent<UnityEngine.Object> evt) => function(evt, item);
+
+        field.RegisterValueChangedCallback(callback);
+    }
+
 
     private static void OnChangeItemImage(ChangeEvent<UnityEngine.Object> evt, InventoryItem item)
     {
