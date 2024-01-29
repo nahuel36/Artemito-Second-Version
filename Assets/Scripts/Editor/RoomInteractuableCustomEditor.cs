@@ -116,6 +116,7 @@ public class RoomInteractuableCustomEditor : Editor
 
     private Interaction OnAdded()
     {
+        EditorUtility.SetDirty(target);
         return new Interaction();
     }
 
