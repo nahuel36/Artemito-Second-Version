@@ -59,7 +59,14 @@ public class InventoryListEditor : Editor
 
         root.Add(labelFromUXML);
 
+        root.RegisterCallback<ChangeEvent<string>>(OnSomeChange);
+
         return root;
+    }
+
+    private void OnSomeChange(ChangeEvent<string> evt)
+    {
+        EditorUtility.SetDirty(target);
     }
 
     private void AddImage(int i, StyleLength width, StyleLength height)
