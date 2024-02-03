@@ -152,7 +152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc33c32ab211044ebf9528b82e88213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  local_properties: []
+  local_properties:
+  - name: 
+    integer: 0
+    boolean: 0
+    String: 
+    integerDefault: 0
+    booleanDefault: 0
+    stringDefault: 0
+    expandedInInspector: 0
 --- !u!4 &254021858
 Transform:
   m_ObjectHideFlags: 0
@@ -271,7 +279,7 @@ GameObject:
   - component: {fileID: 1057714809}
   - component: {fileID: 1057714810}
   m_Layer: 0
-  m_Name: Interaction
+  m_Name: Room Interactuable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,7 +316,7 @@ MonoBehaviour:
   interactions:
   - type: Inventory
     subtype: 
-    subtypeObject: inventory-new item 50
+    subtypeObject: inventory-new item 66
   - type: Character
     subtype: 
     subtypeObject: inventory-new item 66

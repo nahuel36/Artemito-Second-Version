@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Template name="VariableItem" src="project://database/Assets/Scripts/Editor/VariableItem.uxml?fileID=9197481963319205126&amp;guid=0d5d2bf85e7872f49a15cba801cf8207&amp;type=3#VariableItem" />
+    <ui:TextField picking-mode="Ignore" label="Name" value="filler text" />
+    <uie:EnumFlagsField label="Variable Types" type="UnityEngine.UIElements.UsageHints, UnityEngine.UIElementsModule" value="DynamicTransform" />
+    <ui:Instance template="VariableItem" name="VariableItem" />
+</ui:UXML>

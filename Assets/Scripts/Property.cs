@@ -18,7 +18,7 @@ public class GenericProperty
 [System.Serializable]
 public class LocalProperty : GenericProperty
 {
-    public VariableType variableTypes = new VariableType();
+    public CustomEnumFlags<VariableType> variableTypes;
 }
 
 [System.Serializable]

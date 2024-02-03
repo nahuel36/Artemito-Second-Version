@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class VariableType : ScriptableObject
+public class VariableType : EnumerableType
 {
-    public string type;
 
-    public VariableType[] GetAllTypes()
-    {
-        return null;
-    }
 }

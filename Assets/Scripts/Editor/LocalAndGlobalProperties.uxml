@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Template name="ListItemLocalProperty" src="project://database/Assets/Scripts/Editor/LocalProperty.uxml?fileID=9197481963319205126&amp;guid=7fbb05ddb7c81e5408feb0f661e6307b&amp;type=3#LocalProperty" />
+    <ui:Template name="CustomListView" src="project://database/Assets/Scripts/Utils/Editor/CustomListView.uxml?fileID=9197481963319205126&amp;guid=196f2566c65cd384c992fd73032a902f&amp;type=3#CustomListView" />
+    <Style src="project://database/Assets/Scripts/Editor/LocalAndGlobalProperties.uss?fileID=7433441132597879392&amp;guid=6eed2323b477e4041acebc684f41a1af&amp;type=3#LocalAndGlobalProperties" />
+    <ui:Label text="Properties" class="custom-label" />
+    <ui:VisualElement name="LocalProperties" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:Label text="Local Properties" name="Label" class="custom-label" style="transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; color: rgb(0, 0, 0);" />
+        <ui:Instance template="ListItemLocalProperty" name="LocalProperty" />
+        <ui:Instance template="CustomListView" name="CustomListView" style="height: 78px;" />
+    </ui:VisualElement>
+</ui:UXML>

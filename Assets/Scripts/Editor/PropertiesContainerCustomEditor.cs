@@ -2,19 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 
 [CustomEditor(typeof(PropertiesContainer))]
 public class PropertiesContainerCustomEditor : Editor
 {
-    // Start is called before the first frame update
-    void Start()
+    public override VisualElement CreateInspectorGUI()
     {
-        
-    }
+        CustomEnumFlagsEditor<VariableType> customFlagsEditor = new CustomEnumFlagsEditor<VariableType>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        VisualElement root = new VisualElement();
+
+                
+        List<string> files = FileUtils.GetFilesList(Application.dataPath + "/Scripts/VariableTypes/");
+        List<VariableType> list = new List<VariableType>();
+
+        customFlagsEditor.choices.Clear();
+        customFlagsEditor.choicesMasks.Clear();
+
+        int varIndex = 0;
+        for (int i = 0; i < files.Count; i++)
+        {
+            VariableType var2 = AssetDatabase.LoadAssetAtPath<VariableType>("Assets/Scripts/VariableTypes/" + files[i]);
+            if (var2 != null)
+            {
+                list.Add(var2);
+                customFlagsEditor.choices.Add(var2.TypeName);
+                customFlagsEditor.choicesMasks.Add(1 << varIndex);
+                varIndex++;
+            }
+        }
+
+        int index = 0;
+        if(((PropertiesContainer)target).local_properties[index].variableTypes == null)
+            ((PropertiesContainer)target).local_properties[index].variableTypes = new CustomEnumFlags<VariableType>(list.ToArray());
+        root.Add(customFlagsEditor.Show(((PropertiesContainer)target).local_properties[index].variableTypes));
+
+        return root;
     }
 }

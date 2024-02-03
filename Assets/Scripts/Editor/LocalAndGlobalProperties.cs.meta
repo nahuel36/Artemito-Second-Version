@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5024908e0f0b6db47bdb21bb8995bdbb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - m_VisualTreeAsset: {fileID: 9197481963319205126, guid: 1b6a208d78c15ea40a3f675386732322, type: 3}
+  - variableItem: {fileID: 9197481963319205126, guid: 0d5d2bf85e7872f49a15cba801cf8207, type: 3}
+  - localProperty: {fileID: 9197481963319205126, guid: 7fbb05ddb7c81e5408feb0f661e6307b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
