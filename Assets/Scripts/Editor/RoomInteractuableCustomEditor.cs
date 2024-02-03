@@ -119,14 +119,9 @@ public class RoomInteractuableCustomEditor : Editor
         return new Interaction();
     }
 
-    private float itemHeight(int index)
+    private StyleLength itemHeight(int index)
     {
-        if (string.IsNullOrEmpty(myTarget.interactions[index].type))
-            return EditorGUIUtility.singleLineHeight * 2;
-        if (myTarget.interactions[index].type == "Inventory")
-            return EditorGUIUtility.singleLineHeight * 4;
-        else
-            return EditorGUIUtility.singleLineHeight * 3;
+        return new StyleLength(StyleKeyword.Auto);
     }
 
     private void OnAdded(IEnumerable<int> obj)

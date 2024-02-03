@@ -29,7 +29,7 @@ public class CustomListView<T>
 
     public Func<int, VisualElement> ItemContent;
 
-    public Func<int, float> ItemHeight;
+    public Func<int, StyleLength> ItemHeight;
 
     public Func<T> OnAdd;
 
@@ -231,7 +231,7 @@ public class CustomListView<T>
             float finalYPos = firstItemPositionY;
             for (int i = 0; i < listItems.Count; i++)
             {
-                finalYPos += ItemHeight(i);
+                finalYPos += ItemHeight(i).value.value;
             }
 
             for (int i = 0; i < listItems.Count; i++)
@@ -240,7 +240,7 @@ public class CustomListView<T>
                 {
                     MoveVertical(listItems[i].worldBound.yMin < yPosToMove, i, Mathf.Clamp(yPosToMove, firstItemPositionY, finalYPos));
                 }
-                yPosToMove += ItemHeight(i);
+                yPosToMove += ItemHeight(i).value.value;
             }
         }
     }

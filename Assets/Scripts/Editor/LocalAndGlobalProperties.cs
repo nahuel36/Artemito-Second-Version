@@ -23,7 +23,7 @@ public class LocalAndGlobalProperties : Editor
 
         customListView.ItemContent = (i) => ItemContent(i, local_properties);
 
-        customListView.ItemHeight = (i) => { return EditorGUIUtility.singleLineHeight * 10; };
+        customListView.ItemHeight = (i) => { return new StyleLength(StyleKeyword.Auto); };
 
         root.Q("LocalProperty").visible = false;
         root.Q("LocalProperty").StretchToParentSize();
