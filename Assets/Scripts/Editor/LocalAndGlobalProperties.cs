@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -5,21 +6,42 @@ using UnityEngine.UIElements;
 public class LocalAndGlobalProperties : Editor
 {
     [SerializeField]
-    private VisualTreeAsset generalTree = default;
-    [SerializeField]
     VisualTreeAsset variableItem;
     [SerializeField]
     VisualTreeAsset localProperty;
-
-    public VisualElement CreateGUI()
+    
+    public VisualElement CreateGUI(LocalProperty[] local_properties, VisualElement root)
     {
         // Each editor window contains a root VisualElement object
-        VisualElement root = new VisualElement();
-
         // Instantiate UXML
-        VisualElement labelFromUXML = generalTree.Instantiate();
-        root.Add(labelFromUXML);
+        StyleLength lenght = new StyleLength(StyleKeyword.Auto);
+
+        root.Q("LocalProperties").Q("CustomListView").style.height = lenght;
+
+        CustomListView<LocalProperty> customListView = new CustomListView<LocalProperty>();
+        customListView.ItemsSource = local_properties;
+
+        customListView.ItemContent = (i) => ItemContent(i, local_properties);
+
+        customListView.ItemHeight = (i) => { return EditorGUIUtility.singleLineHeight * 10; };
+
+        root.Q("LocalProperty").visible = false;
+        root.Q("LocalProperty").StretchToParentSize();
+
+        customListView.Init(root.Q("LocalProperties").Q("CustomListView"));
 
         return root;
+    }
+
+    private VisualElement ItemContent(int index, GenericProperty[] property)
+    {
+        VisualElement element = new VisualElement();
+
+        element.Add(localProperty.CloneTree());
+
+        element.Q("VariableItem").visible = false;
+        element.Q("VariableItem").StretchToParentSize();
+
+        return element;
     }
 }

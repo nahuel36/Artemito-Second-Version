@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="LocalAndGlobalProperties" src="project://database/Assets/Scripts/Editor/LocalAndGlobalProperties.uxml?fileID=9197481963319205126&amp;guid=1b6a208d78c15ea40a3f675386732322&amp;type=3#LocalAndGlobalProperties" />
+    <Style src="project://database/Assets/Scripts/Editor/PropertiesContainerVisualElements.uss?fileID=7433441132597879392&amp;guid=c6cc63579732d664da6f942f9432a05e&amp;type=3#PropertiesContainerVisualElements" />
+    <ui:Label text="Properties Container" />
+    <ui:Instance template="LocalAndGlobalProperties" name="LocalAndGlobalProperties" style="height: 460px;" />
+</ui:UXML>

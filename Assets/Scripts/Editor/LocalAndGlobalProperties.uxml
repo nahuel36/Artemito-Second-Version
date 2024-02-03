@@ -4,7 +4,7 @@
     <Style src="project://database/Assets/Scripts/Editor/LocalAndGlobalProperties.uss?fileID=7433441132597879392&amp;guid=6eed2323b477e4041acebc684f41a1af&amp;type=3#LocalAndGlobalProperties" />
     <ui:Label text="Properties" class="custom-label" />
     <ui:VisualElement name="LocalProperties" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-        <ui:Label text="Local Properties" name="Label" class="custom-label" style="transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; color: rgb(0, 0, 0);" />
+        <ui:Label text="Local Properties" name="Label" class="custom-label" style="transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; color: rgb(255, 255, 255);" />
         <ui:Instance template="ListItemLocalProperty" name="LocalProperty" />
         <ui:Instance template="CustomListView" name="CustomListView" style="height: 78px;" />
     </ui:VisualElement>

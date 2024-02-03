@@ -8,13 +8,27 @@ using UnityEditor.UIElements;
 [CustomEditor(typeof(PropertiesContainer))]
 public class PropertiesContainerCustomEditor : Editor
 {
+    [SerializeField] VisualTreeAsset generalTree;
+
     public override VisualElement CreateInspectorGUI()
+    {
+        VisualElement root = new VisualElement();
+
+        root.Add(generalTree.CloneTree());
+
+        LocalAndGlobalProperties properties = new LocalAndGlobalProperties();
+
+        properties.CreateGUI(((PropertiesContainer)target).local_properties, root.Q("LocalAndGlobalProperties"));
+
+        return root;
+    }
+
+    public VisualElement EnumFlagsTest()
     {
         CustomEnumFlagsEditor<VariableType> customFlagsEditor = new CustomEnumFlagsEditor<VariableType>();
 
         VisualElement root = new VisualElement();
 
-                
         List<string> files = FileUtils.GetFilesList(Application.dataPath + "/Scripts/VariableTypes/");
         List<VariableType> list = new List<VariableType>();
 
@@ -35,7 +49,7 @@ public class PropertiesContainerCustomEditor : Editor
         }
 
         int index = 0;
-        if(((PropertiesContainer)target).local_properties[index].variableTypes == null)
+        if (((PropertiesContainer)target).local_properties[index].variableTypes == null)
             ((PropertiesContainer)target).local_properties[index].variableTypes = new CustomEnumFlags<VariableType>(list.ToArray());
         root.Add(customFlagsEditor.Show(((PropertiesContainer)target).local_properties[index].variableTypes));
 
