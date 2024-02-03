@@ -98,7 +98,11 @@ public class RoomInteractuableCustomEditor : Editor
         //falta que haga highlight cuando pasas el mouse
         //falta poder seleccionar
 
-        root.Add(listCustom.Init());
+        VisualElement element = visualTree.CloneTree();
+
+        listCustom.Init(element.Q<VisualElement>("CustomListView"));
+
+        root.Add(element);
 
         return root;
     }

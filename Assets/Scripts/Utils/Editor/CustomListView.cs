@@ -41,16 +41,12 @@ public class CustomListView<T>
     public event ItemRemoveDelegate OnRemoveItem;
 
 
-    public VisualElement Init()
+    public void Init(VisualElement root)
     {
         moving_all = false;
 
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Utils/Editor/CustomListView.uxml");
-        VisualElement root = visualTreeAsset.CloneTree();
-
         ScrollView scrollView = root.Q<ScrollView>("scrollView");
         listContainer = root.Q<VisualElement>("listContainer");
-
 
         for (int i = 0; i < ItemsSource.Count; i++)
         {
@@ -66,8 +62,6 @@ public class CustomListView<T>
         root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
         root.Add(scrollView);
        // root.StretchToParentSize();
-
-        return root;
     }
 
     private async Task MoveVertical(bool directionIsDown, int index, float finalPosY)
