@@ -101,7 +101,6 @@ public class CustomListView<T>
         int index = i;
 
         VisualElement listItem = new VisualElement();
-        listItem.style.height = ItemHeight(index);
 
         listItem.Add(ItemContent(index));
         // Agregar manipuladores de eventos para la reordenación
@@ -117,6 +116,8 @@ public class CustomListView<T>
             listItem.style.borderBottomWidth = 5;
             listItem.style.borderTopWidth = 5;
         }
+
+        listItem.style.height = ItemHeight(index);
 
         listItems.Add(listItem);
         listContainer.Add(listItem);
