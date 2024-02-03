@@ -28,7 +28,7 @@ public class RoomInteractuableCustomEditor : Editor
 
         Func<VisualElement> makeItem = () =>
         {
-            return select.VisualElements(); 
+            return select.VisualElements();
         };
 
         Action<VisualElement, int> bindItem = (e, i) =>
@@ -41,7 +41,7 @@ public class RoomInteractuableCustomEditor : Editor
             select2.OnChangeTypeEvent += (inter) => { UpdateSelector(inter, index, element); };
             UpdateSelector(myTarget.interactions[index], index, element);
         };
-        
+
         ListView listView = new ListView();
         listView.itemsSource = myTarget.interactions;
         listView.reorderable = true;
@@ -52,7 +52,7 @@ public class RoomInteractuableCustomEditor : Editor
         listView.itemsAdded += OnAdded;
         listView.fixedItemHeight = EditorGUIUtility.singleLineHeight * 4;
         listView.selectionType = SelectionType.Multiple;
-        listView.RegisterCallback<ChangeEvent<string>>(OnChange);
+        listView.RegisterCallback<ChangeEvent<string>>((evt) => SaveTargetChanges());
 
         root.Add(listView);
 
@@ -73,18 +73,18 @@ public class RoomInteractuableCustomEditor : Editor
         };
 
         listCustom.ItemContent = itemContent;
-    
+
         listCustom.ItemHeight = itemHeight;
 
         //listCustom.OnChangeItem += OnChange;
 
         listCustom.OnAdd = OnAdded;
 
-        listCustom.OnReorderItem += OnReorder;
+        listCustom.OnReorderItem += (evt, element, index) => { SaveTargetChanges(); };
 
-        listCustom.OnRemoveItem += OnRemoveItem;
+        listCustom.OnRemoveItem += (element, index) => { SaveTargetChanges(); };
 
-        root.RegisterCallback<ChangeEvent<string>>(OnChange);
+        root.RegisterCallback<ChangeEvent<string>>((evt) => { SaveTargetChanges(); });
 
         listCustom.reOrderMode = CustomListView<Interaction>.ReOrderModes.animatedDynamic;
 
@@ -107,20 +107,15 @@ public class RoomInteractuableCustomEditor : Editor
         return root;
     }
 
-    private void OnRemoveItem(VisualElement element, int index)
-    {
-        EditorUtility.SetDirty(target);
-
-    }
-
-    private void OnReorder(MouseUpEvent evt, VisualElement element, int index)
+    private void SaveTargetChanges()
     {
         EditorUtility.SetDirty(target);
     }
+
 
     private Interaction OnAdded()
     {
-        EditorUtility.SetDirty(target);
+        SaveTargetChanges();
         return new Interaction();
     }
 
@@ -137,16 +132,6 @@ public class RoomInteractuableCustomEditor : Editor
     private void OnAdded(IEnumerable<int> obj)
     {
         myTarget.interactions[myTarget.interactions.Count - 1] = new Interaction();
-    }
-
-    private void OnChange(ChangeEvent<string> evt, VisualElement itemVE, int index)
-    {
-        EditorUtility.SetDirty(target);
-    }
-
-    private void OnChange(ChangeEvent<string> evt)
-    {
-        EditorUtility.SetDirty(target);
     }
 
     private void UpdateSelector(Interaction interaction, int index, VisualElement element )
