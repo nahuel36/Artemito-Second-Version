@@ -43,7 +43,6 @@ public class PropertiesContainerCustomEditor : Editor
 
     private void SaveTargetChanges()
     {
-        Debug.Log(((PropertiesContainer)target).local_properties[0].variableTypes.GetIntValue());
         EditorUtility.SetDirty(target);
     }
 }
