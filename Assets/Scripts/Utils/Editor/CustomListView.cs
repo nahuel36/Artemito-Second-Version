@@ -210,8 +210,8 @@ public class CustomListView<T>
 
             foreach (var item in listItems)
             {
-                bool draggingUp = draggedItem.worldBound.yMin <= item.worldBound.center.y && listItems.IndexOf(draggedItem) >= listItems.IndexOf(item) + 1;
-                bool draggingDown = draggedItem.worldBound.yMax >= item.worldBound.center.y && listItems.IndexOf(draggedItem) <= listItems.IndexOf(item) - 1;
+                bool draggingUp = draggedItem.worldBound.yMin <= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) + 1;
+                bool draggingDown = draggedItem.worldBound.yMax >= item.worldBound.center.y && listItems.IndexOf(draggedItem) == listItems.IndexOf(item) - 1;
                 if ((draggingUp || draggingDown) && draggingDown != draggingUp)
                 { 
                     T backup = ItemsSource[listItems.IndexOf(draggedItem)];
@@ -232,7 +232,17 @@ public class CustomListView<T>
             float finalYPos = firstItemPositionY;
             for (int i = 0; i < listItems.Count; i++)
             {
-                finalYPos += ItemHeight(i).value.value;
+                if (ItemHeight(i).keyword == StyleKeyword.Auto)
+                {
+                    if (listItems[i].style.height.keyword == StyleKeyword.Auto)
+                    {
+                        finalYPos += listItems[i].contentRect.yMax;
+                    }
+                    else
+                        finalYPos += listItems[i].style.height.value.value;
+                }
+                else
+                    finalYPos += ItemHeight(i).value.value;
             }
 
             for (int i = 0; i < listItems.Count; i++)
@@ -241,7 +251,7 @@ public class CustomListView<T>
                 {
                     MoveVertical(listItems[i].worldBound.yMin < yPosToMove, i, Mathf.Clamp(yPosToMove, firstItemPositionY, finalYPos));
                 }
-                yPosToMove += ItemHeight(i).value.value;
+                yPosToMove += listItems[i].contentRect.yMax;
             }
         }
     }
