@@ -14,9 +14,7 @@ public class LocalAndGlobalProperties : Editor
     {
         // Each editor window contains a root VisualElement object
         // Instantiate UXML
-        StyleLength lenght = new StyleLength(StyleKeyword.Auto);
 
-        root.Q("LocalProperties").Q("CustomListView").style.height = lenght;
 
         CustomListView<LocalProperty> customListView = new CustomListView<LocalProperty>();
         customListView.ItemsSource = local_properties;
@@ -25,10 +23,14 @@ public class LocalAndGlobalProperties : Editor
 
         customListView.ItemHeight = (i) => { return new StyleLength(StyleKeyword.Auto); };
 
-        root.Q("LocalProperty").visible = false;
-        root.Q("LocalProperty").StretchToParentSize();
+        root.Q("LocalProperties").Q("LocalProperty").visible = false;
+        root.Q("LocalProperties").Q("LocalProperty").StretchToParentSize();
 
         customListView.Init(root.Q("LocalProperties").Q("CustomListView"));
+
+        StyleLength lenght = new StyleLength(StyleKeyword.Auto);
+
+        root.Q("LocalProperties").Q("CustomListView").style.height = lenght;
 
         return root;
     }
