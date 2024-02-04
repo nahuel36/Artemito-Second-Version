@@ -12,9 +12,10 @@ public class CustomEnumFlagsEditor<T> where T:EnumerableType
     private EnumFlagsField field;
     public List<string> choices = new List<string>();
     public List<int> choicesMasks = new List<int>();
-    public VisualElement Show(CustomEnumFlags<T> value)
+    public VisualElement Show(CustomEnumFlags<T> value, VisualElement element)
     {
-        field = new EnumFlagsField((GenericEnum)value.GetIntValue());
+        field = element.Q<EnumFlagsField>("VariableTypes");
+        field.value = (GenericEnum)value.GetIntValue();
         field.choices = choices;
         field.choicesMasks = choicesMasks;
         field.RegisterValueChangedCallback((evt) => callback(evt, value));

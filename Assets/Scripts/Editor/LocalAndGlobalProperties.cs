@@ -35,7 +35,7 @@ public class LocalAndGlobalProperties : Editor
         return root;
     }
 
-    private VisualElement ItemContent(int index, GenericProperty[] property)
+    private VisualElement ItemContent(int index, GenericProperty[] properties)
     {
         VisualElement element = new VisualElement();
 
@@ -43,6 +43,15 @@ public class LocalAndGlobalProperties : Editor
 
         element.Q("VariableItem").visible = false;
         element.Q("VariableItem").StretchToParentSize();
+
+        element.Q<TextField>("PropertyName").value = properties[index].name;
+        element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { properties[index].name = name.newValue; });
+
+
+        if (properties is LocalProperty[])
+        {
+            VariableTypesUtility.ShowEnumFlagsField(element, ((LocalProperty)properties[index]).variableTypes);
+        }
 
         return element;
     }

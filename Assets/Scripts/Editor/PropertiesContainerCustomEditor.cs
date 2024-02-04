@@ -14,7 +14,7 @@ public class PropertiesContainerCustomEditor : Editor
 
     public override VisualElement CreateInspectorGUI()
     {
-        /*VisualElement root = new VisualElement();
+        VisualElement root = new VisualElement();
 
         root.Add(generalTree.CloneTree());
 
@@ -22,8 +22,7 @@ public class PropertiesContainerCustomEditor : Editor
 
         properties.CreateGUI(((PropertiesContainer)target).local_properties, root.Q("LocalAndGlobalProperties"));
 
-        return root;*/
-        return EnumFlagsTest();
+        return root;
     }
 
     public VisualElement EnumFlagsTest()
@@ -32,11 +31,9 @@ public class PropertiesContainerCustomEditor : Editor
 
         //((PropertiesContainer)target).local_properties[0].variableTypes = new CustomEnumFlags<VariableType>(VariableTypesUtility.GetAllVariableTypes(), 0);
 
-        VisualElement element = VariableTypesUtility.ShowEnumFlagsField(((PropertiesContainer)target).local_properties[0].variableTypes);
+        VariableTypesUtility.ShowEnumFlagsField(root,((PropertiesContainer)target).local_properties[0].variableTypes);
 
-        element.RegisterCallback<ChangeEvent<string>>( (evt) => SaveTargetChanges());
-
-        root.Add(element);
+        root.RegisterCallback<ChangeEvent<string>>( (evt) => SaveTargetChanges());
 
         return root;
     }
