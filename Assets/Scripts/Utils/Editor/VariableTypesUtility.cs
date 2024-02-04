@@ -24,7 +24,7 @@ public class VariableTypesUtility
         return list.ToArray();
     }
 
-    public static VisualElement ShowEnumFlagsField(CustomEnumFlags<VariableType> variableTypes, UnityEngine.Object target)
+    public static VisualElement ShowEnumFlagsField(CustomEnumFlags<VariableType> variableTypes)
     {
         VisualElement root = new VisualElement();
 
@@ -36,7 +36,7 @@ public class VariableTypesUtility
         customFlagsEditor.SetChoicesMasksByChoicesInOrder();
 
 
-        root.Add(customFlagsEditor.Show(variableTypes, target));
+        root.Add(customFlagsEditor.Show(variableTypes));
 
         return root;
     }

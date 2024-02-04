@@ -30,11 +30,9 @@ public class PropertiesContainerCustomEditor : Editor
     {
         VisualElement root = new VisualElement();
 
-        Debug.Log(((PropertiesContainer)target).local_properties[0].variableTypes.GetIntValue());
-
         //((PropertiesContainer)target).local_properties[0].variableTypes = new CustomEnumFlags<VariableType>(VariableTypesUtility.GetAllVariableTypes(), 0);
 
-        VisualElement element = VariableTypesUtility.ShowEnumFlagsField(((PropertiesContainer)target).local_properties[0].variableTypes, target);
+        VisualElement element = VariableTypesUtility.ShowEnumFlagsField(((PropertiesContainer)target).local_properties[0].variableTypes);
 
         element.RegisterCallback<ChangeEvent<string>>( (evt) => SaveTargetChanges());
 
