@@ -161,6 +161,9 @@ MonoBehaviour:
     booleanDefault: 0
     stringDefault: 0
     expandedInInspector: 0
+    variableTypes:
+      value: 0
+    customFlag: 0
 --- !u!4 &254021858
 Transform:
   m_ObjectHideFlags: 0

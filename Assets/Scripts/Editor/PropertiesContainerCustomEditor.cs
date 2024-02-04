@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
+using System.Linq;
 using UnityEditor.UIElements;
+using System;
 
 [CustomEditor(typeof(PropertiesContainer))]
 public class PropertiesContainerCustomEditor : Editor
@@ -12,7 +14,7 @@ public class PropertiesContainerCustomEditor : Editor
 
     public override VisualElement CreateInspectorGUI()
     {
-        VisualElement root = new VisualElement();
+        /*VisualElement root = new VisualElement();
 
         root.Add(generalTree.CloneTree());
 
@@ -20,39 +22,30 @@ public class PropertiesContainerCustomEditor : Editor
 
         properties.CreateGUI(((PropertiesContainer)target).local_properties, root.Q("LocalAndGlobalProperties"));
 
-        return root;
+        return root;*/
+        return EnumFlagsTest();
     }
 
     public VisualElement EnumFlagsTest()
     {
-        CustomEnumFlagsEditor<VariableType> customFlagsEditor = new CustomEnumFlagsEditor<VariableType>();
-
         VisualElement root = new VisualElement();
 
-        List<string> files = FileUtils.GetFilesList(Application.dataPath + "/Scripts/VariableTypes/");
-        List<VariableType> list = new List<VariableType>();
+        Debug.Log(((PropertiesContainer)target).local_properties[0].variableTypes.GetIntValue());
 
-        customFlagsEditor.choices.Clear();
-        customFlagsEditor.choicesMasks.Clear();
+        //((PropertiesContainer)target).local_properties[0].variableTypes = new CustomEnumFlags<VariableType>(VariableTypesUtility.GetAllVariableTypes(), 0);
 
-        int varIndex = 0;
-        for (int i = 0; i < files.Count; i++)
-        {
-            VariableType var2 = AssetDatabase.LoadAssetAtPath<VariableType>("Assets/Scripts/VariableTypes/" + files[i]);
-            if (var2 != null)
-            {
-                list.Add(var2);
-                customFlagsEditor.choices.Add(var2.TypeName);
-                customFlagsEditor.choicesMasks.Add(1 << varIndex);
-                varIndex++;
-            }
-        }
+        VisualElement element = VariableTypesUtility.ShowEnumFlagsField(((PropertiesContainer)target).local_properties[0].variableTypes, target);
 
-        int index = 0;
-        if (((PropertiesContainer)target).local_properties[index].variableTypes == null)
-            ((PropertiesContainer)target).local_properties[index].variableTypes = new CustomEnumFlags<VariableType>(list.ToArray());
-        root.Add(customFlagsEditor.Show(((PropertiesContainer)target).local_properties[index].variableTypes));
+        element.RegisterCallback<ChangeEvent<string>>( (evt) => SaveTargetChanges());
+
+        root.Add(element);
 
         return root;
+    }
+
+    private void SaveTargetChanges()
+    {
+        Debug.Log(((PropertiesContainer)target).local_properties[0].variableTypes.GetIntValue());
+        EditorUtility.SetDirty(target);
     }
 }

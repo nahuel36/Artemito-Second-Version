@@ -54,6 +54,7 @@ public class MultiSelectionEnumField : VisualElement
     }
 }
 
+[System.Flags]
 public enum GenericEnum
 {
     value1 = 1 << 0,

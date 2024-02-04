@@ -2,22 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class CustomEnumFlags<T> where T : EnumerableType
 {
-    private int value = 0;
-    private T[] variables;
-
-    public CustomEnumFlags(T[] variablesToSet, params T[] variablesToAdd)
+    [SerializeField][HideInInspector]private int value = 0;
+    public CustomEnumFlags(T[] variablesToSet, int valueToSet)
     {
-        variables = variablesToSet;
-        for (int i = 0; i < variables.Length; i++)
+        for (int i = 0; i < variablesToSet.Length; i++)
         {
-            variables[i].EnumIndex = 1 << i;
+            variablesToSet[i].EnumIndex = 1 << i;
         }
-        for (int i = 0; i < variablesToAdd.Length; i++)
-        {
-            AddValue(variablesToAdd[i]);
-        }
+        SetIntValue(valueToSet);
     }
 
     public void AddValue(T valueToAdd)

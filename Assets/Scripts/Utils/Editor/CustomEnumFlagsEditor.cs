@@ -6,7 +6,8 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using System;
 
-public class CustomEnumFlagsEditor<T> :Editor where T:EnumerableType
+[System.Serializable]
+public class CustomEnumFlagsEditor<T> where T:EnumerableType
 {
     private EnumFlagsField field;
     public List<string> choices = new List<string>();
@@ -22,6 +23,26 @@ public class CustomEnumFlagsEditor<T> :Editor where T:EnumerableType
 
     private void callback(ChangeEvent<Enum> evt, CustomEnumFlags<T> value)
     {
-        value.SetIntValue(Convert.ToInt32(evt.newValue));
+        value.SetIntValue(Convert.ToInt32((GenericEnum)evt.newValue));
+    }
+
+    public void SetChoices(Func<int, string> func, int Lenght)
+    {
+        choices.Clear();
+
+        for (int i = 0; i < Lenght; i++)
+        {
+            choices.Add(func(i));
+        }
+    }
+
+    public void SetChoicesMasksByChoicesInOrder()
+    {
+        choicesMasks.Clear();
+
+        for (int i = 0; i < choices.Count; i++)
+        {
+            choicesMasks.Add(1<<i);
+        }
     }
 }
