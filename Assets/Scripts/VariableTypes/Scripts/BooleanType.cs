@@ -6,12 +6,13 @@ using UnityEngine;
 public class BooleanType: VariableType
 {
     public BooleanType() {
-        typeName = "boolean";    
+        typeName = "boolean";
+        EnumIndex = 1;
     }
 
     private void OnEnable()
     {
-        if (string.IsNullOrEmpty(typeName))
-            typeName = "boolean";
+        typeName = "boolean";
+        EnumIndex = 1;
     }
 }

@@ -6,12 +6,8 @@ using UnityEngine;
 public class CustomEnumFlags<T> where T : EnumerableType
 {
     [SerializeField][HideInInspector]private int value = 0;
-    public CustomEnumFlags(T[] variablesToSet, int valueToSet)
+    public CustomEnumFlags(int valueToSet)
     {
-        for (int i = 0; i < variablesToSet.Length; i++)
-        {
-            variablesToSet[i].EnumIndex = 1 << i;
-        }
         SetIntValue(valueToSet);
     }
 

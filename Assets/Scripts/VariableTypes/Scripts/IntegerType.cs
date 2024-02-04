@@ -8,11 +8,12 @@ public class IntegerType : VariableType
     public IntegerType()
     {
         typeName = "integer";
+        EnumIndex = 2;
     }
 
     private void OnEnable()
     {
-        if (string.IsNullOrEmpty(typeName))
-            typeName = "integer";
+        typeName = "integer";
+        EnumIndex = 2;
     }
 }

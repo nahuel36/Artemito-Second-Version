@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class EnumerableType : ScriptableObject
 {
-    [SerializeField] private int enumIndex;
+    [SerializeField][HideInInspector] private int enumIndex;
     protected string typeName;
 
     public int EnumIndex

@@ -8,11 +8,12 @@ public class StringType : VariableType
     public StringType()
     {
         typeName = "string";
+        EnumIndex = 4;
     }
 
     private void OnEnable()
     {
-        if (string.IsNullOrEmpty(typeName))
-            typeName = "string";
+        typeName = "string";
+        EnumIndex = 4;
     }
 }
