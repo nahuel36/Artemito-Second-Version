@@ -153,17 +153,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   local_properties:
-  - name: 
-    integer: 0
-    boolean: 0
-    String: 
-    integerDefault: 0
-    booleanDefault: 0
-    stringDefault: 0
+  - name: popop
     expandedInInspector: 0
+    variableValue:
+    - false
+    - 99
+    - lopp
     variableTypes:
-      value: 0
-    customFlag: 0
+      value: -1
 --- !u!4 &254021858
 Transform:
   m_ObjectHideFlags: 0

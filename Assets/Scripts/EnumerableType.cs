@@ -5,13 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class EnumerableType : ScriptableObject
 {
-    [SerializeField][HideInInspector] private int enumIndex;
+    [SerializeField][HideInInspector] private int index;
     protected string typeName;
 
-    public int EnumIndex
+    public int Index
     {
-        get { return enumIndex; }
-        set { enumIndex = value; }
+        get { return index; }
+        set { index = value; }
     }
 
     public string TypeName

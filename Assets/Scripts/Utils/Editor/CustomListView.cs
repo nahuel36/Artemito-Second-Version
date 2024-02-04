@@ -105,7 +105,7 @@ public class CustomListView<T>
         listItem.Add(ItemContent(index));
         // Agregar manipuladores de eventos para la reordenación
 
-        listItem.RegisterCallback<MouseDownEvent>(evt => OnMouseDown(evt, listItem, index), TrickleDown.TrickleDown);
+        listItem.RegisterCallback<MouseDownEvent>(evt => OnMouseDown(evt, listItem, index));
         listItem.RegisterCallback<MouseMoveEvent>(evt => OnMouseMove(evt, listItem, index));
         listItem.RegisterCallback<MouseUpEvent>(evt => OnMouseUp(evt, listItem, index));
         listItem.RegisterCallback<ChangeEvent<string>>(evt => OnChanged(evt, listItem, index));

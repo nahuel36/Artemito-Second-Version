@@ -1,9 +1,7 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <ui:VisualElement name="VariableItem" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 227px;">
-        <ui:Button text="Toggle Default" display-tooltip-when-elided="true" name="SetDefault" enable-rich-text="true" />
-        <ui:VisualElement name="Value" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
-            <ui:Label tabindex="-1" text="Value" display-tooltip-when-elided="true" name="Label" style="height: 177px;" />
-            <ui:VisualElement name="Field" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 186px; width: 348px; flex-direction: column;" />
-        </ui:VisualElement>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="Value" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+        <ui:Label tabindex="-1" text="Value" display-tooltip-when-elided="true" name="Label" style="height: 49px;" />
+        <ui:VisualElement name="Field" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 58px; width: 348px; flex-direction: column;" />
     </ui:VisualElement>
+    <ui:Toggle label="Default Value" name="Default" />
 </ui:UXML>

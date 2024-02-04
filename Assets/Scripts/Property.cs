@@ -6,15 +6,16 @@ using UnityEngine;
 public class GenericProperty
 {
     public string name = "new property";
-    public int integer = 0;
-    public bool boolean = false;
-    public string String = "";
-    public bool integerDefault = true;
-    public bool booleanDefault = true;
-    public bool stringDefault = true;
     public bool expandedInInspector;
-
+    public Dictionary<VariableType, bool> useDefaultValue = new Dictionary<VariableType, bool>();
+    //[SerializeField]public Dictionary<VariableType, string> value = new Dictionary<VariableType, string>(); //no funciona porque es diccionario
+    //[SerializeField]public object[] variableValue = new object[1]; // no funciona porque es objeto
+    //[SerializeField] public System.IComparable[] variableValue = new System.IComparable[1]; // no funciona la clase icomparable
+    //public string stringvalue; //funciona
+    [SerializeField]public string[] variableValue = new string[3]; //funciona
+    
 }
+
 [System.Serializable]
 public class LocalProperty : GenericProperty
 {

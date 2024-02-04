@@ -13,17 +13,17 @@ public class CustomEnumFlags<T> where T : EnumerableType
 
     public void AddValue(T valueToAdd)
     {
-        value = value | valueToAdd.EnumIndex;
+        value = value | (1 << valueToAdd.Index);
     }
 
     public bool ContainsValue(T valueToFind) 
     {
-        return (value & valueToFind.EnumIndex) != 0;
+        return (value & (1 << valueToFind.Index)) != 0;
     }
 
     public void RemoveValue(T valueToRemove)
     {
-        value = value & ~(valueToRemove.EnumIndex);
+        value = value & ~(1 << valueToRemove.Index);
     }
 
     public int GetIntValue()

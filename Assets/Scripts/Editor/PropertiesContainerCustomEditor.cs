@@ -22,18 +22,7 @@ public class PropertiesContainerCustomEditor : Editor
 
         properties.CreateGUI(((PropertiesContainer)target).local_properties, root.Q("LocalAndGlobalProperties"));
 
-        return root;
-    }
-
-    public VisualElement EnumFlagsTest()
-    {
-        VisualElement root = new VisualElement();
-
-        //((PropertiesContainer)target).local_properties[0].variableTypes = new CustomEnumFlags<VariableType>(VariableTypesUtility.GetAllVariableTypes(), 0);
-
-        VariableTypesUtility.ShowEnumFlagsField(root,((PropertiesContainer)target).local_properties[0].variableTypes);
-
-        root.RegisterCallback<ChangeEvent<string>>( (evt) => SaveTargetChanges());
+        root.RegisterCallback<ChangeEvent<string>>((evt) => SaveTargetChanges());
 
         return root;
     }

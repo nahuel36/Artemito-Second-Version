@@ -51,6 +51,17 @@ public class LocalAndGlobalProperties : Editor
         if (properties is LocalProperty[])
         {
             VariableTypesUtility.ShowEnumFlagsField(element, ((LocalProperty)properties[index]).variableTypes);
+
+            foreach (var variable in VariableTypesUtility.GetAllVariableTypes())
+            {
+                if (((LocalProperty)properties[index]).variableTypes.ContainsValue(variable))
+                {
+                    VisualElement variableItemElement = variableItem.CloneTree();
+                    variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
+                    variable.SetPropertyField(variableItemElement.Q<VisualElement>("Field"), properties[index]);
+                    element.Add(variableItemElement);
+                }
+            }
         }
 
         return element;
