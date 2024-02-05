@@ -9,12 +9,12 @@ public class VariableTypesUtility
 {
     public static VariableType[] GetAllVariableTypes()
     {
-        List<string> files = FileUtils.GetFilesList(Application.dataPath + "/Scripts/VariableTypes/");
+        List<string> files = FileUtils.GetFilesList(Application.dataPath + "/Scripts/Properties/VariableTypes/");
         int varIndex = 0;
         List<VariableType> list = new List<VariableType>();
         for (int i = 0; i < files.Count; i++)
         {
-            VariableType var = AssetDatabase.LoadAssetAtPath<VariableType>("Assets/Scripts/VariableTypes/" + files[i]);
+            VariableType var = AssetDatabase.LoadAssetAtPath<VariableType>("Assets/Scripts/Properties/VariableTypes/" + files[i]);
             if (var != null)
             {
                 list.Add(var);
