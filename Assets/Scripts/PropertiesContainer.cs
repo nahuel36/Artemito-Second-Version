@@ -5,5 +5,5 @@ using UnityEngine;
 [System.Serializable]
 public class PropertiesContainer : MonoBehaviour
 {
-    public LocalProperty[] local_properties;
+    public List<LocalProperty> local_properties;
 }

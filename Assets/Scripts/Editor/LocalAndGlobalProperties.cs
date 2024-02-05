@@ -1,8 +1,7 @@
-using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-
 public class LocalAndGlobalProperties : Editor
 {
     [SerializeField]
@@ -10,7 +9,7 @@ public class LocalAndGlobalProperties : Editor
     [SerializeField]
     VisualTreeAsset localProperty;
     
-    public VisualElement CreateGUI(LocalProperty[] local_properties, VisualElement root)
+    public VisualElement CreateGUI(List<LocalProperty> local_properties, VisualElement root)
     {
         // Each editor window contains a root VisualElement object
         // Instantiate UXML
@@ -19,9 +18,15 @@ public class LocalAndGlobalProperties : Editor
         CustomListView<LocalProperty> customListView = new CustomListView<LocalProperty>();
         customListView.ItemsSource = local_properties;
 
-        customListView.ItemContent = (i) => ItemContent(i, local_properties);
+        customListView.ItemContent = (i) => ItemContent(i, local_properties[i]);
 
         customListView.ItemHeight = (i) => { return new StyleLength(StyleKeyword.Auto); };
+
+        customListView.OnAdd = () => { 
+            LocalProperty localprop = new LocalProperty();
+            localprop.variableTypes = new CustomEnumFlags<VariableType>(0);
+            return localprop;        
+        };
 
         root.Q("LocalProperties").Q("LocalProperty").visible = false;
         root.Q("LocalProperties").Q("LocalProperty").StretchToParentSize();
@@ -35,7 +40,7 @@ public class LocalAndGlobalProperties : Editor
         return root;
     }
 
-    private VisualElement ItemContent(int index, GenericProperty[] properties)
+    private VisualElement ItemContent(int index, GenericProperty property)
     {
         VisualElement element = new VisualElement();
 
@@ -44,21 +49,21 @@ public class LocalAndGlobalProperties : Editor
         element.Q("VariableItem").visible = false;
         element.Q("VariableItem").StretchToParentSize();
 
-        element.Q<TextField>("PropertyName").value = properties[index].name;
-        element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { properties[index].name = name.newValue; });
+        element.Q<TextField>("PropertyName").value = property.name;
+        element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { property.name = name.newValue; });
 
 
-        if (properties is LocalProperty[])
+        if (property is LocalProperty)
         {
-            VariableTypesUtility.ShowEnumFlagsField(element, ((LocalProperty)properties[index]).variableTypes);
+            VariableTypesUtility.ShowEnumFlagsField(element, ((LocalProperty)property).variableTypes);
 
             foreach (var variable in VariableTypesUtility.GetAllVariableTypes())
             {
-                if (((LocalProperty)properties[index]).variableTypes.ContainsValue(variable))
+                if (((LocalProperty)property).variableTypes.ContainsValue(variable))
                 {
                     VisualElement variableItemElement = variableItem.CloneTree();
                     variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
-                    variable.SetPropertyField(variableItemElement.Q<VisualElement>("Field"), properties[index]);
+                    variable.SetPropertyField(variableItemElement.Q<VisualElement>("Field"), property);
                     element.Add(variableItemElement);
                 }
             }

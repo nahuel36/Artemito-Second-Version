@@ -131,6 +131,11 @@ public class CustomListView<T>
 
     public void Add()
     {
+        if (OnAdd == null)
+        { 
+            Debug.LogError("You must define OnAdd in your custom list view");
+            return;
+        } 
         ItemsSource.Add(OnAdd.Invoke());
         AddNewItem(ItemsSource.Count - 1);
     }
