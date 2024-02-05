@@ -47,6 +47,10 @@ public class InventoryItemEditor : Editor
         IntegerField priority = visualElem.Q<IntegerField>("priority");
         priority.value = item.priority;
         ChangeSomeItemContent(ref OnChangeItemPriorityCallback, OnChangeItemPriority, priority, item);
+
+        LocalAndGlobalProperties properties = new LocalAndGlobalProperties();
+
+        properties.CreateGUI(item.local_properties, root.Q("LocalAndGlobalProperties"));
     }
 
     private static void ChangeSomeItemContent<T>(ref EventCallback<ChangeEvent<T>> callback,Action<ChangeEvent<T>,InventoryItem> function, BaseField<T> field, InventoryItem item) 

@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Template name="LocalAndGlobalProperties" src="project://database/Assets/Scripts/Editor/LocalAndGlobalProperties.uxml?fileID=9197481963319205126&amp;guid=1b6a208d78c15ea40a3f675386732322&amp;type=3#LocalAndGlobalProperties" />
     <Style src="project://database/Assets/Scripts/Inventory/Editor/InventoryListElements.uss?fileID=7433441132597879392&amp;guid=ac59f1351864e1a449070f022906d6e8&amp;type=3#InventoryListElements" />
     <ui:VisualElement name="ItemsContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
         <ui:Button display-tooltip-when-elided="true" name="Item" style="visibility: visible; width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/Example/Inventory/blister.jpg?fileID=2800000&amp;guid=2c65942e32e9ad24c9fd889064d92ae3&amp;type=3#blister&apos;);" />
@@ -13,5 +14,6 @@
         <ui:Toggle label="Start with this item" name="startWith" />
         <ui:FloatField label="Cuantity" value="1" name="cuantity" />
         <ui:IntegerField label="Priority" value="0" name="priority" />
+        <ui:Instance template="LocalAndGlobalProperties" name="LocalAndGlobalProperties" style="height: 222px;" />
     </ui:VisualElement>
 </ui:UXML>

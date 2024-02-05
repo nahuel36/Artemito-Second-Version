@@ -22,6 +22,7 @@ public class InventoryItem//:PNCPropertyInterface
     //public LocalProperty[] LocalProperties { get { return local_properties; } set { } }
     //public GlobalProperty[] GlobalProperties { get { return global_properties; } set { } }
 
+    public LocalProperty[] local_properties;
 
     //public LocalProperty[] current_local_properties = new LocalProperty[0];
     //public GlobalProperty[] current_global_properties;
