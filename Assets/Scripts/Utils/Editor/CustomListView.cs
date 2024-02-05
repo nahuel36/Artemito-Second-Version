@@ -48,11 +48,12 @@ public class CustomListView<T>
         ScrollView scrollView = root.Q<ScrollView>("scrollView");
         listContainer = root.Q<VisualElement>("listContainer");
 
-        for (int i = 0; i < ItemsSource.Count; i++)
-        {
-            AddNewItem(i);
-        }
-
+        if(ItemsSource != null)
+            for (int i = 0; i < ItemsSource.Count; i++)
+            {
+                AddNewItem(i);
+            }
+    
         Button buttonAdd = root.Q<Button>("add");
         buttonAdd.clicked += Add;
 
