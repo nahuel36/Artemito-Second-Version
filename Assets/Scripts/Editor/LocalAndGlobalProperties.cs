@@ -22,10 +22,12 @@ public class LocalAndGlobalProperties : Editor
 
         customListView.ItemHeight = (i) => { return new StyleLength(StyleKeyword.Auto); };
 
-        customListView.OnAdd = () => { 
+        customListView.OnAdd = () => {
+            int variablesLength = VariableTypesUtility.GetAllVariableTypes().Length;
             LocalProperty localprop = new LocalProperty();
             localprop.variableTypes = new CustomEnumFlags<VariableType>(0);
-            localprop.variableValue = new string[VariableTypesUtility.GetAllVariableTypes().Length];
+            localprop.variableValue = new string[variablesLength];
+            localprop.useDefaultValue = new bool[variablesLength];
             return localprop;        
         };
 
