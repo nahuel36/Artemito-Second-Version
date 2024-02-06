@@ -120,6 +120,10 @@ public class CustomListView<T>
 
         listItem.style.height = ItemHeight(index);
 
+        listItem.style.borderBottomWidth = 10;
+
+        listItem.style.borderLeftWidth = 10;
+
         listItems.Add(listItem);
         listContainer.Add(listItem);
     }
@@ -257,7 +261,7 @@ public class CustomListView<T>
                 {
                     MoveVertical(listItems[i].worldBound.yMin < yPosToMove, i, Mathf.Clamp(yPosToMove, firstItemPositionY, finalYPos));
                 }
-                yPosToMove += listItems[i].contentRect.yMax;
+                yPosToMove += listItems[i].contentRect.yMax + listItems[i].style.borderBottomWidth.value;
             }
         }
     }
