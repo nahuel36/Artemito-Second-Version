@@ -362,12 +362,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   local_properties: []
   interactions:
-  - type: Inventory
-    subtype: 
-    subtypeObject: inventory-new item 50
   - type: Character
     subtype: Say
     subtypeObject: 
+  - type: Inventory
+    subtype: 
+    subtypeObject: inventory-new item 50
 --- !u!4 &1328524797
 Transform:
   m_ObjectHideFlags: 0
