@@ -28,6 +28,7 @@ public class LocalAndGlobalProperties : Editor
             localprop.variableTypes = new CustomEnumFlags<VariableType>(0);
             localprop.variableValues = new string[variablesLength];
             localprop.useDefaultValues = new bool[variablesLength];
+            localprop.objectValues = new UnityEngine.Object[variablesLength];
             return localprop;        
         };
 
