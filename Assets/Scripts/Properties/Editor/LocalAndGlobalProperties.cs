@@ -26,8 +26,8 @@ public class LocalAndGlobalProperties : Editor
             int variablesLength = VariableTypesUtility.GetAllVariableTypes().Length;
             LocalProperty localprop = new LocalProperty();
             localprop.variableTypes = new CustomEnumFlags<VariableType>(0);
-            localprop.variableValue = new string[variablesLength];
-            localprop.useDefaultValue = new bool[variablesLength];
+            localprop.variableValues = new string[variablesLength];
+            localprop.useDefaultValues = new bool[variablesLength];
             return localprop;        
         };
 

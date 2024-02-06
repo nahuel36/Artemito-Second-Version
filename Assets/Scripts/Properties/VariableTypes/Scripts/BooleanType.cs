@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "BooleanType", menuName = "Pnc/PropertyVariablesType/BooleanType", order = 1)]
 public class BooleanType: VariableType
 {
     public BooleanType() {
@@ -32,10 +31,13 @@ public class BooleanType: VariableType
 
     public bool GetVariableValue(GenericProperty property)
     {
-        if (string.IsNullOrEmpty(property.variableValue[Index]))
+        if (property.variableValues == null || Index >= property.variableValues.Length)
             return false;
 
-        if (property.variableValue[Index].ToLower() == "true")
+        if (string.IsNullOrEmpty(property.variableValues[Index]))
+            return false;
+
+        if (property.variableValues[Index].ToLower() == "true")
             return true;
         else
             return false;
@@ -43,6 +45,6 @@ public class BooleanType: VariableType
 
     public void SetVariableValue(GenericProperty property, bool value)
     {
-        property.variableValue[Index] = value.ToString().ToLower();
+        property.variableValues[Index] = value.ToString().ToLower();
     }
 }

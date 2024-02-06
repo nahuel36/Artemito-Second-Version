@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "StringType", menuName = "Pnc/PropertyVariablesType/StringType", order = 1)]
 public class StringType : VariableType
 {
     public StringType()
@@ -33,11 +32,14 @@ public class StringType : VariableType
 
     public string GetVariableValue(GenericProperty property)
     {
-        return property.variableValue[Index];
+        if (property.variableValues == null || Index >= property.variableValues.Length)
+            return "";
+
+        return property.variableValues[Index];
     }
 
     public void SetVariableValue(GenericProperty property,string value)
     {
-        property.variableValue[Index] = value;
+        property.variableValues[Index] = value;
     }
 }

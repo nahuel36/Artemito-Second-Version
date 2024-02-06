@@ -155,11 +155,9 @@ MonoBehaviour:
   local_properties:
   - name: popop
     expandedInInspector: 0
-    variableValue:
-    - false
-    - 99
-    - lopp
-    useDefaultValue: 
+    variableValues: []
+    useDefaultValues: 
+    objectValues: []
     variableTypes:
       value: -1
 --- !u!4 &254021858
@@ -363,13 +361,14 @@ MonoBehaviour:
   local_properties:
   - name: new property
     expandedInInspector: 0
-    variableValue:
+    variableValues:
     - 
     - 
     - 
-    useDefaultValue: 000000
+    useDefaultValues: 000000
+    objectValues: []
     variableTypes:
-      value: -1
+      value: 1
   interactions:
   - type: Character
     subtype: Say

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "IntegerType", menuName = "Pnc/PropertyVariablesType/IntegerType", order = 1)]
 public class IntegerType : VariableType
 {
     public IntegerType()
@@ -33,14 +32,17 @@ public class IntegerType : VariableType
 
     public int GetVariableValue(GenericProperty property)
     {
+        if (property.variableValues == null || Index >= property.variableValues.Length)
+            return -1;
+
         int integerValue = -1; 
-        if(int.TryParse(property.variableValue[Index], out integerValue))
+        if(int.TryParse(property.variableValues[Index], out integerValue))
             return integerValue;
         return -1;
     }
 
     public void SetVariableValue(GenericProperty property, int value)
     {
-        property.variableValue[Index] = value.ToString();
+        property.variableValues[Index] = value.ToString();
     }
 }

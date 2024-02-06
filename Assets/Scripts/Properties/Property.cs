@@ -11,9 +11,9 @@ public class GenericProperty
     //[SerializeField]public object[] variableValue = new object[1]; // no funciona porque es objeto
     //[SerializeField] public System.IComparable[] variableValue = new System.IComparable[1]; // no funciona la clase icomparable
     //public string stringvalue; //funciona
-    [SerializeField]public string[] variableValue; //funciona
-    [SerializeField]public bool[] useDefaultValue;
-
+    [SerializeField]public string[] variableValues; //funciona
+    [SerializeField]public bool[] useDefaultValues;
+    [SerializeField]public UnityEngine.Object[] objectValues; //funciona
 }
 
 [System.Serializable]
