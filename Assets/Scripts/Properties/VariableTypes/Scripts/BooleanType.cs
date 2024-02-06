@@ -32,6 +32,9 @@ public class BooleanType: VariableType
 
     public bool GetVariableValue(GenericProperty property)
     {
+        if (string.IsNullOrEmpty(property.variableValue[Index]))
+            return false;
+
         if (property.variableValue[Index].ToLower() == "true")
             return true;
         else
