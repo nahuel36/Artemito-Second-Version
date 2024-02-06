@@ -1,7 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="CustomListView" src="project://database/Assets/Scripts/Utils/Editor/CustomListView.uxml?fileID=9197481963319205126&amp;guid=196f2566c65cd384c992fd73032a902f&amp;type=3#CustomListView" />
-    <Style src="project://database/Assets/Scripts/Editor/RoomInteractuableVisualElements.uss?fileID=7433441132597879392&amp;guid=403a9e18ac3ae004089da46d830509f0&amp;type=3#RoomInteractuableVisualElements" />
+    <ui:Template name="LocalAndGlobalProperties" src="project://database/Assets/Scripts/Properties/Editor/LocalAndGlobalProperties.uxml?fileID=9197481963319205126&amp;guid=1b6a208d78c15ea40a3f675386732322&amp;type=3#LocalAndGlobalProperties" />
+    <Style src="project://database/Assets/Scripts/Scene/Editor/CharacterVisualElements.uss?fileID=7433441132597879392&amp;guid=403a9e18ac3ae004089da46d830509f0&amp;type=3#RoomInteractuableVisualElements" />
     <ui:Label text="Room interactuable" />
     <ui:Label text="Interactions" class="custom-label" />
     <ui:Instance template="CustomListView" name="CustomListView" />
+    <ui:Instance template="LocalAndGlobalProperties" name="LocalAndGlobalProperties" />
 </ui:UXML>

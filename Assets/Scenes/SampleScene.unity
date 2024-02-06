@@ -360,7 +360,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8485f445a024146b8b80332b9bcc82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  local_properties: []
+  local_properties:
+  - name: new property
+    expandedInInspector: 0
+    variableValue:
+    - 
+    - 
+    - 
+    useDefaultValue: 000000
+    variableTypes:
+      value: -1
   interactions:
   - type: Character
     subtype: Say

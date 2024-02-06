@@ -73,6 +73,10 @@ public class CharacterCustomEditor : Editor
 
         root.Add(element);
 
+        LocalAndGlobalProperties properties = new LocalAndGlobalProperties();
+
+        properties.CreateGUI(myTarget.local_properties, root.Q("LocalAndGlobalProperties"));
+
         return root;
     }
 
