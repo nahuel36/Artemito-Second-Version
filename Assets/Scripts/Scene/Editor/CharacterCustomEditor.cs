@@ -22,9 +22,10 @@ public class CharacterCustomEditor : Editor
 
         myTarget = (RoomInteractuable)target;
 
-        root = new VisualElement();
+        VisualElement root = visualTree.CloneTree();
 
-
+        root.Q("InteractionSelect").visible = false;
+        root.Q("InteractionSelect").StretchToParentSize();
 
         listCustom = new();
         listCustom.ItemsSource = myTarget.interactions;
@@ -67,11 +68,8 @@ public class CharacterCustomEditor : Editor
         //falta que haga highlight cuando pasas el mouse
         //falta poder seleccionar
 
-        VisualElement element = visualTree.CloneTree();
 
-        listCustom.Init(element.Q<VisualElement>("CustomListView"));
-
-        root.Add(element);
+        listCustom.Init(root.Q<VisualElement>("CustomListView"));
 
         LocalAndGlobalProperties properties = new LocalAndGlobalProperties();
 
