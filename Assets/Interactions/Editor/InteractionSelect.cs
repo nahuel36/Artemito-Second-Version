@@ -18,7 +18,7 @@ public class InteractionSelect
     public delegate void OnSelectTypesEvents(Interaction interactP);
     public event OnSelectTypesEvents OnChangeTypeEvent;
 
-    public VisualElement BothFunctions(Interaction interactionP) 
+    public VisualElement ShowAndConfigure(Interaction interactionP) 
     {
         VisualElement root = new VisualElement();
 
@@ -47,37 +47,7 @@ public class InteractionSelect
         return root;
     }
 
-    public VisualElement VisualElements()
-    {
-        // Each editor window contains a root VisualElement object
-        VisualElement root = new VisualElement();
-
-        // Import UXML
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/InteractionSelect.uxml");
-        labelFromUXML = visualTree.Instantiate();
-
-        DropdownField typeDropdown = labelFromUXML.Q<DropdownField>("type");
-        typeDropdown.choices = FileUtils.GetDirList(Application.dataPath + "/Interactions/");
-        typeDropdown.choices.Remove("Editor");
-        
-        root.Add(labelFromUXML);
-
-        return root;
-    }
-
-    public void Binding(Interaction interactionP, VisualElement element)
-    {
-        this.interaction = interactionP;
-        DropdownField typeDropdown = element.Q<DropdownField>("type");
-        typeDropdown.value = interaction.type;
-        
-        SetSubtypeChoices(false, element);
-        typeDropdown.RegisterCallback<ChangeEvent<string>>((e) => OnChangeType(interaction, e, element));
-
-        DropdownField subtype = element.Q<DropdownField>("subtype");
-        subtype.RegisterCallback<ChangeEvent<string>>(OnChangeSubtype);
-
-    }
+    
 
     private void SetSubtypeChoices(bool resetValue, VisualElement element)
     {

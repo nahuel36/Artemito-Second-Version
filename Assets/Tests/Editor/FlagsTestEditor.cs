@@ -10,9 +10,10 @@ using UnityEditor.UIElements;
 [CustomEditor(typeof(FlagsTest))]
 public class FlagsTestEditor : Editor
 {
-
+    FlagsTest myTarget;
     public VisualTreeAsset visual;
     public VisualTreeAsset visual2;
+    Dictionary<Interaction, SubtypeSelector> subTypeSelectors;
     [System.Flags]
     public enum EntityPartial
     {
@@ -40,8 +41,6 @@ public class FlagsTestEditor : Editor
         flags.value = (GenericEnum)((FlagsTest)target).enumeratorFlag;
 
         root.Add(visualTree);
-
-        return root;
 
         /*
         var imguiContainer = new IMGUIContainer(() =>
@@ -82,9 +81,9 @@ public class FlagsTestEditor : Editor
         //dropdown.choices = GetStringArrayFromProperty(serializedObject.FindProperty("myList"));
         //  element.Add(dropdown);
 
-        
-        
-        
+
+
+
         /*
         VisualElement element = new VisualElement();
         var property = serializedObject.FindProperty("flags");
@@ -107,9 +106,42 @@ public class FlagsTestEditor : Editor
 
         return element;
         */
+        subTypeSelectors = new Dictionary<Interaction, SubtypeSelector>();
+
+        myTarget = (FlagsTest)target;
+
+        Func<VisualElement> makeItem = () =>
+        {
+            return new TextField("Text");
+        };
+
+        Action<VisualElement, int> bindItem = (e, i) =>
+        {
+            TextField text = e as TextField;
+            text.value = "test";
+        };
 
 
+        ListView listView = new ListView();
+        listView.itemsSource = myTarget.interactions;
+        listView.reorderable = true;
+        listView.reorderMode = ListViewReorderMode.Animated;
+        listView.showAddRemoveFooter = true;
+        listView.makeItem = makeItem;
+        listView.bindItem = bindItem;
+        listView.itemsAdded += OnAdded;
+        listView.fixedItemHeight = EditorGUIUtility.singleLineHeight * 4;
+        listView.selectionType = SelectionType.Multiple;
+        listView.RegisterCallback<ChangeEvent<string>>((evt) => SaveTargetChanges());
 
+        root.Add(listView);
+
+        return root;
+    }
+
+    private void OnAdded(IEnumerable<int> obj)
+    {
+        myTarget.interactions[myTarget.interactions.Count - 1] = new Interaction();
     }
 
     private void callback(ChangeEvent<Enum> evt)
@@ -152,4 +184,11 @@ public class FlagsTestEditor : Editor
         return array;
         
     }
+
+    private void SaveTargetChanges()
+    {
+        EditorUtility.SetDirty(target);
+    }
+
+
 }

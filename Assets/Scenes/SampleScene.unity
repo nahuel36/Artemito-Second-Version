@@ -309,6 +309,13 @@ MonoBehaviour:
   - Sunday
   enumeratorFlag: 3
   testName: haha
+  interactions:
+  - type: 
+    subtype: 
+    subtypeObject: 
+  - type: 
+    subtype: 
+    subtypeObject: 
 --- !u!4 &1279160875
 Transform:
   m_ObjectHideFlags: 0
