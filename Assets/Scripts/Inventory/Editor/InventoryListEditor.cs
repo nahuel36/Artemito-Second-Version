@@ -119,6 +119,18 @@ public class InventoryListEditor : Editor
         serializedObject.Update();
     }
 
+    private void SetColor(Image image, Color color, float borderWidth)
+    {
+        image.style.borderBottomWidth = borderWidth;
+        image.style.borderTopWidth = borderWidth;
+        image.style.borderLeftWidth = borderWidth;
+        image.style.borderRightWidth = borderWidth;
+        image.style.borderBottomColor = color;
+        image.style.borderTopColor = color;
+        image.style.borderLeftColor = color;
+        image.style.borderRightColor = color;
+    }
+
     private void OnClick(int specialIndex)
     {
         selectedIndex = ((InventoryList)target).GetIndexBySpecialIndex(specialIndex);
@@ -128,7 +140,18 @@ public class InventoryListEditor : Editor
         selectedItem.visible = true;
 
         eraseButton.visible = true;
-        
+
+        for (int i = 0; i < images.Count; i++)
+        {
+            if (i == selectedIndex)
+            {
+                SetColor(images[i], Color.yellow, 5);
+            }
+            else
+            {
+                SetColor(images[i], Color.clear, 0);
+            }
+        }
     }
 
 }
