@@ -16,11 +16,9 @@ public class InventoryItemEditor : Editor
     public static EventCallback<ChangeEvent<int>> OnChangeItemPriorityCallback;
 
     public static InventoryItem actualItem;
-    public static void Show(InventoryItem item, SerializedProperty obj, VisualElement root)
+    public static void Show(InventoryItem item, SerializedProperty obj, VisualElement visualElem)
     {
         actualItem = item;
-
-        VisualElement visualElem = root;
         
         TextField text = visualElem.Q<TextField>("itemName");
         text.value = item.itemName;
