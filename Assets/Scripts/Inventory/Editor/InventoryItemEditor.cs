@@ -48,7 +48,7 @@ public class InventoryItemEditor : Editor
 
         LocalAndGlobalProperties properties = (LocalAndGlobalProperties)CreateInstance(typeof(LocalAndGlobalProperties));
 
-        properties.CreateGUI(item.local_properties, root.Q("LocalAndGlobalProperties"));
+        properties.CreateGUI(item.local_properties, visualElem.Q("LocalAndGlobalProperties"));
     }
 
     private static void ChangeSomeItemContent<T>(ref EventCallback<ChangeEvent<T>> callback,Action<ChangeEvent<T>,InventoryItem> function, BaseField<T> field, InventoryItem item) 
