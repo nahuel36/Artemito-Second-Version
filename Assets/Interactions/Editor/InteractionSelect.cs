@@ -7,10 +7,11 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 
-public class InteractionSelect 
+public class InteractionSelect : Editor
 {
     Interaction interaction;
     VisualElement labelFromUXML;
+    [SerializeField] VisualTreeAsset interactionSelect;
     public InteractionSelect()
     {        
     }
@@ -23,8 +24,7 @@ public class InteractionSelect
         VisualElement root = new VisualElement();
 
         // Import UXML
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/InteractionSelect.uxml");
-        labelFromUXML = visualTree.Instantiate();
+        labelFromUXML = interactionSelect.Instantiate();
 
         DropdownField typeDropdown = labelFromUXML.Q<DropdownField>("type");
         typeDropdown.choices = FileUtils.GetDirList(Application.dataPath + "/Interactions/");

@@ -8,6 +8,7 @@ public class SelectInventory : SubtypeSelector
 {
     VisualElement root;
     bool added;
+    [SerializeField] VisualTreeAsset SelectInventoryVisualTree;
     public SelectInventory()
     {
         added = false;
@@ -18,8 +19,7 @@ public class SelectInventory : SubtypeSelector
     {
         // Each editor window contains a root VisualElement object
         // Import UXML
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Inventory/Editor/SelectInventory.uxml");
-        VisualElement labelFromUXML = visualTree.CloneTree();
+        VisualElement labelFromUXML = SelectInventoryVisualTree.CloneTree();
 
         DropdownField inventoryDropdown = labelFromUXML.Q<DropdownField>("InventoryList");
         inventoryDropdown.choices = Resources.Load<InventoryList>("Inventory").GetListOfItems();
