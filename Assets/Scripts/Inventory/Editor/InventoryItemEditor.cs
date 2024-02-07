@@ -48,7 +48,7 @@ public class InventoryItemEditor : Editor
         priority.value = item.priority;
         ChangeSomeItemContent(ref OnChangeItemPriorityCallback, OnChangeItemPriority, priority, item);
 
-        LocalAndGlobalProperties properties = new LocalAndGlobalProperties();
+        LocalAndGlobalProperties properties = (LocalAndGlobalProperties)CreateInstance(typeof(LocalAndGlobalProperties));
 
         properties.CreateGUI(item.local_properties, root.Q("LocalAndGlobalProperties"));
     }

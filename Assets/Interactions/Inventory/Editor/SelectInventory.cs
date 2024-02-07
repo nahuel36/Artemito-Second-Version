@@ -6,28 +6,25 @@ using System;
 
 public class SelectInventory : SubtypeSelector
 {
-    VisualElement root;
     bool added;
     [SerializeField] VisualTreeAsset SelectInventoryVisualTree;
-    public SelectInventory()
+    VisualElement root;
+    public void OnEnable()
     {
         added = false;
-        root = new VisualElement();
     }
 
     public VisualElement VisualElements(Interaction interaction, VisualElement element)
     {
         // Each editor window contains a root VisualElement object
         // Import UXML
-        VisualElement labelFromUXML = SelectInventoryVisualTree.CloneTree();
+        root = SelectInventoryVisualTree.CloneTree();
 
-        DropdownField inventoryDropdown = labelFromUXML.Q<DropdownField>("InventoryList");
+        DropdownField inventoryDropdown = root.Q<DropdownField>("InventoryList");
         inventoryDropdown.choices = Resources.Load<InventoryList>("Inventory").GetListOfItems();
         if(!string.IsNullOrEmpty(interaction.subtypeObject))
         inventoryDropdown.value = interaction.SubtypeObjectToInventoryName(interaction.subtypeObject);
         inventoryDropdown.RegisterCallback<ChangeEvent<string>>((evt) => OnChangeItem(evt, interaction));
-
-        root = labelFromUXML;
 
         return root;
     }

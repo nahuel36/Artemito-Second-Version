@@ -18,7 +18,7 @@ public class PropertiesContainerCustomEditor : Editor
 
         root.Add(generalTree.CloneTree());
 
-        LocalAndGlobalProperties properties = new LocalAndGlobalProperties();
+        LocalAndGlobalProperties properties = (LocalAndGlobalProperties)CreateInstance(typeof(LocalAndGlobalProperties));
 
         properties.CreateGUI(((PropertiesContainer)target).local_properties, root.Q("LocalAndGlobalProperties"));
 

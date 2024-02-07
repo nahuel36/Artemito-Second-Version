@@ -34,7 +34,7 @@ public class CharacterCustomEditor : Editor
         {
             int index = i;
 
-            InteractionSelect select3 = new InteractionSelect();
+            InteractionSelect select3 = (InteractionSelect)CreateInstance(typeof(InteractionSelect));
             VisualElement visualElem = new VisualElement();
             visualElem.Add(select3.ShowAndConfigure(myTarget.interactions[index]));
             select3.OnChangeTypeEvent += (inter) => { UpdateSelector(inter, index, visualElem); };
@@ -71,7 +71,7 @@ public class CharacterCustomEditor : Editor
 
         listCustom.Init(root.Q<VisualElement>("CustomListView"));
 
-        LocalAndGlobalProperties properties = new LocalAndGlobalProperties();
+        LocalAndGlobalProperties properties = (LocalAndGlobalProperties)CreateInstance(typeof(LocalAndGlobalProperties));
 
         properties.CreateGUI(myTarget.local_properties, root.Q("LocalAndGlobalProperties"));
 
@@ -109,7 +109,7 @@ public class CharacterCustomEditor : Editor
         {
             if (interaction.type == "Inventory" && !subTypeSelectors.ContainsKey(interaction))
             {
-                subTypeSelectors.Add(interaction, new SelectInventory());
+                subTypeSelectors.Add(interaction, (SelectInventory)CreateInstance(typeof(SelectInventory)));
             }
             else if (interaction.type != "Inventory" && subTypeSelectors.ContainsKey(interaction))
             {

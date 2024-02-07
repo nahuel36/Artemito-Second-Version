@@ -12,9 +12,6 @@ public class InteractionSelect : Editor
     Interaction interaction;
     VisualElement labelFromUXML;
     [SerializeField] VisualTreeAsset interactionSelect;
-    public InteractionSelect()
-    {        
-    }
 
     public delegate void OnSelectTypesEvents(Interaction interactP);
     public event OnSelectTypesEvents OnChangeTypeEvent;
