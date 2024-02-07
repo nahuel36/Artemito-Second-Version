@@ -48,6 +48,8 @@ public class CustomListView<T>
         ScrollView scrollView = root.Q<ScrollView>("scrollView");
         listContainer = root.Q<VisualElement>("listContainer");
 
+        listContainer.Clear();
+
         if(ItemsSource != null)
             for (int i = 0; i < ItemsSource.Count; i++)
             {
