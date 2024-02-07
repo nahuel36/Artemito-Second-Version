@@ -120,6 +120,8 @@ public class CustomListView<T>
 
         listItem.style.height = ItemHeight(index);
 
+        listItem.style.borderTopWidth = 10;
+
         listItem.style.borderBottomWidth = 10;
 
         listItem.style.borderLeftWidth = 10;
