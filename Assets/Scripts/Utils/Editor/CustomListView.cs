@@ -40,6 +40,8 @@ public class CustomListView<T>
     public delegate void ItemRemoveDelegate(VisualElement element, int index);
     public event ItemRemoveDelegate OnRemoveItem;
 
+    public static EventCallback<ClickEvent> OnClickAdd;
+    public static EventCallback<ClickEvent> OnClickRemove;
 
     public void Init(VisualElement root)
     {
@@ -50,19 +52,25 @@ public class CustomListView<T>
 
         listContainer.Clear();
 
-        if(ItemsSource != null)
+        if (ItemsSource != null)
             for (int i = 0; i < ItemsSource.Count; i++)
             {
                 AddNewItem(i);
             }
-    
+
         Button buttonAdd = root.Q<Button>("add");
-        buttonAdd.clickable = new Clickable(() => { });
-        buttonAdd.clicked += Add;
+        //buttonAdd.clickable = new Clickable(() => { });
+        if (OnClickAdd != null)
+            buttonAdd.UnregisterCallback(OnClickAdd);
+        OnClickAdd = (evt) => {Add(); };
+        buttonAdd.RegisterCallback<ClickEvent>(OnClickAdd);
 
         Button buttonRemove = root.Q<Button>("remove");
-        buttonRemove.clickable = new Clickable(() => { });
-        buttonRemove.clicked += Remove;
+        //buttonRemove.clickable = new Clickable(() => { });
+        if (OnClickRemove != null)
+            buttonRemove.UnregisterCallback(OnClickRemove);
+        OnClickRemove = (evt) => { Remove(); };
+        buttonAdd.RegisterCallback<ClickEvent>(OnClickRemove);
 
         root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
         root.Add(scrollView);

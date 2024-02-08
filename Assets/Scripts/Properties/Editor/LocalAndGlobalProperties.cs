@@ -8,14 +8,16 @@ public class LocalAndGlobalProperties : Editor
     VisualTreeAsset variableItem;
     [SerializeField]
     VisualTreeAsset localProperty;
-    
+    CustomListView<LocalProperty> customListView;
     public VisualElement CreateGUI(List<LocalProperty> local_properties, VisualElement root)
     {
         // Each editor window contains a root VisualElement object
         // Instantiate UXML
 
 
-        CustomListView<LocalProperty> customListView = new CustomListView<LocalProperty>();
+        if(customListView == null)
+            customListView = new CustomListView<LocalProperty>();
+
         customListView.ItemsSource = local_properties;
 
         customListView.ItemContent = (i) => ItemContent(i, local_properties[i]);
