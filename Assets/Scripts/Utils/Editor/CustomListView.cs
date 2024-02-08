@@ -57,9 +57,11 @@ public class CustomListView<T>
             }
     
         Button buttonAdd = root.Q<Button>("add");
+        buttonAdd.clickable = new Clickable(() => { });
         buttonAdd.clicked += Add;
 
         Button buttonRemove = root.Q<Button>("remove");
+        buttonRemove.clickable = new Clickable(() => { });
         buttonRemove.clicked += Remove;
 
         root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
