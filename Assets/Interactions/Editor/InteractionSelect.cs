@@ -24,8 +24,7 @@ public class InteractionSelect : Editor
         labelFromUXML = interactionSelect.Instantiate();
 
         DropdownField typeDropdown = labelFromUXML.Q<DropdownField>("type");
-        typeDropdown.choices = FileUtils.GetDirList(Application.dataPath + "/Interactions/");
-        typeDropdown.choices.Remove("Editor");
+        typeDropdown.choices = FileUtils.GetDirList(Application.dataPath + "/Interactions/", true);
 
         root.Add(labelFromUXML);
 
@@ -51,8 +50,7 @@ public class InteractionSelect : Editor
         if (String.IsNullOrEmpty(interaction.type)) return;
 
         DropdownField subtype = element.Q<DropdownField>("subtype");
-        subtype.choices = FileUtils.GetDirList(Application.dataPath + "/Interactions/" + interaction.type + "/");
-        subtype.choices.Remove("Editor");
+        subtype.choices = FileUtils.GetDirList(Application.dataPath + "/Interactions/" + interaction.type + "/", true);
         if (resetValue)
             subtype.value = null;
         else

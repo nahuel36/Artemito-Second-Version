@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 public static class FileUtils {
 
-    public static List<string> GetDirList(string path)
+    public static List<string> GetDirList(string path, bool excludeSpecialFolders = false)
     {
         List<string> dirs = new List<string>();
 
@@ -12,6 +12,14 @@ public static class FileUtils {
         {
             DirectoryInfo info = new DirectoryInfo(dir);
             dirs.Add(info.Name);
+        }
+        if (excludeSpecialFolders)
+        {
+            dirs.Remove("Editor");
+            dirs.Remove("Gizmos");
+            dirs.Remove("Plugins");
+            dirs.Remove("Resources");
+            dirs.Remove("StreamingAssets");
         }
 
         return dirs;
