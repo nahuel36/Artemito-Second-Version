@@ -29,17 +29,18 @@ public class InventoryListEditor : Editor
 
         VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
 
-
-        imagesContainer = labelFromUXML.Q<VisualElement>("ItemsContainer");
-
-        imagesContainer.style.flexDirection = FlexDirection.Row;
-
         VisualElement item = labelFromUXML.Q<VisualElement>("Item");
         item.visible = false;
         item.StretchToParentSize();
 
         itemWidth = item.style.width;
         itemHeight = item.style.height;
+
+        imagesContainer = labelFromUXML.Q<VisualElement>("ItemsContainer");
+
+        imagesContainer.style.flexDirection = FlexDirection.Row;
+
+        imagesContainer.style.height = 100;
 
         for (int i = 0; i < serializedObject.FindProperty("items").arraySize; i++)
         {
