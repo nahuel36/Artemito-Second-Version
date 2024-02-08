@@ -17,6 +17,11 @@ public class InteractionCustomEditor : Editor
         root.Q("InteractionSelect").visible = false;
         root.Q("InteractionSelect").StretchToParentSize();
 
+        root.Q("ObjectTypeSelect").visible = false;
+        root.Q("ObjectTypeSelect").StretchToParentSize();
+         
+        
+
         listCustom = new();
 
         if (myTarget is RoomInteractuable)
