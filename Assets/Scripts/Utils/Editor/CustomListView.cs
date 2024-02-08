@@ -35,7 +35,7 @@ public class CustomListView<T>
 
     public delegate void ItemChangeDelegate(ChangeEvent<string> evt, VisualElement element, int index);
     public event ItemChangeDelegate OnChangeItem;
-    public delegate void ItemReorderDelegate(MouseUpEvent evt, VisualElement element, int index);
+    public delegate void ItemReorderDelegate(VisualElement element, int index);
     public event ItemReorderDelegate OnReorderItem;
     public delegate void ItemRemoveDelegate(VisualElement element, int index);
     public event ItemRemoveDelegate OnRemoveItem;
@@ -247,6 +247,8 @@ public class CustomListView<T>
 
                     ItemsSource.Insert(indexDestiny, backup);
                     listItems.Insert(indexDestiny, draggedItem);
+
+                    OnReorderItem?.Invoke(draggedItem, indexDestiny);
                 }
             }
 
@@ -335,7 +337,6 @@ public class CustomListView<T>
 
         RestoreColors();
 
-        OnReorderItem?.Invoke(evt, listItem, i);
     }
 
     private void OnMouseDown(MouseDownEvent evt, VisualElement listItem, int index)

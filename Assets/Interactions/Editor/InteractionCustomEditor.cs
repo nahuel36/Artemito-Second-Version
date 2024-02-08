@@ -45,7 +45,7 @@ public class InteractionCustomEditor : Editor
 
         listCustom.OnAdd = () => OnAdded(myTarget);
 
-        listCustom.OnReorderItem += (evt, element, index) => { SaveTargetChanges(myTarget); };
+        listCustom.OnReorderItem += (element, index) => { SaveTargetChanges(myTarget); };
 
         listCustom.OnRemoveItem += (element, index) => { SaveTargetChanges(myTarget); };
 
