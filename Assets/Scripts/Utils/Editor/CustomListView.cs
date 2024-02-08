@@ -70,10 +70,10 @@ public class CustomListView<T>
         if (OnClickRemove != null)
             buttonRemove.UnregisterCallback(OnClickRemove);
         OnClickRemove = (evt) => { Remove(); };
-        buttonAdd.RegisterCallback<ClickEvent>(OnClickRemove);
+        buttonRemove.RegisterCallback<ClickEvent>(OnClickRemove);
 
         root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
-        root.Add(scrollView);
+        //root.Add(scrollView);
        // root.StretchToParentSize();
     }
 
