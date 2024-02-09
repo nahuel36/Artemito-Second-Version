@@ -31,7 +31,7 @@ public class CharacterCustomEditor : Editor
 
         InteractionCustomEditor interaction = (InteractionCustomEditor)CreateInstance(typeof(InteractionCustomEditor));
 
-        interaction.ShowGUI(root.Q("Interaction"), target);
+        interaction.ShowGUI(root.Q("Interaction"), myTarget.interactions, target);
         
         LocalAndGlobalProperties properties = (LocalAndGlobalProperties)CreateInstance(typeof(LocalAndGlobalProperties));
 

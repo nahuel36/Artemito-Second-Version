@@ -11,7 +11,7 @@ public class InteractionCustomEditor : Editor
     CustomListView<Interaction> listCustom;
     List<Interaction> interactions;
 
-    public void ShowGUI(VisualElement root, UnityEngine.Object myTarget) {
+    public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget) {
         subTypeSelectors = new Dictionary<Interaction, SubtypeSelector>();
 
         root.Q("InteractionSelect").visible = false;
@@ -19,16 +19,11 @@ public class InteractionCustomEditor : Editor
 
         root.Q("ObjectTypeSelect").visible = false;
         root.Q("ObjectTypeSelect").StretchToParentSize();
-         
-        
 
         listCustom = new();
 
-        if (myTarget is RoomInteractuable)
-        { 
-            listCustom.ItemsSource = ((RoomInteractuable)myTarget).interactions;
-            interactions = ((RoomInteractuable)myTarget).interactions;
-        }
+        listCustom.ItemsSource = interactions;
+        this.interactions = interactions;
 
         Func<int, VisualElement> itemContent = (i) =>
         {
