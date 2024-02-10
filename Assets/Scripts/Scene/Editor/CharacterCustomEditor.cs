@@ -31,7 +31,7 @@ public class CharacterCustomEditor : Editor
 
         VisualElement root = visualTree.CloneTree();
 
-        InteractionCustomEditor interaction = (InteractionCustomEditor)CreateInstance(typeof(InteractionCustomEditor));
+        InteractionsCustomEditor interaction = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
 
         interaction.ShowGUI(root.Q("Interaction"), myTarget.interactions, target);
 
@@ -48,7 +48,7 @@ public class CharacterCustomEditor : Editor
             attemps.ItemsSource = myTarget.inventoryInteractions[index].attempsContainer.attemps;
             attemps.ItemContent = (index2) =>
             {
-                InteractionCustomEditor interactionCustomEditor = (InteractionCustomEditor)CreateInstance(typeof(InteractionCustomEditor));
+                InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
                 VisualElement interactionVE = interactionVT.CloneTree();
                 interactionCustomEditor.ShowGUI(interactionVE, myTarget.inventoryInteractions[index].attempsContainer.attemps[index2].interactions, target);
                 return interactionVE;

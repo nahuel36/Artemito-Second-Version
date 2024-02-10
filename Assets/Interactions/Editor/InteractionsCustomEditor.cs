@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
 using System;
-public class InteractionCustomEditor : Editor
+public class InteractionsCustomEditor : Editor
 {
     Dictionary<Interaction, SubtypeSelector> subTypeSelectors;
 
