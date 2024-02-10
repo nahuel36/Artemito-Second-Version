@@ -36,18 +36,9 @@ public class CharacterCustomEditor : Editor
         listViewInvInteractions.ItemsSource = myTarget.inventoryInteractions;
 
         listViewInvInteractions.ItemContent = (indexInteraction)=> {
-            VisualElement InvAttempsVE = new VisualElement();
-            CustomListView<InteractionsAttemp> listViewAttemps = new CustomListView<InteractionsAttemp>();
-            listViewAttemps.ItemsSource = myTarget.inventoryInteractions[indexInteraction].attempsContainer.attemps;
-            listViewAttemps.ItemContent = (indexAttemp) =>
-            {
-                InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
-                VisualElement interactionVE = new VisualElement();
-                interactionCustomEditor.ShowGUI(interactionVE, myTarget.inventoryInteractions[indexInteraction].attempsContainer.attemps[indexAttemp].interactions, target, true);
-                return interactionVE;
-            };
-            listViewAttemps.Init(InvAttempsVE, true);
-            return InvAttempsVE;
+            AttempsCustomEditor attempsCustomEditor = (AttempsCustomEditor)CreateInstance(typeof(AttempsCustomEditor));
+            VisualElement attempsVE = attempsCustomEditor.ShowGUI(myTarget.inventoryInteractions[indexInteraction].attempsContainer, myTarget);
+            return attempsVE;
         };
         VisualElement invInteractionsVE = new VisualElement();
                     
