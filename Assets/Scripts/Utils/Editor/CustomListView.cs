@@ -165,7 +165,10 @@ public class CustomListView<T>
 
     private void OnChanged(ChangeEvent<string> evt, VisualElement listItem, int index)
     {
-        listItem.style.height = ItemHeight(index);
+        if (ItemHeight != null)
+            listItem.style.height = ItemHeight(index);
+        else
+            listItem.style.height = new StyleLength(StyleKeyword.Auto);
         OnChangeItem?.Invoke(evt, listItem, index);
     }
 
