@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - visualTree: {fileID: 9197481963319205126, guid: 3e6e95b08b1b0f0489946122583b5646, type: 3}
+  - customListVT: {fileID: 9197481963319205126, guid: 196f2566c65cd384c992fd73032a902f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

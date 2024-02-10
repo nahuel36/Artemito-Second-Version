@@ -376,6 +376,24 @@ MonoBehaviour:
   - type: Inventory
     subtype: 
     subtypeObject: inventory-new item 50
+  inventoryInteractions:
+  - specialIndex: 0
+    verb:
+      name: 
+      isLikeGive: 0
+      isLikeUse: 0
+      index: 0
+    sceneObject: {fileID: 0}
+    attempsContainer:
+      attempsIteration: 0
+      attemps:
+      - interactions:
+        - type: 
+          subtype: 
+          subtypeObject: 
+        expandedInInspector: 0
+      expandedInInspector: 0
+      executedTimes: 0
 --- !u!4 &1328524797
 Transform:
   m_ObjectHideFlags: 0

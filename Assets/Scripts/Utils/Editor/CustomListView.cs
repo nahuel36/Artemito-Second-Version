@@ -130,13 +130,18 @@ public class CustomListView<T>
             listItem.style.borderTopWidth = 5;
         }
 
-        listItem.style.height = ItemHeight(index);
+        if(ItemHeight != null)
+            listItem.style.height = ItemHeight(index);
+        else
+            listItem.style.height = new StyleLength(StyleKeyword.Auto);
 
         listItem.style.borderTopWidth = 10;
 
         listItem.style.borderBottomWidth = 10;
 
         listItem.style.borderLeftWidth = 10;
+
+        listItem.style.borderRightWidth = 10;
 
         listItems.Add(listItem);
         listContainer.Add(listItem);
