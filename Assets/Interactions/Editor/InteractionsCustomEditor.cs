@@ -11,7 +11,15 @@ public class InteractionsCustomEditor : Editor
     CustomListView<Interaction> listCustom;
     List<Interaction> interactions;
 
-    public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget) {
+    [SerializeField] VisualTreeAsset InteractionVT;
+
+    public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget, bool generateVisualTree=false) {
+
+        if (generateVisualTree)
+        {
+            root.Add(InteractionVT.CloneTree());
+        }
+
         subTypeSelectors = new Dictionary<Interaction, SubtypeSelector>();
 
         root.Q("InteractionSelect").visible = false;
