@@ -58,7 +58,7 @@ public class CustomListView<T>
                 AddNewItem(i);
             }
 
-        Button buttonAdd = root.Q<Button>("add");
+        Button buttonAdd = root.Query<Button>("add").Last();
         //buttonAdd.clickable = new Clickable(() => { });
         if (OnClickAdd != null)
             buttonAdd.UnregisterCallback(OnClickAdd);
