@@ -50,13 +50,5 @@ public class CharacterCustomEditor : Editor
     }
 
 
-
-
-
-    private void OnAdded(IEnumerable<int> obj)
-    {
-        myTarget.interactions[myTarget.interactions.Count - 1] = new Interaction();
-    }
-
     
 }
