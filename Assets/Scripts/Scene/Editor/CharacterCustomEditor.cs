@@ -13,6 +13,7 @@ public class CharacterCustomEditor : Editor
     RoomInteractuable myTarget;
     [SerializeField] VisualTreeAsset visualTree;
     [SerializeField] VisualTreeAsset customListVT;
+    [SerializeField] VisualTreeAsset interactionVT;
 
     //cambiar colores multiplicando por alfa o sumando varios
     //falta un recuadro
@@ -48,17 +49,10 @@ public class CharacterCustomEditor : Editor
             attemps.ItemsSource = myTarget.inventoryInteractions[index].attempsContainer.attemps;
             attemps.ItemContent = (index2) =>
             {
-                VisualElement elementInteraction = new VisualElement();
-                VisualElement customListInventoryInteraction = customListVT.CloneTree();
-                CustomListView<Interaction> interactionCLV = new CustomListView<Interaction>();
-                interactionCLV.ItemsSource = myTarget.inventoryInteractions[index].attempsContainer.attemps[index2].interactions;
-                interactionCLV.ItemContent = (index) =>
-                {
-                    return new Label("show");
-                };
-                interactionCLV.Init(customListInventoryInteraction);
-                elementInteraction.Add(customListInventoryInteraction);
-                return elementInteraction;
+                InteractionCustomEditor interaction = (InteractionCustomEditor)CreateInstance(typeof(InteractionCustomEditor));
+                VisualElement interactionVE = interactionVT.CloneTree();
+                interaction.ShowGUI(interactionVE, myTarget.inventoryInteractions[index].attempsContainer.attemps[index2].interactions, target);
+                return interactionVE;
             };
             attemps.Init(customListInventoryAttemps);
             elementInventoryAttemp.Add(customListInventoryAttemps);
