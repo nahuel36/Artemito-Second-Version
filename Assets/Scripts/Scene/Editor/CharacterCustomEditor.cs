@@ -43,20 +43,18 @@ public class CharacterCustomEditor : Editor
         VisualElement customListInventory = customListVT.CloneTree();
 
         inventoryInteractions.ItemContent = (index)=> {
-            VisualElement elementInventoryAttemp = new VisualElement();
             VisualElement customListInventoryAttemps = customListVT.CloneTree();
             CustomListView<InteractionsAttemp> attemps = new CustomListView<InteractionsAttemp>();
             attemps.ItemsSource = myTarget.inventoryInteractions[index].attempsContainer.attemps;
             attemps.ItemContent = (index2) =>
             {
-                InteractionCustomEditor interaction = (InteractionCustomEditor)CreateInstance(typeof(InteractionCustomEditor));
+                InteractionCustomEditor interactionCustomEditor = (InteractionCustomEditor)CreateInstance(typeof(InteractionCustomEditor));
                 VisualElement interactionVE = interactionVT.CloneTree();
-                interaction.ShowGUI(interactionVE, myTarget.inventoryInteractions[index].attempsContainer.attemps[index2].interactions, target);
+                interactionCustomEditor.ShowGUI(interactionVE, myTarget.inventoryInteractions[index].attempsContainer.attemps[index2].interactions, target);
                 return interactionVE;
             };
             attemps.Init(customListInventoryAttemps);
-            elementInventoryAttemp.Add(customListInventoryAttemps);
-            return elementInventoryAttemp;
+            return customListInventoryAttemps;
         };
 
         inventoryInteractions.Init(customListInventory);
