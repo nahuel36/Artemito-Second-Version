@@ -65,7 +65,7 @@ public class CustomListView<T>
         OnClickAdd = (evt) => {Add(); };
         buttonAdd.RegisterCallback<ClickEvent>(OnClickAdd);
 
-        Button buttonRemove = root.Q<Button>("remove");
+        Button buttonRemove = root.Query<Button>("remove").Last();
         //buttonRemove.clickable = new Clickable(() => { });
         if (OnClickRemove != null)
             buttonRemove.UnregisterCallback(OnClickRemove);
