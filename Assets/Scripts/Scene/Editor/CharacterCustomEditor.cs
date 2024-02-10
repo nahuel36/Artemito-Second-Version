@@ -32,17 +32,11 @@ public class CharacterCustomEditor : Editor
         root.Q("Interaction").visible = false;
         root.Q("Interaction").StretchToParentSize();
 
-        CustomListView<InventoryItemAction> listViewInvInteractions = new CustomListView<InventoryItemAction>();
-        listViewInvInteractions.ItemsSource = myTarget.inventoryInteractions;
 
-        listViewInvInteractions.ItemContent = (indexInteraction)=> {
-            AttempsCustomEditor attempsCustomEditor = (AttempsCustomEditor)CreateInstance(typeof(AttempsCustomEditor));
-            VisualElement attempsVE = attempsCustomEditor.ShowGUI(myTarget.inventoryInteractions[indexInteraction].attempsContainer, myTarget);
-            return attempsVE;
-        };
-        VisualElement invInteractionsVE = new VisualElement();
-                    
-        listViewInvInteractions.Init(invInteractionsVE, true);
+
+        InventoryInteractionsCustomEditor InventoryInteractionsCustomEditor = (InventoryInteractionsCustomEditor)CreateInstance(typeof(InventoryInteractionsCustomEditor));
+
+        VisualElement invInteractionsVE = InventoryInteractionsCustomEditor.ShowGUI(myTarget.inventoryInteractions, myTarget);
 
         root.Add(invInteractionsVE);
 
