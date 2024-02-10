@@ -43,8 +43,15 @@ public class CustomListView<T>
     public static EventCallback<ClickEvent> OnClickAdd;
     public static EventCallback<ClickEvent> OnClickRemove;
 
-    public void Init(VisualElement root)
+    public void Init(VisualElement root, bool createVisualTree = false)
     {
+        if (createVisualTree)
+        { 
+            root.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Utils/Editor/CustomListView.uxml").CloneTree());
+        }
+
+
+
         moving_all = false;
 
         ScrollView scrollView = root.Q<ScrollView>("scrollView");

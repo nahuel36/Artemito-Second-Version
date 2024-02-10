@@ -31,36 +31,31 @@ public class CharacterCustomEditor : Editor
 
         VisualElement root = visualTree.CloneTree();
 
-        InteractionsCustomEditor interaction = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
+        root.Q("Interaction").visible = false;
+        root.Q("Interaction").StretchToParentSize();
 
-        interaction.ShowGUI(root.Q("Interaction"), myTarget.interactions, target);
+        CustomListView<InventoryItemAction> listViewInvInteractions = new CustomListView<InventoryItemAction>();
+        listViewInvInteractions.ItemsSource = myTarget.inventoryInteractions;
 
-
-
-        CustomListView<InventoryItemAction> inventoryInteractions = new CustomListView<InventoryItemAction>();
-        inventoryInteractions.ItemsSource = myTarget.inventoryInteractions;
-
-        VisualElement customListInventory = customListVT.CloneTree();
-
-        inventoryInteractions.ItemContent = (index)=> {
-            VisualElement customListInventoryAttemps = customListVT.CloneTree();
-            CustomListView<InteractionsAttemp> attemps = new CustomListView<InteractionsAttemp>();
-            attemps.ItemsSource = myTarget.inventoryInteractions[index].attempsContainer.attemps;
-            attemps.ItemContent = (index2) =>
+        listViewInvInteractions.ItemContent = (indexInteraction)=> {
+            VisualElement InvAttempsVE = new VisualElement();
+            CustomListView<InteractionsAttemp> listViewAttemps = new CustomListView<InteractionsAttemp>();
+            listViewAttemps.ItemsSource = myTarget.inventoryInteractions[indexInteraction].attempsContainer.attemps;
+            listViewAttemps.ItemContent = (indexAttemp) =>
             {
                 InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
                 VisualElement interactionVE = interactionVT.CloneTree();
-                interactionCustomEditor.ShowGUI(interactionVE, myTarget.inventoryInteractions[index].attempsContainer.attemps[index2].interactions, target);
+                interactionCustomEditor.ShowGUI(interactionVE, myTarget.inventoryInteractions[indexInteraction].attempsContainer.attemps[indexAttemp].interactions, target);
                 return interactionVE;
             };
-            attemps.Init(customListInventoryAttemps);
-            return customListInventoryAttemps;
+            listViewAttemps.Init(InvAttempsVE, true);
+            return InvAttempsVE;
         };
+        VisualElement invInteractionsVE = new VisualElement();
+                    
+        listViewInvInteractions.Init(invInteractionsVE, true);
 
-        inventoryInteractions.Init(customListInventory);
-
-        root.Add(customListInventory);
-
+        root.Add(invInteractionsVE);
 
 
 
