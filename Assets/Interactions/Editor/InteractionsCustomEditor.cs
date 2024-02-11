@@ -61,6 +61,7 @@ public class InteractionsCustomEditor : Editor
 
         listCustom.reOrderMode = CustomListView<Interaction>.ReOrderModes.animatedDynamic;
 
+        listCustom.highlightedColor = Color.white * 0.5f;
 
 
 

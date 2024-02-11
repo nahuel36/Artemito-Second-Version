@@ -17,6 +17,8 @@ public class InventoryInteractionsCustomEditor : Editor
             VisualElement attempsVE = attempsCustomEditor.ShowGUI(inventoryInteractions[indexInteraction].attempsContainer, myTarget);
             return attempsVE;
         };
+
+        listViewInvInteractions.highlightedColor = Color.black;
         
         listViewInvInteractions.Init(invInteractionsVE, true);
 

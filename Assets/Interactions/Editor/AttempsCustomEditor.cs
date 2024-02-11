@@ -18,6 +18,7 @@ public class AttempsCustomEditor : Editor
             interactionCustomEditor.ShowGUI(interactionVE, attempsContainer.attemps[indexAttemp].interactions, myTarget, true);
             return interactionVE;
         };
+        listViewAttemps.highlightedColor = Color.white * 0.5f;
         listViewAttemps.Init(InvAttempsVE, true);
         return InvAttempsVE;
     }
