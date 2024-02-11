@@ -34,6 +34,8 @@ public class CustomListView<T>
 
     public Func<T> OnAdd;
 
+    public Func<T, T> CopyItem;
+
     public delegate void ItemChangeDelegate(ChangeEvent<string> evt, VisualElement element, int index);
     public event ItemChangeDelegate OnChangeItem;
     public delegate void ItemReorderDelegate(VisualElement element, int index);
@@ -44,6 +46,7 @@ public class CustomListView<T>
     public static EventCallback<ClickEvent> OnClickAdd;
     public static EventCallback<ClickEvent> OnClickRemove;
 
+    private static T copiedItem;
     public void Init(VisualElement root, bool createVisualTree = false)
     {
         if (createVisualTree)
@@ -361,6 +364,31 @@ public class CustomListView<T>
         {
             draggedItem = listItem;
             firstItemPositionY = listItems[0].worldBound.yMin;
+            evt.StopPropagation();
+        }
+        if (evt.button == 1 && CopyItem != null)
+        {
+            GenericMenu genericMenu = new GenericMenu();
+            genericMenu.AddItem(new GUIContent("copy"), false, () =>
+            {
+                copiedItem = ItemsSource[index];
+            });
+            if (copiedItem != null)
+            {
+                ItemsSource[index] = CopyItem(copiedItem);
+
+                genericMenu.AddItem(new GUIContent("paste"), false, () => 
+                {
+                    listContainer.Clear();
+
+                    if (ItemsSource != null)
+                        for (int i = 0; i < ItemsSource.Count; i++)
+                        {
+                            AddNewItem(i);
+                        }
+                });
+            }
+            genericMenu.DropDown(new Rect(Event.current.mousePosition, Vector2.zero));
             evt.StopPropagation();
         }
     }

@@ -63,7 +63,14 @@ public class InteractionsCustomEditor : Editor
 
         listCustom.highlightedColor = Color.white * 0.5f;
 
-
+        listCustom.CopyItem = (interOrigin) => 
+        {
+            Interaction interDestiny = new Interaction();
+            interDestiny.type = interOrigin.type;
+            interDestiny.subtype = interOrigin.subtype;
+            interDestiny.subtypeObject = interOrigin.subtypeObject;
+            return interDestiny; 
+        };
 
         listCustom.Init(root.Q<VisualElement>("CustomListView"));
     }
