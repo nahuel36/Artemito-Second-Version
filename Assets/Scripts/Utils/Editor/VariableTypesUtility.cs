@@ -21,6 +21,7 @@ public class VariableTypesUtility
                 varIndex++;
             }
         }
+        list.Sort((x, y) => x.Index.CompareTo(y.Index));
         return list.ToArray();
     }
 
