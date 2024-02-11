@@ -18,6 +18,7 @@ public class CustomListView<T>
     private VisualElement highlightedItem = null;
     private VisualElement selectedItem;
     private bool moving_all;
+    public Color highlightedColor = Color.black;
     public enum ReOrderModes { 
         withBordersStatic, 
         animatedDynamic
@@ -377,7 +378,7 @@ public class CustomListView<T>
             if(item == highlightedItem)
             { 
                 StyleColor colorHg = new StyleColor();
-                colorHg.value = Color.black;
+                colorHg.value = highlightedColor;
                 item.style.backgroundColor = colorHg;
             }
             if (item == draggedItem)
