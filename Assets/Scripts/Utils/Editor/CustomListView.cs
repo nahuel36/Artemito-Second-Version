@@ -375,10 +375,10 @@ public class CustomListView<T>
             });
             if (copiedItem != null)
             {
-                ItemsSource[index] = CopyItem(copiedItem);
-
                 genericMenu.AddItem(new GUIContent("paste"), false, () => 
                 {
+                    ItemsSource[index] = CopyItem(copiedItem);
+
                     listContainer.Clear();
 
                     if (ItemsSource != null)
