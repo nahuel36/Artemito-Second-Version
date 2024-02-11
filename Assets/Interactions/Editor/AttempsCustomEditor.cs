@@ -20,6 +20,7 @@ public class AttempsCustomEditor : Editor
         };
         listViewAttemps.highlightedColor = Color.white * 0.5f;
         listViewAttemps.Init(InvAttempsVE, true);
+        listViewAttemps.OnAdd = () => { return new InteractionsAttemp(); };
         return InvAttempsVE;
     }
 }

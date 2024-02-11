@@ -20,6 +20,14 @@ public class InventoryInteractionsCustomEditor : Editor
 
         listViewInvInteractions.highlightedColor = Color.black;
         
+
+        listViewInvInteractions.OnAdd = () =>
+        {
+            InventoryItemAction newinventoryItem = new InventoryItemAction();
+            newinventoryItem.attempsContainer = new AttempsContainer();
+            return newinventoryItem;
+        };
+
         listViewInvInteractions.Init(invInteractionsVE, true);
 
         return invInteractionsVE;
