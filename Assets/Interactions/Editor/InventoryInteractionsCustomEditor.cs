@@ -19,7 +19,11 @@ public class InventoryInteractionsCustomEditor : Editor
         };
 
         listViewInvInteractions.highlightedColor = Color.black;
-        
+
+        listViewInvInteractions.CopyItem = (interactionOrigin) =>
+        {
+            return interactionOrigin.CopyItem(interactionOrigin);
+        };
 
         listViewInvInteractions.OnAdd = () =>
         {

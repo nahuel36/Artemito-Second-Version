@@ -27,6 +27,24 @@ public class InventoryItemAction
     public Verb verb;
     public RoomInteractuable sceneObject;
     public AttempsContainer attempsContainer;
+
+    public InventoryItemAction CopyItem(InventoryItemAction interactionOrigin)
+    {
+        InventoryItemAction interactionDestiny = new InventoryItemAction();
+        interactionDestiny.attempsContainer = new AttempsContainer();
+        interactionDestiny.attempsContainer.attempsIteration = interactionOrigin.attempsContainer.attempsIteration;
+        interactionDestiny.attempsContainer.executedTimes = interactionOrigin.attempsContainer.executedTimes;
+        interactionDestiny.attempsContainer.expandedInInspector = interactionOrigin.attempsContainer.expandedInInspector;
+        interactionDestiny.attempsContainer.attemps = new List<InteractionsAttemp>();
+        for (int i = 0; i < interactionOrigin.attempsContainer.attemps.Count; i++)
+        {
+            interactionDestiny.attempsContainer.attemps.Add(interactionOrigin.attempsContainer.attemps[i].CopyItem(interactionOrigin.attempsContainer.attemps[i]));
+        }
+        interactionDestiny.sceneObject = interactionOrigin.sceneObject;
+        interactionDestiny.verb = interactionOrigin.verb;
+        interactionDestiny.specialIndex = interactionOrigin.specialIndex;
+        return interactionDestiny;
+    }
 }
 
 [System.Serializable]
@@ -49,4 +67,16 @@ public class InteractionsAttemp
 {
     public List<Interaction> interactions = new List<Interaction>();
     public bool expandedInInspector;
+
+    public InteractionsAttemp CopyItem(InteractionsAttemp attempOrigin)
+    {
+        InteractionsAttemp attempDestiny = new InteractionsAttemp();
+        attempDestiny.interactions = new List<Interaction>();
+        for (int i = 0; i < attempOrigin.interactions.Count; i++)
+        {
+            attempDestiny.interactions.Add(attempOrigin.interactions[i].CopyItem(attempOrigin.interactions[i]));
+        }
+        attempDestiny.expandedInInspector = attempOrigin.expandedInInspector;
+        return attempDestiny;
+    }
 }

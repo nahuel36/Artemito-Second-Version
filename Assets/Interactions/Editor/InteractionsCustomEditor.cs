@@ -65,11 +65,7 @@ public class InteractionsCustomEditor : Editor
 
         listCustom.CopyItem = (interOrigin) => 
         {
-            Interaction interDestiny = new Interaction();
-            interDestiny.type = interOrigin.type;
-            interDestiny.subtype = interOrigin.subtype;
-            interDestiny.subtypeObject = interOrigin.subtypeObject;
-            return interDestiny; 
+            return interOrigin.CopyItem(interOrigin);
         };
 
         listCustom.Init(root.Q<VisualElement>("CustomListView"));

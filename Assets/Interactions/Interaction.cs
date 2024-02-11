@@ -18,4 +18,12 @@ public class Interaction
     {
         return subtype.Replace("inventory-", "");
     }
+
+    public Interaction CopyItem(Interaction interOrigin) {
+        Interaction interDestiny = new Interaction();
+        interDestiny.type = interOrigin.type;
+        interDestiny.subtype = interOrigin.subtype;
+        interDestiny.subtypeObject = interOrigin.subtypeObject;
+        return interDestiny;
+    }
 }

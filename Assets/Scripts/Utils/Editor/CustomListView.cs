@@ -369,13 +369,13 @@ public class CustomListView<T>
         if (evt.button == 1 && CopyItem != null)
         {
             GenericMenu genericMenu = new GenericMenu();
-            genericMenu.AddItem(new GUIContent("copy"), false, () =>
+            genericMenu.AddItem(new GUIContent("Copy " + typeof(T).ToString()), false, () =>
             {
                 copiedItem = ItemsSource[index];
             });
             if (copiedItem != null)
             {
-                genericMenu.AddItem(new GUIContent("paste"), false, () => 
+                genericMenu.AddItem(new GUIContent("Paste " + typeof(T).ToString()), false, () => 
                 {
                     ItemsSource[index] = CopyItem(copiedItem);
 
@@ -388,6 +388,9 @@ public class CustomListView<T>
                         }
                 });
             }
+            genericMenu.AddItem(new GUIContent("Cancel"), false, () =>
+            {
+            });
             genericMenu.DropDown(new Rect(Event.current.mousePosition, Vector2.zero));
             evt.StopPropagation();
         }
