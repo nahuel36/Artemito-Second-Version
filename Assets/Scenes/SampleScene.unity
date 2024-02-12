@@ -160,9 +160,12 @@ MonoBehaviour:
     - 
     - 
     - <?xml version="1.0" encoding="utf-16"?><door-closed selected="true" value0="s"><door-closed-2
-      selected="true" value1="b" /></door-closed>
-    useDefaultValues: 00000000
+      selected="true" value0="a" /></door-closed>
+    - <?xml version="1.0" encoding="utf-16"?><talked selected="true" value="u"><talked-2
+      selected="true" value="yy" /></talked>
+    useDefaultValues: 0000000000
     objectValues:
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}

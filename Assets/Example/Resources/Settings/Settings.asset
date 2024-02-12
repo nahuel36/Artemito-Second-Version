@@ -31,3 +31,12 @@ MonoBehaviour:
     values:
     - a
     - b
+  EnumClassicVariables:
+  - name: talked
+    values:
+    - y
+    - u
+  - name: talked 2
+    values:
+    - yy
+    - uu

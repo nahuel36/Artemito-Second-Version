@@ -30,7 +30,7 @@ public class Settings : ScriptableObject
     }
 
     [System.Serializable]
-    public class EnumWithFlagVariablesType
+    public class EnumVariablesType
     {
         public string name;
         public List<string> values;
@@ -46,5 +46,6 @@ public class Settings : ScriptableObject
     public ObjetivePosition objetivePosition;
     public bool showNumbersInDialogOptions = false;
     public bool alwaysShowAllVerbs = false;
-    public List<EnumWithFlagVariablesType> EnumWithFlagVariables;
+    public List<EnumVariablesType> EnumWithFlagVariables;
+    public List<EnumVariablesType> EnumClassicVariables;
 }
