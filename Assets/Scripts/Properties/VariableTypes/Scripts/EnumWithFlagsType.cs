@@ -43,7 +43,10 @@ public class EnumWithFlagsType : VariableType
         if (property.variableValues == null || Index >= property.variableValues.Length)
             return (GenericEnum)0;
 
-        return (GenericEnum)int.Parse(property.variableValues[Index]);
+        int integerValue = 0;
+        if (int.TryParse(property.variableValues[Index], out integerValue))
+            return (GenericEnum)integerValue;
+        return (GenericEnum)0;
     }
 
     public void SetVariableValue(GenericProperty property,System.Enum value)
