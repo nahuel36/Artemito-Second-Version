@@ -16,9 +16,11 @@ public class BooleanType: VariableType
         Index = 0;
     }
 
-    public override void SetPropertyField(VisualElement element, GenericProperty property)
+    public override void SetPropertyField(VisualElement root, GenericProperty property)
     {
-        base.SetPropertyField(element, property);
+        base.SetPropertyField(root, property);
+
+        VisualElement element = root.Q("Field");
 
         Toggle field = new Toggle();
                

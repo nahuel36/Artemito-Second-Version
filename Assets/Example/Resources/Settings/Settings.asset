@@ -22,3 +22,12 @@ MonoBehaviour:
   objetivePosition: 0
   showNumbersInDialogOptions: 0
   alwaysShowAllVerbs: 0
+  EnumWithFlagVariables:
+  - name: door closed
+    values:
+    - s
+    - r
+  - name: door closed 2
+    values:
+    - a
+    - b

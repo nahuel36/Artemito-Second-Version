@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Toggle label="Default Value" name="Default" />
     <ui:VisualElement name="Value" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
         <ui:Label tabindex="-1" text="Value" display-tooltip-when-elided="true" name="Label" style="height: 49px;" />
         <ui:VisualElement name="Field" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 58px; width: 348px; flex-direction: column;" />
     </ui:VisualElement>
-    <ui:Toggle label="Default Value" name="Default" />
 </ui:UXML>

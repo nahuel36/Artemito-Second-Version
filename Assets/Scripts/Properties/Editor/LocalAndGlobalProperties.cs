@@ -69,7 +69,7 @@ public class LocalAndGlobalProperties : Editor
                 {
                     VisualElement variableItemElement = variableItem.CloneTree();
                     variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
-                    variable.SetPropertyField(variableItemElement.Q<VisualElement>("Field"), property);
+                    variable.SetPropertyField(variableItemElement,property);
                     element.Add(variableItemElement);
                 }
             }

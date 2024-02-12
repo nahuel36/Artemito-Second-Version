@@ -153,11 +153,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   local_properties:
-  - name: popop
+  - name: new property
     expandedInInspector: 0
-    variableValues: []
-    useDefaultValues: 
-    objectValues: []
+    variableValues:
+    - 
+    - 
+    - 
+    - <?xml version="1.0" encoding="utf-16"?><door-closed selected="true" value0="s"><door-closed-2
+      selected="true" value1="b" /></door-closed>
+    useDefaultValues: 00000000
+    objectValues:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     variableTypes:
       value: -1
 --- !u!4 &254021858

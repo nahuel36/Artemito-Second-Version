@@ -17,9 +17,11 @@ public class IntegerType : VariableType
         Index = 1;
     }
 
-    public override void SetPropertyField(VisualElement element, GenericProperty property)
+    public override void SetPropertyField(VisualElement root, GenericProperty property)
     {
-        base.SetPropertyField(element, property);
+        base.SetPropertyField(root, property);
+
+        VisualElement element = root.Q("Field");
 
         IntegerField field = new IntegerField();
 
