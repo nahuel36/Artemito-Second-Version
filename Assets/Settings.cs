@@ -7,7 +7,7 @@ public class Settings : ScriptableObject
 {
     public enum SpeechStyle
     {
-        LucasArts, 
+        LucasArts,
         Sierra,
         Custom
     }
@@ -23,11 +23,19 @@ public class Settings : ScriptableObject
         AronGranbergAStarPath,
         Custom
     }
-    public enum ObjetivePosition 
-    { 
+    public enum ObjetivePosition
+    {
         fixedPosition,
         overCursor
     }
+
+    [System.Serializable]
+    public class EnumWithFlagVariablesType
+    {
+        public string name;
+        public List<string> values;
+    }
+
     public Verb[] verbs;
     public int verbIndex;
     public GlobalPropertyConfig[] globalPropertiesConfig = new GlobalPropertyConfig[0];
@@ -38,4 +46,5 @@ public class Settings : ScriptableObject
     public ObjetivePosition objetivePosition;
     public bool showNumbersInDialogOptions = false;
     public bool alwaysShowAllVerbs = false;
+    public List<EnumWithFlagVariablesType> EnumWithFlagVariables;
 }
