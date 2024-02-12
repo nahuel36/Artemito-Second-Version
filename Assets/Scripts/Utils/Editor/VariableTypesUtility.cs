@@ -32,7 +32,7 @@ public class VariableTypesUtility
         VariableType[] list = GetAllVariableTypes();
 
         customFlagsEditor.SetChoices((i) => { return list[i].TypeName; }, list.Length);
-        customFlagsEditor.SetChoicesMasksByChoicesInOrder();
+        CustomEnumFlags<VariableType>.SetChoicesMasksByChoicesInOrder(customFlagsEditor.choicesMasks, customFlagsEditor.choices);
 
         customFlagsEditor.Show(variableTypes,element);
     }

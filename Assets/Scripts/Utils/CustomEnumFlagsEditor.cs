@@ -48,14 +48,6 @@ public class CustomEnumFlagsEditor<T> where T:EnumerableType
         }
     }
 
-    public void SetChoicesMasksByChoicesInOrder()
-    {
-        choicesMasks.Clear();
 
-        for (int i = 0; i < choices.Count; i++)
-        {
-            choicesMasks.Add(1<<i);
-        }
-    }
 #endif
 }

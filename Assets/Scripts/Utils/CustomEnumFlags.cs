@@ -34,6 +34,16 @@ public class CustomEnumFlags<T> where T : EnumerableType
     {
         value = valueToSet;
     }
+
+    public static void SetChoicesMasksByChoicesInOrder(List<int> choicesMasks, List<string> choices)
+    {
+        choicesMasks.Clear();
+
+        for (int i = 0; i < choices.Count; i++)
+        {
+            choicesMasks.Add(1 << i);
+        }
+    }
 }
 
 [System.Flags]

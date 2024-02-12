@@ -28,9 +28,9 @@ public class EnumWithFlagsType : VariableType
 
         field.value = (GenericEnum)GetVariableValue(property);
 
-        field.choices = new List<string> () { "choice1", "choice2", "choice3" };
+        field.choices = new List<string>() { "choice1", "choice2", "choice3" };
 
-        field.choicesMasks = new List<int>() { 1 << 0, 1 << 1, 1 << 2 };
+        CustomEnumFlags<EnumerableType>.SetChoicesMasksByChoicesInOrder(field.choicesMasks, field.choices);
 
         field.RegisterValueChangedCallback((evt) => SetVariableValue(property,evt.newValue));
         
