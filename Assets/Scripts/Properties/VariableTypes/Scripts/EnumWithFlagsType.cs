@@ -101,7 +101,7 @@ public class EnumWithFlagsType : VariableType
             {
                 for (int i = 0; i < variables.Count; i++)
                 {
-                    if(reader.IsStartElement(variables[i].name.Replace(" ", "-")))
+                    if(reader.IsStartElement(XmlUtility.ConvertStringToUseInXml(variables[i].name)))
                     {
                         if (reader.GetAttribute("selected") == "true")
                         {
@@ -126,7 +126,7 @@ public class EnumWithFlagsType : VariableType
         writer.WriteStartDocument();
         for (int i = 0; i < variables.Count; i++)
         {
-            writer.WriteStartElement(variables[i].name.Replace(" ", "-"));
+            writer.WriteStartElement(XmlUtility.ConvertStringToUseInXml(variables[i].name));
             if ((Convert.ToInt32((GenericEnum)value) & (1 << i)) != 0)
             {
                 writer.WriteAttributeString("selected", "true");
