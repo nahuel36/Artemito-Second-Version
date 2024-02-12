@@ -1,20 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor.UIElements;
 using UnityEditor;
+#endif
 using UnityEngine.UIElements;
 using System;
 
 [System.Serializable]
 public class CustomEnumFlagsEditor<T> where T:EnumerableType
 {
+#if UNITY_EDITOR
+
     private EnumFlagsField field;
     public List<string> choices = new List<string>();
     public List<int> choicesMasks = new List<int>();
-    public VisualElement Show(CustomEnumFlags<T> value, VisualElement element)
+    public VisualElement Show(CustomEnumFlags<T> value, VisualElement element, bool instantiate = false)
     {
-        field = element.Q<EnumFlagsField>("VariableTypes");
+        if (instantiate)
+        {
+            field = new EnumFlagsField();
+        }
+        else
+        { 
+            field = element.Q<EnumFlagsField>("VariableTypes");
+        }
         field.value = (GenericEnum)value.GetIntValue();
         field.choices = choices;
         field.choicesMasks = choicesMasks;
@@ -46,4 +57,5 @@ public class CustomEnumFlagsEditor<T> where T:EnumerableType
             choicesMasks.Add(1<<i);
         }
     }
+#endif
 }
