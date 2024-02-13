@@ -40,8 +40,16 @@ public class InteractionsCustomEditor : Editor
             InteractionSelect select3 = (InteractionSelect)CreateInstance(typeof(InteractionSelect));
             VisualElement visualElem = new VisualElement();
             visualElem.Add(select3.ShowAndConfigure(interactions[index]));
-            select3.OnChangeTypeEvent += (inter) => { UpdateSelector(inter, index, visualElem); };
+            select3.OnChangeTypeEvent += (inter) => {
+                UpdateSelector(inter, index, visualElem);
+                UpdateAction(inter, index, visualElem);
+            };
+            select3.OnChangeSubTypeEvent += (inter) =>
+            {
+                UpdateAction(inter, index, visualElem);
+            };
             UpdateSelector(interactions[index], index, visualElem);
+            UpdateAction(interactions[index], index, visualElem);
             return visualElem;
         };
 
@@ -71,10 +79,32 @@ public class InteractionsCustomEditor : Editor
         listCustom.Init(root.Q<VisualElement>("CustomListView"));
     }
 
-    private void UpdateSelector(Interaction interaction, int index, VisualElement element)
+    private void UpdateAction(Interaction interaction, int index, VisualElement visualElem)
     {
         if (interaction != interactions[index]) return;
 
+        if (string.IsNullOrEmpty(interaction.type) || string.IsNullOrEmpty(interaction.subtype)) return;
+
+        List<string> files = FileUtils.GetFilesList(Application.dataPath + "/Interactions/" + interaction.type + "/"  + interaction.subtype + "/");
+
+        InteractionAction action = null;
+
+        for (int i = 0; i < files.Count; i++)
+        {
+            InteractionAction var = AssetDatabase.LoadAssetAtPath<InteractionAction>("Assets/Interactions/" + interaction.type + "/"  + interaction.subtype + "/" + files[i]);
+            if (var != null)
+                action = var;
+        }
+
+        if (action != null)
+        {
+            action.SetEditorField(visualElem, interaction);
+        }
+    }
+
+    private void UpdateSelector(Interaction interaction, int index, VisualElement element)
+    {
+        if (interaction != interactions[index]) return;
 
         if (!string.IsNullOrEmpty(interaction.type))
         {

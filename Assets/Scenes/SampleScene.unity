@@ -400,8 +400,8 @@ MonoBehaviour:
       attempsIteration: 0
       attemps:
       - interactions:
-        - type: 
-          subtype: 
+        - type: Character
+          subtype: SayWithScript
           subtypeObject: 
         expandedInInspector: 0
       expandedInInspector: 0

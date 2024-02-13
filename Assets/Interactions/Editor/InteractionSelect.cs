@@ -15,6 +15,7 @@ public class InteractionSelect : Editor
 
     public delegate void OnSelectTypesEvents(Interaction interactP);
     public event OnSelectTypesEvents OnChangeTypeEvent;
+    public event OnSelectTypesEvents OnChangeSubTypeEvent;
 
     public VisualElement ShowAndConfigure(Interaction interactionP) 
     {
@@ -71,6 +72,8 @@ public class InteractionSelect : Editor
         if (String.IsNullOrEmpty(interaction.type)) return;
 
         interaction.subtype = evt.newValue;
+
+        OnChangeSubTypeEvent?.Invoke(interaction);
     }
 
     

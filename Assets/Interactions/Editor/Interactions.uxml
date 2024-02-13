@@ -4,5 +4,6 @@
     <ui:Label text="Interactions" name="Label" class="custom-label" />
     <ui:Instance template="InteractionSelect" name="InteractionSelect" />
     <ui:DropdownField label="Object Select" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ObjectTypeSelect" />
+    <ui:Label tabindex="-1" text="Action Parameters" display-tooltip-when-elided="true" name="Action" />
     <ui:Instance template="CustomListView" name="CustomListView" />
 </ui:UXML>
