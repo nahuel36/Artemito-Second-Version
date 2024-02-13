@@ -12,6 +12,7 @@ public class InteractionsCustomEditor : Editor
     List<Interaction> interactions;
 
     [SerializeField] VisualTreeAsset InteractionsVT;
+    [SerializeField] VisualTreeAsset InteractionVT;
     public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget, bool generateVisualTree=false) {
 
         if (generateVisualTree)
@@ -20,12 +21,9 @@ public class InteractionsCustomEditor : Editor
         }
 
         subTypeSelectors = new Dictionary<Interaction, SubtypeSelector>();
-
-        root.Q("InteractionSelect").visible = false;
-        root.Q("InteractionSelect").StretchToParentSize();
-
-        root.Q("ObjectTypeSelect").visible = false;
-        root.Q("ObjectTypeSelect").StretchToParentSize();
+        
+        root.Q("Interaction").visible = false;
+        root.Q("Interaction").StretchToParentSize();
 
         listCustom = new();
 
@@ -36,8 +34,17 @@ public class InteractionsCustomEditor : Editor
         {
             int index = i;
 
+            VisualElement visualElem = InteractionVT.CloneTree();
+
+            visualElem.Q("InteractionSelect").visible = false;
+            visualElem.Q("InteractionSelect").StretchToParentSize();
+
+            visualElem.Q("ObjectTypeSelect").visible = false;
+            visualElem.Q("ObjectTypeSelect").StretchToParentSize();
+
+
             InteractionSelect select3 = (InteractionSelect)CreateInstance(typeof(InteractionSelect));
-            VisualElement visualElem = new VisualElement();
+            
             visualElem.Add(select3.ShowAndConfigure(interactions[index]));
             select3.OnChangeTypeEvent += (inter) => {
                 UpdateSelector(inter, index, visualElem);
