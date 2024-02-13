@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
@@ -49,11 +51,12 @@ public class CustomListView<T>
     private static T copiedItem;
     public void Init(VisualElement root, bool createVisualTree = false)
     {
+#if UNITY_EDITOR
         if (createVisualTree)
         { 
             root.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Utils/Editor/CustomListView.uxml").CloneTree());
         }
-
+#endif
 
 
         moving_all = false;
@@ -366,6 +369,7 @@ public class CustomListView<T>
             firstItemPositionY = listItems[0].worldBound.yMin;
             evt.StopPropagation();
         }
+#if UNITY_EDITOR
         if (evt.button == 1 && CopyItem != null)
         {
             GenericMenu genericMenu = new GenericMenu();
@@ -394,6 +398,7 @@ public class CustomListView<T>
             genericMenu.DropDown(new Rect(Event.current.mousePosition, Vector2.zero));
             evt.StopPropagation();
         }
+#endif
     }
 
     void RestoreColors() 

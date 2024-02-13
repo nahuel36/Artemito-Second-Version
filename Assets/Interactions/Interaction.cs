@@ -8,7 +8,7 @@ public class Interaction
     public string type;
     public string subtype;
     public string subtypeObject;
-
+    public List<InteractionProperty> interaction_properties;
     public string InventoryNameToSubtypeObject(string item)
     {
         return "inventory-" + item;

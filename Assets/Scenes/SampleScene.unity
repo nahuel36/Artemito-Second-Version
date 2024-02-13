@@ -402,7 +402,7 @@ MonoBehaviour:
       - interactions:
         - type: Character
           subtype: SayWithScript
-          subtypeObject: 
+          subtypeObject: inventory-new item 68
         expandedInInspector: 0
       expandedInInspector: 0
       executedTimes: 0

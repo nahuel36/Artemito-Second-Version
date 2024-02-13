@@ -16,6 +16,14 @@ public class GenericProperty
     [SerializeField]public UnityEngine.Object[] objectValues; //funciona
 }
 
+
+[System.Serializable]
+public class InteractionProperty : GenericProperty
+{
+    public CustomEnumFlags<VariableType> variableTypes;
+}
+    
+    
 [System.Serializable]
 public class LocalProperty : GenericProperty
 {

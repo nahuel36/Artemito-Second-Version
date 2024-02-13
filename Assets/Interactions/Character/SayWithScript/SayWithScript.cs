@@ -7,9 +7,12 @@ public class SayWithScript : InteractionAction
 {
     public override void SetEditorField(VisualElement visualElement, Interaction interaction)
     {
+#if UNITY_EDITOR 
         base.SetEditorField(visualElement, interaction);
 
-        visualElement.Add(new Label("test"));
+        InteractionProperties properties = (InteractionProperties)CreateInstance(typeof(InteractionProperties));
 
+        properties.CreateGUI(interaction.interaction_properties, visualElement);
+#endif
     }
 }

@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Template name="SimpleVariableField" src="project://database/Assets/Scripts/Properties/Editor/SimpleVariableField.uxml?fileID=9197481963319205126&amp;guid=150cef4799e6a184f82c2cb8191dc81b&amp;type=3#SimpleVariableField" />
+    <ui:TextField picking-mode="Ignore" label="Name" value="filler text" name="PropertyName" />
+    <uie:EnumFlagsField label="Variable Types" type="UnityEngine.UIElements.UsageHints, UnityEngine.UIElementsModule" value="DynamicTransform" name="VariableTypes" />
+    <ui:Instance template="SimpleVariableField" name="VariableItem" />
+</ui:UXML>

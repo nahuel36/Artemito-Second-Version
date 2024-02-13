@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b22b53d0113133946b4f6b342ca101cb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - variableItem: {fileID: 9197481963319205126, guid: 150cef4799e6a184f82c2cb8191dc81b, type: 3}
+  - interaction_property: {fileID: 9197481963319205126, guid: cbacad7aa5a67aa49af745a640460571, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

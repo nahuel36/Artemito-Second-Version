@@ -1,21 +1,25 @@
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.UIElements;
-public class LocalAndGlobalProperties : Editor
+#if UNITY_EDITOR
+public class InteractionProperties : Editor
 {
     [SerializeField]
     VisualTreeAsset variableItem;
     [SerializeField]
-    VisualTreeAsset localProperty;
-    CustomListView<LocalProperty> customListView;
-    public VisualElement CreateGUI(List<LocalProperty> local_properties, VisualElement root)
+    VisualTreeAsset interaction_property;
+    CustomListView<InteractionProperty> customListView;
+    public VisualElement CreateGUI(List<InteractionProperty> local_properties, VisualElement root)
     {
         // Each editor window contains a root VisualElement object
         // Instantiate UXML
 
+
         if(customListView == null)
-            customListView = new CustomListView<LocalProperty>();
+            customListView = new CustomListView<InteractionProperty>();
 
         customListView.ItemsSource = local_properties;
 
@@ -25,7 +29,7 @@ public class LocalAndGlobalProperties : Editor
 
         customListView.OnAdd = () => {
             int variablesLength = VariableTypesUtility.GetAllVariableTypes().Length;
-            LocalProperty localprop = new LocalProperty();
+            InteractionProperty localprop = new InteractionProperty();
             localprop.variableTypes = new CustomEnumFlags<VariableType>(0);
             localprop.variableValues = new string[variablesLength];
             localprop.useDefaultValues = new bool[variablesLength];
@@ -33,14 +37,7 @@ public class LocalAndGlobalProperties : Editor
             return localprop;        
         };
 
-        root.Q("LocalProperties").Q("LocalProperty").visible = false;
-        root.Q("LocalProperties").Q("LocalProperty").StretchToParentSize();
-
-        customListView.Init(root.Q("LocalProperties").Q("CustomListView"));
-
-        StyleLength lenght = new StyleLength(StyleKeyword.Auto);
-
-        root.Q("LocalProperties").Q("CustomListView").style.height = lenght;
+        customListView.Init(root, true);
 
         return root;
     }
@@ -49,7 +46,7 @@ public class LocalAndGlobalProperties : Editor
     {
         VisualElement element = new VisualElement();
 
-        element.Add(localProperty.CloneTree());
+        element.Add(interaction_property.CloneTree());
 
         element.Q("VariableItem").visible = false;
         element.Q("VariableItem").StretchToParentSize();
@@ -58,13 +55,13 @@ public class LocalAndGlobalProperties : Editor
         element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { property.name = name.newValue; });
 
 
-        if (property is LocalProperty)
+        if (property is InteractionProperty)
         {
-            VariableTypesUtility.ShowEnumFlagsField(element, ((LocalProperty)property).variableTypes);
+            VariableTypesUtility.ShowEnumFlagsField(element, ((InteractionProperty)property).variableTypes);
 
             foreach (var variable in VariableTypesUtility.GetAllVariableTypes())
             {
-                if (((LocalProperty)property).variableTypes.ContainsValue(variable))
+                if (((InteractionProperty)property).variableTypes.ContainsValue(variable))
                 {
                     VisualElement variableItemElement = variableItem.CloneTree();
                     variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
@@ -74,6 +71,9 @@ public class LocalAndGlobalProperties : Editor
             }
         }
 
+
+
         return element;
     }
 }
+#endif
