@@ -35,26 +35,22 @@ public class InteractionsCustomEditor : Editor
             int index = i;
 
             VisualElement visualElem = InteractionVT.CloneTree();
+          
+            InteractionSelect interactionSelect = (InteractionSelect)CreateInstance(typeof(InteractionSelect));
 
-            visualElem.Q("InteractionSelect").visible = false;
-            visualElem.Q("InteractionSelect").StretchToParentSize();
-
-            visualElem.Q("ObjectTypeSelect").visible = false;
-            visualElem.Q("ObjectTypeSelect").StretchToParentSize();
-
-
-            InteractionSelect select3 = (InteractionSelect)CreateInstance(typeof(InteractionSelect));
-            
-            visualElem.Add(select3.ShowAndConfigure(interactions[index]));
-            select3.OnChangeTypeEvent += (inter) => {
-                UpdateSelector(inter, index, visualElem);
-                UpdateAction(inter, index, visualElem);
+            visualElem.Q("InteractionSelect").Clear();
+            visualElem.Q("InteractionSelect").Add(interactionSelect.ShowAndConfigure(interactions[index]));
+            visualElem.Q("Action").Clear();
+            interactionSelect.OnChangeTypeEvent += (inter) => {
+                UpdateSelector(inter, index, visualElem.Q("ObjectTypeSelect"));
+                UpdateAction(inter, index, visualElem.Q("Action"));
             };
-            select3.OnChangeSubTypeEvent += (inter) =>
+            interactionSelect.OnChangeSubTypeEvent += (inter) =>
             {
-                UpdateAction(inter, index, visualElem);
+                UpdateAction(inter, index, visualElem.Q("Action"));
             };
-            UpdateSelector(interactions[index], index, visualElem);
+            visualElem.Q("ObjectTypeSelect").Clear();
+            UpdateSelector(interactions[index], index, visualElem.Q("ObjectTypeSelect"));
             UpdateAction(interactions[index], index, visualElem);
             return visualElem;
         };
