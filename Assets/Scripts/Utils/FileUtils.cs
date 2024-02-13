@@ -31,6 +31,9 @@ public static class FileUtils {
 
         DirectoryInfo info = new DirectoryInfo(path);
 
+        if (info == null || !info.Exists)
+            return dirs;
+
         foreach (var file in info.GetFiles())
         {
             dirs.Add(file.Name);
