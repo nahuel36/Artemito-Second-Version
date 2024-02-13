@@ -11,13 +11,12 @@ public class InteractionsCustomEditor : Editor
     CustomListView<Interaction> listCustom;
     List<Interaction> interactions;
 
-    [SerializeField] VisualTreeAsset InteractionVT;
-
+    [SerializeField] VisualTreeAsset InteractionsVT;
     public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget, bool generateVisualTree=false) {
 
         if (generateVisualTree)
         {
-            root.Add(InteractionVT.CloneTree());
+            root.Add(InteractionsVT.CloneTree());
         }
 
         subTypeSelectors = new Dictionary<Interaction, SubtypeSelector>();

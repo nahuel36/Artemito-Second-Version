@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - InteractionVT: {fileID: 9197481963319205126, guid: 1ca3460ee6a8fbc478478429d391d928, type: 3}
+  - InteractionsVT: {fileID: 9197481963319205126, guid: 1ca3460ee6a8fbc478478429d391d928, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
