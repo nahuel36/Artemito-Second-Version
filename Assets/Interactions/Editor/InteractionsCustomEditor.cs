@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 using System;
 public class InteractionsCustomEditor : Editor
 {
-    Dictionary<Interaction, SubtypeSelector> subTypeSelectors;
 
     CustomListView<Interaction> listCustom;
     List<Interaction> interactions;
@@ -20,8 +19,7 @@ public class InteractionsCustomEditor : Editor
             root.Add(InteractionsVT.CloneTree());
         }
 
-        subTypeSelectors = new Dictionary<Interaction, SubtypeSelector>();
-        
+       
         root.Q("Interaction").visible = false;
         root.Q("Interaction").StretchToParentSize();
 
@@ -112,7 +110,7 @@ public class InteractionsCustomEditor : Editor
 
         if (!string.IsNullOrEmpty(interaction.type))
         {
-            if (interaction.type == "Inventory" && !subTypeSelectors.ContainsKey(interaction))
+            if (interaction.type == "Inventory")
             {
                 SelectInventory sel = new SelectInventory();
                 element.Add(sel.VisualElements(interaction));
