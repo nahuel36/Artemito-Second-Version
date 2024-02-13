@@ -40,7 +40,6 @@ public class InteractionsCustomEditor : Editor
 
             visualElem.Q("InteractionSelect").Clear();
             visualElem.Q("InteractionSelect").Add(interactionSelect.ShowAndConfigure(interactions[index]));
-            visualElem.Q("Action").Clear();
             interactionSelect.OnChangeTypeEvent += (inter) => {
                 UpdateSelector(inter, index, visualElem.Q("ObjectTypeSelect"));
                 UpdateAction(inter, index, visualElem.Q("Action"));
@@ -49,9 +48,8 @@ public class InteractionsCustomEditor : Editor
             {
                 UpdateAction(inter, index, visualElem.Q("Action"));
             };
-            visualElem.Q("ObjectTypeSelect").Clear();
             UpdateSelector(interactions[index], index, visualElem.Q("ObjectTypeSelect"));
-            UpdateAction(interactions[index], index, visualElem);
+            UpdateAction(interactions[index], index, visualElem.Q("Action"));
             return visualElem;
         };
 
@@ -85,6 +83,8 @@ public class InteractionsCustomEditor : Editor
     {
         if (interaction != interactions[index]) return;
 
+        visualElem.Clear();
+
         if (string.IsNullOrEmpty(interaction.type) || string.IsNullOrEmpty(interaction.subtype)) return;
 
         List<string> files = FileUtils.GetFilesList(Application.dataPath + "/Interactions/" + interaction.type + "/"  + interaction.subtype + "/");
@@ -108,22 +108,15 @@ public class InteractionsCustomEditor : Editor
     {
         if (interaction != interactions[index]) return;
 
+        element.Clear();
+
         if (!string.IsNullOrEmpty(interaction.type))
         {
             if (interaction.type == "Inventory" && !subTypeSelectors.ContainsKey(interaction))
             {
-                subTypeSelectors.Add(interaction, (SelectInventory)CreateInstance(typeof(SelectInventory)));
+                SelectInventory sel = new SelectInventory();
+                element.Add(sel.VisualElements(interaction));
             }
-            else if (interaction.type != "Inventory" && subTypeSelectors.ContainsKey(interaction))
-            {
-                ((SelectInventory)subTypeSelectors[interaction]).Remove(element);
-                subTypeSelectors.Remove(interaction);
-            }
-        }
-
-        if (subTypeSelectors.ContainsKey(interaction))
-        {
-            ((SelectInventory)subTypeSelectors[interaction]).Add(interaction, element);
         }
     }
 
