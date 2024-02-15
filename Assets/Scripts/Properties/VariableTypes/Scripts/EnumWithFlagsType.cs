@@ -28,8 +28,12 @@ public class EnumWithFlagsType : VariableType
 #if UNITY_EDITOR
         VisualElement element = root.Q("Field");
 
-        root.Q<Toggle>("Default").visible = false;
-        root.Q<Toggle>("Default").StretchToParentSize();
+        Toggle toggleDefault = root.Q<Toggle>("Default");
+        if (toggleDefault != null)
+        { 
+            root.Q<Toggle>("Default").visible = false;
+            root.Q<Toggle>("Default").StretchToParentSize();
+        }
 
         Settings settings = Resources.Load<Settings>("Settings/Settings");
 

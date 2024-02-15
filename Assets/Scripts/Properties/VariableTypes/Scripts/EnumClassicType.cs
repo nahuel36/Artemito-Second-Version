@@ -29,8 +29,12 @@ public class EnumClassicType : VariableType
 #if UNITY_EDITOR
         VisualElement element = root.Q("Field");
 
-        root.Q<Toggle>("Default").visible = false;
-        root.Q<Toggle>("Default").StretchToParentSize();
+        Toggle defaultToggle = root.Q<Toggle>("Default");
+        if (defaultToggle != null)
+        { 
+            root.Q<Toggle>("Default").visible = false;
+            root.Q<Toggle>("Default").StretchToParentSize();
+        }
 
         Settings settings = Resources.Load<Settings>("Settings/Settings");
 
