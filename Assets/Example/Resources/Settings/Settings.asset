@@ -19,7 +19,7 @@ MonoBehaviour:
   pathFindingType: 0
   speechStyle: 0
   interactionExecuteMethod: 0
-  objetivePosition: 0
+  objetivePosition: 1
   showNumbersInDialogOptions: 0
   alwaysShowAllVerbs: 0
   EnumWithFlagVariables:
