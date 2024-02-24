@@ -9,6 +9,7 @@ public class Interaction
     public string subtype;
     public string subtypeObject;
     public List<InteractionProperty> interaction_properties;
+    public InteractionAction action;
     public string InventoryNameToSubtypeObject(string item)
     {
         return "inventory-" + item;
@@ -17,6 +18,12 @@ public class Interaction
     public string SubtypeObjectToInventoryName(string subtype)
     {
         return subtype.Replace("inventory-", "");
+    }
+
+
+    public Character SubtypeToCharacter(string subtype)
+    {
+        return UnityEngine.Object.FindAnyObjectByType<Character>();
     }
 
     public Interaction CopyItem(Interaction interOrigin) {

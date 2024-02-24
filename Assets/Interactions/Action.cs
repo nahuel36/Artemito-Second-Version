@@ -8,4 +8,9 @@ public class InteractionAction : ScriptableObject
     { 
         
     }
+
+    public virtual void ExecuteAction(List<InteractionProperty> properties, Interaction interaction) 
+    { 
+
+    }
 }

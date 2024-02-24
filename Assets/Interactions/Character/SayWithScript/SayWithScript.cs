@@ -15,4 +15,14 @@ public class SayWithScript : InteractionAction
         properties.CreateGUI(interaction.interaction_properties, visualElement);
 #endif
     }
+
+    public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
+    {
+        base.ExecuteAction(properties, interaction);
+
+        Character character = interaction.SubtypeToCharacter(interaction.subtypeObject);
+
+        CommandTalk normalTalk = new CommandTalk();
+        normalTalk.Queue(character.messageTalker, "hello", false, false);
+    }
 }

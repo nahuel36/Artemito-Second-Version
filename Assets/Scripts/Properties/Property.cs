@@ -21,6 +21,10 @@ public class GenericProperty
 public class InteractionProperty : GenericProperty
 {
     public CustomEnumFlags<VariableType> variableTypes;
+    public InteractionObjectsType interactionType;
+    public Verb verb;
+    public int itemIndex;
+    public int interactuableID;
 }
     
     

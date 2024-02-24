@@ -87,18 +87,16 @@ public class InteractionsCustomEditor : Editor
 
         List<string> files = FileUtils.GetFilesList(Application.dataPath + "/Interactions/" + interaction.type + "/"  + interaction.subtype + "/");
 
-        InteractionAction action = null;
-
         for (int i = 0; i < files.Count; i++)
         {
             InteractionAction var = AssetDatabase.LoadAssetAtPath<InteractionAction>("Assets/Interactions/" + interaction.type + "/"  + interaction.subtype + "/" + files[i]);
             if (var != null)
-                action = var;
+                interaction.action = var;
         }
 
-        if (action != null)
+        if (interaction.action != null)
         {
-            action.SetEditorField(visualElem, interaction);
+            interaction.action.SetEditorField(visualElem, interaction);
         }
     }
 

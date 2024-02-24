@@ -19,6 +19,8 @@ public class UI_Manager : MonoBehaviour
         if (obj.overInteractuable != null)
         {
             text.text.text = "obj";
+            if (Input.GetMouseButtonDown(0))
+                obj.overInteractuable.RunInteraction();
         }
         else
             text.text.text = "";
