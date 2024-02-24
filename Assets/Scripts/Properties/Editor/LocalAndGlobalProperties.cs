@@ -45,7 +45,7 @@ public class LocalAndGlobalProperties : Editor
         return root;
     }
 
-    private VisualElement ItemContent(int index, GenericProperty property)
+    private VisualElement ItemContent(int index, LocalProperty property)
     {
         VisualElement element = new VisualElement();
 
@@ -58,21 +58,20 @@ public class LocalAndGlobalProperties : Editor
         element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { property.name = name.newValue; });
 
 
-        if (property is LocalProperty)
-        {
-            VariableTypesUtility.ShowEnumFlagsField(element, ((LocalProperty)property).variableTypes);
 
-            foreach (var variable in VariableTypesUtility.GetAllVariableTypes())
+        VariableTypesUtility.ShowEnumFlagsField(element,property.variableTypes);
+        
+        foreach (var variable in VariableTypesUtility.GetAllVariableTypes())
+        {
+            if (property.variableTypes.ContainsValue(variable))
             {
-                if (((LocalProperty)property).variableTypes.ContainsValue(variable))
-                {
-                    VisualElement variableItemElement = variableItem.CloneTree();
-                    variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
-                    variable.SetPropertyField(variableItemElement,property);
-                    element.Add(variableItemElement);
-                }
+                VisualElement variableItemElement = variableItem.CloneTree();
+                variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
+                variable.SetPropertyField(variableItemElement,property);
+                element.Add(variableItemElement);
             }
         }
+        
 
         return element;
     }
