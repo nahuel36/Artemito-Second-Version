@@ -31,6 +31,7 @@ public class Interaction
         interDestiny.type = interOrigin.type;
         interDestiny.subtype = interOrigin.subtype;
         interDestiny.subtypeObject = interOrigin.subtypeObject;
+        interDestiny.action = interOrigin.action;
         return interDestiny;
     }
 }
