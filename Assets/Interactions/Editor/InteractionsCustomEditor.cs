@@ -90,8 +90,9 @@ public class InteractionsCustomEditor : Editor
         for (int i = 0; i < files.Count; i++)
         {
             InteractionAction var = AssetDatabase.LoadAssetAtPath<InteractionAction>("Assets/Interactions/" + interaction.type + "/"  + interaction.subtype + "/" + files[i]);
-            if (var != null)
-                interaction.action = var;
+            if (var != null && ((interaction.action != null && var.GetType() != interaction.action.GetType())|| interaction.action == null))
+                interaction.action = (InteractionAction)ScriptableObject.CreateInstance(var.GetType());
+            
         }
 
         if (interaction.action != null)
