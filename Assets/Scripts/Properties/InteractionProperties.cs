@@ -46,7 +46,8 @@ public class InteractionProperties : Editor
     {
         VisualElement element = new VisualElement();
 
-        element.Add(interaction_property.CloneTree());
+        //element.Add(interaction_property.CloneTree());
+        element.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Properties/Editor/InteractionProperty.uxml").CloneTree());
 
         element.Q("VariableItem").visible = false;
         element.Q("VariableItem").StretchToParentSize();
