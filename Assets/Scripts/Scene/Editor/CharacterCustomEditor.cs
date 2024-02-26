@@ -36,7 +36,7 @@ public class CharacterCustomEditor : Editor
 
         InventoryInteractionsCustomEditor InventoryInteractionsCustomEditor = (InventoryInteractionsCustomEditor)CreateInstance(typeof(InventoryInteractionsCustomEditor));
 
-        VisualElement invInteractionsVE = InventoryInteractionsCustomEditor.ShowGUI(myTarget.inventoryInteractions, myTarget);
+        VisualElement invInteractionsVE = InventoryInteractionsCustomEditor.ShowGUI(myTarget.inventoryInteractions, myTarget, myTarget.isDuplicate);
 
         root.Add(invInteractionsVE);
 

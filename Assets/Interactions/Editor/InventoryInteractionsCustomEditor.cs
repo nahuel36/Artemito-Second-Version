@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 public class InventoryInteractionsCustomEditor : Editor
 {
-    public VisualElement ShowGUI(List<InventoryItemAction> inventoryInteractions, UnityEngine.Object myTarget) 
+    public VisualElement ShowGUI(List<InventoryItemAction> inventoryInteractions, UnityEngine.Object myTarget, bool isDuplicate) 
     {
         VisualElement invInteractionsVE = new VisualElement();
 
@@ -14,7 +14,7 @@ public class InventoryInteractionsCustomEditor : Editor
 
         listViewInvInteractions.ItemContent = (indexInteraction) => {
             AttempsCustomEditor attempsCustomEditor = (AttempsCustomEditor)CreateInstance(typeof(AttempsCustomEditor));
-            VisualElement attempsVE = attempsCustomEditor.ShowGUI(inventoryInteractions[indexInteraction].attempsContainer, myTarget);
+            VisualElement attempsVE = attempsCustomEditor.ShowGUI(inventoryInteractions[indexInteraction].attempsContainer, myTarget, isDuplicate);
             return attempsVE;
         };
 

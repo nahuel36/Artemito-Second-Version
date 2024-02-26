@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class AttempsCustomEditor : Editor
 {
 
-    public VisualElement ShowGUI(AttempsContainer attempsContainer, UnityEngine.Object myTarget)
+    public VisualElement ShowGUI(AttempsContainer attempsContainer, UnityEngine.Object myTarget, bool isDuplicate)
     {
         VisualElement InvAttempsVE = new VisualElement();
         CustomListView<InteractionsAttemp> listViewAttemps = new CustomListView<InteractionsAttemp>();
@@ -15,7 +15,7 @@ public class AttempsCustomEditor : Editor
         {
             InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
             VisualElement interactionVE = new VisualElement();
-            interactionCustomEditor.ShowGUI(interactionVE, attempsContainer.attemps[indexAttemp].interactions, myTarget, true);
+            interactionCustomEditor.ShowGUI(interactionVE, attempsContainer.attemps[indexAttemp].interactions, myTarget, isDuplicate, true);
             return interactionVE;
         };
 

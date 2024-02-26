@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
 using System;
+
+[System.Serializable]
 public class InteractionsCustomEditor : Editor
 {
 
@@ -12,7 +14,15 @@ public class InteractionsCustomEditor : Editor
 
     [SerializeField] VisualTreeAsset InteractionsVT;
     [SerializeField] VisualTreeAsset InteractionVT;
-    public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget, bool generateVisualTree=false) {
+    [HideInInspector][SerializeField]bool duplicated;
+
+    public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget, bool isDuplicate, bool generateVisualTree=false) 
+    {
+        if (isDuplicate)
+        {
+            duplicated = true;
+        }
+
 
         if (generateVisualTree)
         {
@@ -90,9 +100,12 @@ public class InteractionsCustomEditor : Editor
         for (int i = 0; i < files.Count; i++)
         {
             InteractionAction var = AssetDatabase.LoadAssetAtPath<InteractionAction>("Assets/Interactions/" + interaction.type + "/"  + interaction.subtype + "/" + files[i]);
-            if (var != null && ((interaction.action != null && var.GetType() != interaction.action.GetType())|| interaction.action == null))
+            if (var != null && ((interaction.action != null && var.GetType() != interaction.action.GetType()) || interaction.action == null || duplicated))
+            { 
                 interaction.action = (InteractionAction)ScriptableObject.CreateInstance(var.GetType());
-            
+                duplicated = false;
+            }
+
         }
 
         if (interaction.action != null)
