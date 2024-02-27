@@ -18,8 +18,10 @@ public class LucasArtText : IMessageTalker
     public LucasArtText(UnityEngine.Transform transform, ITextTimeCalculator calculator)
     {
         //pasar offset y tamaño de letra por parametro
+        if(transform.Find("say canvas") != null)
+            Object.DestroyImmediate(transform.Find("say canvas").gameObject);
 
-        UnityEngine.GameObject canvasGO = new UnityEngine.GameObject("canvas");
+        UnityEngine.GameObject canvasGO = new UnityEngine.GameObject("say canvas");
         Canvas canvas = canvasGO.AddComponent<Canvas>();
         canvas.worldCamera = Camera.main;
         canvas.renderMode = RenderMode.WorldSpace;
