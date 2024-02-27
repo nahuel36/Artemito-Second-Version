@@ -62,7 +62,8 @@ public class InteractionProperties : Editor
         {
             if (property.variableTypes.ContainsValue(variable))
             {
-                VisualElement variableItemElement = variableItem.CloneTree();
+                //VisualElement variableItemElement = variableItem.CloneTree();
+                VisualElement variableItemElement = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Properties/Editor/SimpleVariableField.uxml").CloneTree();
                 variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
                 variable.SetPropertyField(variableItemElement,property);
                 element.Add(variableItemElement);
