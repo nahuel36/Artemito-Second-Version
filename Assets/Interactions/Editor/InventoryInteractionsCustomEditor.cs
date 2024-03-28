@@ -9,6 +9,12 @@ public class InventoryInteractionsCustomEditor : Editor
     {
         VisualElement invInteractionsVE = new VisualElement();
 
+        Label tittle = new Label("Inventory");
+
+        tittle.style.unityFontStyleAndWeight = FontStyle.Bold;
+
+        invInteractionsVE.Add(tittle);
+
         CustomListView<InventoryItemAction> listViewInvInteractions = new CustomListView<InventoryItemAction>();
         listViewInvInteractions.ItemsSource = inventoryInteractions;
 

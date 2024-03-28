@@ -88,7 +88,17 @@ public class CustomListView<T>
 
         root.RegisterCallback<MouseLeaveEvent>(evt => OnMouseLeave(evt));
         //root.Add(scrollView);
-       // root.StretchToParentSize();
+        // root.StretchToParentSize();
+
+        listContainer.style.borderLeftWidth = 3;
+        listContainer.style.borderRightWidth = 3;
+        listContainer.style.borderTopWidth = 3;
+        listContainer.style.borderBottomWidth = 3;
+        listContainer.style.borderBottomColor = Color.gray;
+        listContainer.style.borderLeftColor = Color.gray;
+        listContainer.style.borderTopColor = Color.gray;
+        listContainer.style.borderRightColor = Color.gray;
+
     }
 
     private async Task MoveVertical(bool directionIsDown, int index, float finalPosY)

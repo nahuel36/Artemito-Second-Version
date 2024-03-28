@@ -9,6 +9,13 @@ public class AttempsCustomEditor : Editor
     public VisualElement ShowGUI(AttempsContainer attempsContainer, UnityEngine.Object myTarget, bool isDuplicate)
     {
         VisualElement InvAttempsVE = new VisualElement();
+
+        Label tittle = new Label("Attemps");
+
+        tittle.style.unityFontStyleAndWeight = FontStyle.Bold;
+
+        InvAttempsVE.Add(tittle);
+
         CustomListView<InteractionsAttemp> listViewAttemps = new CustomListView<InteractionsAttemp>();
         listViewAttemps.ItemsSource = attempsContainer.attemps;
         listViewAttemps.ItemContent = (indexAttemp) =>

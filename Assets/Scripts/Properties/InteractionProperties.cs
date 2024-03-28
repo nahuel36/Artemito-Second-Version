@@ -17,6 +17,11 @@ public class InteractionProperties : Editor
         // Each editor window contains a root VisualElement object
         // Instantiate UXML
 
+        Label tittle = new Label("Interaction Properties");
+
+        tittle.style.unityFontStyleAndWeight = FontStyle.Bold;
+
+        root.Add(tittle);
 
         if(customListView == null)
             customListView = new CustomListView<InteractionProperty>();
