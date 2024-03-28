@@ -10,6 +10,7 @@ public class Interaction
     public string subtypeObject;
     public List<InteractionProperty> interaction_properties;
     public InteractionAction action;
+    public bool expandedInInspector;
     public string InventoryNameToSubtypeObject(string item)
     {
         return "inventory-" + item;

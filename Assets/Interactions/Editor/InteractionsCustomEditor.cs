@@ -40,25 +40,37 @@ public class InteractionsCustomEditor : Editor
 
         Func<int, VisualElement> itemContent = (i) =>
         {
-            int index = i;
+            VisualElement root = new VisualElement();
 
-            VisualElement visualElem = InteractionVT.CloneTree();
-          
-            InteractionSelect interactionSelect = (InteractionSelect)CreateInstance(typeof(InteractionSelect));
 
-            visualElem.Q("InteractionSelect").Clear();
-            visualElem.Q("InteractionSelect").Add(interactionSelect.ShowAndConfigure(interactions[index]));
-            interactionSelect.OnChangeTypeEvent += (inter) => {
-                UpdateSelector(inter, index, visualElem.Q("ObjectTypeSelect"));
-                UpdateAction(inter, index, visualElem.Q("Action"));
-            };
-            interactionSelect.OnChangeSubTypeEvent += (inter) =>
+            FoldoutUtils.SetFoldout(root, interactions[i].expandedInInspector, (i + 1).ToString() + "° interaction", (newvalue) =>
             {
-                UpdateAction(inter, index, visualElem.Q("Action"));
-            };
-            UpdateSelector(interactions[index], index, visualElem.Q("ObjectTypeSelect"));
-            UpdateAction(interactions[index], index, visualElem.Q("Action"));
-            return visualElem;
+                interactions[i].expandedInInspector = newvalue;
+
+
+                int index = i;
+
+                VisualElement visualElem = InteractionVT.CloneTree();
+
+                InteractionSelect interactionSelect = (InteractionSelect)CreateInstance(typeof(InteractionSelect));
+
+                visualElem.Q("InteractionSelect").Clear();
+                visualElem.Q("InteractionSelect").Add(interactionSelect.ShowAndConfigure(interactions[index]));
+                interactionSelect.OnChangeTypeEvent += (inter) => {
+                    UpdateSelector(inter, index, visualElem.Q("ObjectTypeSelect"));
+                    UpdateAction(inter, index, visualElem.Q("Action"));
+                };
+                interactionSelect.OnChangeSubTypeEvent += (inter) =>
+                {
+                    UpdateAction(inter, index, visualElem.Q("Action"));
+                };
+                UpdateSelector(interactions[index], index, visualElem.Q("ObjectTypeSelect"));
+                UpdateAction(interactions[index], index, visualElem.Q("Action"));
+                return visualElem;
+            });
+
+
+            return root;
         };
 
         listCustom.ItemContent = itemContent;
