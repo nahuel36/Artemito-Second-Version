@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -20,9 +20,15 @@ public class AttempsCustomEditor : Editor
         listViewAttemps.ItemsSource = attempsContainer.attemps;
         listViewAttemps.ItemContent = (indexAttemp) =>
         {
-            InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
             VisualElement interactionVE = new VisualElement();
-            interactionCustomEditor.ShowGUI(interactionVE, attempsContainer.attemps[indexAttemp].interactions, myTarget, isDuplicate, true);
+            FoldoutUtils.SetFoldout(interactionVE,attempsContainer.attemps[indexAttemp].expandedInInspector, (indexAttemp + 1).ToString() + "° attemp",(newvalue)=>
+            {
+                attempsContainer.attemps[indexAttemp].expandedInInspector = newvalue;
+                VisualElement visualElement = new VisualElement();  
+                InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
+                interactionCustomEditor.ShowGUI(visualElement, attempsContainer.attemps[indexAttemp].interactions, myTarget, isDuplicate, true);
+                return visualElement;
+            });
             return interactionVE;
         };
 
