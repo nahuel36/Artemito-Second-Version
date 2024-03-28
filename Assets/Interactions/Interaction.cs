@@ -32,6 +32,7 @@ public class Interaction
         interDestiny.subtype = interOrigin.subtype;
         interDestiny.subtypeObject = interOrigin.subtypeObject;
         interDestiny.action = interOrigin.action;
+        interDestiny.interaction_properties = interOrigin.interaction_properties;
         return interDestiny;
     }
 }
