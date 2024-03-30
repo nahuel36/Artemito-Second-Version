@@ -14,8 +14,8 @@ public class InteractionsCustomEditor : Editor
 
     [SerializeField] VisualTreeAsset InteractionsVT;
     [SerializeField] VisualTreeAsset InteractionVT;
-    [HideInInspector][SerializeField]bool duplicated;
-
+    [HideInInspector][SerializeField] bool duplicated;
+    FoldoutForCustomListView<Interaction> foldouts;
     public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget, bool isDuplicate, bool generateVisualTree=false) 
     {
         if (isDuplicate)
@@ -38,16 +38,16 @@ public class InteractionsCustomEditor : Editor
         listCustom.ItemsSource = interactions;
         this.interactions = interactions;
 
+        foldouts = new FoldoutForCustomListView<Interaction>();
+        foldouts.content = new List<Func<VisualElement>>();
+        foldouts.changeVariable = new List<Action<bool>>();
+
         Func<int, VisualElement> itemContent = (i) =>
         {
             VisualElement root = new VisualElement();
-
-
-            FoldoutUtils.SetFoldout(root, interactions[i].expandedInInspector, (i + 1).ToString() + "° interaction", (newvalue) =>
+            foldouts.changeVariable.Add((newvalue) => interactions[i].expandedInInspector = newvalue);       
+            foldouts.content.Add(() =>
             {
-                interactions[i].expandedInInspector = newvalue;
-
-
                 int index = i;
 
                 VisualElement visualElem = InteractionVT.CloneTree();
@@ -68,6 +68,7 @@ public class InteractionsCustomEditor : Editor
                 UpdateAction(interactions[index], index, visualElem.Q("Action"));
                 return visualElem;
             });
+            foldouts.SetFoldout(root, interactions[i].expandedInInspector, (i + 1).ToString() + "° interaction", i, listCustom); 
 
 
             return root;
@@ -81,7 +82,7 @@ public class InteractionsCustomEditor : Editor
 
         listCustom.OnAdd = () => OnAdded(myTarget);
 
-        listCustom.OnReorderItem += (element, index) => { SaveTargetChanges(myTarget); };
+        listCustom.OnReorderItem += (reorderList) => { SaveTargetChanges(myTarget); };
 
         listCustom.OnRemoveItem += (element, index) => { SaveTargetChanges(myTarget); };
 

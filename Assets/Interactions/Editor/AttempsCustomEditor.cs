@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 public class AttempsCustomEditor : Editor
 {
-
+    private FoldoutForCustomListView<InteractionsAttemp> foldouts;
     public VisualElement ShowGUI(AttempsContainer attempsContainer, UnityEngine.Object myTarget, bool isDuplicate)
     {
         VisualElement InvAttempsVE = new VisualElement();
@@ -16,19 +16,24 @@ public class AttempsCustomEditor : Editor
 
         InvAttempsVE.Add(tittle);
 
+        foldouts = new FoldoutForCustomListView<InteractionsAttemp>();
+        foldouts.content = new List<System.Func<VisualElement>>();
+        foldouts.changeVariable = new List<System.Action<bool>>();
+
         CustomListView<InteractionsAttemp> listViewAttemps = new CustomListView<InteractionsAttemp>();
         listViewAttemps.ItemsSource = attempsContainer.attemps;
         listViewAttemps.ItemContent = (indexAttemp) =>
         {
             VisualElement interactionVE = new VisualElement();
-            FoldoutUtils.SetFoldout(interactionVE,attempsContainer.attemps[indexAttemp].expandedInInspector, (indexAttemp + 1).ToString() + "° attemp",(newvalue)=>
+            foldouts.changeVariable.Add((newvalue) => attempsContainer.attemps[indexAttemp].expandedInInspector = newvalue);
+            foldouts.content.Add(() =>
             {
-                attempsContainer.attemps[indexAttemp].expandedInInspector = newvalue;
-                VisualElement visualElement = new VisualElement();  
+                VisualElement visualElement = new VisualElement();
                 InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
                 interactionCustomEditor.ShowGUI(visualElement, attempsContainer.attemps[indexAttemp].interactions, myTarget, isDuplicate, true);
                 return visualElement;
             });
+            foldouts.SetFoldout(interactionVE, attempsContainer.attemps[indexAttemp].expandedInInspector, (indexAttemp + 1).ToString() + "° attemp", indexAttemp,listViewAttemps);
             return interactionVE;
         };
 

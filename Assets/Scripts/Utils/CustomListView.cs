@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 #if UNITY_EDITOR
@@ -7,10 +8,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
+using static UnityEditor.Progress;
 
 public class CustomListView<T> 
 {
     private List<VisualElement> listItems = new List<VisualElement>();
+    private List<VisualElement> listItemsInitial = new List<VisualElement>();
     private VisualElement listContainer;
     private VisualElement draggedItem;
     private float draggedItemPosY;
@@ -40,7 +43,7 @@ public class CustomListView<T>
 
     public delegate void ItemChangeDelegate(ChangeEvent<string> evt, VisualElement element, int index);
     public event ItemChangeDelegate OnChangeItem;
-    public delegate void ItemReorderDelegate(VisualElement element, int index);
+    public delegate void ItemReorderDelegate(List<int> neworder);
     public event ItemReorderDelegate OnReorderItem;
     public delegate void ItemRemoveDelegate(VisualElement element, int index);
     public event ItemRemoveDelegate OnRemoveItem;
@@ -57,7 +60,7 @@ public class CustomListView<T>
             root.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Utils/Editor/CustomListView.uxml").CloneTree());
         }
 #endif
-
+        
 
         moving_all = false;
 
@@ -71,6 +74,8 @@ public class CustomListView<T>
             {
                 AddNewItem(i);
             }
+
+        UpdateInitialItems();
 
         Button buttonAdd = root.Query<Button>("add").Last();
         //buttonAdd.clickable = new Clickable(() => { });
@@ -101,6 +106,15 @@ public class CustomListView<T>
 
     }
 
+    private void UpdateInitialItems() 
+    {
+        listItemsInitial = new List<VisualElement>();
+        for (int i = 0; i < listItems.Count; i++)
+        {
+            listItemsInitial.Add(listItems[i]);
+        }
+    }
+
     private async Task MoveVertical(bool directionIsDown, int index, float finalPosY)
     {
         float i = 0;
@@ -119,7 +133,30 @@ public class CustomListView<T>
         }
     }
 
+    private async Task SendReordered()
+    {
+        await Task.Delay(Mathf.RoundToInt(Time.deltaTime * 1000));
 
+        bool reordered = false;
+        List<int> newOrder = new List<int>();
+        for (int i = 0; i < listItemsInitial.Count; i++)
+        {
+            newOrder.Add(i);
+            for (int j = 0; j < listItems.Count; j++)
+            {
+                if (listItemsInitial[i].Equals(listItems[j])&& i !=j)
+                {
+                    reordered = true;
+                    newOrder[i] = j;
+                }
+            }
+        }
+        if (reordered)
+        {
+            OnReorderItem?.Invoke(newOrder);
+            UpdateInitialItems();
+        }
+    }
 
     private void Remove()
     {
@@ -129,6 +166,8 @@ public class CustomListView<T>
         VisualElement listItem = listItems[index];
         listContainer.Remove(listItem);
         listItems.RemoveAt(index);
+
+        UpdateInitialItems();
 
         OnRemoveItem?.Invoke(listItem, index);
     }
@@ -185,6 +224,7 @@ public class CustomListView<T>
         } 
         ItemsSource.Add(OnAdd.Invoke());
         AddNewItem(ItemsSource.Count - 1);
+        UpdateInitialItems();
     }
 
     private void OnChanged(ChangeEvent<string> evt, VisualElement listItem, int index)
@@ -193,11 +233,15 @@ public class CustomListView<T>
             listItem.style.height = ItemHeight(index);
         else
             listItem.style.height = new StyleLength(StyleKeyword.Auto);
+
+        UpdateInitialItems();
+        
         OnChangeItem?.Invoke(evt, listItem, index);
     }
 
     private async Task OnMouseLeave(MouseLeaveEvent evt)
     {
+        SendReordered();
         if (reOrderMode == ReOrderModes.animatedDynamic && draggedItem != null)
         {
             while (moving_all) await Task.Delay(100);
@@ -280,7 +324,6 @@ public class CustomListView<T>
                     ItemsSource.Insert(indexDestiny, backup);
                     listItems.Insert(indexDestiny, draggedItem);
 
-                    OnReorderItem?.Invoke(draggedItem, indexDestiny);
                 }
             }
 
@@ -316,6 +359,7 @@ public class CustomListView<T>
 
     private async Task OnMouseUp(MouseUpEvent evt, VisualElement listItem, int i)
     {
+        SendReordered();
         if (reOrderMode == ReOrderModes.animatedDynamic && draggedItem != null)
         {
             while (moving_all) await Task.Delay(100);
