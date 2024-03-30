@@ -14,13 +14,17 @@ public class InteractionsCustomEditor : Editor
 
     [SerializeField] VisualTreeAsset InteractionsVT;
     [SerializeField] VisualTreeAsset InteractionVT;
-    [HideInInspector][SerializeField] bool duplicated;
+    [HideInInspector][SerializeField] List<bool> duplicated;
     FoldoutForCustomListView<Interaction> foldouts;
     public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget, bool isDuplicate, bool generateVisualTree=false) 
     {
         if (isDuplicate)
         {
-            duplicated = true;
+            duplicated = new List<bool>();
+            for (int i = 0; i < interactions.Count; i++)
+            {
+                duplicated.Add(true);
+            }
         }
 
 
@@ -113,10 +117,10 @@ public class InteractionsCustomEditor : Editor
         for (int i = 0; i < files.Count; i++)
         {
             InteractionAction var = AssetDatabase.LoadAssetAtPath<InteractionAction>("Assets/Interactions/" + interaction.type + "/"  + interaction.subtype + "/" + files[i]);
-            if (var != null && ((interaction.action != null && var.GetType() != interaction.action.GetType()) || interaction.action == null || duplicated))
+            if (var != null && ((interaction.action != null && var.GetType() != interaction.action.GetType()) || interaction.action == null || (duplicated != null && duplicated[index])))
             { 
                 interaction.action = (InteractionAction)ScriptableObject.CreateInstance(var.GetType());
-                duplicated = false;
+                duplicated[index] = false;
             }
 
         }
