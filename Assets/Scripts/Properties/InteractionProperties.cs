@@ -42,6 +42,9 @@ public class InteractionProperties : Editor
             return localprop;        
         };
 
+        customListView.CopyItem = (propOrigin) =>
+        { return propOrigin.Copy(); };
+
         customListView.Init(root, true);
 
         return root;
