@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,6 +44,12 @@ public class CustomEnumFlags<T> where T : EnumerableType
         {
             choicesMasks.Add(1 << i);
         }
+    }
+
+    internal CustomEnumFlags<T> Copy()
+    {
+        CustomEnumFlags<T> newEnum = new CustomEnumFlags<T>(value);
+        return newEnum;
     }
 }
 

@@ -13,4 +13,8 @@ public class InteractionAction : ScriptableObject
     { 
 
     }
+
+    public virtual InteractionAction Copy() { 
+        return ScriptableObject.CreateInstance<InteractionAction>(); 
+    }
 }

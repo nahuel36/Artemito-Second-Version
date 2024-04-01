@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,26 @@ public class InteractionProperty : GenericProperty
     public Verb verb;
     public int itemIndex;
     public int interactuableID;
+
+    internal InteractionProperty Copy()
+    {
+        InteractionProperty prop = new InteractionProperty();
+        prop.name = name;
+        prop.expandedInInspector = expandedInInspector;
+        prop.variableValues = new string[variableValues.Length];
+        variableValues.CopyTo(prop.variableValues,0);
+        prop.useDefaultValues = new bool[useDefaultValues.Length];
+        useDefaultValues.CopyTo(prop.useDefaultValues,0);
+        prop.objectValues = new UnityEngine.Object[objectValues.Length];
+        objectValues.CopyTo(prop.objectValues, 0);
+        prop.variableTypes = variableTypes.Copy();
+        prop.interactionType = interactionType;
+        prop.verb = verb;
+        prop.itemIndex = itemIndex;
+        //prop.interactuableID = interactuableID;
+
+        return prop;
+    }
 }
     
     

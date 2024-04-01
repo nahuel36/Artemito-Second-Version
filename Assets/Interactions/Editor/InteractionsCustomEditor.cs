@@ -118,8 +118,11 @@ public class InteractionsCustomEditor : Editor
         {
             InteractionAction var = AssetDatabase.LoadAssetAtPath<InteractionAction>("Assets/Interactions/" + interaction.type + "/"  + interaction.subtype + "/" + files[i]);
             if (var != null && ((interaction.action != null && var.GetType() != interaction.action.GetType()) || interaction.action == null || (duplicated != null && duplicated[index])))
-            { 
-                interaction.action = (InteractionAction)ScriptableObject.CreateInstance(var.GetType());
+            {
+                if (interaction.action != null && (duplicated != null && duplicated[index]))
+                    interaction.action = interaction.action.Copy();
+                else
+                    interaction.action = (InteractionAction)ScriptableObject.CreateInstance(var.GetType());
                 duplicated[index] = false;
             }
 
