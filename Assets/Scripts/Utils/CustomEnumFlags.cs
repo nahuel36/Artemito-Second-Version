@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public class CustomEnumFlags<T> where T : EnumerableType
 {
-    [SerializeField][HideInInspector]private int value = 0;
+    [SerializeField] [HideInInspector] private int value = 0;
+    [SerializeField] [HideInInspector] List<EnumerableType> members;
     public CustomEnumFlags(int valueToSet)
     {
         SetIntValue(valueToSet);
@@ -19,7 +21,12 @@ public class CustomEnumFlags<T> where T : EnumerableType
 
     public bool ContainsValue(T valueToFind) 
     {
-        return (value & (1 << valueToFind.Index)) != 0;
+        return ContainsValue(valueToFind.Index);
+    }
+
+    private bool ContainsValue(int index)
+    {
+        return (value & (1 << index)) != 0;
     }
 
     public void RemoveValue(T valueToRemove)
@@ -34,6 +41,64 @@ public class CustomEnumFlags<T> where T : EnumerableType
     public void SetIntValue(int valueToSet)
     {
         value = valueToSet;
+
+        if (members == null)
+            members = new List<EnumerableType>();
+
+        CheckContainsVariables();
+    }
+
+    private void CheckContainsVariables()
+    {
+        if (typeof(T) == typeof(VariableType))
+        {
+            var variables = VariableTypesUtility.GetAllVariableTypes();
+            for (int i = 0; i < variables.Length; i++)
+            {
+                if (ContainsValue(variables[i].Index))
+                {
+                    bool contains = false;
+                    for (int j = 0; j < members.Count; j++)
+                    {
+                        if (members[j].GetType() == variables[i].GetType())
+                        {
+                            contains = true;
+                        }
+                    }
+                    if (contains == false)
+                    {
+                        members.Add((VariableType)ScriptableObject.CreateInstance(variables[i].GetType()));
+                    }
+                }
+                else
+                {
+                    int membersToErase = -1;
+                    for (int j = 0; j < members.Count; j++)
+                    {
+                        if (members[j].GetType() == variables[i].GetType())
+                        {
+                            membersToErase = j;
+                        }
+                    }
+                    if (membersToErase != -1)
+                        members.RemoveAt(membersToErase);
+                }
+            }
+        }
+    }
+
+    public void SetPropertyField(VariableType variable, VisualElement variableItemElement, GenericProperty property)
+    {
+        CheckContainsVariables();
+
+        if (typeof(T) == typeof(VariableType))
+        {
+            for (int i = 0; i < members.Count; i++)
+            {
+                if (members[i].GetType() == variable.GetType())
+                    ((VariableType)members[i]).SetPropertyField(variableItemElement, property);
+            }
+        }
     }
 
     public static void SetChoicesMasksByChoicesInOrder(List<int> choicesMasks, List<string> choices)

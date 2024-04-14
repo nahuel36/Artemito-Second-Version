@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+[System.Serializable]
 public class StringType : VariableType
 {
+    [SerializeField]public string value = "";
+
     public StringType()
     {
         typeName = "string";
@@ -34,14 +37,14 @@ public class StringType : VariableType
 
     public string GetVariableValue(GenericProperty property)
     {
-        if (property.variableValues == null || Index >= property.variableValues.Length)
-            return "";
+       // if (property.variableValues == null || Index >= property.variableValues.Length)
+         //   return "";
 
-        return property.variableValues[Index];
+        return value;
     }
 
     public void SetVariableValue(GenericProperty property,string value)
     {
-        property.variableValues[Index] = value;
+        this.value = value;
     }
 }
