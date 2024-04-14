@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,5 +18,13 @@ public class EnumerableType : ScriptableObject
     public string TypeName
     {
         get { return typeName; }
+    }
+
+    public virtual EnumerableType Copy()
+    {
+        EnumerableType newcopy = new EnumerableType();
+        newcopy.index = index;
+        newcopy.typeName = typeName;
+        return newcopy;
     }
 }

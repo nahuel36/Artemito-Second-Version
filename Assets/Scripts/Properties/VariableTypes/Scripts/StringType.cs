@@ -47,4 +47,10 @@ public class StringType : VariableType
     {
         this.value = value;
     }
+
+    public override EnumerableType Copy() {
+        StringType newEnum = new StringType();
+        newEnum.value = value;
+        return newEnum;
+    }
 }

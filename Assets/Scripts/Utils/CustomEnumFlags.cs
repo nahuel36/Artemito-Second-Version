@@ -114,6 +114,11 @@ public class CustomEnumFlags<T> where T : EnumerableType
     internal CustomEnumFlags<T> Copy()
     {
         CustomEnumFlags<T> newEnum = new CustomEnumFlags<T>(value);
+        newEnum.members = new List<EnumerableType>();
+        for (int i = 0; i < members.Count; i++)
+        {
+            newEnum.members.Add(members[i].Copy());
+        }
         return newEnum;
     }
 }

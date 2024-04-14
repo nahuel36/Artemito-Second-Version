@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System;
+using System.Linq;
 
 [CustomEditor(typeof(Character))]
 public class CharacterCustomEditor : Editor
@@ -43,6 +44,16 @@ public class CharacterCustomEditor : Editor
 
 
         LocalAndGlobalProperties properties = (LocalAndGlobalProperties)CreateInstance(typeof(LocalAndGlobalProperties));
+
+        if (myTarget.isDuplicate)
+        {
+            List<LocalProperty> newList = new List<LocalProperty>();
+            for (int i = 0; i < myTarget.local_properties.Count; i++)
+            {
+                newList.Add(myTarget.local_properties[i].Copy());
+            }
+            myTarget.local_properties = newList;
+        }
 
         properties.CreateGUI(myTarget.local_properties, root.Q("LocalAndGlobalProperties"));
         

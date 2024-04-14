@@ -53,6 +53,22 @@ public class InteractionProperty : GenericProperty
 public class LocalProperty : GenericProperty
 {
     public CustomEnumFlags<VariableType> variableTypes;
+
+    public LocalProperty Copy()
+    {
+        LocalProperty prop = new LocalProperty();
+        prop.name = name;
+        prop.expandedInInspector = expandedInInspector;
+        prop.variableValues = new string[variableValues.Length];
+        variableValues.CopyTo(prop.variableValues, 0);
+        prop.useDefaultValues = new bool[useDefaultValues.Length];
+        useDefaultValues.CopyTo(prop.useDefaultValues, 0);
+        prop.objectValues = new UnityEngine.Object[objectValues.Length];
+        objectValues.CopyTo(prop.objectValues, 0);
+        prop.variableTypes = variableTypes.Copy();
+
+        return prop;
+    }
 }
 
 [System.Serializable]
