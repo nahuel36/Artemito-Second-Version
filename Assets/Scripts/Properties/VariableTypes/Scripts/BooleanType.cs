@@ -49,4 +49,11 @@ public class BooleanType: VariableType
     {
         property.variableValues[Index] = value.ToString().ToLower();
     }
+
+    public override EnumerableType Copy()
+    {
+        BooleanType newEnum = new BooleanType();
+        newEnum.isDefaultValue = isDefaultValue;
+        return newEnum;
+    }
 }

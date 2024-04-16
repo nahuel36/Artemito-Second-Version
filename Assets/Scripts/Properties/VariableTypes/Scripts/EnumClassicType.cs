@@ -256,4 +256,12 @@ public class EnumClassicType : VariableType
         property.variableValues[Index] = sw.ToString();
     }
 
+
+    public override EnumerableType Copy()
+    {
+        EnumClassicType newEnum = new EnumClassicType();
+        newEnum.isDefaultValue = isDefaultValue;
+        return newEnum;
+    }
+
 }

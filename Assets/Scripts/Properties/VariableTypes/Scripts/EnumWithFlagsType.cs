@@ -260,4 +260,12 @@ public class EnumWithFlagsType : VariableType
         property.variableValues[Index] = sw.ToString();
     }
 
+
+    public override EnumerableType Copy()
+    {
+        EnumWithFlagsType newEnum = new EnumWithFlagsType();
+        newEnum.isDefaultValue = isDefaultValue;
+        return newEnum;
+    }
+
 }

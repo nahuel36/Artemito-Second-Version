@@ -47,4 +47,11 @@ public class IntegerType : VariableType
     {
         property.variableValues[Index] = value.ToString();
     }
+
+    public override EnumerableType Copy()
+    {
+        IntegerType newEnum = new IntegerType();
+        newEnum.isDefaultValue = isDefaultValue;
+        return newEnum;
+    }
 }

@@ -18,6 +18,7 @@ public class EnumerableType : ScriptableObject
     public string TypeName
     {
         get { return typeName; }
+        set { typeName = value; }
     }
 
     public virtual EnumerableType Copy()

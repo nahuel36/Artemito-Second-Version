@@ -51,6 +51,7 @@ public class StringType : VariableType
     public override EnumerableType Copy() {
         StringType newEnum = new StringType();
         newEnum.value = value;
+        newEnum.isDefaultValue = isDefaultValue;
         return newEnum;
     }
 }
