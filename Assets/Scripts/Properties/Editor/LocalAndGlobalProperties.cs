@@ -68,6 +68,7 @@ public class LocalAndGlobalProperties : Editor
                 VisualElement variableItemElement = variableItem.CloneTree();
                 variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
                 property.variableTypes.SetPropertyField(variable, variableItemElement,property);
+                property.variableTypes.SetDefaultValue(variable, variableItemElement);
                 element.Add(variableItemElement);
             }
         }

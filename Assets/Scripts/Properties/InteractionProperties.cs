@@ -74,6 +74,7 @@ public class InteractionProperties : Editor
                 VisualElement variableItemElement = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Properties/Editor/VariableField.uxml").CloneTree();
                 variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
                 property.variableTypes.SetPropertyField(variable, variableItemElement,property);
+                property.variableTypes.SetDefaultValue(variable,variableItemElement);
                 element.Add(variableItemElement);
             }
         }

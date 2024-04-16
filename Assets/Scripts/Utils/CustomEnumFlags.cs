@@ -101,6 +101,26 @@ public class CustomEnumFlags<T> where T : EnumerableType
         }
     }
 
+    public void SetDefaultValue(VariableType variable, VisualElement variableItemElement)
+    {
+        CheckContainsVariables();
+
+        if (typeof(T) == typeof(VariableType))
+        {
+            for (int i = 0; i < members.Count; i++)
+            {
+                if (members[i].GetType() == variable.GetType())
+                {
+                    variableItemElement.Q<Toggle>("Default").value = ((VariableType)members[i]).isDefaultValue;
+                    int index = i;
+                    variableItemElement.Q<Toggle>("Default").RegisterValueChangedCallback((newvalue) => {
+                        int indexi = index;
+                        ((VariableType)members[indexi]).isDefaultValue = newvalue.newValue; });
+                }
+            }
+        }
+    }
+
     public static void SetChoicesMasksByChoicesInOrder(List<int> choicesMasks, List<string> choices)
     {
         choicesMasks.Clear();

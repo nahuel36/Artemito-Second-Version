@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 [System.Serializable]
 public class VariableType : EnumerableType
 {
+    public bool isDefaultValue = false;
     public virtual void SetPropertyField(VisualElement element, GenericProperty property)
     {        
     }
