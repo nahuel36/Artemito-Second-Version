@@ -6,7 +6,7 @@ public class TestSayScript : MonoBehaviour, ISayScript
 {
     public string SayWithScript(List<InteractionProperty> arguments)
     {
-        return "hello " + arguments[0].variableValues[2] + arguments[0].variableValues.Length;
+        return "hello " + arguments[0].variableTypes.GetValue("string") + arguments[1].variableTypes.GetValue("string");
     }
 
     

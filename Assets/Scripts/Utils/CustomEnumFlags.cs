@@ -141,6 +141,17 @@ public class CustomEnumFlags<T> where T : EnumerableType
         }
         return newEnum;
     }
+
+    internal string GetValue(string v)
+    {
+        for (int i = 0; i < members.Count; i++)
+        {
+            if (members[i].TypeName == "string" && v == "string")
+                return ((StringType)members[i]).value;
+
+        }
+        return null;
+    }
 }
 
 [System.Flags]
