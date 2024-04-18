@@ -26,7 +26,7 @@ public class LocalAndGlobalProperties : Editor
         customListView.OnAdd = () => {
             int variablesLength = VariableTypesUtility.GetAllVariableTypes().Length;
             LocalProperty localprop = new LocalProperty();
-            localprop.variableTypes = new CustomEnumFlags<VariableType>(0);
+            localprop.variablesContainer = new CustomEnumFlags<VariableType>(0);
             localprop.variableValues = new string[variablesLength];
             localprop.useDefaultValues = new bool[variablesLength];
             localprop.objectValues = new UnityEngine.Object[variablesLength];
@@ -59,16 +59,16 @@ public class LocalAndGlobalProperties : Editor
 
 
 
-        VariableTypesUtility.ShowEnumFlagsField(element,property.variableTypes);
+        VariableTypesUtility.ShowEnumFlagsField(element,property.variablesContainer);
         
         foreach (var variable in VariableTypesUtility.GetAllVariableTypes())
         {
-            if (property.variableTypes.ContainsValue(variable))
+            if (property.variablesContainer.ContainsValue(variable))
             {
                 VisualElement variableItemElement = variableItem.CloneTree();
                 variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
-                property.variableTypes.SetPropertyField(variable, variableItemElement,property);
-                property.variableTypes.SetDefaultValue(variable, variableItemElement);
+                property.variablesContainer.SetPropertyField(variable, variableItemElement,property);
+                property.variablesContainer.SetDefaultValue(variable, variableItemElement);
                 element.Add(variableItemElement);
             }
         }

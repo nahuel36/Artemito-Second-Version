@@ -21,7 +21,7 @@ public class GenericProperty
 [System.Serializable]
 public class InteractionProperty : GenericProperty
 {
-    public CustomEnumFlags<VariableType> variableTypes;
+    public CustomEnumFlags<VariableType> variablesContainer;
     public InteractionObjectsType interactionType;
     public Verb verb;
     public int itemIndex;
@@ -38,7 +38,7 @@ public class InteractionProperty : GenericProperty
         useDefaultValues.CopyTo(prop.useDefaultValues,0);
         prop.objectValues = new UnityEngine.Object[objectValues.Length];
         objectValues.CopyTo(prop.objectValues, 0);
-        prop.variableTypes = variableTypes.Copy();
+        prop.variablesContainer = variablesContainer.Copy();
         prop.interactionType = interactionType;
         prop.verb = verb;
         prop.itemIndex = itemIndex;
@@ -52,7 +52,7 @@ public class InteractionProperty : GenericProperty
 [System.Serializable]
 public class LocalProperty : GenericProperty
 {
-    public CustomEnumFlags<VariableType> variableTypes;
+    public CustomEnumFlags<VariableType> variablesContainer;
 
     public LocalProperty Copy()
     {
@@ -65,7 +65,7 @@ public class LocalProperty : GenericProperty
         useDefaultValues.CopyTo(prop.useDefaultValues, 0);
         prop.objectValues = new UnityEngine.Object[objectValues.Length];
         objectValues.CopyTo(prop.objectValues, 0);
-        prop.variableTypes = variableTypes.Copy();
+        prop.variablesContainer = variablesContainer.Copy();
 
         return prop;
     }
