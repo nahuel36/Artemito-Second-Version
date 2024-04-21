@@ -18,6 +18,7 @@ public abstract class RoomInteractuable : PropertiesContainer
 
     public void Awake()
     {
+        base.Awake();
         if (instanceID != GetInstanceID())
         {
             if (instanceID == 0)

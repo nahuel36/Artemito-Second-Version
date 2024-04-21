@@ -6,18 +6,18 @@ using UnityEngine.UIElements;
 [System.Serializable]
 public class StringType : VariableType
 {
-    [SerializeField]public string value = "";
-
     public StringType()
     {
         typeName = "string";
         Index = 2;
+        isString = true;
     }
 
     private void OnEnable()
     {
         typeName = "string";
         Index = 2;
+        isString = true;
     }
 
     public override void SetPropertyField(VisualElement root, GenericProperty property)
@@ -40,17 +40,18 @@ public class StringType : VariableType
        // if (property.variableValues == null || Index >= property.variableValues.Length)
          //   return "";
 
-        return value;
+        return StringValue;
     }
 
     public void SetVariableValue(GenericProperty property,string value)
     {
-        this.value = value;
+        this.StringValue = value;
     }
 
     public override EnumerableType Copy() {
         StringType newEnum = new StringType();
-        newEnum.value = value;
+        newEnum.StringValue = StringValue;
+        newEnum.ObjectValue = ObjectValue;
         newEnum.isDefaultValue = isDefaultValue;
         return newEnum;
     }

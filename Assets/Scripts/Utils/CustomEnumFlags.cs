@@ -14,6 +14,8 @@ public class CustomEnumFlags<T> where T : EnumerableType
         SetIntValue(valueToSet);
     }
 
+
+
     public void AddValue(T valueToAdd)
     {
         value = value | (1 << valueToAdd.Index);
@@ -142,15 +144,49 @@ public class CustomEnumFlags<T> where T : EnumerableType
         return newEnum;
     }
 
-    internal string GetValue(string v)
+    internal void InitializeVariables()
     {
         for (int i = 0; i < members.Count; i++)
         {
-            if (members[i].TypeName == "string" && v == "string")
-                return ((StringType)members[i]).value;
-
+            ((VariableType)members[i]).changedIngame = false;
         }
-        return null;
+    }
+
+    internal string GetStringValue(string type)
+    {
+        for (int i = 0; i < members.Count; i++)
+        {
+            if (members[i].TypeName == type)
+            { 
+                if(((VariableType)members[i]).isString)
+                    return ((VariableType)members[i]).GetStringValue();
+            }
+        }
+        return default(string);
+    }
+
+    internal UnityEngine.Object GetObjectValue(string type)
+    {
+        for (int i = 0; i < members.Count; i++)
+        {
+            if (members[i].TypeName == type)
+            {
+                if (((VariableType)members[i]).isString)
+                    return ((VariableType)members[i]).GetObjectValue();
+            }
+        }
+        return default(UnityEngine.Object);
+    }
+
+    internal void SetValue<T2>(string type, T2 value)
+    {
+        for (int i = 0; i < members.Count; i++)
+        {
+            if (members[i].TypeName == type)
+            {
+                ((VariableType)members[i]).SetValue(value);
+            }
+        }
     }
 }
 

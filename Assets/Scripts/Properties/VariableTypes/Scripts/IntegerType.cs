@@ -9,12 +9,14 @@ public class IntegerType : VariableType
     {
         typeName = "integer";
         Index = 1;
+        isString = true;
     }
 
     private void OnEnable()
     {
         typeName = "integer";
         Index = 1;
+        isString = true;
     }
 
     public override void SetPropertyField(VisualElement root, GenericProperty property)

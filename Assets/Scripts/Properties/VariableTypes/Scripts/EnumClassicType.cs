@@ -15,12 +15,14 @@ public class EnumClassicType : VariableType
     {
         typeName = "enum classic";
         Index = 4;
+        isString = true;
     }
 
     private void OnEnable()
     {
         typeName = "enum classic";
         Index = 4;
+        isString = true;
     }
 
     public override void SetPropertyField(VisualElement root, GenericProperty property)

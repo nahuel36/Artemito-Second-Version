@@ -8,12 +8,14 @@ public class BooleanType: VariableType
     public BooleanType() {
         typeName = "boolean";
         Index = 0;
+        isString = true;
     }
 
     private void OnEnable()
     {
         typeName = "boolean";
         Index = 0;
+        isString = true;
     }
 
     public override void SetPropertyField(VisualElement root, GenericProperty property)

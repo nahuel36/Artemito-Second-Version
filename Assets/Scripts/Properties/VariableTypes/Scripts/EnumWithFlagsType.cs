@@ -14,12 +14,14 @@ public class EnumWithFlagsType : VariableType
     {
         typeName = "enum with flags";
         Index = 3;
+        isString = true;
     }
 
     private void OnEnable()
     {
         typeName = "enum with flags";
         Index = 3;
+        isString = true;
     }
 
     public override void SetPropertyField(VisualElement root, GenericProperty property)
