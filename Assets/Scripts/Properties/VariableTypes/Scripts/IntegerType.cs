@@ -36,18 +36,15 @@ public class IntegerType : VariableType
 
     public int GetVariableValue(GenericProperty property)
     {
-        if (property.variableValues == null || Index >= property.variableValues.Length)
-            return -1;
-
         int integerValue = -1; 
-        if(int.TryParse(property.variableValues[Index], out integerValue))
+        if(int.TryParse(stringValue, out integerValue))
             return integerValue;
         return -1;
     }
 
     public void SetVariableValue(GenericProperty property, int value)
     {
-        property.variableValues[Index] = value.ToString();
+        stringValue = value.ToString();
     }
 
     public override EnumerableType Copy()

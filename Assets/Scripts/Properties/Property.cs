@@ -12,9 +12,9 @@ public class GenericProperty
     //[SerializeField]public object[] variableValue = new object[1]; // no funciona porque es objeto
     //[SerializeField] public System.IComparable[] variableValue = new System.IComparable[1]; // no funciona la clase icomparable
     //public string stringvalue; //funciona
-    [SerializeField]public string[] variableValues; //funciona
-    [SerializeField]public bool[] useDefaultValues;
-    [SerializeField]public UnityEngine.Object[] objectValues; //funciona
+    //erializeField]public string[] variableValues; //funciona
+    //[SerializeField]public bool[] useDefaultValues;
+    //[SerializeField]public UnityEngine.Object[] objectValues; //funciona
 }
 
 
@@ -32,12 +32,6 @@ public class InteractionProperty : GenericProperty
         InteractionProperty prop = new InteractionProperty();
         prop.name = name;
         prop.expandedInInspector = expandedInInspector;
-        prop.variableValues = new string[variableValues.Length];
-        variableValues.CopyTo(prop.variableValues,0);
-        prop.useDefaultValues = new bool[useDefaultValues.Length];
-        useDefaultValues.CopyTo(prop.useDefaultValues,0);
-        prop.objectValues = new UnityEngine.Object[objectValues.Length];
-        objectValues.CopyTo(prop.objectValues, 0);
         prop.variablesContainer = variablesContainer.Copy();
         prop.interactionType = interactionType;
         prop.verb = verb;
@@ -59,12 +53,6 @@ public class LocalProperty : GenericProperty
         LocalProperty prop = new LocalProperty();
         prop.name = name;
         prop.expandedInInspector = expandedInInspector;
-        prop.variableValues = new string[variableValues.Length];
-        variableValues.CopyTo(prop.variableValues, 0);
-        prop.useDefaultValues = new bool[useDefaultValues.Length];
-        useDefaultValues.CopyTo(prop.useDefaultValues, 0);
-        prop.objectValues = new UnityEngine.Object[objectValues.Length];
-        objectValues.CopyTo(prop.objectValues, 0);
         prop.variablesContainer = variablesContainer.Copy();
 
         return prop;

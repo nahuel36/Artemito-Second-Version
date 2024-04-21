@@ -35,13 +35,10 @@ public class BooleanType: VariableType
 
     public bool GetVariableValue(GenericProperty property)
     {
-        if (property.variableValues == null || Index >= property.variableValues.Length)
+        if (string.IsNullOrEmpty(stringValue))
             return false;
 
-        if (string.IsNullOrEmpty(property.variableValues[Index]))
-            return false;
-
-        if (property.variableValues[Index].ToLower() == "true")
+        if (stringValue.ToLower() == "true")
             return true;
         else
             return false;
@@ -49,7 +46,7 @@ public class BooleanType: VariableType
 
     public void SetVariableValue(GenericProperty property, bool value)
     {
-        property.variableValues[Index] = value.ToString().ToLower();
+        stringValue = value.ToString().ToLower();
     }
 
     public override EnumerableType Copy()

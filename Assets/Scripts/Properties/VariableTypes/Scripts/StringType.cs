@@ -40,18 +40,18 @@ public class StringType : VariableType
        // if (property.variableValues == null || Index >= property.variableValues.Length)
          //   return "";
 
-        return StringValue;
+        return stringValue;
     }
 
     public void SetVariableValue(GenericProperty property,string value)
     {
-        this.StringValue = value;
+        this.stringValue = value;
     }
 
     public override EnumerableType Copy() {
         StringType newEnum = new StringType();
-        newEnum.StringValue = StringValue;
-        newEnum.ObjectValue = ObjectValue;
+        newEnum.stringValue = stringValue;
+        newEnum.objectValue = objectValue;
         newEnum.isDefaultValue = isDefaultValue;
         return newEnum;
     }

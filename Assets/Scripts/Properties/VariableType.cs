@@ -9,10 +9,10 @@ public class VariableType : EnumerableType
 {
     public bool isDefaultValue = false;
     [SerializeField] public bool changedIngame = false;
-    [SerializeField] public string StringValue;
-    [SerializeField] public string StringIngameValue;
-    [SerializeField] public UnityEngine.Object ObjectValue;
-    [SerializeField] public UnityEngine.Object ObjectIngameValue;
+    [SerializeField] public string stringValue;
+    [SerializeField] public string stringIngameValue;
+    [SerializeField] public UnityEngine.Object objectValue;
+    [SerializeField] public UnityEngine.Object objectIngameValue;
     [SerializeField] public bool isString;
     public virtual void SetPropertyField(VisualElement element, GenericProperty property)
     {        
@@ -23,25 +23,25 @@ public class VariableType : EnumerableType
     {
         this.changedIngame = true;
         if(isString)
-            this.StringIngameValue = value as string;
+            this.stringIngameValue = value as string;
         else
-            this.ObjectIngameValue = value as UnityEngine.Object;
+            this.objectIngameValue = value as UnityEngine.Object;
     }
 
     public virtual string GetStringValue()
     {
         if (changedIngame)
-            return StringIngameValue;
+            return stringIngameValue;
         else
-            return StringValue;
+            return stringValue;
     }
 
     public virtual UnityEngine.Object GetObjectValue()
     {
         if (changedIngame)
-            return ObjectIngameValue;
+            return objectIngameValue;
         else
-            return ObjectValue;
+            return objectValue;
     }
 
 }

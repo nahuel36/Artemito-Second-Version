@@ -124,12 +124,9 @@ public class EnumWithFlagsType : VariableType
 
     public System.Enum GetSelectedVariables(GenericProperty property, List<Settings.EnumVariablesType> variables)
     {
-        if (property.variableValues == null || Index >= property.variableValues.Length)
-            return (GenericEnum)0;
-
         int integerValue = 0;
 
-        XmlReader reader = XmlReader.Create(new StringReader(property.variableValues[Index]));
+        XmlReader reader = XmlReader.Create(new StringReader(stringValue));
         try
         {
             while (reader.Read())
@@ -155,12 +152,10 @@ public class EnumWithFlagsType : VariableType
 
     public System.Enum GetVariableValue(GenericProperty property, Settings.EnumVariablesType variable)
     {
-        if (property.variableValues == null || Index >= property.variableValues.Length)
-            return (GenericEnum)0;
 
         int integerValue = 0;
 
-        XmlReader reader = XmlReader.Create(new StringReader(property.variableValues[Index]));
+        XmlReader reader = XmlReader.Create(new StringReader(stringValue));
         try
         {
             while (reader.Read())
@@ -223,7 +218,7 @@ public class EnumWithFlagsType : VariableType
         writer.WriteEndDocument();
         writer.Flush();
 
-        property.variableValues[Index] = sw.ToString();
+        stringValue = sw.ToString();
     }
 
     public void SetValue(List<Settings.EnumVariablesType> variables, Settings.EnumVariablesType variable, System.Enum typeValue, GenericProperty property)
@@ -259,7 +254,7 @@ public class EnumWithFlagsType : VariableType
         writer.WriteEndDocument();
         writer.Flush();
 
-        property.variableValues[Index] = sw.ToString();
+        stringValue = sw.ToString();
     }
 
 
