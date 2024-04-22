@@ -123,6 +123,8 @@ public class EnumClassicType : VariableType
 
     public System.Enum GetSelectedVariables(GenericProperty property, List<Settings.EnumVariablesType> variables)
     {
+        if(string.IsNullOrEmpty(stringValue)) return (GenericEnum)0;
+
         int integerValue = 0;
 
         XmlReader reader = XmlReader.Create(new StringReader(stringValue));

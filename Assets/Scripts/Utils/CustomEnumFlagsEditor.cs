@@ -7,6 +7,7 @@ using UnityEditor;
 #endif
 using UnityEngine.UIElements;
 using System;
+using System.Net.WebSockets;
 
 [System.Serializable]
 public class CustomEnumFlagsEditor<T> where T:EnumerableType
@@ -16,20 +17,22 @@ public class CustomEnumFlagsEditor<T> where T:EnumerableType
     private EnumFlagsField field;
     public List<string> choices = new List<string>();
     public List<int> choicesMasks = new List<int>();
-    public VisualElement Show(CustomEnumFlags<T> value, VisualElement element, bool instantiate = false)
+    public VisualElement Show(CustomEnumFlags<T> value, VisualElement element, bool instantiate = false, Action OnChange = null)
     {
         if (instantiate)
         {
             field = new EnumFlagsField();
         }
         else
-        { 
+        {
             field = element.Q<EnumFlagsField>("VariableTypes");
         }
         field.value = (GenericEnum)value.GetIntValue();
         field.choices = choices;
         field.choicesMasks = choicesMasks;
         field.RegisterValueChangedCallback((evt) => callback(evt, value));
+        value.OnValueChange += () => {
+            OnChange?.Invoke(); };
         return field;
     }
 

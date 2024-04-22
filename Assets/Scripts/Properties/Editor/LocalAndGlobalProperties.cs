@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -42,6 +43,24 @@ public class LocalAndGlobalProperties : Editor
         return root;
     }
 
+    private void ShowAllVariables(VisualElement element, LocalProperty property)
+    {
+        VisualElement variablesContainer = element.Q<VisualElement>("VariablesContainer");
+        variablesContainer.Clear();
+
+        foreach (var variable in VariableTypesUtility.GetAllVariableTypes())
+        {
+            if (property.variablesContainer.ContainsValue(variable))
+            {
+                VisualElement variableItemElement = variableItem.CloneTree();
+                variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
+                property.variablesContainer.SetPropertyField(variable, variableItemElement, property);
+                property.variablesContainer.SetDefaultValue(variable, variableItemElement);
+                variablesContainer.Add(variableItemElement);
+            }
+        }
+    }
+
     private VisualElement ItemContent(int index, LocalProperty property)
     {
         VisualElement element = new VisualElement();
@@ -56,20 +75,10 @@ public class LocalAndGlobalProperties : Editor
 
 
 
-        VariableTypesUtility.ShowEnumFlagsField(element,property.variablesContainer);
-        
-        foreach (var variable in VariableTypesUtility.GetAllVariableTypes())
-        {
-            if (property.variablesContainer.ContainsValue(variable))
-            {
-                VisualElement variableItemElement = variableItem.CloneTree();
-                variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
-                property.variablesContainer.SetPropertyField(variable, variableItemElement,property);
-                property.variablesContainer.SetDefaultValue(variable, variableItemElement);
-                element.Add(variableItemElement);
-            }
-        }
-        
+        VariableTypesUtility.ShowEnumFlagsField(element,property.variablesContainer, ()=> { ShowAllVariables(element, property); });
+        ShowAllVariables(element, property);
+
+
 
         return element;
     }

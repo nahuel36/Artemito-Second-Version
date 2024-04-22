@@ -32,7 +32,7 @@ public class VariableTypesUtility
 #endif
     }
 
-    public static void ShowEnumFlagsField(VisualElement element, CustomEnumFlags<VariableType> variableTypes)
+    public static void ShowEnumFlagsField(VisualElement element, CustomEnumFlags<VariableType> variableTypes, Action onChangeAction = null)
     {
         CustomEnumFlagsEditor<VariableType> customFlagsEditor = new CustomEnumFlagsEditor<VariableType>();
 
@@ -41,6 +41,6 @@ public class VariableTypesUtility
         customFlagsEditor.SetChoices((i) => { return list[i].TypeName; }, list.Length);
         CustomEnumFlags<VariableType>.SetChoicesMasksByChoicesInOrder(customFlagsEditor.choicesMasks, customFlagsEditor.choices);
 
-        customFlagsEditor.Show(variableTypes,element);
+        customFlagsEditor.Show(variableTypes,element, false, onChangeAction);
     }
 }

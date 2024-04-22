@@ -1,6 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
-    <ui:Template name="VariableItem" src="project://database/Assets/Scripts/Editor/VariableField.uxml?fileID=9197481963319205126&amp;guid=0d5d2bf85e7872f49a15cba801cf8207&amp;type=3#VariableField" />
+    <ui:Template name="VariableItem" src="project://database/Assets/Scripts/Properties/Editor/VariableField.uxml?fileID=9197481963319205126&amp;guid=0d5d2bf85e7872f49a15cba801cf8207&amp;type=3#VariableField" />
     <ui:TextField picking-mode="Ignore" label="Name" value="filler text" name="PropertyName" />
     <uie:EnumFlagsField label="Variable Types" type="UnityEngine.UIElements.UsageHints, UnityEngine.UIElementsModule" value="DynamicTransform" name="VariableTypes" />
-    <ui:Instance template="VariableItem" name="VariableItem" />
+    <ui:VisualElement name="VariablesContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:Instance template="VariableItem" name="VariableItem" />
+    </ui:VisualElement>
 </ui:UXML>

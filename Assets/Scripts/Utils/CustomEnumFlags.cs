@@ -9,6 +9,8 @@ public class CustomEnumFlags<T> where T : EnumerableType
 {
     [SerializeField] [HideInInspector] private int value = 0;
     [SerializeField] [HideInInspector] List<EnumerableType> members;
+    public delegate void CustomEnumFlagsDelegate();
+    public event CustomEnumFlagsDelegate OnValueChange;
     public CustomEnumFlags(int valueToSet)
     {
         SetIntValue(valueToSet);
@@ -48,6 +50,8 @@ public class CustomEnumFlags<T> where T : EnumerableType
             members = new List<EnumerableType>();
 
         CheckContainsVariables();
+
+        OnValueChange?.Invoke();
     }
 
     private void CheckContainsVariables()
