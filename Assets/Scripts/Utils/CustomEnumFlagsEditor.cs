@@ -27,9 +27,9 @@ public class CustomEnumFlagsEditor<T> where T:EnumerableType
         {
             field = element.Q<EnumFlagsField>("VariableTypes");
         }
-        field.value = (GenericEnum)value.GetIntValue();
         field.choices = choices;
         field.choicesMasks = choicesMasks;
+        field.value = (GenericEnum)value.GetIntValue();
         field.RegisterValueChangedCallback((evt) => callback(evt, value));
         value.OnValueChange += () => {
             OnChange?.Invoke(); };
