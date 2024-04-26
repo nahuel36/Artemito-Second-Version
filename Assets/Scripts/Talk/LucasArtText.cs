@@ -18,19 +18,35 @@ public class LucasArtText : IMessageTalker
     public LucasArtText(UnityEngine.Transform transform, ITextTimeCalculator calculator)
     {
         //pasar offset y tamaño de letra por parametro
-        if(transform.Find("say canvas") != null)
-            Object.DestroyImmediate(transform.Find("say canvas").gameObject);
+        UnityEngine.GameObject canvasGO = transform.Find("say canvas")?.gameObject; 
+        if (canvasGO == null)
+            canvasGO = new UnityEngine.GameObject("say canvas");
 
-        UnityEngine.GameObject canvasGO = new UnityEngine.GameObject("say canvas");
-        Canvas canvas = canvasGO.AddComponent<Canvas>();
-        canvas.worldCamera = Camera.main;
-        canvas.renderMode = RenderMode.WorldSpace;
-        CanvasScaler scaler = canvas.gameObject.AddComponent<CanvasScaler>();
         canvasGO.transform.parent = transform;
 
-        UnityEngine.GameObject textGO = new UnityEngine.GameObject("text");
-        textGO.transform.parent = canvasGO.transform;
-        textmesh = textGO.transform.gameObject.AddComponent<TextMeshProUGUI>();
+        Canvas canvas = canvasGO.GetComponent<Canvas>();
+        if (canvas == null) 
+            canvas = canvasGO.AddComponent<Canvas>();
+
+        canvas.worldCamera = Camera.main;
+        canvas.renderMode = RenderMode.WorldSpace;
+
+        CanvasScaler scaler = canvas.gameObject.GetComponent<CanvasScaler>();
+        if(scaler == null)
+            scaler = canvas.gameObject.AddComponent<CanvasScaler>();
+        
+
+        UnityEngine.GameObject textGO = canvasGO.transform.Find("text")?.gameObject;
+        if (textGO == null)
+        { 
+            textGO = new UnityEngine.GameObject("text");
+            textGO.transform.parent = canvasGO.transform;
+        }
+
+        textmesh = textGO.transform.gameObject.GetComponent<TextMeshProUGUI>();
+        if(textmesh == null)
+            textmesh = textGO.transform.gameObject.AddComponent<TextMeshProUGUI>();
+
         textmesh.transform.position = transform.position + new Vector3(0,1.45f,0);
         textmesh.fontSize = 0.4f;
         textmesh.horizontalAlignment = HorizontalAlignmentOptions.Center;
