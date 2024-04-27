@@ -7,8 +7,8 @@ using System.Linq;
 using UnityEditor.UIElements;
 using System;
 
-[CustomEditor(typeof(PropertiesContainer))]
-public class PropertiesContainerCustomEditor : Editor
+[CustomEditor(typeof(PropertiesContainerInScene))]
+public class PropertiesContainerInSceneCustomEditor : Editor
 {
     [SerializeField] VisualTreeAsset generalTree;
 
@@ -20,7 +20,7 @@ public class PropertiesContainerCustomEditor : Editor
 
         LocalAndGlobalProperties properties = (LocalAndGlobalProperties)CreateInstance(typeof(LocalAndGlobalProperties));
 
-        properties.CreateGUI(((PropertiesContainer)target).local_properties, root.Q("LocalAndGlobalProperties"));
+        properties.CreateGUI(((PropertiesContainerInScene)target).local_properties, root.Q("LocalAndGlobalProperties"));
 
         root.RegisterCallback<ChangeEvent<string>>((evt) => SaveTargetChanges());
 

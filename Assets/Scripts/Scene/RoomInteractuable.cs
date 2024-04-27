@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public abstract class RoomInteractuable : PropertiesContainer
+public abstract class RoomInteractuable : PropertiesContainerInScene
 {
     // Start is called before the first frame update
     public List<Interaction> interactions;

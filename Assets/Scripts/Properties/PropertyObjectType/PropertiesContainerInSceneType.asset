@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac009b1972ad22a4bb0393a8b6fc3449, type: 3}
-  m_Name: PropertiesContainerType
+  m_Name: PropertiesContainerInSceneType
   m_EditorClassIdentifier: 

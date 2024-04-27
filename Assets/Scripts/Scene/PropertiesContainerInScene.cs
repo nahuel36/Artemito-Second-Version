@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PropertiesContainer : MonoBehaviour
+public class PropertiesContainerInScene : MonoBehaviour
 {
     public List<LocalProperty> local_properties;
 
