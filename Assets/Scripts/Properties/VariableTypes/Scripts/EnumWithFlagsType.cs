@@ -265,6 +265,9 @@ public class EnumWithFlagsType : VariableType
     {
         EnumWithFlagsType newEnum = new EnumWithFlagsType();
         newEnum.isDefaultValue = isDefaultValue;
+        newEnum.stringValue = stringValue;
+        newEnum.stringIngameValue = stringIngameValue;
+        newEnum.changedIngame = changedIngame;
         return newEnum;
     }
 

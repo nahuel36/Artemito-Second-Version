@@ -259,6 +259,9 @@ public class EnumClassicType : VariableType
     {
         EnumClassicType newEnum = new EnumClassicType();
         newEnum.isDefaultValue = isDefaultValue;
+        newEnum.stringValue = stringValue;
+        newEnum.stringIngameValue = stringIngameValue;
+        newEnum.changedIngame = changedIngame;
         return newEnum;
     }
 
