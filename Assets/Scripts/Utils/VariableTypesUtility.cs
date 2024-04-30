@@ -6,6 +6,7 @@ using UnityEditor;
 #endif
 using UnityEngine.UIElements;
 using System;
+using Unity.VisualScripting;
 
 public class VariableTypesUtility 
 {
@@ -32,15 +33,20 @@ public class VariableTypesUtility
 #endif
     }
 
-    public static void ShowEnumFlagsField(VisualElement element, CustomEnumFlags<VariableType> variableTypes, Action onChangeAction = null)
+    public static void ShowEnumFlagsField(VisualElement element, CustomEnumFlags<VariableType> variableTypes, Action onChangeAction = null, CustomEnumFlags<VariableType> flagsToCompare = null)
     {
         CustomEnumFlagsEditor<VariableType> customFlagsEditor = new CustomEnumFlagsEditor<VariableType>();
 
         VariableType[] list = GetAllVariableTypes();
 
-        customFlagsEditor.SetChoices((i) => { return list[i].TypeName; }, list.Length);
+        customFlagsEditor.SetChoices((i) => {
+            if (flagsToCompare == null || flagsToCompare.ContainsValue(list[i]))
+                return list[i].TypeName;
+            else
+                return null;
+        }, list.Length);
         CustomEnumFlags<VariableType>.SetChoicesMasksByChoicesInOrder(customFlagsEditor.choicesMasks, customFlagsEditor.choices);
 
-        customFlagsEditor.Show(variableTypes,element, false, onChangeAction);
+        customFlagsEditor.Show(variableTypes,element, onChangeAction);
     }
 }

@@ -17,23 +17,15 @@ public class CustomEnumFlagsEditor<T> where T:EnumerableType
     private EnumFlagsField field;
     public List<string> choices = new List<string>();
     public List<int> choicesMasks = new List<int>();
-    public VisualElement Show(CustomEnumFlags<T> value, VisualElement element, bool instantiate = false, Action OnChange = null)
+    public void Show(CustomEnumFlags<T> value, VisualElement element, Action OnChange = null)
     {
-        if (instantiate)
-        {
-            field = new EnumFlagsField();
-        }
-        else
-        {
-            field = element.Q<EnumFlagsField>("VariableTypes");
-        }
+        field = element.Q<EnumFlagsField>("VariableTypes");
         field.choices = choices;
         field.choicesMasks = choicesMasks;
         field.value = (GenericEnum)value.GetIntValue();
         field.RegisterValueChangedCallback((evt) => callback(evt, value));
         value.OnValueChange += () => {
             OnChange?.Invoke(); };
-        return field;
     }
 
     private void callback(ChangeEvent<Enum> evt, CustomEnumFlags<T> value)
@@ -47,7 +39,8 @@ public class CustomEnumFlagsEditor<T> where T:EnumerableType
 
         for (int i = 0; i < Lenght; i++)
         {
-            choices.Add(func(i));
+            if(!string.IsNullOrEmpty(func(i)))
+                choices.Add(func(i));
         }
     }
 

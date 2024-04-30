@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Xml.Linq;
+
+using UnityEditor;
+using Unity.Collections.LowLevel.Unsafe;
+
+
 #if UNITY_EDITOR
 using UnityEditor.UIElements;
 #endif
@@ -11,7 +17,7 @@ public class CharacterSetLocalVariable : InteractionAction
 {
     public LocalProperty propertyToSet;
     public Character characterToSet;
-
+    public CustomEnumFlags<VariableType> customEnumFlags;
     public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
     {
         propertyToSet.variablesContainer.SetValue("string", "pepe");
@@ -29,6 +35,15 @@ public class CharacterSetLocalVariable : InteractionAction
         characterField.RegisterValueChangedCallback((newvalue) => { characterToSet = (Character)newvalue.newValue; }) ;
         visualElement.Add(characterField);
 
+        if(characterToSet != null) 
+        { 
+            for (int i = 0; i < characterToSet.local_properties.Count; i++)
+            {
+                if (propertyToSet.name == characterToSet.local_properties[i].name)
+                    propertyToSet = characterToSet.local_properties[i];
+            }
+        }
+
         DropdownField propertyField = new DropdownField();
         propertyField.label = "Property";
         for (int i = 0; i < characterToSet.local_properties.Count; i++)
@@ -45,6 +60,19 @@ public class CharacterSetLocalVariable : InteractionAction
             }
         });
         visualElement.Add(propertyField);
+
+        if(customEnumFlags == null)
+            customEnumFlags = new CustomEnumFlags<VariableType>(0);
+
+        VisualElement newElement = new VisualElement();
+
+        newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/SetProperty.uxml").CloneTree());
+
+        if(propertyToSet != null)
+            VariableTypesUtility.ShowEnumFlagsField(newElement, customEnumFlags,null, propertyToSet.variablesContainer);
+
+
+        visualElement.Add(newElement);
 #endif
     }
 

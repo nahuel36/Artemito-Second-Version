@@ -840,6 +840,11 @@ MonoBehaviour:
       - {fileID: 371564439}
       - {fileID: 11401494}
       - {fileID: 1525839777}
+  - name: new 2
+    expandedInInspector: 0
+    variablesContainer:
+      value: 0
+      members: []
   interactions:
   - type: Character
     subtype: Say
@@ -1162,6 +1167,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1370781847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
+  isDefaultValue: 0
+  changedIngame: 0
+  stringValue: 
+  stringIngameValue: 
+  objectValue: {fileID: 0}
+  objectIngameValue: {fileID: 0}
+  isString: 1
 --- !u!1 &1384114877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,7 +1522,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  propertyToSet:
+    name: new property
+    expandedInInspector: 0
+    variablesContainer:
+      value: 15
+      members:
+      - {fileID: 951542990}
+      - {fileID: 371564439}
+      - {fileID: 11401494}
+      - {fileID: 1525839777}
   characterToSet: {fileID: 894919281}
+  customEnumFlags:
+    value: 4
+    members:
+    - {fileID: 1370781847}
 --- !u!114 &1525839777
 MonoBehaviour:
   m_ObjectHideFlags: 0
