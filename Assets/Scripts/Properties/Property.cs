@@ -71,7 +71,7 @@ public class GlobalPropertyConfig
 {
     public string name;
     //public int ID = -1;
-    public PropertyObjectType objectTypes;
-    public VariableType variableTypes;
+    public int objectTypes;
+    public int variableTypes;
 }
 
