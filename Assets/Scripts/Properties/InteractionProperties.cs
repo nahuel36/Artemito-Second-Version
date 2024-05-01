@@ -49,24 +49,7 @@ public class InteractionProperties : Editor
         return root;
     }
 
-    public void UpdateAllVariables(VisualElement element, InteractionProperty property)
-    {
-        VisualElement variablesContainer = element.Q<VisualElement>("VariablesContainer");
-        variablesContainer.Clear();
-
-        foreach (var variable in VariableTypesUtility.GetAllVariableTypes())
-        {
-            if (property.variablesContainer.ContainsValue(variable))
-            {
-                //VisualElement variableItemElement = variableItem.CloneTree();
-                VisualElement variableItemElement = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Properties/Editor/VariableField.uxml").CloneTree();
-                variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
-                property.variablesContainer.SetPropertyField(variable, variableItemElement, property);
-                property.variablesContainer.SetDefaultValue(variable, variableItemElement);
-                variablesContainer.Add(variableItemElement);
-            }
-        }
-    }
+    
 
     private VisualElement ItemContent(int index, InteractionProperty property)
     {
@@ -83,9 +66,9 @@ public class InteractionProperties : Editor
 
 
         VariableTypesUtility.ShowEnumFlagsField(element, property.variablesContainer, () => {
-            UpdateAllVariables(element, property); });
+            VariableTypesUtility.UpdateAllVariables(element, property); });
 
-        UpdateAllVariables(element, property);
+        VariableTypesUtility.UpdateAllVariables(element, property);
 
         return element;
     }
