@@ -119,9 +119,18 @@ public class CustomEnumFlags<T> where T : EnumerableType
                 {
                     variableItemElement.Q<Toggle>("Default").value = ((VariableType)members[i]).isDefaultValue;
                     int index = i;
+                    if (((VariableType)members[i]).isDefaultValue)
+                        variableItemElement.Q<VisualElement>("Value").visible = false;
+                    else
+                        variableItemElement.Q<VisualElement>("Value").visible = true;
                     variableItemElement.Q<Toggle>("Default").RegisterValueChangedCallback((newvalue) => {
                         int indexi = index;
-                        ((VariableType)members[indexi]).isDefaultValue = newvalue.newValue; });
+                        ((VariableType)members[indexi]).isDefaultValue = newvalue.newValue;
+                        if (((VariableType)members[indexi]).isDefaultValue)
+                            variableItemElement.Q<VisualElement>("Value").visible = false;
+                        else
+                            variableItemElement.Q<VisualElement>("Value").visible = true;
+                    });
                 }
             }
         }

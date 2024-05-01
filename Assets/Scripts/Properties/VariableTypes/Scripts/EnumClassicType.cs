@@ -34,8 +34,8 @@ public class EnumClassicType : VariableType
         Toggle defaultToggle = root.Q<Toggle>("Default");
         if (defaultToggle != null)
         { 
-            root.Q<Toggle>("Default").visible = false;
-            root.Q<Toggle>("Default").StretchToParentSize();
+            //root.Q<Toggle>("Default").visible = false;
+            //root.Q<Toggle>("Default").StretchToParentSize();
         }
 
         Settings settings = Resources.Load<Settings>("Settings/Settings");

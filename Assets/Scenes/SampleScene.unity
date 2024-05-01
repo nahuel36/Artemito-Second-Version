@@ -489,7 +489,7 @@ MonoBehaviour:
       expandedInInspector: 0
       executedTimes: 0
   priority: 0
-  instanceID: 25254
+  instanceID: 25250
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -918,7 +918,7 @@ MonoBehaviour:
       expandedInInspector: 1
       executedTimes: 0
   priority: 0
-  instanceID: 25280
+  instanceID: 25276
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:
@@ -963,7 +963,8 @@ MonoBehaviour:
   index: 3
   isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
+  stringValue: <?xml version="1.0" encoding="utf-16"?><door-closed selected="true"
+    value0="s"><door-closed-2 selected="false" /></door-closed>
   stringIngameValue: 
   objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
@@ -1182,7 +1183,7 @@ MonoBehaviour:
   index: 2
   isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
+  stringValue: popo
   stringIngameValue: 
   objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}

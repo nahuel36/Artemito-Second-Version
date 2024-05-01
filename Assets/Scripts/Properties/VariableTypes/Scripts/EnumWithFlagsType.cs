@@ -33,8 +33,8 @@ public class EnumWithFlagsType : VariableType
         Toggle toggleDefault = root.Q<Toggle>("Default");
         if (toggleDefault != null)
         { 
-            root.Q<Toggle>("Default").visible = false;
-            root.Q<Toggle>("Default").StretchToParentSize();
+            //root.Q<Toggle>("Default").visible = false;
+            //root.Q<Toggle>("Default").StretchToParentSize();
         }
 
         Settings settings = Resources.Load<Settings>("Settings/Settings");
