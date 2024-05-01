@@ -15,13 +15,13 @@ public class GenericProperty
     //erializeField]public string[] variableValues; //funciona
     //[SerializeField]public bool[] useDefaultValues;
     //[SerializeField]public UnityEngine.Object[] objectValues; //funciona
+    public CustomEnumFlags<VariableType> variablesContainer;
 }
 
 
 [System.Serializable]
 public class InteractionProperty : GenericProperty
 {
-    public CustomEnumFlags<VariableType> variablesContainer;
     public InteractionObjectsType interactionType;
     public Verb verb;
     public int itemIndex;
@@ -46,7 +46,7 @@ public class InteractionProperty : GenericProperty
 [System.Serializable]
 public class LocalProperty : GenericProperty
 {
-    public CustomEnumFlags<VariableType> variablesContainer;
+    
 
     public LocalProperty Copy()
     {
