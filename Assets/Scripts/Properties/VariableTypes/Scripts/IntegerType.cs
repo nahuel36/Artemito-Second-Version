@@ -19,22 +19,22 @@ public class IntegerType : VariableType
         isString = true;
     }
 
-    public override void SetPropertyField(VisualElement root, GenericProperty property)
+    public override void SetPropertyField(VisualElement root)
     {
-        base.SetPropertyField(root, property);
+        base.SetPropertyField(root);
 
         VisualElement element = root.Q("Field");
 
         IntegerField field = new IntegerField();
 
-        field.value = GetVariableValue(property);
+        field.value = GetVariableValue();
 
-        field.RegisterValueChangedCallback((evt) => SetVariableValue(property, evt.newValue));
+        field.RegisterValueChangedCallback((evt) => SetVariableValue(evt.newValue));
 
         element.Add(field);
     }
 
-    public int GetVariableValue(GenericProperty property)
+    public int GetVariableValue()
     {
         int integerValue = -1; 
         if(int.TryParse(stringValue, out integerValue))
@@ -42,7 +42,7 @@ public class IntegerType : VariableType
         return -1;
     }
 
-    public void SetVariableValue(GenericProperty property, int value)
+    public void SetVariableValue(int value)
     {
         stringValue = value.ToString();
     }

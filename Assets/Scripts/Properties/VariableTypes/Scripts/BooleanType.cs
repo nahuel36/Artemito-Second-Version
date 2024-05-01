@@ -18,22 +18,22 @@ public class BooleanType: VariableType
         isString = true;
     }
 
-    public override void SetPropertyField(VisualElement root, GenericProperty property)
+    public override void SetPropertyField(VisualElement root)
     {
-        base.SetPropertyField(root, property);
+        base.SetPropertyField(root);
 
         VisualElement element = root.Q("Field");
 
         Toggle field = new Toggle();
                
-        field.value = GetVariableValue(property);
+        field.value = GetVariableValue();
 
-        field.RegisterValueChangedCallback((evt) => SetVariableValue(property, evt.newValue));
+        field.RegisterValueChangedCallback((evt) => SetVariableValue(evt.newValue));
 
         element.Add(field);
     }
 
-    public bool GetVariableValue(GenericProperty property)
+    public bool GetVariableValue()
     {
         if (string.IsNullOrEmpty(stringValue))
             return false;
@@ -44,7 +44,7 @@ public class BooleanType: VariableType
             return false;
     }
 
-    public void SetVariableValue(GenericProperty property, bool value)
+    public void SetVariableValue(bool value)
     {
         stringValue = value.ToString().ToLower();
     }

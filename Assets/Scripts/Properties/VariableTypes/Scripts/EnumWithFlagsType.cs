@@ -24,9 +24,9 @@ public class EnumWithFlagsType : VariableType
         isString = true;
     }
 
-    public override void SetPropertyField(VisualElement root, GenericProperty property)
+    public override void SetPropertyField(VisualElement root)
     {
-        base.SetPropertyField(root, property);
+        base.SetPropertyField(root);
 #if UNITY_EDITOR
         VisualElement element = root.Q("Field");
 
@@ -58,7 +58,7 @@ public class EnumWithFlagsType : VariableType
 
         EnumFlagsField variablesField = new EnumFlagsField((GenericEnum)0);
 
-        variablesField.value = GetSelectedVariables(property, settings.EnumWithFlagVariables);
+        variablesField.value = GetSelectedVariables(settings.EnumWithFlagVariables);
 
         List<string> choices = new List<string>();
 
@@ -78,7 +78,7 @@ public class EnumWithFlagsType : VariableType
 
         variablesField.choicesMasks = choicesMasks;
 
-        variablesField.RegisterValueChangedCallback((evt) => SetVariableValue(settings.EnumWithFlagVariables, evt.newValue, property));
+        variablesField.RegisterValueChangedCallback((evt) => SetVariableValue(settings.EnumWithFlagVariables, evt.newValue));
 
         element.Add(variablesField);
 
@@ -107,13 +107,13 @@ public class EnumWithFlagsType : VariableType
 
                 int index = i;
 
-                field.value = (GenericEnum)GetVariableValue(property, settings.EnumWithFlagVariables[index]);
+                field.value = (GenericEnum)GetVariableValue(settings.EnumWithFlagVariables[index]);
 
                 field.choices = settings.EnumWithFlagVariables[i].values;
 
                 CustomEnumFlags<EnumerableType>.SetChoicesMasksByChoicesInOrder(field.choicesMasks, field.choices);
 
-                field.RegisterValueChangedCallback((evt) => SetValue(settings.EnumWithFlagVariables, settings.EnumWithFlagVariables[index], evt.newValue, property));
+                field.RegisterValueChangedCallback((evt) => SetValue(settings.EnumWithFlagVariables, settings.EnumWithFlagVariables[index], evt.newValue));
 
                 element.Add(field); 
             }        
@@ -122,7 +122,7 @@ public class EnumWithFlagsType : VariableType
 #endif
     }
 
-    public System.Enum GetSelectedVariables(GenericProperty property, List<Settings.EnumVariablesType> variables)
+    public System.Enum GetSelectedVariables(List<Settings.EnumVariablesType> variables)
     {
         if (string.IsNullOrEmpty(stringValue)) return (GenericEnum)0;
 
@@ -153,7 +153,7 @@ public class EnumWithFlagsType : VariableType
         return (GenericEnum)integerValue;
     }
 
-    public System.Enum GetVariableValue(GenericProperty property, Settings.EnumVariablesType variable)
+    public System.Enum GetVariableValue(Settings.EnumVariablesType variable)
     {
 
         int integerValue = 0;
@@ -193,7 +193,7 @@ public class EnumWithFlagsType : VariableType
     }
 
 
-    public void SetVariableValue(List<Settings.EnumVariablesType> variables, System.Enum typeValue, GenericProperty property) {
+    public void SetVariableValue(List<Settings.EnumVariablesType> variables, System.Enum typeValue) {
         StringWriter sw = new StringWriter();
         XmlWriter writer = XmlWriter.Create(sw);
 
@@ -207,7 +207,7 @@ public class EnumWithFlagsType : VariableType
 
                 for (int j = 0; j < variables[i].values.Count; j++)
                 { 
-                    if ((Convert.ToInt32((GenericEnum)GetVariableValue(property, variables[i])) & (1 << j)) != 0)
+                    if ((Convert.ToInt32((GenericEnum)GetVariableValue(variables[i])) & (1 << j)) != 0)
                     {
                         writer.WriteAttributeString("value" + j.ToString(), variables[i].values[j]);
                     }
@@ -224,7 +224,7 @@ public class EnumWithFlagsType : VariableType
         stringValue = sw.ToString();
     }
 
-    public void SetValue(List<Settings.EnumVariablesType> variables, Settings.EnumVariablesType variable, System.Enum typeValue, GenericProperty property)
+    public void SetValue(List<Settings.EnumVariablesType> variables, Settings.EnumVariablesType variable, System.Enum typeValue)
     {
         StringWriter sw = new StringWriter();
         XmlWriter writer = XmlWriter.Create(sw);
@@ -233,7 +233,7 @@ public class EnumWithFlagsType : VariableType
         for (int i = 0; i < variables.Count; i++)
         {
             writer.WriteStartElement(XmlUtility.ConvertStringToUseInXml(variables[i].name));
-            if ((Convert.ToInt32(GetSelectedVariables(property, variables)) & (1 << i)) != 0)
+            if ((Convert.ToInt32(GetSelectedVariables(variables)) & (1 << i)) != 0)
             {
                 writer.WriteAttributeString("selected", "true");
 
@@ -243,7 +243,7 @@ public class EnumWithFlagsType : VariableType
                     {
                         writer.WriteAttributeString("value" + j.ToString(), variables[i].values[j]);
                     }
-                    if (variable != variables[i] && (Convert.ToInt32((GenericEnum)GetVariableValue(property, variables[i])) & (1 << j)) != 0)
+                    if (variable != variables[i] && (Convert.ToInt32((GenericEnum)GetVariableValue(variables[i])) & (1 << j)) != 0)
                     {
                         writer.WriteAttributeString("value" + j.ToString(), variables[i].values[j]);
                     }

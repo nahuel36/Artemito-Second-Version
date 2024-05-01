@@ -50,21 +50,21 @@ public class VariableTypesUtility
         customFlagsEditor.Show(variableTypes,element, onChangeAction);
     }
 
-    public static void UpdateAllVariables(VisualElement element, GenericProperty property)
+    public static void UpdateAllVariables(VisualElement element, CustomEnumFlags<VariableType> variablesContainer)
     {
-        VisualElement variablesContainer = element.Q<VisualElement>("VariablesContainer");
-        variablesContainer.Clear();
+        VisualElement variablesContainerVE = element.Q<VisualElement>("VariablesContainer");
+        variablesContainerVE.Clear();
 
         foreach (var variable in VariableTypesUtility.GetAllVariableTypes())
         {
-            if (property.variablesContainer.ContainsValue(variable))
+            if (variablesContainer.ContainsValue(variable))
             {
                 //VisualElement variableItemElement = variableItem.CloneTree();
                 VisualElement variableItemElement = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Properties/Editor/VariableField.uxml").CloneTree();
                 variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
-                property.variablesContainer.SetPropertyField(variable, variableItemElement, property);
-                property.variablesContainer.SetDefaultValue(variable, variableItemElement);
-                variablesContainer.Add(variableItemElement);
+                variablesContainer.SetPropertyField(variable, variableItemElement);
+                variablesContainer.SetDefaultValue(variable, variableItemElement);
+                variablesContainerVE.Add(variableItemElement);
             }
         }
     }

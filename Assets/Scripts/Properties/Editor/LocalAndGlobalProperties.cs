@@ -57,8 +57,8 @@ public class LocalAndGlobalProperties : Editor
 
 
 
-        VariableTypesUtility.ShowEnumFlagsField(element,property.variablesContainer, ()=> { VariableTypesUtility.UpdateAllVariables(element, property); });
-        VariableTypesUtility.UpdateAllVariables(element, property);
+        VariableTypesUtility.ShowEnumFlagsField(element,property.variablesContainer, ()=> { VariableTypesUtility.UpdateAllVariables(element, property.variablesContainer); });
+        VariableTypesUtility.UpdateAllVariables(element, property.variablesContainer);
 
 
 

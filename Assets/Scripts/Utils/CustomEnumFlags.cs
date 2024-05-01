@@ -93,7 +93,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
         }
     }
 
-    public void SetPropertyField(VariableType variable, VisualElement variableItemElement, GenericProperty property)
+    public void SetPropertyField(VariableType variable, VisualElement variableItemElement)
     {
         CheckContainsVariables();
 
@@ -102,7 +102,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
             for (int i = 0; i < members.Count; i++)
             {
                 if (members[i].GetType() == variable.GetType())
-                    ((VariableType)members[i]).SetPropertyField(variableItemElement, property);
+                    ((VariableType)members[i]).SetPropertyField(variableItemElement);
             }
         }
     }

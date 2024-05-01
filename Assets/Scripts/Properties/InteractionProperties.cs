@@ -66,9 +66,9 @@ public class InteractionProperties : Editor
 
 
         VariableTypesUtility.ShowEnumFlagsField(element, property.variablesContainer, () => {
-            VariableTypesUtility.UpdateAllVariables(element, property); });
+            VariableTypesUtility.UpdateAllVariables(element, property.variablesContainer); });
 
-        VariableTypesUtility.UpdateAllVariables(element, property);
+        VariableTypesUtility.UpdateAllVariables(element, property.variablesContainer);
 
         return element;
     }

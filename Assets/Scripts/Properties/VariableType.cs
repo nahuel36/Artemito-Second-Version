@@ -14,7 +14,7 @@ public class VariableType : EnumerableType
     [SerializeField] public UnityEngine.Object objectValue;
     [SerializeField] public UnityEngine.Object objectIngameValue;
     [SerializeField] public bool isString;
-    public virtual void SetPropertyField(VisualElement element, GenericProperty property)
+    public virtual void SetPropertyField(VisualElement element)
     {        
 
     }

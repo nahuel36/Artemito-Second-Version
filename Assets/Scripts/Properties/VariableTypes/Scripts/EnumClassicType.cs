@@ -25,9 +25,9 @@ public class EnumClassicType : VariableType
         isString = true;
     }
 
-    public override void SetPropertyField(VisualElement root, GenericProperty property)
+    public override void SetPropertyField(VisualElement root)
     {
-        base.SetPropertyField(root, property);
+        base.SetPropertyField(root);
 #if UNITY_EDITOR
         VisualElement element = root.Q("Field");
 
@@ -59,7 +59,7 @@ public class EnumClassicType : VariableType
 
         EnumFlagsField variablesField = new EnumFlagsField((GenericEnum)0);
 
-        variablesField.value = GetSelectedVariables(property, settings.EnumClassicVariables);
+        variablesField.value = GetSelectedVariables(settings.EnumClassicVariables);
 
         List<string> choices = new List<string>();
 
@@ -79,7 +79,7 @@ public class EnumClassicType : VariableType
 
         variablesField.choicesMasks = choicesMasks;
 
-        variablesField.RegisterValueChangedCallback((evt) => SetVariableValue(settings.EnumClassicVariables, evt.newValue, property));
+        variablesField.RegisterValueChangedCallback((evt) => SetVariableValue(settings.EnumClassicVariables, evt.newValue));
 
         element.Add(variablesField);
 
@@ -108,11 +108,11 @@ public class EnumClassicType : VariableType
 
                 int index = i;
 
-                field.value = GetVariableValue(property, settings.EnumClassicVariables[index]);
+                field.value = GetVariableValue(settings.EnumClassicVariables[index]);
 
                 field.choices = settings.EnumClassicVariables[i].values;
 
-                field.RegisterValueChangedCallback((evt) => SetValue(settings.EnumClassicVariables, settings.EnumClassicVariables[index], evt.newValue, property));
+                field.RegisterValueChangedCallback((evt) => SetValue(settings.EnumClassicVariables, settings.EnumClassicVariables[index], evt.newValue));
 
                 element.Add(field); 
             }        
@@ -121,7 +121,7 @@ public class EnumClassicType : VariableType
 #endif
     }
 
-    public System.Enum GetSelectedVariables(GenericProperty property, List<Settings.EnumVariablesType> variables)
+    public System.Enum GetSelectedVariables(List<Settings.EnumVariablesType> variables)
     {
         if(string.IsNullOrEmpty(stringValue)) return (GenericEnum)0;
 
@@ -151,7 +151,7 @@ public class EnumClassicType : VariableType
         return (GenericEnum)integerValue;
     }
 
-    public string GetVariableValue(GenericProperty property, Settings.EnumVariablesType variable)
+    public string GetVariableValue(Settings.EnumVariablesType variable)
     {
         string value = "";
 
@@ -187,7 +187,7 @@ public class EnumClassicType : VariableType
     }
 
 
-    public void SetVariableValue(List<Settings.EnumVariablesType> variables, System.Enum typeValue, GenericProperty property) {
+    public void SetVariableValue(List<Settings.EnumVariablesType> variables, System.Enum typeValue) {
         StringWriter sw = new StringWriter();
         XmlWriter writer = XmlWriter.Create(sw);
 
@@ -201,7 +201,7 @@ public class EnumClassicType : VariableType
 
                 for (int j = 0; j < variables[i].values.Count; j++)
                 { 
-                    if (GetVariableValue(property, variables[i]) == variables[i].values[j])
+                    if (GetVariableValue(variables[i]) == variables[i].values[j])
                     {
                         writer.WriteAttributeString("value", variables[i].values[j]);
                     }
@@ -218,7 +218,7 @@ public class EnumClassicType : VariableType
         stringValue = sw.ToString();
     }
 
-    public void SetValue(List<Settings.EnumVariablesType> variables, Settings.EnumVariablesType variable, string typeValue, GenericProperty property)
+    public void SetValue(List<Settings.EnumVariablesType> variables, Settings.EnumVariablesType variable, string typeValue)
     {
         StringWriter sw = new StringWriter();
         XmlWriter writer = XmlWriter.Create(sw);
@@ -227,7 +227,7 @@ public class EnumClassicType : VariableType
         for (int i = 0; i < variables.Count; i++)
         {
             writer.WriteStartElement(XmlUtility.ConvertStringToUseInXml(variables[i].name));
-            if ((Convert.ToInt32(GetSelectedVariables(property, variables)) & (1 << i)) != 0)
+            if ((Convert.ToInt32(GetSelectedVariables(variables)) & (1 << i)) != 0)
             {
                 writer.WriteAttributeString("selected", "true");
 
@@ -237,7 +237,7 @@ public class EnumClassicType : VariableType
                     {
                         writer.WriteAttributeString("value", variables[i].values[j]);
                     }
-                    if (variable != variables[i] && GetVariableValue(property, variables[i]) == variables[i].values[j])
+                    if (variable != variables[i] && GetVariableValue(variables[i]) == variables[i].values[j])
                     {
                         writer.WriteAttributeString("value", variables[i].values[j]);
                     }

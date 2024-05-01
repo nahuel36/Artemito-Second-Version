@@ -20,22 +20,22 @@ public class StringType : VariableType
         isString = true;
     }
 
-    public override void SetPropertyField(VisualElement root, GenericProperty property)
+    public override void SetPropertyField(VisualElement root)
     {
-        base.SetPropertyField(root, property);
+        base.SetPropertyField(root);
 
         VisualElement element = root.Q("Field");
 
         TextField field = new TextField();
        
-        field.value = GetVariableValue(property);
+        field.value = GetVariableValue();
 
-        field.RegisterValueChangedCallback((evt) => SetVariableValue(property,evt.newValue));
+        field.RegisterValueChangedCallback((evt) => SetVariableValue(evt.newValue));
         
         element.Add(field);
     }
 
-    public string GetVariableValue(GenericProperty property)
+    public string GetVariableValue()
     {
        // if (property.variableValues == null || Index >= property.variableValues.Length)
          //   return "";
@@ -43,7 +43,7 @@ public class StringType : VariableType
         return stringValue;
     }
 
-    public void SetVariableValue(GenericProperty property,string value)
+    public void SetVariableValue(string value)
     {
         this.stringValue = value;
     }
