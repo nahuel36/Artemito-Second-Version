@@ -20,7 +20,7 @@ public class CharacterSetLocalVariable : InteractionAction
     public CustomEnumFlags<VariableType> customEnumFlags;
     public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
     {
-        propertyToSet.variablesContainer.SetValue("string", "pepe");
+        propertyToSet.variablesContainer.SetValue("string", customEnumFlags.GetStringValue("string"));
     }
 
     public override void SetEditorField(VisualElement visualElement, Interaction interaction)
