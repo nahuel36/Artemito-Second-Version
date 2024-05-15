@@ -18,6 +18,7 @@ public class CharacterSetLocalVariable : InteractionAction
     public LocalProperty propertyToSet;
     public Character characterToSet;
     public CustomEnumFlags<VariableType> customEnumFlags;
+    public CustomEnumFlags<PropertyObjectType> customFlagsPO;
     public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
     {
         propertyToSet.variablesContainer.SetValue("string", customEnumFlags.GetStringValue("string"));
@@ -69,8 +70,8 @@ public class CharacterSetLocalVariable : InteractionAction
         newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/SetProperty.uxml").CloneTree());
 
         if(propertyToSet != null)
-            VariableTypesUtility.ShowEnumFlagsField(newElement, customEnumFlags,()=>VariableTypesUtility.UpdateAllVariables(newElement,customEnumFlags), propertyToSet.variablesContainer);
-        VariableTypesUtility.UpdateAllVariables(newElement, customEnumFlags);
+            EnumerablesUtility.ShowEnumFlagsField(newElement, customEnumFlags,()=>EnumerablesUtility.UpdateAllVariablesFields(newElement,customEnumFlags), propertyToSet.variablesContainer);
+        EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags);
 
         visualElement.Add(newElement);
 #endif

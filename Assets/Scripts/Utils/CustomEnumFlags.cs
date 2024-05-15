@@ -58,7 +58,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
     {
         if (typeof(T) == typeof(VariableType))
         {
-            var variables = VariableTypesUtility.GetAllVariableTypes();
+            var variables = EnumerablesUtility.GetAllVariableTypes();
             for (int i = 0; i < variables.Length; i++)
             {
                 if (ContainsValue(variables[i].Index))
@@ -161,7 +161,8 @@ public class CustomEnumFlags<T> where T : EnumerableType
     {
         for (int i = 0; i < members.Count; i++)
         {
-            ((VariableType)members[i]).changedIngame = false;
+            if (typeof(T) == typeof(VariableType))
+                ((VariableType)members[i]).changedIngame = false;
         }
     }
 

@@ -35,7 +35,7 @@ public class InteractionProperties : Editor
         customListView.ItemHeight = (i) => { return new StyleLength(StyleKeyword.Auto); };
 
         customListView.OnAdd = () => {
-            int variablesLength = VariableTypesUtility.GetAllVariableTypes().Length;
+            int variablesLength = EnumerablesUtility.GetAllVariableTypes().Length;
             InteractionProperty localprop = new InteractionProperty();
             localprop.variablesContainer = new CustomEnumFlags<VariableType>(0);
             return localprop;        
@@ -65,10 +65,10 @@ public class InteractionProperties : Editor
         element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { property.name = name.newValue; });
 
 
-        VariableTypesUtility.ShowEnumFlagsField(element, property.variablesContainer, () => {
-            VariableTypesUtility.UpdateAllVariables(element, property.variablesContainer); });
+        EnumerablesUtility.ShowEnumFlagsField(element, property.variablesContainer, () => {
+            EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer); });
 
-        VariableTypesUtility.UpdateAllVariables(element, property.variablesContainer);
+        EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer);
 
         return element;
     }
