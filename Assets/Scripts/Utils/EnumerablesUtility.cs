@@ -54,7 +54,7 @@ public class EnumerablesUtility
 #endif
     }
 
-    public static void ShowEnumFlagsField<EnumT>(VisualElement element, CustomEnumFlags<EnumT> variableTypes, Action onChangeAction = null, CustomEnumFlags<EnumT> flagsToCompare = null) where EnumT: EnumerableType
+    public static void ShowEnumFlagsField<EnumT>(string enumFlagsContainerName, VisualElement element, CustomEnumFlags<EnumT> variableTypes, Action onChangeAction = null, CustomEnumFlags<EnumT> flagsToCompare = null) where EnumT: EnumerableType
     {
         CustomEnumFlagsEditor<EnumT> customFlagsEditor = new CustomEnumFlagsEditor<EnumT>();
 
@@ -92,7 +92,7 @@ public class EnumerablesUtility
         }, list2.Length);
         CustomEnumFlags<EnumT>.SetChoicesMasksByChoicesInOrder(customFlagsEditor.choicesMasks, customFlagsEditor.choices);
 
-        customFlagsEditor.Show(variableTypes, element, onChangeAction);
+        customFlagsEditor.Show(enumFlagsContainerName,variableTypes, element, onChangeAction);
     }
 
     public static void UpdateAllVariablesFields(VisualElement element, CustomEnumFlags<VariableType> variablesContainer)

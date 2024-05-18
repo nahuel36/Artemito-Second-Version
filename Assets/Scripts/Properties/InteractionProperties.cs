@@ -65,7 +65,7 @@ public class InteractionProperties : Editor
         element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { property.name = name.newValue; });
 
 
-        EnumerablesUtility.ShowEnumFlagsField(element, property.variablesContainer, () => {
+        EnumerablesUtility.ShowEnumFlagsField("VariableTypes",element, property.variablesContainer, () => {
             EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer); });
 
         EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer);

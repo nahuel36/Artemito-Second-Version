@@ -17,9 +17,9 @@ public class CustomEnumFlagsEditor<T> where T:EnumerableType
     private EnumFlagsField field;
     public List<string> choices = new List<string>();
     public List<int> choicesMasks = new List<int>();
-    public void Show(CustomEnumFlags<T> value, VisualElement element, Action OnChange = null)
+    public void Show(string enumFieldName, CustomEnumFlags<T> value, VisualElement element, Action OnChange = null)
     {
-        field = element.Q<EnumFlagsField>("VariableTypes");
+        field = element.Q<EnumFlagsField>(enumFieldName);
         field.choices = choices;
         field.choicesMasks = choicesMasks;
         field.value = (GenericEnum)value.GetIntValue();

@@ -70,7 +70,7 @@ public class CharacterSetLocalVariable : InteractionAction
         newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/SetProperty.uxml").CloneTree());
 
         if(propertyToSet != null)
-            EnumerablesUtility.ShowEnumFlagsField(newElement, customEnumFlags,()=>EnumerablesUtility.UpdateAllVariablesFields(newElement,customEnumFlags), propertyToSet.variablesContainer);
+            EnumerablesUtility.ShowEnumFlagsField("VariableTypes",newElement, customEnumFlags,()=>EnumerablesUtility.UpdateAllVariablesFields(newElement,customEnumFlags), propertyToSet.variablesContainer);
         EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags);
 
         visualElement.Add(newElement);
