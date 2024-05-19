@@ -26,9 +26,9 @@ public class Interaction
 
     public Character GetCharacter()
     {
-        if (action.GetType() == typeof(CharacterInteraction))
-        { 
-            return ((CharacterInteraction)action).character;
+        if (action is CharacterInteraction interaction)
+        {
+            return interaction.character;
         }
 
         return null;

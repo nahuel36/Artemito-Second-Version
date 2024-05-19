@@ -41,12 +41,14 @@ public class SayWithScript : CharacterInteraction
 
     public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
     {
+        scriptObject = (GameObject)scriptField.value;
+
         base.ExecuteAction(properties, interaction);
 
-        CommandTalk normalTalk = new CommandTalk();
         string saystring = ((GameObject)scriptObject).GetComponent<ISayScript>().SayWithScript(interaction);
+
+        CommandTalk normalTalk = new CommandTalk();
         normalTalk.Queue(character.messageTalker, saystring, false, false);
-        Debug.Log(saystring);
     }
 
     public override InteractionAction Copy()
