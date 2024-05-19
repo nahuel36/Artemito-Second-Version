@@ -73,6 +73,21 @@ public class CharacterSetLocalVariable : InteractionAction
             EnumerablesUtility.ShowEnumFlagsField("VariableTypes",newElement, customEnumFlags,()=>EnumerablesUtility.UpdateAllVariablesFields(newElement,customEnumFlags), propertyToSet.variablesContainer);
         EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags);
 
+
+        DropdownField dd = newElement.Q<DropdownField>("ObjectTypes");
+        PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
+        /*
+        SerializedObject obj = new SerializedObject(this);
+        dd.bindingPath = "selected";
+        dd.Bind(obj);
+        */
+        dd.choices = new List<string>();
+        for (int i = 0; i < props.Length; i++)
+        {
+            dd.choices.Add(props[i].TypeName);
+        }
+
+
         visualElement.Add(newElement);
 #endif
     }
