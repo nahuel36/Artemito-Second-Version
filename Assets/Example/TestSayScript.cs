@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TestSayScript : MonoBehaviour, ISayScript
 {
-    public string SayWithScript(List<InteractionProperty> arguments)
+    public string SayWithScript(Interaction interaction)
     {
         //return "hello " + arguments[0].variablesContainer.GetValue("string") + arguments[1].variablesContainer.GetValue("string");
-        return "hello " + GetComponent<Character>().local_properties[0].variablesContainer.GetStringValue("string");
+        return "hello " + interaction.GetCharacter().local_properties[0].variablesContainer.GetStringValue("string") + interaction.interaction_properties[0].variablesContainer.GetStringValue("string");
     }
 
     

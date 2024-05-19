@@ -60,14 +60,12 @@ public class InteractionsCustomEditor : Editor
                 visualElem.Q("InteractionSelect").Clear();
                 visualElem.Q("InteractionSelect").Add(interactionSelect.ShowAndConfigure(interactions[index]));
                 interactionSelect.OnChangeTypeEvent += (inter) => {
-                    UpdateSelector(inter, index, visualElem.Q("ObjectTypeSelect"));
                     UpdateAction(inter, index, visualElem.Q("Action"));
                 };
                 interactionSelect.OnChangeSubTypeEvent += (inter) =>
                 {
                     UpdateAction(inter, index, visualElem.Q("Action"));
                 };
-                UpdateSelector(interactions[index], index, visualElem.Q("ObjectTypeSelect"));
                 UpdateAction(interactions[index], index, visualElem.Q("Action"));
                 return visualElem;
             });
@@ -126,22 +124,6 @@ public class InteractionsCustomEditor : Editor
         if (interaction.action != null)
         {
             interaction.action.SetEditorField(visualElem, interaction);
-        }
-    }
-
-    private void UpdateSelector(Interaction interaction, int index, VisualElement element)
-    {
-        if (interaction != interactions[index]) return;
-
-        element.Clear();
-
-        if (!string.IsNullOrEmpty(interaction.type))
-        {
-            if (interaction.type == "Inventory")
-            {
-                SelectInventory sel = new SelectInventory();
-                element.Add(sel.VisualElements(interaction));
-            }
         }
     }
 

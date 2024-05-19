@@ -13,7 +13,6 @@ public class FlagsTestEditor : Editor
     FlagsTest myTarget;
     public VisualTreeAsset visual;
     public VisualTreeAsset visual2;
-    Dictionary<Interaction, SubtypeSelector> subTypeSelectors;
     [System.Flags]
     public enum EntityPartial
     {
@@ -106,7 +105,6 @@ public class FlagsTestEditor : Editor
 
         return element;
         */
-        subTypeSelectors = new Dictionary<Interaction, SubtypeSelector>();
 
         myTarget = (FlagsTest)target;
 

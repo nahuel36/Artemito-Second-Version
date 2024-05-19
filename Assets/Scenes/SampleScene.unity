@@ -409,19 +409,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &589427726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c644c252c0e5af4ca77d3fe6c8f2eea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptObject: {fileID: 0}
 --- !u!1 &591124405
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,9 +453,8 @@ MonoBehaviour:
       attempsIteration: 0
       attemps:
       - interactions:
-        - type: Character
-          subtype: SayWithScript
-          subtypeObject: 
+        - type: Inventory
+          subtype: Add
           interaction_properties:
           - name: a
             expandedInInspector: 0
@@ -483,13 +469,13 @@ MonoBehaviour:
               index: 0
             itemIndex: 0
             interactuableID: 0
-          action: {fileID: 589427726}
+          action: {fileID: 1951275224}
           expandedInInspector: 1
         expandedInInspector: 1
       expandedInInspector: 0
       executedTimes: 0
   priority: 0
-  instanceID: 26330
+  instanceID: 29758
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -848,13 +834,11 @@ MonoBehaviour:
   interactions:
   - type: Character
     subtype: Say
-    subtypeObject: 
     interaction_properties: []
     action: {fileID: 0}
     expandedInInspector: 0
   - type: Inventory
     subtype: 
-    subtypeObject: inventory-new item 50
     interaction_properties: []
     action: {fileID: 0}
     expandedInInspector: 0
@@ -872,15 +856,15 @@ MonoBehaviour:
       - interactions:
         - type: Character
           subtype: SayWithScript
-          subtypeObject: 
           interaction_properties:
           - name: new property
             expandedInInspector: 0
             variablesContainer:
-              value: 10
+              value: 14
               members:
               - {fileID: 1819076332}
               - {fileID: 1716254467}
+              - {fileID: 1384345545}
             interactionType: 0
             verb:
               name: 
@@ -910,7 +894,6 @@ MonoBehaviour:
           expandedInInspector: 1
         - type: Character
           subtype: SetLocalVariable
-          subtypeObject: 
           interaction_properties: []
           action: {fileID: 1467090750}
           expandedInInspector: 1
@@ -918,7 +901,7 @@ MonoBehaviour:
       expandedInInspector: 1
       executedTimes: 0
   priority: 0
-  instanceID: 26356
+  instanceID: 29786
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:
@@ -981,6 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c644c252c0e5af4ca77d3fe6c8f2eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 894919281}
   scriptObject: {fileID: 894919279}
 --- !u!1 &1043966020
 GameObject:
@@ -1143,13 +1127,11 @@ MonoBehaviour:
   interactions:
   - type: 
     subtype: 
-    subtypeObject: 
     interaction_properties: []
     action: {fileID: 0}
     expandedInInspector: 0
   - type: 
     subtype: 
-    subtypeObject: 
     interaction_properties: []
     action: {fileID: 0}
     expandedInInspector: 0
@@ -1272,6 +1254,26 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1384345545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
+  isDefaultValue: 0
+  changedIngame: 0
+  stringValue: polo
+  stringIngameValue: 
+  objectValue: {fileID: 0}
+  objectIngameValue: {fileID: 0}
+  isString: 1
 --- !u!1 &1395300603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,6 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 894919281}
   propertyToSet:
     name: new property
     expandedInInspector: 0
@@ -1533,7 +1536,6 @@ MonoBehaviour:
       - {fileID: 371564439}
       - {fileID: 11401494}
       - {fileID: 1525839777}
-  characterToSet: {fileID: 894919281}
   customEnumFlags:
     value: 4
     members:
@@ -1855,6 +1857,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893150240}
   m_CullTransparentMesh: 1
+--- !u!114 &1951275224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0154b0cee0fcf049b3098ff15892a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryItem:
+    itemName: new item 50
+    normalImage: {fileID: 21300000, guid: 2c65942e32e9ad24c9fd889064d92ae3, type: 3}
+    selectedImage: {fileID: 0}
+    startWithThisItem: 0
+    cuantity: 0
+    expandedInInspector: 0
+    specialIndex: 50
+    priority: 0
+    local_properties: []
 --- !u!1 &1999380010
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Rendering;
+
 #if UNITY_EDITOR
 using UnityEditor.UIElements;
 #endif
 
 [System.Serializable]
-public class SayWithScript : InteractionAction
+public class SayWithScript : CharacterInteraction
 {
     [HideInInspector][SerializeField]GameObject scriptObject;
     ObjectField scriptField;
@@ -41,10 +43,10 @@ public class SayWithScript : InteractionAction
     {
         base.ExecuteAction(properties, interaction);
 
-        Character character = interaction.SubtypeToCharacter(interaction.subtypeObject);
-
         CommandTalk normalTalk = new CommandTalk();
-        normalTalk.Queue(character.messageTalker, ((GameObject)scriptObject).GetComponent<ISayScript>().SayWithScript(properties), false, false);
+        string saystring = ((GameObject)scriptObject).GetComponent<ISayScript>().SayWithScript(interaction);
+        normalTalk.Queue(character.messageTalker, saystring, false, false);
+        Debug.Log(saystring);
     }
 
     public override InteractionAction Copy()

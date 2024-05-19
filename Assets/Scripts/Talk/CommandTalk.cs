@@ -16,7 +16,7 @@ public class CommandTalk : ICommand
         if(!isBackground)
         { 
             talker.Talk(message, skippable);
-
+            Debug.Log(message);
             while(talker.Talking)
                 await Task.Yield();
         }

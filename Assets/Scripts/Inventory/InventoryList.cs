@@ -8,7 +8,7 @@ public class InventoryList : ScriptableObject
     public InventoryItem[] items = new InventoryItem[0];
     public int specialIndex = 0;
 
-    public List<string> GetListOfItems()
+    public List<string> GetListOfItemsNames()
     {
         List<string> list = new List<string>();
 

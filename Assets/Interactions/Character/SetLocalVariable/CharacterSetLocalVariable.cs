@@ -13,10 +13,9 @@ using UnityEditor.UIElements;
 #endif
 
 [System.Serializable]
-public class CharacterSetLocalVariable : InteractionAction
+public class CharacterSetLocalVariable : CharacterInteraction
 {
     public LocalProperty propertyToSet;
-    public Character characterToSet;
     public CustomEnumFlags<VariableType> customEnumFlags;
     public CustomEnumFlags<PropertyObjectType> customFlagsPO;
     public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
@@ -29,62 +28,61 @@ public class CharacterSetLocalVariable : InteractionAction
 #if UNITY_EDITOR
         base.SetEditorField(visualElement, interaction);
 
-        ObjectField characterField = new ObjectField();
-        characterField.label = "Character";
-        characterField.objectType = typeof(Character);
-        characterField.bindingPath = "characterToSet";
-        characterField.Bind(new SerializedObject(this));
-        visualElement.Add(characterField);
 
-        if(characterToSet != null) 
+
+        if(character != null) 
         { 
-            for (int i = 0; i < characterToSet.local_properties.Count; i++)
+            for (int i = 0; i < character.local_properties.Count; i++)
             {
-                if (propertyToSet.name == characterToSet.local_properties[i].name)
-                    propertyToSet = characterToSet.local_properties[i];
+                if (propertyToSet.name == character.local_properties[i].name)
+                    propertyToSet = character.local_properties[i];
             }
-        }
 
-        DropdownField propertyField = new DropdownField();
-        propertyField.label = "Property";
-        for (int i = 0; i < characterToSet.local_properties.Count; i++)
-        {
-            propertyField.choices.Add(characterToSet.local_properties[i].name);
-        }
-        propertyField.value = propertyToSet?.name;
-        propertyField.RegisterValueChangedCallback((newvalue) =>
-        {
-            for (int i = 0; i < characterToSet.local_properties.Count; i++)
+            DropdownField propertyField = new DropdownField();
+            propertyField.label = "Property";
+            for (int i = 0; i < character.local_properties.Count; i++)
             {
-                if (newvalue.newValue == characterToSet.local_properties[i].name)
-                    propertyToSet = characterToSet.local_properties[i];
+                propertyField.choices.Add(character.local_properties[i].name);
             }
-        });
-        visualElement.Add(propertyField);
+            propertyField.value = propertyToSet?.name;
+            propertyField.RegisterValueChangedCallback((newvalue) =>
+            {
+                for (int i = 0; i < character.local_properties.Count; i++)
+                {
+                    if (newvalue.newValue == character.local_properties[i].name)
+                        propertyToSet = character.local_properties[i];
+                }
+            });
+            visualElement.Add(propertyField);
 
-        if(customEnumFlags == null)
-            customEnumFlags = new CustomEnumFlags<VariableType>(0);
+            if (customEnumFlags == null)
+                customEnumFlags = new CustomEnumFlags<VariableType>(0);
 
-        VisualElement newElement = new VisualElement();
+            VisualElement newElement = new VisualElement();
 
-        newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/SetProperty.uxml").CloneTree());
+            newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/SetProperty.uxml").CloneTree());
 
-        if(propertyToSet != null)
-            EnumerablesUtility.ShowEnumFlagsField("VariableTypes",newElement, customEnumFlags,()=>EnumerablesUtility.UpdateAllVariablesFields(newElement,customEnumFlags), propertyToSet.variablesContainer);
-        EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags);
+            if (propertyToSet != null)
+                EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), propertyToSet.variablesContainer);
+            EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags);
 
 
-        DropdownField dd = newElement.Q<DropdownField>("ObjectTypes");
-        PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
+            DropdownField dd = newElement.Q<DropdownField>("ObjectTypes");
+            PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
 
-        dd.choices = new List<string>();
-        for (int i = 0; i < props.Length; i++)
-        {
-            dd.choices.Add(props[i].TypeName);
+            dd.choices = new List<string>();
+            for (int i = 0; i < props.Length; i++)
+            {
+                dd.choices.Add(props[i].TypeName);
+            }
+
+
+            visualElement.Add(newElement);
         }
 
 
-        visualElement.Add(newElement);
+
+        
 #endif
     }
 
