@@ -18,6 +18,12 @@ public class CharacterSetLocalVariable : CharacterInteraction
     public LocalProperty propertyToSet;
     public CustomEnumFlags<VariableType> customEnumFlags;
     public CustomEnumFlags<PropertyObjectType> customFlagsPO;
+    public enum modes { 
+        setValue,
+        copyOtherProperty,
+        setDefaultMode
+    }
+    public modes setMode;
     public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
     {
         propertyToSet.variablesContainer.SetValue("string", customEnumFlags.GetStringValue("string"));
@@ -64,17 +70,15 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
             if (propertyToSet != null)
                 EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), propertyToSet.variablesContainer);
-            EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags);
 
+            DropdownField setModeField = newElement.Q<DropdownField>("SetMode");
+            setModeField.bindingPath = "setMode";
+            setModeField.Bind(new SerializedObject(this));
 
-            DropdownField dd = newElement.Q<DropdownField>("ObjectTypes");
-            PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
+            DropdownField objectTypeField = newElement.Q<DropdownField>("ObjectTypes");
 
-            dd.choices = new List<string>();
-            for (int i = 0; i < props.Length; i++)
-            {
-                dd.choices.Add(props[i].TypeName);
-            }
+            setModeField.RegisterValueChangedCallback(value => updateMode(newElement, objectTypeField));
+            updateMode(newElement, objectTypeField);
 
 
             visualElement.Add(newElement);
@@ -86,5 +90,39 @@ public class CharacterSetLocalVariable : CharacterInteraction
 #endif
     }
 
+    void updateMode(VisualElement newElement, DropdownField objectTypeField)
+    {
 
+        if (setMode == modes.copyOtherProperty)
+        {
+            objectTypeField.visible = true;
+
+            StyleEnum<Position> pos = new StyleEnum<Position>();
+            pos.value = Position.Relative;
+            objectTypeField.style.position = pos;
+
+            PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
+
+            objectTypeField.choices = new List<string>();
+            for (int i = 0; i < props.Length; i++)
+            {
+                objectTypeField.choices.Add(props[i].TypeName);
+            }
+        }
+        else
+        {
+            
+            objectTypeField.visible = false;
+            objectTypeField.StretchToParentSize();
+        }
+
+        if (setMode == modes.setValue)
+        {
+            EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags);
+        }
+        else 
+        {
+            newElement.Q<VisualElement>("VariablesContainer").Clear();
+        }
+    }
 }

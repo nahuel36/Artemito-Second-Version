@@ -475,7 +475,7 @@ MonoBehaviour:
       expandedInInspector: 0
       executedTimes: 0
   priority: 0
-  instanceID: 29758
+  instanceID: 25250
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -901,7 +901,7 @@ MonoBehaviour:
       expandedInInspector: 1
       executedTimes: 0
   priority: 0
-  instanceID: 29786
+  instanceID: 25276
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:
@@ -1543,6 +1543,7 @@ MonoBehaviour:
   customFlagsPO:
     value: 0
     members: []
+  setMode: 1
 --- !u!114 &1525839777
 MonoBehaviour:
   m_ObjectHideFlags: 0
