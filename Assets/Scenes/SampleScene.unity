@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c644c252c0e5af4ca77d3fe6c8f2eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptObject: {fileID: 894919279}
+  scriptObject: {fileID: 0}
 --- !u!1 &591124405
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,12 +484,12 @@ MonoBehaviour:
             itemIndex: 0
             interactuableID: 0
           action: {fileID: 589427726}
-          expandedInInspector: 0
-        expandedInInspector: 0
+          expandedInInspector: 1
+        expandedInInspector: 1
       expandedInInspector: 0
       executedTimes: 0
   priority: 0
-  instanceID: 25250
+  instanceID: 26330
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -918,7 +918,7 @@ MonoBehaviour:
       expandedInInspector: 1
       executedTimes: 0
   priority: 0
-  instanceID: 25276
+  instanceID: 26356
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:
@@ -1538,6 +1538,9 @@ MonoBehaviour:
     value: 4
     members:
     - {fileID: 1370781847}
+  customFlagsPO:
+    value: 0
+    members: []
 --- !u!114 &1525839777
 MonoBehaviour:
   m_ObjectHideFlags: 0

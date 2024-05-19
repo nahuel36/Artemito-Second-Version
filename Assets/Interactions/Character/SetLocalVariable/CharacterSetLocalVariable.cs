@@ -32,8 +32,8 @@ public class CharacterSetLocalVariable : InteractionAction
         ObjectField characterField = new ObjectField();
         characterField.label = "Character";
         characterField.objectType = typeof(Character);
-        characterField.value = characterToSet;
-        characterField.RegisterValueChangedCallback((newvalue) => { characterToSet = (Character)newvalue.newValue; }) ;
+        characterField.bindingPath = "characterToSet";
+        characterField.Bind(new SerializedObject(this));
         visualElement.Add(characterField);
 
         if(characterToSet != null) 
@@ -76,11 +76,7 @@ public class CharacterSetLocalVariable : InteractionAction
 
         DropdownField dd = newElement.Q<DropdownField>("ObjectTypes");
         PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
-        /*
-        SerializedObject obj = new SerializedObject(this);
-        dd.bindingPath = "selected";
-        dd.Bind(obj);
-        */
+
         dd.choices = new List<string>();
         for (int i = 0; i < props.Length; i++)
         {
