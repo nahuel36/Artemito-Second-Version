@@ -17,7 +17,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
 {
     public LocalProperty propertyToSet;
     public CustomEnumFlags<VariableType> customEnumFlags;
-    public CustomEnumFlags<PropertyObjectType> customFlagsPO;
+    public PropertyObjectType objectContainer;
     public enum modes { 
         setValue,
         copyOtherProperty,
@@ -36,27 +36,27 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
 
 
-        if(character != null) 
+        if(characterType != null && characterType.character != null) 
         { 
-            for (int i = 0; i < character.local_properties.Count; i++)
+            for (int i = 0; i < characterType.character.local_properties.Count; i++)
             {
-                if (propertyToSet.name == character.local_properties[i].name)
-                    propertyToSet = character.local_properties[i];
+                if (propertyToSet.name == characterType.character.local_properties[i].name)
+                    propertyToSet = characterType.character.local_properties[i];
             }
 
             DropdownField propertyField = new DropdownField();
             propertyField.label = "Property";
-            for (int i = 0; i < character.local_properties.Count; i++)
+            for (int i = 0; i < characterType.character.local_properties.Count; i++)
             {
-                propertyField.choices.Add(character.local_properties[i].name);
+                propertyField.choices.Add(characterType.character.local_properties[i].name);
             }
             propertyField.value = propertyToSet?.name;
             propertyField.RegisterValueChangedCallback((newvalue) =>
             {
-                for (int i = 0; i < character.local_properties.Count; i++)
+                for (int i = 0; i < characterType.character.local_properties.Count; i++)
                 {
-                    if (newvalue.newValue == character.local_properties[i].name)
-                        propertyToSet = character.local_properties[i];
+                    if (newvalue.newValue == characterType.character.local_properties[i].name)
+                        propertyToSet = characterType.character.local_properties[i];
                 }
             });
             visualElement.Add(propertyField);
@@ -92,6 +92,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
     void updateMode(VisualElement newElement, DropdownField objectTypeField)
     {
+        newElement.Q<VisualElement>("VariablesContainer").Clear();
 
         if (setMode == modes.copyOtherProperty)
         {
@@ -101,13 +102,11 @@ public class CharacterSetLocalVariable : CharacterInteraction
             pos.value = Position.Relative;
             objectTypeField.style.position = pos;
 
-            PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
+            EnumerablesUtility.ShowDropdownField(objectTypeField, ref objectContainer);
 
-            objectTypeField.choices = new List<string>();
-            for (int i = 0; i < props.Length; i++)
-            {
-                objectTypeField.choices.Add(props[i].TypeName);
-            }
+            if(objectContainer != null)
+                objectContainer.SetPropertyEditorField(newElement.Q<VisualElement>("VariablesContainer"));
+
         }
         else
         {
@@ -120,9 +119,6 @@ public class CharacterSetLocalVariable : CharacterInteraction
         {
             EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags);
         }
-        else 
-        {
-            newElement.Q<VisualElement>("VariablesContainer").Clear();
-        }
+        
     }
 }

@@ -52,6 +52,9 @@ public class BooleanType: VariableType
     public override EnumerableType Copy()
     {
         BooleanType newEnum = new BooleanType();
+        newEnum.typeName = typeName;
+        newEnum.Index = Index;
+        newEnum.stringValue = stringValue;
         newEnum.isDefaultValue = isDefaultValue;
         return newEnum;
     }

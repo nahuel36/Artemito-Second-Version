@@ -28,7 +28,7 @@ public class Interaction
     {
         if (action is CharacterInteraction interaction)
         {
-            return interaction.character;
+            return interaction.characterType.character;
         }
 
         return null;

@@ -95,6 +95,32 @@ public class EnumerablesUtility
         customFlagsEditor.Show(enumFlagsContainerName,variableTypes, element, onChangeAction);
     }
 
+    public static void ShowDropdownField(DropdownField objectTypeField, ref PropertyObjectType propertyObjectContainer)
+    {
+        PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
+
+        objectTypeField.choices = new List<string>();
+        for (int i = 0; i < props.Length; i++)
+        {
+            objectTypeField.choices.Add(props[i].TypeName);
+        }
+        objectTypeField.RegisterValueChangedCallback((value) => 
+        { 
+            
+        });
+
+
+        if (objectTypeField.value != null)
+        {
+            for (int i = 0; i < props.Length; i++)
+            {
+                if (objectTypeField.value == props[i].TypeName &&
+                    (propertyObjectContainer == null || propertyObjectContainer.TypeName != props[i].TypeName))
+                    propertyObjectContainer = (PropertyObjectType)props[i].Copy();
+            }
+        }
+    }
+
     public static void UpdateAllVariablesFields(VisualElement element, CustomEnumFlags<VariableType> variablesContainer)
     {
         VisualElement variablesContainerVE = element.Q<VisualElement>("VariablesContainer");

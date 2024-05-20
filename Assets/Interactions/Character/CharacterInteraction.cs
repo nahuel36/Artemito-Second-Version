@@ -9,17 +9,15 @@ using UnityEditor;
 [System.Serializable]
 public class CharacterInteraction : InteractionAction
 {
-    public Character character;
+    public CharacterType characterType;
 
     public override void SetEditorField(VisualElement visualElement, Interaction interaction)
     {
 #if UNITY_EDITOR
-        ObjectField characterField = new ObjectField();
-        characterField.label = "Character";
-        characterField.objectType = typeof(Character);
-        characterField.bindingPath = "character";
-        characterField.Bind(new SerializedObject(this));
-        visualElement.Add(characterField);
+        if(characterType == null)
+            characterType = new CharacterType();
+
+        characterType.SetPropertyEditorField(visualElement);
 #endif
     }
 }

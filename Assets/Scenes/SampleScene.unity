@@ -213,6 +213,20 @@ MonoBehaviour:
   objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
   isString: 1
+--- !u!114 &499389768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  character: {fileID: 894919281}
 --- !u!114 &499666329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,7 +489,7 @@ MonoBehaviour:
       expandedInInspector: 0
       executedTimes: 0
   priority: 0
-  instanceID: 25250
+  instanceID: 25252
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -740,6 +754,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756070791}
   m_CullTransparentMesh: 1
+--- !u!114 &866874001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  character: {fileID: 894919281}
 --- !u!1 &894919279
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,7 +929,7 @@ MonoBehaviour:
       expandedInInspector: 1
       executedTimes: 0
   priority: 0
-  instanceID: 25276
+  instanceID: 25280
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:
@@ -964,7 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c644c252c0e5af4ca77d3fe6c8f2eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 894919281}
+  characterType: {fileID: 1994278275}
   scriptObject: {fileID: 894919279}
 --- !u!1 &1043966020
 GameObject:
@@ -1525,7 +1553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 894919281}
+  characterType: {fileID: 499389768}
   propertyToSet:
     name: new property
     expandedInInspector: 0
@@ -1540,9 +1568,7 @@ MonoBehaviour:
     value: 4
     members:
     - {fileID: 1370781847}
-  customFlagsPO:
-    value: 0
-    members: []
+  objectContainer: {fileID: 866874001}
   setMode: 1
 --- !u!114 &1525839777
 MonoBehaviour:
@@ -1880,6 +1906,20 @@ MonoBehaviour:
     specialIndex: 50
     priority: 0
     local_properties: []
+--- !u!114 &1994278275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  character: {fileID: 894919281}
 --- !u!1 &1999380010
 GameObject:
   m_ObjectHideFlags: 0
