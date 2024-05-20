@@ -16,4 +16,12 @@ public class PropertiesContainerInSceneType : PropertyObjectType
         Index = 4;
         TypeName = "Properties Container In Scene";
     }
+
+    public override EnumerableType Copy()
+    {
+        PropertiesContainerInSceneType propContType = new PropertiesContainerInSceneType();
+        propContType.Index = Index;
+        propContType.TypeName = TypeName;
+        return propContType;
+    }
 }

@@ -16,4 +16,12 @@ public class RoomObjectType : PropertyObjectType
         Index = 1;
         TypeName = "Room Object";
     }
+
+    public override EnumerableType Copy()
+    {
+        RoomObjectType roomObjType = new RoomObjectType();
+        roomObjType.Index = Index;
+        roomObjType.TypeName = TypeName;
+        return roomObjType;
+    }
 }

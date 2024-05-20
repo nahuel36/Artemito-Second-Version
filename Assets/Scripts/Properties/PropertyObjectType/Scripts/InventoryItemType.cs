@@ -16,4 +16,12 @@ public class InventoryItemType : PropertyObjectType
         Index = 2;
         TypeName = "Inventory'";
     }
+
+    public override EnumerableType Copy()
+    {
+        InventoryItemType inventoryItemType = new InventoryItemType();
+        inventoryItemType.Index = Index;
+        inventoryItemType.TypeName = TypeName;
+        return inventoryItemType;
+    }
 }

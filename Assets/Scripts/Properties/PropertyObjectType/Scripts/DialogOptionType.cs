@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class DialogOptionType : PropertyObjectType
 {
@@ -15,5 +16,13 @@ public class DialogOptionType : PropertyObjectType
     {
         Index = 3;
         TypeName = "Dialog Option";
+    }
+
+    public override EnumerableType Copy()
+    {
+        DialogOptionType dialogOptionType = new DialogOptionType();
+        dialogOptionType.Index = Index;
+        dialogOptionType.TypeName = TypeName;
+        return dialogOptionType;
     }
 }
