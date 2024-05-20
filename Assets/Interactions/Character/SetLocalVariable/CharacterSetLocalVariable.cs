@@ -18,6 +18,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
     public LocalProperty propertyToSet;
     public CustomEnumFlags<VariableType> customEnumFlags;
     public PropertyObjectType objectContainer;
+    public string copyPropertyType;
     public enum modes { 
         setValue,
         copyOtherProperty,
@@ -102,10 +103,27 @@ public class CharacterSetLocalVariable : CharacterInteraction
             pos.value = Position.Relative;
             objectTypeField.style.position = pos;
 
-            EnumerablesUtility.ShowDropdownField(objectTypeField, ref objectContainer);
+            EnumerablesUtility.ShowDropdownField(copyPropertyType, objectTypeField, ()=>
+            {
 
-            if(objectContainer != null)
+                PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
+
+                copyPropertyType = objectTypeField.value;
+
+                for (int i = 0; i < props.Length; i++)
+                {
+                    if (copyPropertyType == props[i].TypeName &&
+                        (objectContainer == null || objectContainer.TypeName != props[i].TypeName))
+                    {
+                        objectContainer = (PropertyObjectType)props[i].Copy();
+                    }
+                }
+                newElement.Q<VisualElement>("VariablesContainer").Clear();
+
                 objectContainer.SetPropertyEditorField(newElement.Q<VisualElement>("VariablesContainer"));
+
+            });
+                
 
         }
         else

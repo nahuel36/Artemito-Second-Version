@@ -95,31 +95,27 @@ public class EnumerablesUtility
         customFlagsEditor.Show(enumFlagsContainerName,variableTypes, element, onChangeAction);
     }
 
-    public static void ShowDropdownField(DropdownField objectTypeField, ref PropertyObjectType propertyObjectContainer)
+    public static void ShowDropdownField(string copyPropertyValue, DropdownField objectTypeField, Action UpdateObjectContainer)
     {
         PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
 
         objectTypeField.choices = new List<string>();
+        objectTypeField.value = copyPropertyValue;
+
         for (int i = 0; i < props.Length; i++)
         {
             objectTypeField.choices.Add(props[i].TypeName);
         }
         objectTypeField.RegisterValueChangedCallback((value) => 
-        { 
-            
-        });
-
-
-        if (objectTypeField.value != null)
         {
-            for (int i = 0; i < props.Length; i++)
-            {
-                if (objectTypeField.value == props[i].TypeName &&
-                    (propertyObjectContainer == null || propertyObjectContainer.TypeName != props[i].TypeName))
-                    propertyObjectContainer = (PropertyObjectType)props[i].Copy();
-            }
-        }
+            objectTypeField.value = value.newValue;
+            UpdateObjectContainer?.Invoke();
+
+        });
+        UpdateObjectContainer?.Invoke();;        
     }
+
+    
 
     public static void UpdateAllVariablesFields(VisualElement element, CustomEnumFlags<VariableType> variablesContainer)
     {
