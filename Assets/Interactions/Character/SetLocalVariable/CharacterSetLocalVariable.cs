@@ -19,6 +19,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
     public CustomEnumFlags<VariableType> customEnumFlags;
     public PropertyObjectType objectContainer;
     public string copyPropertyType;
+    public GenericProperty copyPropertyVariable;
     public enum modes { 
         setValue,
         copyOtherProperty,
@@ -70,7 +71,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
             newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/SetProperty.uxml").CloneTree());
 
             if (propertyToSet != null)
-                EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), propertyToSet.variablesContainer);
+                EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer, copyPropertyVariable.variablesContainer });
 
             DropdownField setModeField = newElement.Q<DropdownField>("SetMode");
             setModeField.bindingPath = "setMode";
@@ -122,6 +123,21 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
                 objectContainer.SetPropertyEditorField(newElement.Q<VisualElement>("VariablesContainer"));
 
+                DropdownField dropdown = new DropdownField();
+                List<LocalProperty> localProperties = objectContainer.GetLocalPropertys();
+                for (int i = 0; i < localProperties.Count; i++)
+                {
+                    dropdown.choices.Add(localProperties[i].name);
+                }
+                dropdown.value = copyPropertyVariable.name;
+                dropdown.RegisterValueChangedCallback((value) => {
+                    List<LocalProperty> localProperties = objectContainer.GetLocalPropertys();
+                    for (int i = 0; i < localProperties.Count; i++)
+                    {
+                        if(value.newValue == localProperties[i].name)
+                            copyPropertyVariable = localProperties[i];
+                    }}) ;
+                newElement.Q<VisualElement>("VariablesContainer").Add(dropdown);
             });
                 
 
@@ -138,5 +154,18 @@ public class CharacterSetLocalVariable : CharacterInteraction
             EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags);
         }
         
+    }
+
+    public override InteractionAction Copy()
+    {
+        CharacterSetLocalVariable action = new CharacterSetLocalVariable();
+        action.characterType = (CharacterType)characterType.Copy();
+        action.propertyToSet = propertyToSet;
+        action.objectContainer = (PropertyObjectType)objectContainer.Copy();
+        action.setMode = setMode;
+        action.copyPropertyType = copyPropertyType;
+        action.copyPropertyVariable = copyPropertyVariable;
+        action.customEnumFlags = customEnumFlags.Copy();
+        return action;
     }
 }

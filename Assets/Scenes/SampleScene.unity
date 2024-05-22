@@ -915,7 +915,7 @@ MonoBehaviour:
       expandedInInspector: 1
       executedTimes: 0
   priority: 0
-  instanceID: 25280
+  instanceID: 25278
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:
@@ -1556,6 +1556,16 @@ MonoBehaviour:
     - {fileID: 1370781847}
   objectContainer: {fileID: 2138504343}
   copyPropertyType: Character
+  copyPropertyVariable:
+    name: new property
+    expandedInInspector: 0
+    variablesContainer:
+      value: 15
+      members:
+      - {fileID: 951542990}
+      - {fileID: 371564439}
+      - {fileID: 11401494}
+      - {fileID: 1525839777}
   setMode: 1
 --- !u!114 &1525839777
 MonoBehaviour:
@@ -2015,7 +2025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  character: {fileID: 0}
+  character: {fileID: 894919281}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

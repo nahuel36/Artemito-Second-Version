@@ -54,7 +54,7 @@ public class EnumerablesUtility
 #endif
     }
 
-    public static void ShowEnumFlagsField<EnumT>(string enumFlagsContainerName, VisualElement element, CustomEnumFlags<EnumT> variableTypes, Action onChangeAction = null, CustomEnumFlags<EnumT> flagsToCompare = null) where EnumT: EnumerableType
+    public static void ShowEnumFlagsField<EnumT>(string enumFlagsContainerName, VisualElement element, CustomEnumFlags<EnumT> variableTypes, Action onChangeAction = null, CustomEnumFlags<EnumT>[] flagsToCompare = null) where EnumT: EnumerableType
     {
         CustomEnumFlagsEditor<EnumT> customFlagsEditor = new CustomEnumFlagsEditor<EnumT>();
 
@@ -85,7 +85,20 @@ public class EnumerablesUtility
         }
 
         customFlagsEditor.SetChoices((i) => {
-            if (flagsToCompare == null || flagsToCompare.ContainsValue(list2[i]))
+            bool flagsToCompareBoolean = true;
+            
+            if (flagsToCompare != null)
+            {
+                for (int j = 0; j < flagsToCompare.Length; j++)
+                {
+                    if (flagsToCompare[j] != null && !(flagsToCompare[j].ContainsValue(list2[i])))
+                    {
+                        flagsToCompareBoolean = false;
+                    }
+                }
+            }
+
+            if (flagsToCompareBoolean)
                 return list2[i].TypeName;
             else
                 return null;

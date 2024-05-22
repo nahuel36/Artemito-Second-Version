@@ -8,4 +8,9 @@ public class PropertyObjectType : EnumerableType
     public virtual void SetPropertyEditorField(VisualElement element) { 
         
     }
+
+    public virtual List<LocalProperty> GetLocalPropertys() 
+    {
+        return null;
+    }
 }

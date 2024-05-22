@@ -46,4 +46,12 @@ public class CharacterType : PropertyObjectType
         characterType.character = character;
         return characterType;
     }
+
+    public override List<LocalProperty> GetLocalPropertys()
+    {
+        if(character!=null && character.local_properties!=null)
+            return character.local_properties;
+
+        return null;
+    }
 }
