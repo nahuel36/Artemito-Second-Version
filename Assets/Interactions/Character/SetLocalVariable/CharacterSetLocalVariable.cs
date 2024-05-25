@@ -22,13 +22,19 @@ public class CharacterSetLocalVariable : CharacterInteraction
     public GenericProperty copyPropertyVariable;
     public enum modes { 
         setValue,
-        copyOtherProperty,
-        setDefaultMode
+        copyOtherProperty
     }
     public modes setMode;
     public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
     {
-        propertyToSet.variablesContainer.SetValue("string", customEnumFlags.GetStringValue("string"));
+        if (setMode == modes.setValue)
+        {
+            propertyToSet.variablesContainer.SetValue("string", customEnumFlags.GetStringValue("string"));
+        }//FALTA EL DEFAULT
+        else 
+        {
+            propertyToSet.variablesContainer.SetValue("string", copyPropertyVariable.variablesContainer.GetStringValue("string"));
+        }
     }
 
     public override void SetEditorField(VisualElement visualElement, Interaction interaction)

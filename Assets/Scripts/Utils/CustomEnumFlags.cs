@@ -202,6 +202,17 @@ public class CustomEnumFlags<T> where T : EnumerableType
             }
         }
     }
+
+    internal void SetDefautlValue(string type)
+    {
+        for (int i = 0; i < members.Count; i++)
+        {
+            if (members[i].TypeName == type)
+            {
+                ((VariableType)members[i]).isDefaultValue = true;
+            }
+        }
+    }
 }
 
 [System.Flags]

@@ -20,7 +20,8 @@ public class VariableType : EnumerableType
     }
 
     public virtual void SetValue<T>(T value)
-    {
+    {   
+        this.isDefaultValue = false;
         this.changedIngame = true;
         if(isString)
             this.stringIngameValue = value as string;
