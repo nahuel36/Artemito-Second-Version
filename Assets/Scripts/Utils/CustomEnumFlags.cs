@@ -66,7 +66,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
                     bool contains = false;
                     for (int j = 0; j < members.Count; j++)
                     {
-                        if (members[j].GetType() == variables[i].GetType())
+                        if (variables[i]!= null && members[j] != null && members[j].GetType() == variables[i].GetType())
                         {
                             contains = true;
                         }
@@ -78,10 +78,11 @@ public class CustomEnumFlags<T> where T : EnumerableType
                 }
                 else
                 {
+                    if (members == null) return;
                     int membersToErase = -1;
                     for (int j = 0; j < members.Count; j++)
                     {
-                        if (members[j].GetType() == variables[i].GetType())
+                        if (members[j] == null || members[j].GetType() == variables[i].GetType())
                         {
                             membersToErase = j;
                         }
@@ -101,7 +102,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
         {
             for (int i = 0; i < members.Count; i++)
             {
-                if (members[i].GetType() == variable.GetType())
+                if (members[i] != null && members[i].GetType() == variable.GetType())
                     ((VariableType)members[i]).SetPropertyField(variableItemElement);
             }
         }
@@ -115,7 +116,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
         {
             for (int i = 0; i < members.Count; i++)
             {
-                if (members[i].GetType() == variable.GetType())
+                if (members[i] != null && members[i].GetType() == variable.GetType())
                 {
                     variableItemElement.Q<Toggle>("Default").value = ((VariableType)members[i]).isDefaultValue;
                     int index = i;
