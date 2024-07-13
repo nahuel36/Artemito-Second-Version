@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 using static UnityEditor.Progress;
 
-public class CustomListView<T> 
+public class OldCustomListView<T> 
 {
     private List<VisualElement> listItems = new List<VisualElement>();
     private List<VisualElement> listItemsInitial = new List<VisualElement>();
@@ -64,6 +64,7 @@ public class CustomListView<T>
 
         moving_all = false;
 
+        ScrollView scrollView = root.Q<ScrollView>("scrollView");
         listContainer = root.Q<VisualElement>("listContainer");
 
         listContainer.Clear();
