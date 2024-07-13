@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,46 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &11401494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  isDefaultValue: 0
-  changedIngame: 0
-  stringValue: 
-  stringIngameValue: 
-  objectValue: {fileID: 0}
-  objectIngameValue: {fileID: 0}
-  isString: 1
---- !u!114 &197991876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  isDefaultValue: 0
-  changedIngame: 0
-  stringValue: 
-  stringIngameValue: 
-  objectValue: {fileID: 0}
-  objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!1 &254021856
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,27 +172,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &371564439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 1
-  isDefaultValue: 0
-  changedIngame: 0
-  stringValue: 
-  stringIngameValue: 
-  objectValue: {fileID: 0}
-  objectIngameValue: {fileID: 0}
-  isString: 1
---- !u!114 &499389768
+--- !u!114 &376492555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,8 +185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  character: {fileID: 894919281}
---- !u!114 &499666329
+  character: {fileID: 0}
+--- !u!114 &397602331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,10 +195,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
+  m_Script: {fileID: 11500000, guid: d99bf2602a91aa04fa824042da1dc66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  index: 3
   isDefaultValue: 0
   changedIngame: 0
   stringValue: 
@@ -488,7 +427,7 @@ MonoBehaviour:
       attemps:
       - interactions:
         - type: Inventory
-          subtype: Add
+          subtype: GetGlobalVariable
           interaction_properties:
           - name: a
             expandedInInspector: 0
@@ -503,13 +442,13 @@ MonoBehaviour:
               index: 0
             itemIndex: 0
             interactuableID: 0
-          action: {fileID: 1951275224}
+          action: {fileID: 710997687}
           expandedInInspector: 1
         expandedInInspector: 1
       expandedInInspector: 0
       executedTimes: 0
   priority: 0
-  instanceID: 25254
+  instanceID: 41016
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -572,7 +511,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.18, y: 4.86}
   m_EdgeRadius: 0
---- !u!114 &685504627
+--- !u!114 &652166340
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -581,10 +520,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 1
+  index: 2
   isDefaultValue: 0
   changedIngame: 0
   stringValue: 
@@ -592,6 +531,48 @@ MonoBehaviour:
   objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
   isString: 1
+--- !u!114 &676383351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
+  isDefaultValue: 0
+  changedIngame: 0
+  stringValue: 
+  stringIngameValue: 
+  objectValue: {fileID: 0}
+  objectIngameValue: {fileID: 0}
+  isString: 1
+--- !u!114 &710997687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0154b0cee0fcf049b3098ff15892a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryItem:
+    itemName: new item 66
+    normalImage: {fileID: 21300000, guid: 2c65942e32e9ad24c9fd889064d92ae3, type: 3}
+    selectedImage: {fileID: 0}
+    startWithThisItem: 0
+    cuantity: 0
+    expandedInInspector: 0
+    specialIndex: 66
+    priority: 0
+    local_properties: []
 --- !u!1 &750812587
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +846,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894919279}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d8485f445a024146b8b80332b9bcc82, type: 3}
   m_Name: 
@@ -876,16 +857,21 @@ MonoBehaviour:
     variablesContainer:
       value: 15
       members:
-      - {fileID: 951542990}
-      - {fileID: 371564439}
-      - {fileID: 11401494}
-      - {fileID: 1525839777}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 1422002085}
+      - {fileID: 1900592144}
+      - {fileID: 676383351}
+      - {fileID: 1480414500}
   - name: new 2
     expandedInInspector: 0
     variablesContainer:
       value: 4
       members:
-      - {fileID: 1203999484}
+      - {fileID: 0}
+      - {fileID: 1484761606}
   interactions:
   - type: Character
     subtype: Say
@@ -917,9 +903,12 @@ MonoBehaviour:
             variablesContainer:
               value: 14
               members:
-              - {fileID: 1819076332}
-              - {fileID: 1716254467}
-              - {fileID: 1384345545}
+              - {fileID: 0}
+              - {fileID: 0}
+              - {fileID: 0}
+              - {fileID: 1192479327}
+              - {fileID: 1259827533}
+              - {fileID: 397602331}
             interactionType: 0
             verb:
               name: 
@@ -933,10 +922,14 @@ MonoBehaviour:
             variablesContainer:
               value: 15
               members:
-              - {fileID: 499666329}
-              - {fileID: 2099433228}
-              - {fileID: 1714257942}
-              - {fileID: 1098334706}
+              - {fileID: 0}
+              - {fileID: 0}
+              - {fileID: 0}
+              - {fileID: 0}
+              - {fileID: 1336544048}
+              - {fileID: 1608149578}
+              - {fileID: 652166340}
+              - {fileID: 1638345954}
             interactionType: 0
             verb:
               name: 
@@ -945,12 +938,12 @@ MonoBehaviour:
               index: 0
             itemIndex: 0
             interactuableID: 0
-          action: {fileID: 979223291}
+          action: {fileID: 990404243}
           expandedInInspector: 1
         - type: Character
           subtype: SetLocalVariable
           interaction_properties: []
-          action: {fileID: 1467090750}
+          action: {fileID: 1325860091}
           expandedInInspector: 1
         expandedInInspector: 1
       expandedInInspector: 1
@@ -986,28 +979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471ccc4ac988d82438f23dadc7630f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &951542990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99bf2602a91aa04fa824042da1dc66e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 3
-  isDefaultValue: 0
-  changedIngame: 0
-  stringValue: <?xml version="1.0" encoding="utf-16"?><door-closed selected="true"
-    value0="s"><door-closed-2 selected="false" /></door-closed>
-  stringIngameValue: 
-  objectValue: {fileID: 0}
-  objectIngameValue: {fileID: 0}
-  isString: 1
---- !u!114 &979223291
+--- !u!114 &990404243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1019,8 +991,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c644c252c0e5af4ca77d3fe6c8f2eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: {fileID: 1994278275}
-  scriptObject: {fileID: 894919279}
+  characterType: {fileID: 376492555}
+  scriptObject: {fileID: 0}
 --- !u!1 &1043966020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,26 +1041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41516d5d70a29964dbc49ec0ce2b29cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1098334706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99bf2602a91aa04fa824042da1dc66e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 3
-  isDefaultValue: 0
-  changedIngame: 0
-  stringValue: 
-  stringIngameValue: 
-  objectValue: {fileID: 0}
-  objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!1 &1114186077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,7 +1091,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overInteractuable: {fileID: 0}
   comparePoint: {fileID: 0}
---- !u!114 &1203999484
+--- !u!114 &1192479327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  isDefaultValue: 0
+  changedIngame: 0
+  stringValue: 
+  stringIngameValue: 
+  objectValue: {fileID: 0}
+  objectIngameValue: {fileID: 0}
+  isString: 1
+--- !u!114 &1259827533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1154,7 +1126,7 @@ MonoBehaviour:
   index: 2
   isDefaultValue: 0
   changedIngame: 0
-  stringValue: lo
+  stringValue: 
   stringIngameValue: 
   objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
@@ -1225,6 +1197,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1325860091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterType: {fileID: 1797620569}
+  propertyToSet:
+    name: new property
+    expandedInInspector: 0
+    variablesContainer:
+      value: 0
+      members: []
+  customEnumFlags:
+    value: 0
+    members: []
+  objectContainer: {fileID: 0}
+  copyPropertyType: 
+  copyPropertyVariable:
+    name: new property
+    expandedInInspector: 0
+    variablesContainer:
+      value: 0
+      members: []
+  setMode: 0
+--- !u!114 &1336544048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  isDefaultValue: 0
+  changedIngame: 0
+  stringValue: 
+  stringIngameValue: 
+  objectValue: {fileID: 0}
+  objectIngameValue: {fileID: 0}
+  isString: 1
 --- !u!1 &1384114877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,26 +1332,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1384345545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 2
-  isDefaultValue: 0
-  changedIngame: 0
-  stringValue: polo
-  stringIngameValue: 
-  objectValue: {fileID: 0}
-  objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!1 &1395300603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,7 +1571,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1467090750
+--- !u!114 &1422002085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1577,39 +1580,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: {fileID: 499389768}
-  propertyToSet:
-    name: new property
-    expandedInInspector: 0
-    variablesContainer:
-      value: 15
-      members:
-      - {fileID: 951542990}
-      - {fileID: 371564439}
-      - {fileID: 11401494}
-      - {fileID: 1525839777}
-  customEnumFlags:
-    value: -1
-    members:
-    - {fileID: 197991876}
-    - {fileID: 685504627}
-    - {fileID: 1579926755}
-    - {fileID: 1499640861}
-    - {fileID: 2002427385}
-  objectContainer: {fileID: 2138504343}
-  copyPropertyType: Character
-  copyPropertyVariable:
-    name: new 2
-    expandedInInspector: 0
-    variablesContainer:
-      value: 4
-      members:
-      - {fileID: 1203999484}
-  setMode: 1
---- !u!114 &1499640861
+  index: 0
+  isDefaultValue: 0
+  changedIngame: 0
+  stringValue: 
+  stringIngameValue: 
+  objectValue: {fileID: 0}
+  objectIngameValue: {fileID: 0}
+  isString: 1
+--- !u!114 &1480414500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1629,27 +1611,7 @@ MonoBehaviour:
   objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
   isString: 1
---- !u!114 &1525839777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 2
-  isDefaultValue: 0
-  changedIngame: 0
-  stringValue: pi
-  stringIngameValue: pepe
-  objectValue: {fileID: 0}
-  objectIngameValue: {fileID: 0}
-  isString: 1
---- !u!114 &1579926755
+--- !u!114 &1484761606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1669,7 +1631,7 @@ MonoBehaviour:
   objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
   isString: 1
---- !u!114 &1714257942
+--- !u!114 &1608149578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1689,7 +1651,7 @@ MonoBehaviour:
   objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
   isString: 1
---- !u!114 &1716254467
+--- !u!114 &1638345954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1759,7 +1721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1893150242}
---- !u!114 &1819076332
+--- !u!114 &1797620569
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1768,17 +1730,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 1
-  isDefaultValue: 0
-  changedIngame: 0
-  stringValue: 
-  stringIngameValue: 
-  objectValue: {fileID: 0}
-  objectIngameValue: {fileID: 0}
-  isString: 1
+  index: 0
+  character: {fileID: 0}
 --- !u!1 &1835742334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,7 +1919,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893150240}
   m_CullTransparentMesh: 1
---- !u!114 &1951275224
+--- !u!114 &1900592144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1972,33 +1928,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0154b0cee0fcf049b3098ff15892a0e, type: 3}
+  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItem:
-    itemName: new item 50
-    normalImage: {fileID: 21300000, guid: 2c65942e32e9ad24c9fd889064d92ae3, type: 3}
-    selectedImage: {fileID: 0}
-    startWithThisItem: 0
-    cuantity: 0
-    expandedInInspector: 0
-    specialIndex: 50
-    priority: 0
-    local_properties: []
---- !u!114 &1994278275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  character: {fileID: 894919281}
+  index: 1
+  isDefaultValue: 0
+  changedIngame: 0
+  stringValue: 
+  stringIngameValue: 
+  objectValue: {fileID: 0}
+  objectIngameValue: {fileID: 0}
+  isString: 1
 --- !u!1 &1999380010
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,60 +2014,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999380010}
   m_CullTransparentMesh: 1
---- !u!114 &2002427385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9b1e65e3a84b644ab806091ef7b540a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 4
-  isDefaultValue: 0
-  changedIngame: 0
-  stringValue: 
-  stringIngameValue: 
-  objectValue: {fileID: 0}
-  objectIngameValue: {fileID: 0}
-  isString: 1
---- !u!114 &2099433228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 2
-  isDefaultValue: 0
-  changedIngame: 0
-  stringValue: 
-  stringIngameValue: 
-  objectValue: {fileID: 0}
-  objectIngameValue: {fileID: 0}
-  isString: 1
---- !u!114 &2138504343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  character: {fileID: 894919281}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
