@@ -5,12 +5,12 @@ using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
-public class FoldoutForCustomListView<T>
+public class OldFoldoutForCustomListView<T>
 {
     public List<Func<VisualElement>> content;
     public List<Action<bool>> changeVariable;
     private bool addedReorder = false;
-    public void SetFoldout(VisualElement VE, bool expandedVariable, string foldoutText, int index, CustomListView<T> customListView) 
+    public void SetFoldout(VisualElement VE, bool expandedVariable, string foldoutText, int index, OldCustomListView<T> customListView) 
     {
         Foldout fold = new Foldout();
         fold.text = foldoutText; 

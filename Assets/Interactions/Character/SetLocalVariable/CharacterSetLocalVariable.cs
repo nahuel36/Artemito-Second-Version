@@ -167,7 +167,8 @@ public class CharacterSetLocalVariable : CharacterInteraction
         CharacterSetLocalVariable action = new CharacterSetLocalVariable();
         action.characterType = (CharacterType)characterType.Copy();
         action.propertyToSet = propertyToSet;
-        action.objectContainer = (PropertyObjectType)objectContainer.Copy();
+        if(objectContainer != null)
+            action.objectContainer = (PropertyObjectType)objectContainer.Copy();
         action.setMode = setMode;
         action.copyPropertyType = copyPropertyType;
         action.copyPropertyVariable = copyPropertyVariable;

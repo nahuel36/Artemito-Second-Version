@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="scrollView" horizontal-scroller-visibility="Hidden">
+        <ui:VisualElement name="listContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+        <uie:Toolbar style="width: 60px; justify-content: flex-end; flex-direction: row; height: 30px; align-items: center; align-self: flex-end;">
+            <ui:Button text="+" display-tooltip-when-elided="true" name="add" />
+            <ui:Button text="-" display-tooltip-when-elided="true" name="remove" />
+        </uie:Toolbar>
+    </ui:ScrollView>
+</ui:UXML>

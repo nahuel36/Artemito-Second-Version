@@ -14,7 +14,6 @@ public class InteractionsCustomEditor : Editor
 
     [SerializeField] VisualTreeAsset InteractionsVT;
     [SerializeField] VisualTreeAsset InteractionVT;
-    FoldoutForCustomListView<Interaction> foldouts;
     public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget, bool isDuplicate, bool generateVisualTree=false) 
     {
         if (isDuplicate)
@@ -41,16 +40,13 @@ public class InteractionsCustomEditor : Editor
         listCustom.ItemsSource = interactions;
         this.interactions = interactions;
 
-        foldouts = new FoldoutForCustomListView<Interaction>();
-        foldouts.content = new List<Func<VisualElement>>();
-        foldouts.changeVariable = new List<Action<bool>>();
-
+        
         Func<int, VisualElement> itemContent = (i) =>
         {
-            VisualElement root = new VisualElement();
-            foldouts.changeVariable.Add((newvalue) => interactions[i].expandedInInspector = newvalue);       
-            foldouts.content.Add(() =>
-            {
+            Foldout foldout = new Foldout();
+
+            if (foldout.value == true)
+            { 
                 int index = i;
 
                 VisualElement visualElem = InteractionVT.CloneTree();
@@ -67,12 +63,9 @@ public class InteractionsCustomEditor : Editor
                     UpdateAction(inter, index, visualElem.Q("Action"));
                 };
                 UpdateAction(interactions[index], index, visualElem.Q("Action"));
-                return visualElem;
-            });
-            foldouts.SetFoldout(root, interactions[i].expandedInInspector, (i + 1).ToString() + "° interaction", i, listCustom); 
-
-
-            return root;
+                foldout.Add(visualElem);
+            }
+            return foldout;
         };
 
         listCustom.ItemContent = itemContent;
