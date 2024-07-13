@@ -80,6 +80,32 @@ public class CustomListView<T>
         listView.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
 
         listView.itemIndexChanged += (int source, int destiny) => { OnReorderItem(destiny); };
+
+        listView.showBorder = true;
+
+        listView.style.borderLeftWidth = 10;
+
+        listView.style.borderRightWidth = 10;
+
+        listView.style.borderBottomWidth = 7;
+
+        Label footText = new Label("add or remove " + typeof(T).ToString());
+
+        //StyleEnum<Justify> alignFoot = new StyleEnum<Justify>();
+
+        //alignFoot.value = Align.FlexEnd;
+
+        //footText.style.alignContent = alignFoot;
+
+        //footText.style.justifyContent = alignFoot; 
+
+        StyleEnum<TextAnchor> alignFoot = new StyleEnum<TextAnchor>();
+
+        alignFoot.value = TextAnchor.UpperRight;
+
+        footText.style.unityTextAlign = alignFoot;
+
+        root.Add(footText);
     }
 
     private void Remove()
