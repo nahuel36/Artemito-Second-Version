@@ -83,21 +83,13 @@ public class CustomListView<T>
 
         listView.showBorder = true;
 
-        listView.style.borderLeftWidth = 10;
-
         listView.style.borderRightWidth = 10;
 
-        listView.style.borderBottomWidth = 7;
+        listView.reorderable = true;
 
-        Label footText = new Label("add or remove " + typeof(T).ToString());
+        listView.reorderMode = ListViewReorderMode.Animated;
 
-        //StyleEnum<Justify> alignFoot = new StyleEnum<Justify>();
-
-        //alignFoot.value = Align.FlexEnd;
-
-        //footText.style.alignContent = alignFoot;
-
-        //footText.style.justifyContent = alignFoot; 
+        Label footText = new Label("add or remove " + typeof(T).ToString()); 
 
         StyleEnum<TextAnchor> alignFoot = new StyleEnum<TextAnchor>();
 
