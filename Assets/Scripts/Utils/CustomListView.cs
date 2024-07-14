@@ -89,6 +89,12 @@ public class CustomListView<T>
 
         listView.reorderMode = ListViewReorderMode.Animated;
 
+        listView.itemsAdded += new Action<IEnumerable<int>>((IEnumerable<int> k) =>
+        {
+            Add();
+
+        });
+
         Label footText = new Label("add or remove " + typeof(T).ToString()); 
 
         StyleEnum<TextAnchor> alignFoot = new StyleEnum<TextAnchor>();
@@ -111,6 +117,8 @@ public class CustomListView<T>
 
     private void AddAllItems(VisualElement e, int index)
     {
+        e.Clear();
+
         e.Add(ItemContent(index));
         // Agregar manipuladores de eventos para la reordenación
 
@@ -124,10 +132,9 @@ public class CustomListView<T>
         { 
             Debug.LogError("You must define OnAdd in your custom list view");
             return;
-        } 
-        ItemsSource.Add(OnAdd.Invoke());
-
-        listView.Rebuild();
+        }
+        ItemsSource[ItemsSource.Count-1] = OnAdd.Invoke();
+        
     }
 
     private void OnChanged(ChangeEvent<string> evt, VisualElement listItem, int index)
