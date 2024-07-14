@@ -19,8 +19,9 @@ public class Interaction
         interDestiny.subtype = interOrigin.subtype;
         interDestiny.action = interOrigin.action.Copy();
         interDestiny.interaction_properties = new List<InteractionProperty>();
-        for (int i = 0; i < interOrigin.interaction_properties.Count;i++)
-            interDestiny.interaction_properties.Add(interOrigin.interaction_properties[i].Copy());
+        if(interOrigin.interaction_properties != null)
+            for (int i = 0; i < interOrigin.interaction_properties.Count;i++)
+                interDestiny.interaction_properties.Add(interOrigin.interaction_properties[i].Copy());
         return interDestiny;
     }
 
