@@ -93,7 +93,7 @@ public class CustomListView<T>
     {
         int index = ItemsSource.Count - 1;
 
-//        listView.RemoveAt(index);
+//       TODO; que sea segun el seleccionado, no el ultimo
 
         OnRemoveItem?.Invoke(listView, index);
     }
