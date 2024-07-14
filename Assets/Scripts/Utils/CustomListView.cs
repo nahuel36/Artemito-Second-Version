@@ -72,6 +72,12 @@ public class CustomListView<T>
 
         });
 
+        listView.itemsRemoved += new Action<IEnumerable<int>>((IEnumerable<int> k) =>
+        {
+            Remove();
+
+        });
+
         Label footText = new Label("add or remove " + typeof(T).ToString()); 
 
         StyleEnum<TextAnchor> alignFoot = new StyleEnum<TextAnchor>();
@@ -87,7 +93,7 @@ public class CustomListView<T>
     {
         int index = ItemsSource.Count - 1;
 
-        listView.RemoveAt(index);
+//        listView.RemoveAt(index);
 
         OnRemoveItem?.Invoke(listView, index);
     }
