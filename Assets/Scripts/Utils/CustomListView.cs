@@ -14,30 +14,10 @@ public class CustomListView<T>
 {
     private ListView listView;
 
-    private List<VisualElement> listItems = new List<VisualElement>();
-    private List<VisualElement> listItemsInitial = new List<VisualElement>();
-    private VisualElement listContainer;
-    private VisualElement draggedItem;
-    private float draggedItemPosY;
-    private float firstItemPositionY;
-    private VisualElement overCursorOnReorderItem;
-    private bool isBottom = false;
-    private VisualElement highlightedItem = null;
-    private VisualElement selectedItem;
-    private bool moving_all;
     public Color highlightedColor = Color.black;
-    public enum ReOrderModes { 
-        withBordersStatic, 
-        animatedDynamic
-    }
-
-    public ReOrderModes reOrderMode = ReOrderModes.animatedDynamic;
-
     public IList<T> ItemsSource { get; set; }
 
     public Func<int, VisualElement> ItemContent;
-
-    public Func<int, StyleLength> ItemHeight;
 
     public Func<T> OnAdd;
 
@@ -49,9 +29,6 @@ public class CustomListView<T>
     public event ItemReorderDelegate OnReorderItem;
     public delegate void ItemRemoveDelegate(VisualElement element, int index);
     public event ItemRemoveDelegate OnRemoveItem;
-
-    public static EventCallback<ClickEvent> OnClickAdd;
-    public static EventCallback<ClickEvent> OnClickRemove;
 
     private static T copiedItem;
     public void Init(VisualElement root, bool createVisualTree = false)

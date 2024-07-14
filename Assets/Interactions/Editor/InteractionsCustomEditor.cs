@@ -70,8 +70,6 @@ public class InteractionsCustomEditor : Editor
 
         listCustom.ItemContent = itemContent;
 
-        listCustom.ItemHeight = itemHeight;
-
         //listCustom.OnChangeItem += OnChange;
 
         listCustom.OnAdd = () => OnAdded(myTarget);
@@ -81,8 +79,6 @@ public class InteractionsCustomEditor : Editor
         listCustom.OnRemoveItem += (element, index) => { SaveTargetChanges(myTarget); };
 
         root.RegisterCallback<ChangeEvent<string>>((evt) => { SaveTargetChanges(myTarget); });
-
-        listCustom.reOrderMode = CustomListView<Interaction>.ReOrderModes.animatedDynamic;
 
         listCustom.highlightedColor = Color.white * 0.5f;
 
@@ -131,8 +127,4 @@ public class InteractionsCustomEditor : Editor
         return new Interaction();
     }
 
-    private StyleLength itemHeight(int index)
-    {
-        return new StyleLength(StyleKeyword.Auto);
-    }
 }

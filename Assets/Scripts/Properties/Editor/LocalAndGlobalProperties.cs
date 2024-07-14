@@ -22,8 +22,6 @@ public class LocalAndGlobalProperties : Editor
 
         customListView.ItemContent = (i) => ItemContent(i, local_properties[i]);
 
-        customListView.ItemHeight = (i) => { return new StyleLength(StyleKeyword.Auto); };
-
         customListView.OnAdd = () => {
             int variablesLength = EnumerablesUtility.GetAllVariableTypes().Length;
             LocalProperty localprop = new LocalProperty();
