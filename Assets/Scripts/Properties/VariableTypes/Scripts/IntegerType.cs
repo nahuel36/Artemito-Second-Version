@@ -51,6 +51,10 @@ public class IntegerType : VariableType
     {
         IntegerType newEnum = new IntegerType();
         newEnum.isDefaultValue = isDefaultValue;
+        newEnum.typeName = typeName;
+        newEnum.Index = Index;
+        newEnum.isString = isString;
+        newEnum.stringValue = stringValue;
         return newEnum;
     }
 }
