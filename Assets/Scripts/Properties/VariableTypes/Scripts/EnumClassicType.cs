@@ -154,34 +154,36 @@ public class EnumClassicType : VariableType
     public string GetVariableValue(Settings.EnumVariablesType variable)
     {
         string value = "";
-
-        XmlReader reader = XmlReader.Create(new StringReader(stringValue));
-        try
+        if (!string.IsNullOrEmpty(stringValue))
         {
-            while (reader.Read())
+            XmlReader reader = XmlReader.Create(new StringReader(stringValue));
+            try
             {
-                if (reader.IsStartElement(XmlUtility.ConvertStringToUseInXml(variable.name)))
+                while (reader.Read())
                 {
-                    for (int i = 0; i < variable.values.Count; i++)
+                    if (reader.IsStartElement(XmlUtility.ConvertStringToUseInXml(variable.name)))
                     {
-                        try
+                        for (int i = 0; i < variable.values.Count; i++)
                         {
-                            if (reader.GetAttribute("value") == variable.values[i])
+                            try
                             {
-                                value = variable.values[i];
+                                if (reader.GetAttribute("value") == variable.values[i])
+                                {
+                                    value = variable.values[i];
+                                }
                             }
-                        }
-                        catch
-                        {
-
+                            catch
+                            {
+                                
+                            }
                         }
                     }
                 }
             }
-        }
-        catch
-        {
-            return "";
+            catch
+            {
+                return "";
+            }
         }
         return value;
     }
