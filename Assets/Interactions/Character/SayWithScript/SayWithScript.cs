@@ -54,6 +54,7 @@ public class SayWithScript : CharacterInteraction
     public override InteractionAction Copy()
     {
         SayWithScript interaction = new SayWithScript();
+        interaction.characterType = characterType;
         interaction.scriptField = scriptField;  
         interaction.scriptObject = scriptObject;
         return interaction;
