@@ -12,6 +12,8 @@ public class CharacterType : PropertyObjectType
 {
 
     public Character character;
+    public delegate void CharacterEvent();
+    public event CharacterEvent onCharacterChange;
     public CharacterType()
     {
         Index = 0;
@@ -33,8 +35,11 @@ public class CharacterType : PropertyObjectType
         characterField.objectType = typeof(Character);
         characterField.bindingPath = "character";
         characterField.Bind(new SerializedObject(this));
+        characterField.RegisterValueChangedCallback((value) => {
+            onCharacterChange?.Invoke();
+        });
         element.Add(characterField);
-
+        
 
     }
 

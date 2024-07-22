@@ -23,6 +23,7 @@ public class CustomEnumFlagsEditor<T> where T:EnumerableType
         field.choices = choices;
         field.choicesMasks = choicesMasks;
         field.value = (GenericEnum)value.GetIntValue();
+        value.enumfield = field;
         field.RegisterValueChangedCallback((evt) => callback(evt, value));
         value.OnValueChange += () => {
             OnChange?.Invoke(); };

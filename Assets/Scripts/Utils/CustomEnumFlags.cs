@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +12,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
     [SerializeField] [HideInInspector] List<EnumerableType> members;
     public delegate void CustomEnumFlagsDelegate();
     public event CustomEnumFlagsDelegate OnValueChange;
+    public EnumFlagsField enumfield;
     public CustomEnumFlags(int valueToSet)
     {
         SetIntValue(valueToSet);
@@ -28,9 +30,20 @@ public class CustomEnumFlags<T> where T : EnumerableType
         return ContainsValue(valueToFind.Index);
     }
 
+
     private bool ContainsValue(int index)
     {
         return (value & (1 << index)) != 0;
+    }
+
+    public bool FieldContainsValue(string typename)
+    {
+        if (enumfield != null)
+        {
+            Debug.Log(typename + enumfield.choices.Contains(typename));
+            return enumfield.choices.Contains(typename);
+        }
+        return false;
     }
 
     public void RemoveValue(T valueToRemove)
@@ -61,7 +74,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
             var variables = EnumerablesUtility.GetAllVariableTypes();
             for (int i = 0; i < variables.Length; i++)
             {
-                if (ContainsValue(variables[i].Index))
+                if (FieldContainsValue(variables[i].TypeName))
                 {
                     bool contains = false;
                     for (int j = 0; j < members.Count; j++)
@@ -78,17 +91,15 @@ public class CustomEnumFlags<T> where T : EnumerableType
                 }
                 else
                 {
+                    Debug.Log(members.Count);
                     if (members == null) return;
-                    int membersToErase = -1;
-                    for (int j = 0; j < members.Count; j++)
+                    for (int j = members.Count-1; j >= 0; j--)
                     {
                         if (members[j] == null || members[j].GetType() == variables[i].GetType())
                         {
-                            membersToErase = j;
+                            members.RemoveAt(j);
                         }
-                    }
-                    if (membersToErase != -1)
-                        members.RemoveAt(membersToErase);
+                    }                        
                 }
             }
         }

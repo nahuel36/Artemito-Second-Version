@@ -137,7 +137,7 @@ public class EnumerablesUtility
 
         foreach (var variable in EnumerablesUtility.GetAllVariableTypes())
         {
-            if (variablesContainer.ContainsValue(variable))
+            if (variablesContainer.ContainsValue(variable) && variablesContainer.FieldContainsValue(variable.TypeName))
             {
                 //VisualElement variableItemElement = variableItem.CloneTree();
                 VisualElement variableItemElement = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Properties/Editor/VariableField.uxml").CloneTree();

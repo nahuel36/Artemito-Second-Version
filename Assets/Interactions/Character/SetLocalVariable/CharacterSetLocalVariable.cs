@@ -37,35 +37,49 @@ public class CharacterSetLocalVariable : CharacterInteraction
         }
     }
 
+
+    private void UpdateVariableChoices(DropdownField propertyField) {
+        propertyField.choices = new List<string>();
+        if(characterType.character!=null)
+        { 
+            for (int i = 0; i < characterType.character.local_properties.Count; i++)
+            {
+                propertyField.choices.Add(characterType.character.local_properties[i].name);
+            }
+            
+            propertyField.value = propertyToSet?.name;
+        }
+        else
+        {
+            propertyField.value = null;
+        }
+            
+    }
+
     public override void SetEditorField(VisualElement visualElement, Interaction interaction)
     {
 #if UNITY_EDITOR
         base.SetEditorField(visualElement, interaction);
 
 
+        DropdownField propertyField = new DropdownField();
+        propertyField.label = "Property";
+        
+        if(characterType != null)
+            UpdateVariableChoices(propertyField);
 
-        if(characterType != null && characterType.character != null) 
-        { 
-            for (int i = 0; i < characterType.character.local_properties.Count; i++)
-            {
-                if (propertyToSet.name == characterType.character.local_properties[i].name)
-                    propertyToSet = characterType.character.local_properties[i];
-            }
+        characterType.onCharacterChange += ()=>UpdateVariableChoices(propertyField);
 
-            DropdownField propertyField = new DropdownField();
-            propertyField.label = "Property";
-            for (int i = 0; i < characterType.character.local_properties.Count; i++)
-            {
-                propertyField.choices.Add(characterType.character.local_properties[i].name);
-            }
-            propertyField.value = propertyToSet?.name;
+
+
             propertyField.RegisterValueChangedCallback((newvalue) =>
             {
-                for (int i = 0; i < characterType.character.local_properties.Count; i++)
-                {
-                    if (newvalue.newValue == characterType.character.local_properties[i].name)
-                        propertyToSet = characterType.character.local_properties[i];
-                }
+                if (characterType.character != null)
+                    for (int i = 0; i < characterType.character.local_properties.Count; i++)
+                    {
+                        if (newvalue.newValue == characterType.character.local_properties[i].name)
+                            propertyToSet = characterType.character.local_properties[i];
+                    }
             });
             visualElement.Add(propertyField);
 
@@ -76,9 +90,14 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
             newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/SetProperty.uxml").CloneTree());
 
-            if (propertyToSet != null)
-                EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer, copyPropertyVariable.variablesContainer });
+            //variable types no muestra los posibles valores de la property
+            //everything solo debe cubrir las variables disponibles 
 
+            if (propertyToSet != null && setMode == modes.copyOtherProperty)
+                EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer, copyPropertyVariable.variablesContainer });
+            else if (propertyToSet != null && setMode == modes.setValue)
+                EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer});
+        
             DropdownField setModeField = newElement.Q<DropdownField>("SetMode");
             setModeField.bindingPath = "setMode";
             setModeField.Bind(new SerializedObject(this));
@@ -90,7 +109,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
 
             visualElement.Add(newElement);
-        }
+        
 
 
 
