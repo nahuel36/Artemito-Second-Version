@@ -23,13 +23,10 @@ public class AttempsCustomEditor : Editor
             VisualElement interactionVE = new VisualElement();
             Foldout foldout = new Foldout();
             interactionVE.Add(foldout);
-            if (foldout.value == true)
-            { 
-                VisualElement visualElement = new VisualElement();
-                InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
-                interactionCustomEditor.ShowGUI(visualElement, attempsContainer.attemps[indexAttemp].interactions, myTarget, isDuplicate, true);
-                interactionVE.Add(visualElement);
-            };
+            VisualElement visualElement = new VisualElement();
+            InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
+            interactionCustomEditor.ShowGUI(visualElement, attempsContainer.attemps[indexAttemp].interactions, myTarget, isDuplicate, true);
+            foldout.Add(visualElement);
             return interactionVE;
         };
 

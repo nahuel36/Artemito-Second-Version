@@ -45,26 +45,24 @@ public class InteractionsCustomEditor : Editor
         {
             Foldout foldout = new Foldout();
 
-            if (foldout.value == true)
-            { 
-                int index = i;
 
-                VisualElement visualElem = InteractionVT.CloneTree();
+            int index = i;
 
-                InteractionSelect interactionSelect = (InteractionSelect)CreateInstance(typeof(InteractionSelect));
+            VisualElement visualElem = InteractionVT.CloneTree();
 
-                visualElem.Q("InteractionSelect").Clear();
-                visualElem.Q("InteractionSelect").Add(interactionSelect.ShowAndConfigure(interactions[index]));
-                interactionSelect.OnChangeTypeEvent += (inter) => {
-                    UpdateAction(inter, index, visualElem.Q("Action"));
-                };
-                interactionSelect.OnChangeSubTypeEvent += (inter) =>
-                {
-                    UpdateAction(inter, index, visualElem.Q("Action"));
-                };
-                UpdateAction(interactions[index], index, visualElem.Q("Action"));
-                foldout.Add(visualElem);
-            }
+            InteractionSelect interactionSelect = (InteractionSelect)CreateInstance(typeof(InteractionSelect));
+
+            visualElem.Q("InteractionSelect").Clear();
+            visualElem.Q("InteractionSelect").Add(interactionSelect.ShowAndConfigure(interactions[index]));
+            interactionSelect.OnChangeTypeEvent += (inter) => {
+                UpdateAction(inter, index, visualElem.Q("Action"));
+            };
+            interactionSelect.OnChangeSubTypeEvent += (inter) =>
+            {
+                UpdateAction(inter, index, visualElem.Q("Action"));
+            };
+            UpdateAction(interactions[index], index, visualElem.Q("Action"));
+            foldout.Add(visualElem);
             return foldout;
         };
 
