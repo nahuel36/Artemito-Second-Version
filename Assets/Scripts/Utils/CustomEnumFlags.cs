@@ -40,7 +40,6 @@ public class CustomEnumFlags<T> where T : EnumerableType
     {
         if (enumfield != null)
         {
-            Debug.Log(typename + enumfield.choices.Contains(typename));
             return enumfield.choices.Contains(typename);
         }
         return false;
@@ -91,7 +90,6 @@ public class CustomEnumFlags<T> where T : EnumerableType
                 }
                 else
                 {
-                    Debug.Log(members.Count);
                     if (members == null) return;
                     for (int j = members.Count-1; j >= 0; j--)
                     {
