@@ -43,6 +43,10 @@ public class LocalAndGlobalProperties : Editor
 
     private VisualElement ItemContent(int index, LocalProperty property)
     {
+        Foldout foldout = new Foldout();
+
+        foldout.text = "property " + (index+1).ToString();
+
         VisualElement element = new VisualElement();
 
         element.Add(localProperty.CloneTree());
@@ -58,8 +62,8 @@ public class LocalAndGlobalProperties : Editor
         EnumerablesUtility.ShowEnumFlagsField("VariableTypes",element,property.variablesContainer, ()=> { EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer); });
         EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer);
 
+        foldout.Add(element);
 
-
-        return element;
+        return foldout;
     }
 }

@@ -51,6 +51,10 @@ public class InteractionProperties : Editor
 
     private VisualElement ItemContent(int index, InteractionProperty property)
     {
+        Foldout foldout = new Foldout();
+        foldout.text = "property " + (index+1).ToString();
+
+
         VisualElement element = new VisualElement();
 
         //element.Add(interaction_property.CloneTree());
@@ -68,7 +72,9 @@ public class InteractionProperties : Editor
 
         EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer);
 
-        return element;
+        foldout.Add(element);
+
+        return foldout;
     }
 }
 #endif
