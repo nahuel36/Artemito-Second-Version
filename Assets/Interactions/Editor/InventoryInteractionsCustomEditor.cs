@@ -19,9 +19,12 @@ public class InventoryInteractionsCustomEditor : Editor
         listViewInvInteractions.ItemsSource = inventoryInteractions;
 
         listViewInvInteractions.ItemContent = (indexInteraction) => {
+            Foldout foldout = new Foldout();
+            foldout.text = "interaction " + (indexInteraction + 1).ToString();
             AttempsCustomEditor attempsCustomEditor = (AttempsCustomEditor)CreateInstance(typeof(AttempsCustomEditor));
             VisualElement attempsVE = attempsCustomEditor.ShowGUI(inventoryInteractions[indexInteraction].attempsContainer, myTarget, isDuplicate);
-            return attempsVE;
+            foldout.Add(attempsVE);
+            return foldout;
         };
 
         listViewInvInteractions.highlightedColor = Color.black;

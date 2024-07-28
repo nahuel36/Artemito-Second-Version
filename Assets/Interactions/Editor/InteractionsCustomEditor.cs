@@ -45,6 +45,7 @@ public class InteractionsCustomEditor : Editor
         {
             Foldout foldout = new Foldout();
 
+            foldout.text = "interaction " + (i+1).ToString();
 
             int index = i;
 

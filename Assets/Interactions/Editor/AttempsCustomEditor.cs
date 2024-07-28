@@ -22,6 +22,7 @@ public class AttempsCustomEditor : Editor
         {
             VisualElement interactionVE = new VisualElement();
             Foldout foldout = new Foldout();
+            foldout.text = "attemp " + (indexAttemp + 1).ToString();
             interactionVE.Add(foldout);
             VisualElement visualElement = new VisualElement();
             InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
