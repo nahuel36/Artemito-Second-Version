@@ -12,7 +12,7 @@ using static UnityEditor.Progress;
 
 public class CustomListView<T> 
 {
-    private ListView listView;
+    public ListView listView;
 
     public Color highlightedColor = Color.black;
     public IList<T> ItemsSource { get; set; }
@@ -104,7 +104,7 @@ public class CustomListView<T>
 
         e.Add(ItemContent(index));
         // Agregar manipuladores de eventos para la reordenación
-
+        
         e.RegisterCallback<MouseDownEvent>(evt => OnMouseDown(evt, listView, index));
         e.RegisterCallback<ChangeEvent<string>>(evt => OnChanged(evt, listView, index));   
     }

@@ -108,24 +108,24 @@ public class EnumerablesUtility
         customFlagsEditor.Show(enumFlagsContainerName,variableTypes, element, onChangeAction);
     }
 
-    public static void ShowDropdownField(string copyPropertyValue, DropdownField objectTypeField, Action UpdateObjectContainer)
+    public static void ShowDropdownField(string propertyValue, DropdownField dropdownField, Action UpdateFieldAction)
     {
         PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
 
-        objectTypeField.choices = new List<string>();
-        objectTypeField.value = copyPropertyValue;
+        dropdownField.choices = new List<string>();
+        dropdownField.value = propertyValue;
 
         for (int i = 0; i < props.Length; i++)
         {
-            objectTypeField.choices.Add(props[i].TypeName);
+            dropdownField.choices.Add(props[i].TypeName);
         }
-        objectTypeField.RegisterValueChangedCallback((value) => 
+        dropdownField.RegisterValueChangedCallback((value) => 
         {
-            objectTypeField.value = value.newValue;
-            UpdateObjectContainer?.Invoke();
+            dropdownField.value = value.newValue;
+            UpdateFieldAction?.Invoke();
 
         });
-        UpdateObjectContainer?.Invoke();;        
+        UpdateFieldAction?.Invoke();;        
     }
 
     

@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 #endif
 
+[System.Serializable]
 public class CharacterType : PropertyObjectType
 {
 
