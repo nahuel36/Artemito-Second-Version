@@ -1,7 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
     <ui:Template name="SimpleVariableField" src="project://database/Assets/Scripts/Properties/Editor/SimpleVariableField.uxml?fileID=9197481963319205126&amp;guid=150cef4799e6a184f82c2cb8191dc81b&amp;type=3#SimpleVariableField" />
     <ui:DropdownField label="Set mode" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="SetMode" />
-    <ui:DropdownField label="Object Types" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ObjectTypes" />
     <uie:EnumFlagsField label="Variable Types" type="UnityEngine.UIElements.UsageHints, UnityEngine.UIElementsModule" value="DynamicTransform" name="VariableTypes" />
     <ui:VisualElement name="VariablesContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
         <ui:Instance template="SimpleVariableField" name="VariableItem" />

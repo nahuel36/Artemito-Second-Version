@@ -17,8 +17,8 @@ public class CharacterSetLocalVariable : CharacterInteraction
 {
     public LocalProperty propertyToSet;
     public CustomEnumFlags<VariableType> customEnumFlags;
-    public PropertyObjectType objectContainer;
-    public string copyPropertyType;
+    public PropertyObjectType copyObjectContainer;
+    //public string copyPropertyType;
     public GenericProperty copyPropertyVariable;
     public enum modes { 
         setValue,
@@ -104,8 +104,8 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
             DropdownField objectTypeField = newElement.Q<DropdownField>("ObjectTypes");
 
-            setModeField.RegisterValueChangedCallback(value => updateMode(newElement, objectTypeField));
-            updateMode(newElement, objectTypeField);
+            setModeField.RegisterValueChangedCallback(value => updateMode(newElement));
+            updateMode(newElement);
 
 
             visualElement.Add(newElement);
@@ -117,18 +117,23 @@ public class CharacterSetLocalVariable : CharacterInteraction
 #endif
     }
 
-    void updateMode(VisualElement newElement, DropdownField objectTypeField)
+    void updateMode(VisualElement newElement)
     {
         newElement.Q<VisualElement>("VariablesContainer").Clear();
 
         if (setMode == modes.copyOtherProperty)
         {
-            objectTypeField.visible = true;
+            if (copyObjectContainer == null)
+                copyObjectContainer = new PropertyObjectType();
 
-            StyleEnum<Position> pos = new StyleEnum<Position>();
-            pos.value = Position.Relative;
-            objectTypeField.style.position = pos;
+            copyObjectContainer.SetGenericField(newElement.Q<VisualElement>("VariablesContainer"));
 
+            //copyPropertyVariable = PropertyObjectType.GetGenericPropertyWithField(newElement.Q<VisualElement>("VariablesContainer"), variableOrigin);
+            
+
+            //((DialogOption)obj.value).subDialogs = new List<SubDialog>(); 
+
+            /*
             EnumerablesUtility.ShowDropdownField(copyPropertyType, objectTypeField, ()=>
             {
 
@@ -148,6 +153,13 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
                 objectContainer.SetPropertyEditorField(newElement.Q<VisualElement>("VariablesContainer"));
 
+                newElement.Q<VisualElement>("VariablesContainer").Q<ObjectField>().RegisterValueChangedCallback((evt) => 
+                    {
+                        
+                        Debug.Log(evt.newValue.ToString()); 
+                    }) ; 
+
+
                 DropdownField dropdown = new DropdownField();
                 List<LocalProperty> localProperties = objectContainer.GetLocalPropertys();
                 for (int i = 0; i < localProperties.Count; i++)
@@ -164,14 +176,14 @@ public class CharacterSetLocalVariable : CharacterInteraction
                     }}) ;
                 newElement.Q<VisualElement>("VariablesContainer").Add(dropdown);
             });
-                
+              */
 
         }
         else
         {
             
-            objectTypeField.visible = false;
-            objectTypeField.StretchToParentSize();
+            //objectTypeField.visible = false;
+            //objectTypeField.StretchToParentSize();
         }
 
         if (setMode == modes.setValue)
@@ -186,10 +198,10 @@ public class CharacterSetLocalVariable : CharacterInteraction
         CharacterSetLocalVariable action = new CharacterSetLocalVariable();
         action.characterType = (CharacterType)characterType.Copy();
         action.propertyToSet = propertyToSet;
-        if(objectContainer != null)
-            action.objectContainer = (PropertyObjectType)objectContainer.Copy();
+        if(copyObjectContainer != null)
+            action.copyObjectContainer = (PropertyObjectType)copyObjectContainer.Copy();
         action.setMode = setMode;
-        action.copyPropertyType = copyPropertyType;
+        //action.copyPropertyType = copyPropertyType;
         action.copyPropertyVariable = copyPropertyVariable;
         action.customEnumFlags = customEnumFlags.Copy();
         return action;
