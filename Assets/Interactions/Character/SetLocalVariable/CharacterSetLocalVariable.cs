@@ -6,6 +6,8 @@ using System.Xml.Linq;
 
 using UnityEditor;
 using Unity.Collections.LowLevel.Unsafe;
+using System;
+
 
 
 #if UNITY_EDITOR
@@ -17,17 +19,17 @@ public class CharacterSetLocalVariable : CharacterInteraction
 {
     public LocalProperty propertyToSet;
     public CustomEnumFlags<VariableType> customEnumFlags;
-    public PropertyObjectType objectContainer;
+    public PropertyObjectType copyPropertyObjectContainer;
     public string copyPropertyType;
     public GenericProperty copyPropertyVariable;
     public enum modes { 
         setValue,
         copyOtherProperty
     }
-    public modes setMode;
+    public modes changeMode;
     public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
     {
-        if (setMode == modes.setValue)
+        if (changeMode == modes.setValue)
         {
             propertyToSet.variablesContainer.SetValue("string", customEnumFlags.GetStringValue("string"));
         }//FALTA EL DEFAULT
@@ -62,13 +64,17 @@ public class CharacterSetLocalVariable : CharacterInteraction
         base.SetEditorField(visualElement, interaction);
 
 
-        DropdownField propertyField = new DropdownField();
-        propertyField.label = "Property";
+        VisualElement newElement = new VisualElement();
+
+        newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/SetProperty.uxml").CloneTree());
+
+
+        DropdownField propertyField = newElement.Q<DropdownField>("Property");
         
         if(characterType != null)
             UpdateVariableChoices(propertyField);
 
-        characterType.onCharacterChange += ()=>UpdateVariableChoices(propertyField);
+        characterType.onPropertyEditorChange += ()=>UpdateVariableChoices(propertyField);
 
 
 
@@ -86,26 +92,23 @@ public class CharacterSetLocalVariable : CharacterInteraction
             if (customEnumFlags == null)
                 customEnumFlags = new CustomEnumFlags<VariableType>(0);
 
-            VisualElement newElement = new VisualElement();
-
-            newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/SetProperty.uxml").CloneTree());
-
+            
             //variable types no muestra los posibles valores de la property
             //everything solo debe cubrir las variables disponibles 
 
-            if (propertyToSet != null && setMode == modes.copyOtherProperty)
+            if (propertyToSet != null && changeMode == modes.copyOtherProperty)
                 EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer, copyPropertyVariable.variablesContainer });
-            else if (propertyToSet != null && setMode == modes.setValue)
+            else if (propertyToSet != null && changeMode == modes.setValue)
                 EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer});
         
-            DropdownField setModeField = newElement.Q<DropdownField>("SetMode");
-            setModeField.bindingPath = "setMode";
-            setModeField.Bind(new SerializedObject(this));
+            DropdownField changeModeField = newElement.Q<DropdownField>("ChangeMode");
+            changeModeField.bindingPath = "changeMode";
+            changeModeField.Bind(new SerializedObject(this));
 
-            DropdownField objectTypeField = newElement.Q<DropdownField>("ObjectTypes");
+            
 
-            setModeField.RegisterValueChangedCallback(value => updateMode(newElement, objectTypeField));
-            updateMode(newElement, objectTypeField);
+            changeModeField.RegisterValueChangedCallback(value => updateMode(newElement));
+            updateMode(newElement);
 
 
             visualElement.Add(newElement);
@@ -117,68 +120,104 @@ public class CharacterSetLocalVariable : CharacterInteraction
 #endif
     }
 
-    void updateMode(VisualElement newElement, DropdownField objectTypeField)
+    void ShowVisualElement(VisualElement element)
     {
-        newElement.Q<VisualElement>("VariablesContainer").Clear();
+        element.visible = true;
 
-        if (setMode == modes.copyOtherProperty)
+        StyleEnum<Position> pos = new StyleEnum<Position>();
+        pos.value = Position.Relative;
+        element.style.position = pos;
+    }
+
+    void HideVisualElement(VisualElement element)
+    {
+        element.visible = false;
+        element.StretchToParentSize();
+    }
+
+    void updateMode(VisualElement newElement)
+    {
+        VisualElement copyModeVE = newElement.Q<VisualElement>("CopyMode");
+        VisualElement setModeVE = newElement.Q<VisualElement>("SetMode");
+
+
+        if (changeMode == modes.copyOtherProperty)
         {
-            objectTypeField.visible = true;
+            HideVisualElement(setModeVE);
+            ShowVisualElement(copyModeVE);
 
-            StyleEnum<Position> pos = new StyleEnum<Position>();
-            pos.value = Position.Relative;
-            objectTypeField.style.position = pos;
+            DropdownField objectTypeField = copyModeVE.Q<DropdownField>("ObjectType");
+            ObjectField objectField = copyModeVE.Q<ObjectField>("ObjectField");
+            DropdownField variables = copyModeVE.Q<DropdownField>("Variables");
 
             EnumerablesUtility.ShowDropdownField(copyPropertyType, objectTypeField, ()=>
             {
-
-                PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
-
                 copyPropertyType = objectTypeField.value;
 
-                for (int i = 0; i < props.Length; i++)
-                {
-                    if (copyPropertyType == props[i].TypeName &&
-                        (objectContainer == null || objectContainer.TypeName != props[i].TypeName))
-                    {
-                        objectContainer = (PropertyObjectType)props[i].Copy();
-                    }
-                }
-                newElement.Q<VisualElement>("VariablesContainer").Clear();
+                UpdateCopyPropertyObjectContainer();
 
-                objectContainer.SetPropertyEditorField(newElement.Q<VisualElement>("VariablesContainer"));
+                objectField.Clear();
+                
+                copyPropertyObjectContainer.SetPropertyEditorField(objectField);
 
-                DropdownField dropdown = new DropdownField();
-                List<LocalProperty> localProperties = objectContainer.GetLocalPropertys();
-                for (int i = 0; i < localProperties.Count; i++)
-                {
-                    dropdown.choices.Add(localProperties[i].name);
-                }
-                dropdown.value = copyPropertyVariable.name;
-                dropdown.RegisterValueChangedCallback((value) => {
-                    List<LocalProperty> localProperties = objectContainer.GetLocalPropertys();
-                    for (int i = 0; i < localProperties.Count; i++)
-                    {
-                        if(value.newValue == localProperties[i].name)
-                            copyPropertyVariable = localProperties[i];
-                    }}) ;
-                newElement.Q<VisualElement>("VariablesContainer").Add(dropdown);
+                copyPropertyObjectContainer.onPropertyEditorChange += ()=> UpdateDropdownCopyVariables(variables);
+
+                UpdateDropdownCopyVariables(variables);
+
+                //hacer un contenedor con variables container para cada modo
             });
                 
 
         }
         else
         {
-            
-            objectTypeField.visible = false;
-            objectTypeField.StretchToParentSize();
+            HideVisualElement(copyModeVE);
+            ShowVisualElement(setModeVE);
+            EnumerablesUtility.UpdateAllVariablesFields(setModeVE, customEnumFlags);
+        }        
+    }
+
+    private void UpdateDropdownCopyVariables(VisualElement variablesContainer)
+    {
+        variablesContainer.Clear();
+        DropdownField dropdown = new DropdownField();
+        dropdown.value = null;
+        List<LocalProperty> localProperties = copyPropertyObjectContainer.GetLocalPropertys();
+        if (localProperties != null && localProperties.Count > 0)
+        {
+
+            for (int i = 0; i < localProperties.Count; i++)
+            {
+                dropdown.choices.Add(localProperties[i].name);
+            }
+
+            dropdown.value = copyPropertyVariable.name;
+
+            dropdown.RegisterValueChangedCallback((value) => {
+                List<LocalProperty> localProperties = copyPropertyObjectContainer.GetLocalPropertys();
+                for (int i = 0; i < localProperties.Count; i++)
+                {
+                    if (value.newValue == localProperties[i].name)
+                        copyPropertyVariable = localProperties[i];
+                }
+            });
         }
 
-        if (setMode == modes.setValue)
+        variablesContainer.Add(dropdown);
+    }
+
+    private void UpdateCopyPropertyObjectContainer()
+    {
+        PropertyObjectType[] props = EnumerablesUtility.GetAllPropertyObjectTypes();
+
+        for (int i = 0; i < props.Length; i++)
         {
-            EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags);
+            if (copyPropertyType == props[i].TypeName &&
+                (copyPropertyObjectContainer == null || copyPropertyObjectContainer.TypeName != props[i].TypeName))
+            {
+                copyPropertyObjectContainer = (PropertyObjectType)props[i].Copy();
+            }
         }
-        
     }
 
     public override InteractionAction Copy()
@@ -186,9 +225,9 @@ public class CharacterSetLocalVariable : CharacterInteraction
         CharacterSetLocalVariable action = new CharacterSetLocalVariable();
         action.characterType = (CharacterType)characterType.Copy();
         action.propertyToSet = propertyToSet;
-        if(objectContainer != null)
-            action.objectContainer = (PropertyObjectType)objectContainer.Copy();
-        action.setMode = setMode;
+        if(copyPropertyObjectContainer != null)
+            action.copyPropertyObjectContainer = (PropertyObjectType)copyPropertyObjectContainer.Copy();
+        action.changeMode = changeMode;
         action.copyPropertyType = copyPropertyType;
         action.copyPropertyVariable = copyPropertyVariable;
         action.customEnumFlags = customEnumFlags.Copy();

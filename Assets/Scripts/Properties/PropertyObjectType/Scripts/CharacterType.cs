@@ -11,10 +11,8 @@ using UnityEditor.UIElements;
 [System.Serializable]
 public class CharacterType : PropertyObjectType
 {
-
+    public override event ChangePropertyEditorField onPropertyEditorChange;
     public Character character;
-    public delegate void CharacterEvent();
-    public event CharacterEvent onCharacterChange;
     public CharacterType()
     {
         Index = 0;
@@ -37,7 +35,7 @@ public class CharacterType : PropertyObjectType
         characterField.bindingPath = "character";
         characterField.Bind(new SerializedObject(this));
         characterField.RegisterValueChangedCallback((value) => {
-            onCharacterChange?.Invoke();
+            onPropertyEditorChange?.Invoke();
         });
         element.Add(characterField);
         
