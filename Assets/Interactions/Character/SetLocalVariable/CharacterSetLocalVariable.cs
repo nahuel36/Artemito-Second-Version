@@ -143,6 +143,8 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
         if (changeMode == modes.copyOtherProperty)
         {
+            setModeVE.Q<VisualElement>("VariablesContainer").Clear();
+
             HideVisualElement(setModeVE);
             ShowVisualElement(copyModeVE);
 

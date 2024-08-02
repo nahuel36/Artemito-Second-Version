@@ -3,9 +3,9 @@
     <ui:DropdownField label="Set mode" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ChangeMode" />
     <uie:EnumFlagsField label="Variable Types" type="UnityEngine.UIElements.UsageHints, UnityEngine.UIElementsModule" value="DynamicTransform" name="VariableTypes" />
     <ui:VisualElement name="CopyMode" style="flex-grow: 1; height: auto;">
-        <ui:DropdownField label="Object Types" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ObjectType" />
-        <uie:ObjectField label="Object Field" name="ObjectField" style="flex-direction: row; flex-wrap: nowrap; align-items: stretch; height: 30px;" />
-        <ui:DropdownField label="Dropdown" name="Variables" />
+        <ui:DropdownField label="Object Type" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ObjectType" style="align-items: auto;" />
+        <uie:ObjectField label="Object Field" name="ObjectField" style="flex-direction: row; flex-wrap: nowrap; align-items: auto; height: 30px;" />
+        <ui:DropdownField label="Dropdown" name="Variables" style="align-items: auto;" />
     </ui:VisualElement>
     <ui:VisualElement name="SetMode" style="flex-grow: 1; flex-direction: column; align-items: auto; justify-content: space-between; align-self: auto;">
         <ui:VisualElement name="VariablesContainer" style="flex-grow: 1;" />
