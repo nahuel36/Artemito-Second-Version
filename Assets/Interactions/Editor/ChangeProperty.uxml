@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
     <ui:DropdownField label="Property" name="Property" />
-    <ui:DropdownField label="Set mode" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ChangeMode" />
+    <ui:DropdownField label="Change mode" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ChangeMode" />
     <uie:EnumFlagsField label="Variable Types" type="UnityEngine.UIElements.UsageHints, UnityEngine.UIElementsModule" value="DynamicTransform" name="VariableTypes" />
     <ui:VisualElement name="CopyMode" style="flex-grow: 1; height: auto;">
         <ui:DropdownField label="Object Type" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ObjectType" style="align-items: auto;" />

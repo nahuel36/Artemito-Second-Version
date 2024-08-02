@@ -66,7 +66,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
         VisualElement newElement = new VisualElement();
 
-        newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/SetProperty.uxml").CloneTree());
+        newElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Interactions/Editor/ChangeProperty.uxml").CloneTree());
 
 
         DropdownField propertyField = newElement.Q<DropdownField>("Property");
