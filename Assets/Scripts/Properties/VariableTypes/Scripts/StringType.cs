@@ -52,6 +52,7 @@ public class StringType : VariableType
         StringType newEnum = new StringType();
         newEnum.stringValue = stringValue;
         newEnum.objectValue = objectValue;
+        newEnum.changedIngame = changedIngame;
         newEnum.isDefaultValue = isDefaultValue;
         return newEnum;
     }
