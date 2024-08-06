@@ -40,7 +40,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
     }
 
 
-    private void UpdateVariableChoices(DropdownField propertyField) {
+    private void UpdateVariableNameChoices(DropdownField propertyField) {
         propertyField.choices = new List<string>();
         if(characterType.character!=null)
         { 
@@ -72,9 +72,9 @@ public class CharacterSetLocalVariable : CharacterInteraction
         DropdownField propertyField = newElement.Q<DropdownField>("Property");
         
         if(characterType != null)
-            UpdateVariableChoices(propertyField);
+            UpdateVariableNameChoices(propertyField);
 
-        characterType.onPropertyEditorChange += ()=>UpdateVariableChoices(propertyField);
+        characterType.onPropertyEditorChange += ()=>UpdateVariableNameChoices(propertyField);
 
 
 
@@ -92,15 +92,8 @@ public class CharacterSetLocalVariable : CharacterInteraction
             if (customEnumFlags == null)
                 customEnumFlags = new CustomEnumFlags<VariableType>(0);
 
-            
-            //variable types no muestra los posibles valores de la property
-            //everything solo debe cubrir las variables disponibles 
+            UpdateVariableTypes(newElement);
 
-            if (propertyToSet != null && changeMode == modes.copyOtherProperty)
-                EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer, copyPropertyVariable.variablesContainer });
-            else if (propertyToSet != null && changeMode == modes.setValue)
-                EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer});
-        
             DropdownField changeModeField = newElement.Q<DropdownField>("ChangeMode");
             changeModeField.bindingPath = "changeMode";
             changeModeField.Bind(new SerializedObject(this));
@@ -119,6 +112,16 @@ public class CharacterSetLocalVariable : CharacterInteraction
         
 #endif
     }
+
+    void UpdateVariableTypes(VisualElement newElement )
+    {
+        if (propertyToSet != null && changeMode == modes.copyOtherProperty)
+            EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer, copyPropertyVariable.variablesContainer });
+        else if (propertyToSet != null && changeMode == modes.setValue)
+            EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer });
+
+    }
+
 
     void ShowVisualElement(VisualElement element)
     {
@@ -162,9 +165,9 @@ public class CharacterSetLocalVariable : CharacterInteraction
                 
                 copyPropertyObjectContainer.SetPropertyEditorField(objectField);
 
-                copyPropertyObjectContainer.onPropertyEditorChange += ()=> UpdateDropdownCopyVariables(variables);
+                copyPropertyObjectContainer.onPropertyEditorChange += ()=> UpdateDropdownCopyVariables(newElement,variables);
 
-                UpdateDropdownCopyVariables(variables);
+                UpdateDropdownCopyVariables(newElement, variables);
 
                 //hacer un contenedor con variables container para cada modo
             });
@@ -179,7 +182,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
         }        
     }
 
-    private void UpdateDropdownCopyVariables(VisualElement variablesContainer)
+    private void UpdateDropdownCopyVariables(VisualElement rootElement, VisualElement variablesContainer)
     {
         variablesContainer.Clear();
         DropdownField dropdown = new DropdownField();
@@ -200,7 +203,10 @@ public class CharacterSetLocalVariable : CharacterInteraction
                 for (int i = 0; i < localProperties.Count; i++)
                 {
                     if (value.newValue == localProperties[i].name)
+                    { 
                         copyPropertyVariable = localProperties[i];
+                        UpdateVariableTypes(rootElement);
+                    }
                 }
             });
         }
