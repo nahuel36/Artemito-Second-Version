@@ -34,7 +34,7 @@ MonoBehaviour:
     - name: new property
       expandedInInspector: 0
       variablesContainer:
-        value: 1
+        value: 3
         members:
         - {fileID: 0}
         - {fileID: 0}
