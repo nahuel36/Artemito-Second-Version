@@ -30,9 +30,8 @@ public class CharacterCustomEditor : Editor
 
         VisualElement root = visualTree.CloneTree();
 
-        root.Q("Interaction").visible = false;
-        root.Q("Interaction").StretchToParentSize();
-
+        VisualElementsUtils.HideVisualElement(root.Q("Interaction"));
+        
 
 
         InventoryInteractionsCustomEditor InventoryInteractionsCustomEditor = (InventoryInteractionsCustomEditor)CreateInstance(typeof(InventoryInteractionsCustomEditor));

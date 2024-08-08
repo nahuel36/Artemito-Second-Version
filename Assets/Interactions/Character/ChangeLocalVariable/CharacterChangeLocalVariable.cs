@@ -123,20 +123,6 @@ public class CharacterSetLocalVariable : CharacterInteraction
     }
 
 
-    void ShowVisualElement(VisualElement element)
-    {
-        element.visible = true;
-
-        StyleEnum<Position> pos = new StyleEnum<Position>();
-        pos.value = Position.Relative;
-        element.style.position = pos;
-    }
-
-    void HideVisualElement(VisualElement element)
-    {
-        element.visible = false;
-        element.StretchToParentSize();
-    }
 
     void updateMode(VisualElement newElement)
     {
@@ -148,8 +134,8 @@ public class CharacterSetLocalVariable : CharacterInteraction
         {
             setModeVE.Q<VisualElement>("VariablesContainer").Clear();
 
-            HideVisualElement(setModeVE);
-            ShowVisualElement(copyModeVE);
+            VisualElementsUtils.HideVisualElement(setModeVE);
+            VisualElementsUtils.ShowVisualElement(copyModeVE);
 
             DropdownField objectTypeField = copyModeVE.Q<DropdownField>("ObjectType");
             ObjectField objectField = copyModeVE.Q<ObjectField>("ObjectField");
@@ -176,8 +162,8 @@ public class CharacterSetLocalVariable : CharacterInteraction
         }
         else
         {
-            HideVisualElement(copyModeVE);
-            ShowVisualElement(setModeVE);
+            VisualElementsUtils.HideVisualElement(copyModeVE);
+            VisualElementsUtils.ShowVisualElement(setModeVE);
             EnumerablesUtility.UpdateAllVariablesFields(setModeVE, customEnumFlags);
         }        
     }

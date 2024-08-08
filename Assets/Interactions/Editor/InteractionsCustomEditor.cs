@@ -31,10 +31,8 @@ public class InteractionsCustomEditor : Editor
             root.Add(InteractionsVT.CloneTree());
         }
 
-       
-        root.Q("Interaction").visible = false;
-        root.Q("Interaction").StretchToParentSize();
-
+        VisualElementsUtils.HideVisualElement(root.Q("Interaction"));
+        
         listCustom = new();
 
         listCustom.ItemsSource = interactions;

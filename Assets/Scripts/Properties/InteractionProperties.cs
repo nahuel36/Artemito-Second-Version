@@ -60,8 +60,7 @@ public class InteractionProperties : Editor
         //element.Add(interaction_property.CloneTree());
         element.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Properties/Editor/InteractionProperty.uxml").CloneTree());
 
-        element.Q("VariableItem").visible = false;
-        element.Q("VariableItem").StretchToParentSize();
+        VisualElementsUtils.HideVisualElement(element.Q("VariableItem"));
 
         element.Q<TextField>("PropertyName").value = property.name;
         element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { property.name = name.newValue; });

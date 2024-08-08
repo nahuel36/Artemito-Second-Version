@@ -29,9 +29,8 @@ public class LocalAndGlobalProperties : Editor
             return localprop;        
         };
 
-        root.Q("LocalProperties").Q("LocalProperty").visible = false;
-        root.Q("LocalProperties").Q("LocalProperty").StretchToParentSize();
-
+        VisualElementsUtils.HideVisualElement(root.Q("LocalProperties").Q("LocalProperty"));
+        
         customListView.Init(root.Q("LocalProperties").Q("CustomListView"));
 
         StyleLength lenght = new StyleLength(StyleKeyword.Auto);
@@ -51,8 +50,7 @@ public class LocalAndGlobalProperties : Editor
 
         element.Add(localProperty.CloneTree());
 
-        element.Q("VariableItem").visible = false;
-        element.Q("VariableItem").StretchToParentSize();
+        VisualElementsUtils.HideVisualElement(element.Q("VariableItem"));
 
         element.Q<TextField>("PropertyName").value = property.name;
         element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { property.name = name.newValue; });
