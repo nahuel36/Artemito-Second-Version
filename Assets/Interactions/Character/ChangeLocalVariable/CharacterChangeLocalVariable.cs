@@ -42,20 +42,16 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
     private void UpdateVariableNameChoices(DropdownField propertyField) {
         propertyField.choices = new List<string>();
-        if(characterType.character!=null)
+        propertyField.value = null;
+        if (characterType.character!=null)
         { 
             for (int i = 0; i < characterType.character.local_properties.Count; i++)
             {
                 propertyField.choices.Add(characterType.character.local_properties[i].name);
+                if(characterType.character.local_properties[i].name == propertyToSet?.name)
+                    propertyField.value = propertyToSet?.name;
             }
-            
-            propertyField.value = propertyToSet?.name;
-        }
-        else
-        {
-            propertyField.value = null;
-        }
-            
+        }   
     }
 
     public override void SetEditorField(VisualElement visualElement, Interaction interaction)
