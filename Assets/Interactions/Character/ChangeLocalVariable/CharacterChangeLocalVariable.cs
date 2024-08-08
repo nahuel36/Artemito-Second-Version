@@ -51,7 +51,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
                 if(characterType.character.local_properties[i].name == propertyToSet?.name)
                     propertyField.value = propertyToSet?.name;
             }
-        }   
+        }
     }
 
     public override void SetEditorField(VisualElement visualElement, Interaction interaction)
@@ -70,8 +70,11 @@ public class CharacterSetLocalVariable : CharacterInteraction
         if(characterType != null)
             UpdateVariableNameChoices(propertyField);
 
-        characterType.onPropertyEditorChange += ()=>UpdateVariableNameChoices(propertyField);
-
+        characterType.onPropertyEditorChange += () =>
+            {
+                UpdateVariableNameChoices(propertyField);
+                UpdateVariableTypes(newElement);
+            };
 
 
             propertyField.RegisterValueChangedCallback((newvalue) =>
@@ -82,6 +85,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
                         if (newvalue.newValue == characterType.character.local_properties[i].name)
                             propertyToSet = characterType.character.local_properties[i];
                     }
+                UpdateVariableTypes(newElement);
             });
             visualElement.Add(propertyField);
 
