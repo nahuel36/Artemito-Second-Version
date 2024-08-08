@@ -20,7 +20,13 @@ public class LocalAndGlobalProperties : Editor
 
         customListView.ItemsSource = local_properties;
 
-        customListView.ItemContent = (i) => ItemContent(i, local_properties[i]);
+        customListView.ItemContent = (i) => 
+        {
+            if (i >= 0 && local_properties.Count > 0)
+                return ItemContent(i, local_properties[i]);
+            else
+                return null;
+        };
 
         customListView.OnAdd = () => {
             int variablesLength = EnumerablesUtility.GetAllVariableTypes().Length;

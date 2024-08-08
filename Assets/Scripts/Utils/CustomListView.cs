@@ -81,9 +81,11 @@ public class CustomListView<T>
         //listView.headerTitle =
         //listView.showFoldoutHeader = true;
         listView.showAlternatingRowBackgrounds = AlternatingRowBackground.All;
-        
 
-        Label footText = new Label("add or remove " + typeof(T).ToString()); 
+
+        Label footText = root.Q<Label>("addRemoveText");
+
+        footText.text = "add or remove " + typeof(T).ToString(); 
 
         StyleEnum<TextAnchor> alignFoot = new StyleEnum<TextAnchor>();
 

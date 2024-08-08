@@ -1,3 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <ui:ListView name="listView" />
+    <ui:Label tabindex="-1" text="Add or Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="addRemoveText" style="align-self: auto; align-items: stretch; -unity-text-align: upper-right;" />
 </ui:UXML>
