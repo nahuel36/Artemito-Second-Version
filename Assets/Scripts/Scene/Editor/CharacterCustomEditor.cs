@@ -49,7 +49,7 @@ public class CharacterCustomEditor : Editor
             List<LocalProperty> newList = new List<LocalProperty>();
             for (int i = 0; i < myTarget.local_properties.Count; i++)
             {
-                newList.Add(myTarget.local_properties[i].Copy());
+                newList.Add((LocalProperty)myTarget.local_properties[i].Copy());
             }
             myTarget.local_properties = newList;
         }

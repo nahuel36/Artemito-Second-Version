@@ -40,7 +40,7 @@ public class InteractionProperties : Editor
         };
 
         customListView.CopyItem = (propOrigin) =>
-        { return propOrigin.Copy(); };
+        { return (InteractionProperty)propOrigin.Copy(); };
 
         customListView.Init(root, true);
 

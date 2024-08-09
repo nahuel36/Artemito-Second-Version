@@ -152,11 +152,13 @@ public class CharacterSetLocalVariable : CharacterInteraction
                 
                 copyPropertyObjectContainer.SetPropertyEditorField(objectField);
 
-                copyPropertyObjectContainer.onPropertyEditorChange += ()=> UpdateDropdownCopyVariables(newElement,variables);
+                copyPropertyObjectContainer.onPropertyEditorChange += () =>
+                    {
+                        //copyPropertyVariable = null;//no funciona porque al inicio se ejecuta
+                        UpdateDropdownCopyVariables(newElement, variables);
+                    };
 
                 UpdateDropdownCopyVariables(newElement, variables);
-
-                //hacer un contenedor con variables container para cada modo
             });
                 
 
@@ -177,13 +179,18 @@ public class CharacterSetLocalVariable : CharacterInteraction
         List<LocalProperty> localProperties = copyPropertyObjectContainer.GetLocalPropertys();
         if (localProperties != null && localProperties.Count > 0)
         {
-
+            string localPropertyToCopy = string.Empty;
             for (int i = 0; i < localProperties.Count; i++)
             {
                 dropdown.choices.Add(localProperties[i].name);
+                if (copyPropertyVariable != null && localProperties[i].name == copyPropertyVariable.name)
+                {
+                    localPropertyToCopy = copyPropertyVariable.name;
+                }
             }
 
-            dropdown.value = copyPropertyVariable.name;
+            if(!string.IsNullOrEmpty(localPropertyToCopy))
+                dropdown.value = localPropertyToCopy;// localPropertyToCopy;
 
             dropdown.RegisterValueChangedCallback((value) => {
                 List<LocalProperty> localProperties = copyPropertyObjectContainer.GetLocalPropertys();

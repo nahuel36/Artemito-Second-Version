@@ -35,7 +35,8 @@ public class CharacterType : PropertyObjectType
         characterField.bindingPath = "character";
         characterField.Bind(new SerializedObject(this));
         characterField.RegisterValueChangedCallback((value) => {
-            onPropertyEditorChange?.Invoke();
+            if(character.gameObject != value.newValue)
+                onPropertyEditorChange?.Invoke();
         });
         element.Add(characterField);
         

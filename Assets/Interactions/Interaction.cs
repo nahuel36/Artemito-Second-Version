@@ -21,7 +21,7 @@ public class Interaction
         interDestiny.interaction_properties = new List<InteractionProperty>();
         if(interOrigin.interaction_properties != null)
             for (int i = 0; i < interOrigin.interaction_properties.Count;i++)
-                interDestiny.interaction_properties.Add(interOrigin.interaction_properties[i].Copy());
+                interDestiny.interaction_properties.Add((InteractionProperty)interOrigin.interaction_properties[i].Copy());
         return interDestiny;
     }
 
