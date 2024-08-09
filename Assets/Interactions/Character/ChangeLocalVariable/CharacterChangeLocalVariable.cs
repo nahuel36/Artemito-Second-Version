@@ -176,6 +176,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
         variablesContainer.Clear();
         DropdownField dropdown = new DropdownField();
         dropdown.value = null;
+        dropdown.label = "Property to copy";
         List<LocalProperty> localProperties = copyPropertyObjectContainer.GetLocalPropertys();
         if (localProperties != null && localProperties.Count > 0)
         {
