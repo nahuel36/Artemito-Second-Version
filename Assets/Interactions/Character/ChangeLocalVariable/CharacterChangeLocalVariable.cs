@@ -139,7 +139,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
             VisualElementsUtils.ShowVisualElement(copyModeVE);
 
             DropdownField objectTypeField = copyModeVE.Q<DropdownField>("ObjectType");
-            ObjectField objectField = copyModeVE.Q<ObjectField>("ObjectField");
+            VisualElement objectField = copyModeVE.Q<VisualElement>("ObjectField");
             DropdownField variables = copyModeVE.Q<DropdownField>("Variables");
 
             EnumerablesUtility.ShowDropdownField(copyPropertyType, objectTypeField, ()=>
