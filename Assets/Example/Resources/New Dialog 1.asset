@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1eb2f51a2749e474eaec9c0d84a14f5b, type: 3}
-  m_Name: New Dialog
+  m_Name: New Dialog 1
   m_EditorClassIdentifier: 
   subDialogs:
-  - text: subdialog1
+  - text: subdialogA
     index: 0
     options:
-    - initialText: 1
+    - initialText: A
       currentText: 
       index: 0
       attempsContainer:
@@ -28,12 +28,7 @@ MonoBehaviour:
       initialState: 0
       currentState: 0
       say: 0
-      local_properties:
-      - name: property1
-        expandedInInspector: 0
-        variablesContainer:
-          value: 0
-          members: []
+      local_properties: []
       global_properties: []
       current_local_properties: []
       current_global_properties: []

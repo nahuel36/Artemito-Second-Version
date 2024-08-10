@@ -25,15 +25,15 @@ public class DialogOption
 
     public bool say = true;
 
-    public LocalProperty[] local_properties = new LocalProperty[0];
-    public GlobalProperty[] global_properties = new GlobalProperty[0];
+    public List<LocalProperty> local_properties = new List<LocalProperty>();
+    public List<GlobalProperty> global_properties = new List<GlobalProperty>();
 
-    public LocalProperty[] current_local_properties = new LocalProperty[0];
-    public GlobalProperty[] current_global_properties = new GlobalProperty[0];
+    public List<LocalProperty> current_local_properties = new List<LocalProperty>();
+    public List<GlobalProperty> current_global_properties = new List<GlobalProperty>();
 
 
-    public LocalProperty[] LocalProperties { get { return local_properties; } set { local_properties = value; } }
-    public GlobalProperty[] GlobalProperties { get { return global_properties; } set { global_properties = value;  } }
+    //public LocalProperty[] LocalProperties { get { return local_properties; } set { local_properties = value; } }
+    //public GlobalProperty[] GlobalProperties { get { return global_properties; } set { global_properties = value;  } }
 }
 
 [System.Serializable]
