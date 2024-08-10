@@ -45,7 +45,7 @@ public class CharacterType : PropertyObjectType
 
     public override EnumerableType Copy()
     {
-        CharacterType characterType = new CharacterType();
+        CharacterType characterType = Instantiate(this);
         characterType.Index = Index;
         characterType.TypeName = TypeName;
         characterType.character = character;

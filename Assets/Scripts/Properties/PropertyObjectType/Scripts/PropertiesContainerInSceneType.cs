@@ -19,7 +19,7 @@ public class PropertiesContainerInSceneType : PropertyObjectType
 
     public override EnumerableType Copy()
     {
-        PropertiesContainerInSceneType propContType = new PropertiesContainerInSceneType();
+        PropertiesContainerInSceneType propContType = Instantiate(this);
         propContType.Index = Index;
         propContType.TypeName = TypeName;
         return propContType;

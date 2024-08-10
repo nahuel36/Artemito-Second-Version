@@ -19,7 +19,7 @@ public class RoomObjectType : PropertyObjectType
 
     public override EnumerableType Copy()
     {
-        RoomObjectType roomObjType = new RoomObjectType();
+        RoomObjectType roomObjType = Instantiate(this);
         roomObjType.Index = Index;
         roomObjType.TypeName = TypeName;
         return roomObjType;

@@ -20,7 +20,7 @@ public class DialogOptionType : PropertyObjectType
 
     public override EnumerableType Copy()
     {
-        DialogOptionType dialogOptionType = new DialogOptionType();
+        DialogOptionType dialogOptionType = Instantiate(this);
         dialogOptionType.Index = Index;
         dialogOptionType.TypeName = TypeName;
         return dialogOptionType;

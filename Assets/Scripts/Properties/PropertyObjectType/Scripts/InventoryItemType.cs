@@ -19,7 +19,7 @@ public class InventoryItemType : PropertyObjectType
 
     public override EnumerableType Copy()
     {
-        InventoryItemType inventoryItemType = new InventoryItemType();
+        InventoryItemType inventoryItemType = Instantiate(this);
         inventoryItemType.Index = Index;
         inventoryItemType.TypeName = TypeName;
         return inventoryItemType;
