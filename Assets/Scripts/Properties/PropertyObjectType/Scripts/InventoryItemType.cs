@@ -7,14 +7,14 @@ public class InventoryItemType : PropertyObjectType
     public InventoryItemType()
     {
         Index = 2;
-        TypeName = "Inventory'";
+        TypeName = "Inventory";
     }
 
 
     private void OnEnable()
     {
         Index = 2;
-        TypeName = "Inventory'";
+        TypeName = "Inventory";
     }
 
     public override EnumerableType Copy()
