@@ -49,6 +49,13 @@ public class DialogOptionType : PropertyObjectType
         subdialogField.RegisterValueChangedCallback(value =>
         {
             UpdateOptions(optionField);
+
+            for (int i = 0; i < dialog.subDialogs.Count; i++) 
+            {
+                if (dialog.subDialogs[i].text == value.newValue)
+                    subDialog = i;
+            }
+
         });
         element.Add(subdialogField);
 
@@ -56,6 +63,14 @@ public class DialogOptionType : PropertyObjectType
         optionField.RegisterValueChangedCallback(value =>
         {
             onPropertyEditorChange?.Invoke();
+            if (dialog == null || subDialog < 0 || subDialog >= dialog.subDialogs.Count)
+                return;
+
+            for (int i = 0; i < dialog.subDialogs[subDialog].options.Count; i++)
+            {
+                if (dialog.subDialogs[subDialog].options[i].initialText == value.newValue)
+                    dialogOption = i;
+            }
         });
         element.Add(optionField);
 
@@ -67,20 +82,28 @@ public class DialogOptionType : PropertyObjectType
     {
         subDialogsField.choices = new List<string>();
         if (dialog == null) return;
+        string subdialogvalue = null;
         for (int i = 0; i < dialog.subDialogs.Count; i++)
         {
             subDialogsField.choices.Add(dialog.subDialogs[i].text);
+            if (i==subDialog)
+                subdialogvalue = dialog.subDialogs[i].text;
         }
+        subDialogsField.value = subdialogvalue;
     }
 
-    private void UpdateOptions(DropdownField subDialogsField)
+    private void UpdateOptions(DropdownField optionsField)
     {
-        subDialogsField.choices = new List<string>();
+        optionsField.choices = new List<string>();
         if (dialog == null || subDialog < 0) return;
+        string optionvalue = null;
         for (int i = 0; i < dialog.subDialogs[subDialog].options.Count; i++)
         {
-            subDialogsField.choices.Add(dialog.subDialogs[subDialog].options[i].initialText);
+            optionsField.choices.Add(dialog.subDialogs[subDialog].options[i].initialText);
+            if (i == dialogOption)
+                optionvalue = dialog.subDialogs[subDialog].options[i].initialText;
         }
+        optionsField.value = optionvalue;
     }
 
     public override List<LocalProperty> GetLocalPropertys()
