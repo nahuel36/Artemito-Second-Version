@@ -27,7 +27,7 @@ public class CustomListView<T>
     public event ItemChangeDelegate OnChangeItem;
     public delegate void ItemReorderDelegate(int neworder);
     public event ItemReorderDelegate OnReorderItem;
-    public delegate void ItemRemoveDelegate(VisualElement element, int index);
+    public delegate void ItemRemoveDelegate(List<int> k);
     public event ItemRemoveDelegate OnRemoveItem;
 
     private static T copiedItem;
@@ -74,7 +74,7 @@ public class CustomListView<T>
 
         listView.itemsRemoved += new Action<IEnumerable<int>>((IEnumerable<int> k) =>
         {
-            Remove();
+            Remove((List<int>)k);
 
         });
 
@@ -96,13 +96,9 @@ public class CustomListView<T>
         root.Add(footText);
     }
 
-    private void Remove()
+    private void Remove(List<int> k)
     {
-        int index = ItemsSource.Count - 1;
-
-//       TODO; que sea segun el seleccionado, no el ultimo
-
-        OnRemoveItem?.Invoke(listView, index);
+        OnRemoveItem?.Invoke(k);
     }
 
     private void AddAllItems(VisualElement e, int index)

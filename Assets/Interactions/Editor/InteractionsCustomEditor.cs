@@ -73,7 +73,7 @@ public class InteractionsCustomEditor : Editor
 
         listCustom.OnReorderItem += (reorderList) => { SaveTargetChanges(myTarget); };
 
-        listCustom.OnRemoveItem += (element, index) => { SaveTargetChanges(myTarget); };
+        listCustom.OnRemoveItem += (list) => { SaveTargetChanges(myTarget); };
 
         root.RegisterCallback<ChangeEvent<string>>((evt) => { SaveTargetChanges(myTarget); });
 
