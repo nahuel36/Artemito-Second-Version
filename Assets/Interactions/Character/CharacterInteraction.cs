@@ -15,7 +15,7 @@ public class CharacterInteraction : InteractionAction
     {
 #if UNITY_EDITOR
         if(characterType == null)
-            characterType = new CharacterType();
+            characterType = CreateInstance<CharacterType>();
 
         characterType.SetPropertyEditorField(visualElement);
 #endif
