@@ -149,16 +149,21 @@ public class CharacterSetLocalVariable : CharacterInteraction
                 UpdateCopyPropertyObjectContainer();
 
                 objectField.Clear();
-                
-                copyPropertyObjectContainer.SetPropertyEditorField(objectField);
 
-                copyPropertyObjectContainer.onPropertyEditorChange += () =>
+                if (copyPropertyType != null && copyPropertyObjectContainer != null)
+                { 
+
+                    copyPropertyObjectContainer.SetPropertyEditorField(objectField);
+
+                    copyPropertyObjectContainer.onPropertyEditorChange += () =>
                     {
                         //copyPropertyVariable = null;//no funciona porque al inicio se ejecuta
-                        UpdateDropdownCopyVariables(newElement, variables);
+                            UpdateDropdownCopyVariables(newElement, variables);
                     };
 
-                UpdateDropdownCopyVariables(newElement, variables);
+                    UpdateDropdownCopyVariables(newElement, variables);
+
+                }
             });
                 
 
