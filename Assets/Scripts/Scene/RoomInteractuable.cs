@@ -16,7 +16,7 @@ public abstract class RoomInteractuable : PropertiesContainerInScene
         InteractionUtils.RunAttempsInteraction(inventoryInteractions[0].attempsContainer, InteractionObjectsType.verbInObject, null, null, new RoomInteractuable[] { this });
     }
 
-    public void Awake()
+    public new void Awake()
     {
         base.Awake();
         if (instanceID != GetInstanceID())
