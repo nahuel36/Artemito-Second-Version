@@ -2,13 +2,15 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 [CustomEditor(typeof(Dialog))]
 public class DialogEditor : Editor
 {
     [SerializeField]
     private VisualTreeAsset m_VisualTreeAsset = default;
-
+    [SerializeField]
+    private VisualTreeAsset m_OptionVisualTreeAsset = default;
     public override VisualElement CreateInspectorGUI()
     {
         Dialog thisDialog = ((Dialog)target);
@@ -47,9 +49,9 @@ public class DialogEditor : Editor
 
                     ItemContent = (optionIndex) =>
                     {
-                        VisualElement optionVE = new VisualElement();
+                        VisualElement optionVE = m_OptionVisualTreeAsset.Instantiate();
 
-                        TextField optionTittleField = new TextField();
+                        TextField optionTittleField = optionVE.Q<TextField>("OptionTittle");
 
                         optionTittleField.label = ("option " + (optionIndex + 1).ToString());
 
@@ -58,7 +60,7 @@ public class DialogEditor : Editor
                         optionTittleField.RegisterValueChangedCallback((value) => 
                             thisDialog.subDialogs[subdialogIndex].options[optionIndex].initialText = value.newValue);
 
-                        optionVE.Add(optionTittleField);
+                        LocalAndGlobalProperties.CreateGUI(thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties, optionVE.Q("LocalAndGlobalProperties"));
 
                         return optionVE;
                     },

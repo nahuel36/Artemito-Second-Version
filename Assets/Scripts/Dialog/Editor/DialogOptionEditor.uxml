@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="LocalAndGlobalProperties" src="project://database/Assets/Scripts/Properties/Editor/LocalAndGlobalProperties.uxml?fileID=9197481963319205126&amp;guid=1b6a208d78c15ea40a3f675386732322&amp;type=3#LocalAndGlobalProperties" />
+    <Style src="project://database/Assets/Scripts/Dialog/Editor/DialogOptionEditor.uss?fileID=7433441132597879392&amp;guid=6f3036f6465abcb4b9af3ea197fdcdab&amp;type=3#DialogOptionEditor" />
+    <ui:TextField picking-mode="Ignore" label="Text Field" value="filler text" name="OptionTittle" />
+    <ui:Instance template="LocalAndGlobalProperties" name="LocalAndGlobalProperties" />
+</ui:UXML>

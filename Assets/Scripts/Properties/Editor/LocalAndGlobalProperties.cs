@@ -5,18 +5,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 public class LocalAndGlobalProperties : Editor
 {
-    [SerializeField]
-    VisualTreeAsset variableItem;
-    [SerializeField]
-    VisualTreeAsset localProperty;
-    CustomListView<LocalProperty> customListView;
-    public VisualElement CreateGUI(List<LocalProperty> local_properties, VisualElement root)
+    public static VisualElement CreateGUI(List<LocalProperty> local_properties, VisualElement root)
     {
         // Each editor window contains a root VisualElement object
         // Instantiate UXML
-
-        if(customListView == null)
-            customListView = new CustomListView<LocalProperty>();
+        CustomListView<LocalProperty> customListView = new CustomListView<LocalProperty>();
 
         customListView.ItemsSource = local_properties;
 
@@ -46,7 +39,7 @@ public class LocalAndGlobalProperties : Editor
         return root;
     }
 
-    private VisualElement ItemContent(int index, LocalProperty property)
+    private static VisualElement ItemContent(int index, LocalProperty property)
     {
         Foldout foldout = new Foldout();
 
@@ -54,7 +47,9 @@ public class LocalAndGlobalProperties : Editor
 
         VisualElement element = new VisualElement();
 
-        element.Add(localProperty.CloneTree());
+        VisualElement localPropertyVisualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Properties/Editor/LocalProperty.uxml").CloneTree();
+
+        element.Add(localPropertyVisualTree);
 
         VisualElementsUtils.HideVisualElement(element.Q("VariableItem"));
 

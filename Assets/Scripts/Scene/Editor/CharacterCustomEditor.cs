@@ -41,9 +41,6 @@ public class CharacterCustomEditor : Editor
         root.Add(invInteractionsVE);
 
 
-
-        LocalAndGlobalProperties properties = (LocalAndGlobalProperties)CreateInstance(typeof(LocalAndGlobalProperties));
-
         if (myTarget.isDuplicate)
         {
             List<LocalProperty> newList = new List<LocalProperty>();
@@ -54,7 +51,7 @@ public class CharacterCustomEditor : Editor
             myTarget.local_properties = newList;
         }
 
-        properties.CreateGUI(myTarget.local_properties, root.Q("LocalAndGlobalProperties"));
+        LocalAndGlobalProperties.CreateGUI(myTarget.local_properties, root.Q("LocalAndGlobalProperties"));
         
         return root;
     }
