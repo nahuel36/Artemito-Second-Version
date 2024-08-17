@@ -120,7 +120,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
     void UpdateVariableTypes(VisualElement newElement )
     {
         if (propertyToSet != null && changeMode == modes.copyOtherProperty && copyPropertyVariable != null)
-            EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags[] { propertyToSet.variablesContainer, copyPropertyVariable.variablesContainer });
+            EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => { }, new CustomEnumFlags[] { propertyToSet.variablesContainer, copyPropertyVariable.variablesContainer });
         else if (propertyToSet != null && changeMode == modes.setValue)
             EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags[] { propertyToSet.variablesContainer });
         else   
