@@ -24,7 +24,8 @@ public class LocalAndGlobalProperties : Editor
         customListView.OnAdd = () => {
             int variablesLength = EnumerablesUtility.GetAllVariableTypes().Length;
             LocalProperty localprop = new LocalProperty();
-            localprop.variablesContainer = new CustomEnumFlags<VariableType>(0);
+            localprop.variablesContainer = new CustomEnumFlags(0);
+            localprop.variablesContainer.type = CustomEnumFlags.contentType.variable;
             return localprop;        
         };
 

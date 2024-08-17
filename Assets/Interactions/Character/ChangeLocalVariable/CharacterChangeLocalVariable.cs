@@ -18,7 +18,7 @@ using UnityEditor.UIElements;
 public class CharacterSetLocalVariable : CharacterInteraction
 {
     public LocalProperty propertyToSet;
-    public CustomEnumFlags<VariableType> customEnumFlags;
+    public CustomEnumFlags customEnumFlags;
     public PropertyObjectType copyPropertyObjectContainer;
     public string copyPropertyType;
     public GenericProperty copyPropertyVariable;
@@ -90,9 +90,13 @@ public class CharacterSetLocalVariable : CharacterInteraction
             visualElement.Add(propertyField);
 
             if (customEnumFlags == null)
-                customEnumFlags = new CustomEnumFlags<VariableType>(0);
+            {
+                customEnumFlags = new CustomEnumFlags(0);
+                customEnumFlags.type = CustomEnumFlags.contentType.variable;
+            }
 
-            UpdateVariableTypes(newElement);
+
+        UpdateVariableTypes(newElement);
 
             DropdownField changeModeField = newElement.Q<DropdownField>("ChangeMode");
             changeModeField.bindingPath = "changeMode";
@@ -116,9 +120,9 @@ public class CharacterSetLocalVariable : CharacterInteraction
     void UpdateVariableTypes(VisualElement newElement )
     {
         if (propertyToSet != null && changeMode == modes.copyOtherProperty && copyPropertyVariable != null)
-            EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer, copyPropertyVariable.variablesContainer });
+            EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags[] { propertyToSet.variablesContainer, copyPropertyVariable.variablesContainer });
         else if (propertyToSet != null && changeMode == modes.setValue)
-            EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags<VariableType>[] { propertyToSet.variablesContainer });
+            EnumerablesUtility.ShowEnumFlagsField("VariableTypes", newElement, customEnumFlags, () => EnumerablesUtility.UpdateAllVariablesFields(newElement, customEnumFlags), new CustomEnumFlags[] { propertyToSet.variablesContainer });
         else   
             newElement.Q<EnumFlagsField>("VariableTypes").choices = new List<string>();
     }

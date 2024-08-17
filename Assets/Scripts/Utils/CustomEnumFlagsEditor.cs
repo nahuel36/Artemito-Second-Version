@@ -10,14 +10,14 @@ using System;
 using System.Net.WebSockets;
 
 [System.Serializable]
-public class CustomEnumFlagsEditor<T> where T:EnumerableType
+public class CustomEnumFlagsEditor
 {
 #if UNITY_EDITOR
 
     private EnumFlagsField field;
     public List<string> choices = new List<string>();
     public List<int> choicesMasks = new List<int>();
-    public void Show(string enumFieldName, CustomEnumFlags<T> value, VisualElement element, Action OnChange = null)
+    public void Show(string enumFieldName, CustomEnumFlags value, VisualElement element, Action OnChange = null)
     {
         field = element.Q<EnumFlagsField>(enumFieldName);
         field.choices = choices;
@@ -29,7 +29,7 @@ public class CustomEnumFlagsEditor<T> where T:EnumerableType
             OnChange?.Invoke(); };
     }
 
-    private void callback(ChangeEvent<Enum> evt, CustomEnumFlags<T> value)
+    private void callback(ChangeEvent<Enum> evt, CustomEnumFlags value)
     {
         value.SetIntValue(Convert.ToInt32((GenericEnum)evt.newValue));
     }

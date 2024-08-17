@@ -6,13 +6,21 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [System.Serializable]
-public class CustomEnumFlags<T> where T : EnumerableType
+public class CustomEnumFlags
 {
+    public enum contentType
+    { 
+        variable,
+        objectWithProperties
+    }
+
+
     [SerializeField] [HideInInspector] private int value = 0;
     [SerializeField] [HideInInspector] List<EnumerableType> members;
     public delegate void CustomEnumFlagsDelegate();
     public event CustomEnumFlagsDelegate OnValueChange;
     public EnumFlagsField enumfield;
+    public contentType type;
     public CustomEnumFlags(int valueToSet)
     {
         SetIntValue(valueToSet);
@@ -20,12 +28,12 @@ public class CustomEnumFlags<T> where T : EnumerableType
 
 
 
-    public void AddValue(T valueToAdd)
+    public void AddValue(EnumerableType valueToAdd)
     {
         value = value | (1 << valueToAdd.Index);
     }
 
-    public bool ContainsValue(T valueToFind) 
+    public bool ContainsValue(EnumerableType valueToFind) 
     {
         return ContainsValue(valueToFind.Index);
     }
@@ -45,7 +53,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
         return false;
     }
 
-    public void RemoveValue(T valueToRemove)
+    public void RemoveValue(EnumerableType valueToRemove)
     {
         value = value & ~(1 << valueToRemove.Index);
     }
@@ -68,7 +76,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
 
     private void CheckContainsVariables()
     {
-        if (typeof(T) == typeof(VariableType))
+        if (type == contentType.variable)
         {
             var variables = EnumerablesUtility.GetAllVariableTypes();
             for (int i = 0; i < variables.Length; i++)
@@ -107,7 +115,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
     {
         CheckContainsVariables();
 
-        if (typeof(T) == typeof(VariableType))
+        if (type == contentType.variable)
         {
             for (int i = 0; i < members.Count; i++)
             {
@@ -121,7 +129,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
     {
         CheckContainsVariables();
 
-        if (typeof(T) == typeof(VariableType))
+        if (type == contentType.variable)
         {
             for (int i = 0; i < members.Count; i++)
             {
@@ -156,9 +164,9 @@ public class CustomEnumFlags<T> where T : EnumerableType
         }
     }
 
-    internal CustomEnumFlags<T> Copy()
+    internal CustomEnumFlags Copy()
     {
-        CustomEnumFlags<T> newEnum = new CustomEnumFlags<T>(value);
+        CustomEnumFlags newEnum = new CustomEnumFlags(value);
         newEnum.members = new List<EnumerableType>();
         for (int i = 0; i < members.Count; i++)
         {
@@ -171,7 +179,7 @@ public class CustomEnumFlags<T> where T : EnumerableType
     {
         for (int i = 0; i < members.Count; i++)
         {
-            if (typeof(T) == typeof(VariableType))
+            if (type == contentType.variable)
                 ((VariableType)members[i]).changedIngame = false;
         }
     }

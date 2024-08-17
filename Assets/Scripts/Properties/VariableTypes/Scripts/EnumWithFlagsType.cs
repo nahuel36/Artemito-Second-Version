@@ -111,7 +111,7 @@ public class EnumWithFlagsType : VariableType
 
                 field.choices = settings.EnumWithFlagVariables[i].values;
 
-                CustomEnumFlags<EnumerableType>.SetChoicesMasksByChoicesInOrder(field.choicesMasks, field.choices);
+                CustomEnumFlags.SetChoicesMasksByChoicesInOrder(field.choicesMasks, field.choices);
 
                 field.RegisterValueChangedCallback((evt) => SetValue(settings.EnumWithFlagVariables, settings.EnumWithFlagVariables[index], evt.newValue));
 

@@ -35,7 +35,8 @@ public class InteractionProperties : Editor
         customListView.OnAdd = () => {
             int variablesLength = EnumerablesUtility.GetAllVariableTypes().Length;
             InteractionProperty localprop = new InteractionProperty();
-            localprop.variablesContainer = new CustomEnumFlags<VariableType>(0);
+            localprop.variablesContainer = new CustomEnumFlags(0);
+            localprop.variablesContainer.type = CustomEnumFlags.contentType.variable;
             return localprop;        
         };
 

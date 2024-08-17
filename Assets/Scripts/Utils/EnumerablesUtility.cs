@@ -54,30 +54,30 @@ public class EnumerablesUtility
 #endif
     }
 
-    public static void ShowEnumFlagsField<EnumT>(string enumFlagsContainerName, VisualElement element, CustomEnumFlags<EnumT> variableTypes, Action onChangeAction = null, CustomEnumFlags<EnumT>[] flagsToCompare = null) where EnumT: EnumerableType
+    public static void ShowEnumFlagsField(string enumFlagsContainerName, VisualElement element, CustomEnumFlags variableTypes, Action onChangeAction = null, CustomEnumFlags[] flagsToCompare = null) 
     {
-        CustomEnumFlagsEditor<EnumT> customFlagsEditor = new CustomEnumFlagsEditor<EnumT>();
+        CustomEnumFlagsEditor customFlagsEditor = new CustomEnumFlagsEditor();
 
-        EnumT[] list2 = null;
-        if (typeof(EnumT) == typeof(PropertyObjectType))
+        EnumerableType[] list2 = null;
+        if (variableTypes.type == CustomEnumFlags.contentType.objectWithProperties)
         {
             PropertyObjectType[] list = GetAllPropertyObjectTypes();
-            list2 = new EnumT[list.Length];
+            list2 = new VariableType[list.Length];
             for (int i = 0; i < list.Length; i++)
             {
-                list2[i] = ScriptableObject.CreateInstance<EnumT>();
+                list2[i] = ScriptableObject.CreateInstance<VariableType>();
                 list2[i].Index = list[i].Index;
                 list2[i].TypeName = list[i].TypeName;
                 //aca deberia haber un copy
             }
         }
-        if (typeof(EnumT) == typeof(VariableType))
+        if (variableTypes.type == CustomEnumFlags.contentType.variable)
         {
             VariableType[] list = GetAllVariableTypes();
-            list2 = new EnumT[list.Length];
+            list2 = new PropertyObjectType[list.Length];
             for (int i = 0; i < list.Length; i++)
             {
-                list2[i] = ScriptableObject.CreateInstance<EnumT>();
+                list2[i] = ScriptableObject.CreateInstance<PropertyObjectType>();
                 list2[i].Index = list[i].Index;
                 list2[i].TypeName = list[i].TypeName;
                 //aca deberia haber un copy
@@ -103,7 +103,7 @@ public class EnumerablesUtility
             else
                 return null;
         }, list2.Length);
-        CustomEnumFlags<EnumT>.SetChoicesMasksByChoicesInOrder(customFlagsEditor.choicesMasks, customFlagsEditor.choices);
+        CustomEnumFlags.SetChoicesMasksByChoicesInOrder(customFlagsEditor.choicesMasks, customFlagsEditor.choices);
 
         customFlagsEditor.Show(enumFlagsContainerName,variableTypes, element, onChangeAction);
     }
@@ -130,7 +130,7 @@ public class EnumerablesUtility
 
     
 
-    public static void UpdateAllVariablesFields(VisualElement element, CustomEnumFlags<VariableType> variablesContainer)
+    public static void UpdateAllVariablesFields(VisualElement element, CustomEnumFlags variablesContainer)
     {
         VisualElement variablesContainerVE = element.Q<VisualElement>("VariablesContainer");
         variablesContainerVE.Clear();

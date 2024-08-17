@@ -15,7 +15,7 @@ public class GenericProperty
     //erializeField]public string[] variableValues; //funciona
     //[SerializeField]public bool[] useDefaultValues;
     //[SerializeField]public UnityEngine.Object[] objectValues; //funciona
-    public CustomEnumFlags<VariableType> variablesContainer;
+    public CustomEnumFlags variablesContainer;
 
     public virtual GenericProperty Copy()
     { 
@@ -23,6 +23,7 @@ public class GenericProperty
         prop.name = name;
         prop.expandedInInspector = expandedInInspector;
         prop.variablesContainer = variablesContainer.Copy();
+        prop.variablesContainer.type = CustomEnumFlags.contentType.variable;
         return prop;
     }
 }
@@ -42,6 +43,7 @@ public class InteractionProperty : GenericProperty
         prop.name = name;
         prop.expandedInInspector = expandedInInspector;
         prop.variablesContainer = variablesContainer.Copy();
+        prop.variablesContainer.type = CustomEnumFlags.contentType.variable;
         prop.interactionType = interactionType;
         prop.verb = verb;
         prop.itemIndex = itemIndex;
@@ -63,7 +65,7 @@ public class LocalProperty : GenericProperty
         prop.name = name;
         prop.expandedInInspector = expandedInInspector;
         prop.variablesContainer = variablesContainer.Copy();
-
+        prop.variablesContainer.type = CustomEnumFlags.contentType.variable;
         return prop;
     }
 }
@@ -73,6 +75,16 @@ public class GlobalProperty : GenericProperty
 {
     //public int globalID = -1;
     public GlobalPropertyConfig config;
+
+    public override GenericProperty Copy()
+    {
+        LocalProperty prop = new LocalProperty();
+        prop.name = name;
+        prop.expandedInInspector = expandedInInspector;
+        prop.variablesContainer = variablesContainer.Copy();
+        prop.variablesContainer.type = CustomEnumFlags.contentType.variable;
+        return prop;
+    }
 }
 
 [System.Serializable]
