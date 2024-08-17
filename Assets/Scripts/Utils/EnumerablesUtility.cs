@@ -62,10 +62,10 @@ public class EnumerablesUtility
         if (variableTypes.type == CustomEnumFlags.contentType.objectWithProperties)
         {
             PropertyObjectType[] list = GetAllPropertyObjectTypes();
-            list2 = new VariableType[list.Length];
+            list2 = new PropertyObjectType[list.Length];
             for (int i = 0; i < list.Length; i++)
             {
-                list2[i] = ScriptableObject.CreateInstance<VariableType>();
+                list2[i] = ScriptableObject.CreateInstance<PropertyObjectType>();
                 list2[i].Index = list[i].Index;
                 list2[i].TypeName = list[i].TypeName;
                 //aca deberia haber un copy
@@ -74,10 +74,10 @@ public class EnumerablesUtility
         if (variableTypes.type == CustomEnumFlags.contentType.variable)
         {
             VariableType[] list = GetAllVariableTypes();
-            list2 = new PropertyObjectType[list.Length];
+            list2 = new VariableType[list.Length];
             for (int i = 0; i < list.Length; i++)
             {
-                list2[i] = ScriptableObject.CreateInstance<PropertyObjectType>();
+                list2[i] = ScriptableObject.CreateInstance<VariableType>();
                 list2[i].Index = list[i].Index;
                 list2[i].TypeName = list[i].TypeName;
                 //aca deberia haber un copy
