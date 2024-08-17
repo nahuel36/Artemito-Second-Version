@@ -196,6 +196,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
                 if (copyPropertyVariable != null && localProperties[i].name == copyPropertyVariable.name)
                 {
                     localPropertyToCopy = copyPropertyVariable.name;
+                    copyPropertyVariable = localProperties[i];
                 }
             }
 
