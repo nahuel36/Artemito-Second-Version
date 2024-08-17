@@ -14,6 +14,7 @@ public class VariableType : EnumerableType
     [SerializeField] public UnityEngine.Object objectValue;
     [SerializeField] public UnityEngine.Object objectIngameValue;
     [SerializeField] public bool isString;
+    public Action onChangeAVariableContentValue;
     public virtual void SetPropertyField(VisualElement element)
     {        
 
@@ -27,6 +28,8 @@ public class VariableType : EnumerableType
             this.stringIngameValue = value as string;
         else
             this.objectIngameValue = value as UnityEngine.Object;
+
+        onChangeAVariableContentValue?.Invoke();
     }
 
     public virtual string GetStringValue()

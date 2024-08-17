@@ -47,6 +47,7 @@ public class BooleanType: VariableType
     public void SetVariableValue(bool value)
     {
         stringValue = value.ToString().ToLower();
+        onChangeAVariableContentValue?.Invoke();
     }
 
     public override EnumerableType Copy()

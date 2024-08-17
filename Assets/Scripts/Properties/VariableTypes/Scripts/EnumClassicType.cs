@@ -218,6 +218,8 @@ public class EnumClassicType : VariableType
         writer.Flush();
 
         stringValue = sw.ToString();
+
+        onChangeAVariableContentValue?.Invoke();
     }
 
     public void SetValue(List<Settings.EnumVariablesType> variables, Settings.EnumVariablesType variable, string typeValue)
@@ -254,6 +256,8 @@ public class EnumClassicType : VariableType
         writer.Flush();
 
         stringValue = sw.ToString();
+
+        onChangeAVariableContentValue?.Invoke();
     }
 
 

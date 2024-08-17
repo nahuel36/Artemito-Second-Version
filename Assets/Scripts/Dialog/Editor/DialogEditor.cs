@@ -60,7 +60,12 @@ public class DialogEditor : Editor
                         optionTittleField.RegisterValueChangedCallback((value) => 
                             thisDialog.subDialogs[subdialogIndex].options[optionIndex].initialText = value.newValue);
 
-                        LocalAndGlobalProperties.CreateGUI(thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties, optionVE.Q("LocalAndGlobalProperties"));
+                        LocalAndGlobalProperties.CreateGUI(thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties, optionVE.Q("LocalAndGlobalProperties"),()=>
+                            {
+                                serializedObject.ApplyModifiedProperties();
+                                EditorUtility.SetDirty(target);
+                            }
+                        );
 
                         return optionVE;
                     },

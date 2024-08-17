@@ -3,9 +3,10 @@ using System.Xml.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System;
 public class LocalAndGlobalProperties : Editor
 {
-    public static VisualElement CreateGUI(List<LocalProperty> local_properties, VisualElement root)
+    public static VisualElement CreateGUI(List<LocalProperty> local_properties, VisualElement root, Action OnChange = null)
     {
         // Each editor window contains a root VisualElement object
         // Instantiate UXML
@@ -16,7 +17,7 @@ public class LocalAndGlobalProperties : Editor
         customListView.ItemContent = (i) => 
         {
             if (i >= 0 && local_properties.Count > 0)
-                return ItemContent(i, local_properties[i]);
+                return ItemContent(i, local_properties[i], OnChange);
             else
                 return null;
         };
@@ -40,7 +41,7 @@ public class LocalAndGlobalProperties : Editor
         return root;
     }
 
-    private static VisualElement ItemContent(int index, LocalProperty property)
+    private static VisualElement ItemContent(int index, LocalProperty property, Action onChange = null)
     {
         Foldout foldout = new Foldout();
 
@@ -55,12 +56,18 @@ public class LocalAndGlobalProperties : Editor
         VisualElementsUtils.HideVisualElement(element.Q("VariableItem"));
 
         element.Q<TextField>("PropertyName").value = property.name;
-        element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { property.name = name.newValue; });
+        element.Q<TextField>("PropertyName").RegisterValueChangedCallback((name) => { 
+            property.name = name.newValue;
+            onChange?.Invoke();
+        });
 
 
 
-        EnumerablesUtility.ShowEnumFlagsField("VariableTypes",element,property.variablesContainer, ()=> { EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer); });
-        EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer);
+        EnumerablesUtility.ShowEnumFlagsField("VariableTypes",element,property.variablesContainer, ()=> { 
+            EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer, onChange);
+            onChange?.Invoke();
+        });
+        EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer, onChange);
 
         foldout.Add(element);
 

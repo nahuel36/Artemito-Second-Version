@@ -130,7 +130,7 @@ public class EnumerablesUtility
 
     
 
-    public static void UpdateAllVariablesFields(VisualElement element, CustomEnumFlags variablesContainer)
+    public static void UpdateAllVariablesFields(VisualElement element, CustomEnumFlags variablesContainer, Action onChange = null)
     {
         VisualElement variablesContainerVE = element.Q<VisualElement>("VariablesContainer");
         variablesContainerVE.Clear();
@@ -143,6 +143,7 @@ public class EnumerablesUtility
                 VisualElement variableItemElement = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Properties/Editor/VariableField.uxml").CloneTree();
                 variableItemElement.Q<VisualElement>("Value").Q<Label>("Label").text = variable.TypeName;
                 variablesContainer.SetPropertyField(variable, variableItemElement);
+                variablesContainer.SetOnChange(variable, onChange);
                 variablesContainer.SetDefaultValue(variable, variableItemElement);
                 variablesContainerVE.Add(variableItemElement);
             }

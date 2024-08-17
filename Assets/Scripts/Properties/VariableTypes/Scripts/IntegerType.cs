@@ -45,6 +45,8 @@ public class IntegerType : VariableType
     public void SetVariableValue(int value)
     {
         stringValue = value.ToString();
+
+        onChangeAVariableContentValue?.Invoke();
     }
 
     public override EnumerableType Copy()

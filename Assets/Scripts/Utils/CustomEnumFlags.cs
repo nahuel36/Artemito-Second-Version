@@ -16,7 +16,7 @@ public class CustomEnumFlags
 
 
     [SerializeField] [HideInInspector] private int value = 0;
-    [SerializeField] [HideInInspector] List<EnumerableType> members;
+    [SerializeField] List<EnumerableType> members;
     public delegate void CustomEnumFlagsDelegate();
     public event CustomEnumFlagsDelegate OnValueChange;
     public EnumFlagsField enumfield;
@@ -230,6 +230,19 @@ public class CustomEnumFlags
                 ((VariableType)members[i]).isDefaultValue = true;
             }
         }
+    }
+
+    internal void SetOnChange(VariableType variable, Action onChange)
+    {
+                for (int i = 0; i < members.Count; i++)
+                {
+                    if (members[i] != null && members[i].GetType() == variable.GetType())
+                    {
+                        ((VariableType)members[i]).onChangeAVariableContentValue = onChange;
+                    }
+                }
+              
+        
     }
 }
 

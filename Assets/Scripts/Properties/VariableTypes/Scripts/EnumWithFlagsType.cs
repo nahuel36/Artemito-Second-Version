@@ -222,6 +222,8 @@ public class EnumWithFlagsType : VariableType
         writer.Flush();
 
         stringValue = sw.ToString();
+
+        onChangeAVariableContentValue?.Invoke();
     }
 
     public void SetValue(List<Settings.EnumVariablesType> variables, Settings.EnumVariablesType variable, System.Enum typeValue)
@@ -258,6 +260,8 @@ public class EnumWithFlagsType : VariableType
         writer.Flush();
 
         stringValue = sw.ToString();
+
+        onChangeAVariableContentValue?.Invoke();
     }
 
 
