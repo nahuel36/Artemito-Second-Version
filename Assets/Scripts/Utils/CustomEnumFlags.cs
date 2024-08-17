@@ -39,7 +39,7 @@ public class CustomEnumFlags
         SetIntValue(valueToSet);
     }
 
-    public void LoadData()
+    private void LoadData()
     {
         if (members == null)
             members = new List<VariableType>();
@@ -56,7 +56,7 @@ public class CustomEnumFlags
         }
     }
 
-    public void SaveData()
+    private void SaveData()
     {
         CheckContainsVariables();
         variableData = new List<VariableType.VariableData>();
