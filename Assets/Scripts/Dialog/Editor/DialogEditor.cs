@@ -86,18 +86,6 @@ public class DialogEditor : Editor
                         {
                             serializedObject.ApplyModifiedProperties();
                             EditorUtility.SetDirty(target);
-                            for (int k = 0; k < thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties.Count; k++)
-                            {
-                                thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties[k].variablesContainer.SaveData();
-                            }
-                        },
-                        ()=>
-                        {
-                            for (int k = 0; k < thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties.Count; k++)
-                            {
-                                thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties[k].variablesContainer.LoadData();
-                            }
-                            
                         }
                         );
                         

@@ -32,14 +32,21 @@ MonoBehaviour:
       - name: property1
         expandedInInspector: 1
         variablesContainer:
-          value: 4
+          value: 6
           members:
           - {fileID: 0}
+          - {fileID: 0}
           variableData:
+          - stringValue: 3
+            objectValue: {fileID: 0}
+            isString: 1
+            isDefaultValue: 0
+            variableType: integer
           - stringValue: po
             objectValue: {fileID: 0}
             isString: 1
             isDefaultValue: 0
+            variableType: string
           type: 0
       global_properties: []
       current_local_properties: []

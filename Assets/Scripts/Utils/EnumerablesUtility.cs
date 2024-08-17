@@ -54,7 +54,7 @@ public class EnumerablesUtility
 #endif
     }
 
-    public static void ShowEnumFlagsField(string enumFlagsContainerName, VisualElement element, CustomEnumFlags variableTypes, Action onChangeAction = null, CustomEnumFlags[] flagsToCompare = null, Action onUpdateField = null) 
+    public static void ShowEnumFlagsField(string enumFlagsContainerName, VisualElement element, CustomEnumFlags variableTypes, Action onChangeAction = null, CustomEnumFlags[] flagsToCompare = null) 
     {
         CustomEnumFlagsEditor customFlagsEditor = new CustomEnumFlagsEditor();
 
@@ -105,7 +105,7 @@ public class EnumerablesUtility
         }, list2.Length);
         CustomEnumFlags.SetChoicesMasksByChoicesInOrder(customFlagsEditor.choicesMasks, customFlagsEditor.choices);
 
-        customFlagsEditor.Show(enumFlagsContainerName,variableTypes, element, onChangeAction, onUpdateField);
+        customFlagsEditor.Show(enumFlagsContainerName,variableTypes, element, onChangeAction);
     }
 
     public static void ShowDropdownField(string propertyValue, DropdownField dropdownField, Action UpdateFieldAction)

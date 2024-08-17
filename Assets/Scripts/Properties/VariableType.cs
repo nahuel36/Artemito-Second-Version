@@ -13,6 +13,7 @@ public class VariableType : EnumerableType
         [SerializeField] public UnityEngine.Object objectValue;
         [SerializeField] public bool isString;
         public bool isDefaultValue = false;
+        public string variableType = "";
     }
 
     public VariableData data = new VariableData();
@@ -24,7 +25,9 @@ public class VariableType : EnumerableType
     
     [SerializeField] public UnityEngine.Object objectIngameValue;
     
-    public Action onChangeAVariableContentValue;
+    public Action saveData;
+    public Action onChange;
+
     public virtual void SetPropertyField(VisualElement element)
     {        
 
@@ -39,7 +42,8 @@ public class VariableType : EnumerableType
         else
             this.objectIngameValue = value as UnityEngine.Object;
 
-        onChangeAVariableContentValue?.Invoke();
+        onChange?.Invoke();
+        saveData?.Invoke();
     }
 
     public virtual string GetStringValue()

@@ -219,7 +219,8 @@ public class EnumClassicType : VariableType
 
         data.stringValue = sw.ToString();
 
-        onChangeAVariableContentValue?.Invoke();
+        onChange?.Invoke();
+        saveData?.Invoke();
     }
 
     public void SetValue(List<Settings.EnumVariablesType> variables, Settings.EnumVariablesType variable, string typeValue)
@@ -257,7 +258,8 @@ public class EnumClassicType : VariableType
 
         data.stringValue = sw.ToString();
 
-        onChangeAVariableContentValue?.Invoke();
+        onChange?.Invoke();
+        saveData?.Invoke();
     }
 
 

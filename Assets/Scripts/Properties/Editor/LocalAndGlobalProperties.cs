@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using System;
 public class LocalAndGlobalProperties : Editor
 {
-    public static VisualElement CreateGUI(List<LocalProperty> local_properties, VisualElement root, Action OnChange = null, Action OnUpdateField = null)
+    public static VisualElement CreateGUI(List<LocalProperty> local_properties, VisualElement root, Action OnChange = null)
     {
         // Each editor window contains a root VisualElement object
         // Instantiate UXML
@@ -17,7 +17,7 @@ public class LocalAndGlobalProperties : Editor
         customListView.ItemContent = (i) => 
         {
             if (i >= 0 && local_properties.Count > 0)
-                return ItemContent(i, local_properties[i], OnChange, OnUpdateField);
+                return ItemContent(i, local_properties[i], OnChange);
             else
                 return null;
         };
@@ -41,7 +41,7 @@ public class LocalAndGlobalProperties : Editor
         return root;
     }
 
-    private static VisualElement ItemContent(int index, LocalProperty property, Action onChange = null, Action onUpdateField = null)
+    private static VisualElement ItemContent(int index, LocalProperty property, Action onChange = null)
     {
         Foldout foldout = new Foldout();
 
@@ -66,7 +66,7 @@ public class LocalAndGlobalProperties : Editor
         EnumerablesUtility.ShowEnumFlagsField("VariableTypes",element,property.variablesContainer, ()=> { 
             EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer, onChange);
             onChange?.Invoke();
-        },null, onUpdateField);
+        });
         EnumerablesUtility.UpdateAllVariablesFields(element, property.variablesContainer, onChange);
 
         foldout.Add(element);

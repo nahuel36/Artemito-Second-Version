@@ -22,7 +22,17 @@ public class CustomEnumFlags
 
     public delegate void CustomEnumFlagsDelegate();
     public event CustomEnumFlagsDelegate OnValueChange;
-    public EnumFlagsField enumfield;
+    private EnumFlagsField enumfield;
+    public EnumFlagsField Enumfield { 
+        get 
+        {
+            return enumfield;    
+        } 
+        set 
+        { 
+            enumfield = value;
+            LoadData();
+        } }
     public contentType type;
     public CustomEnumFlags(int valueToSet)
     {
@@ -36,8 +46,13 @@ public class CustomEnumFlags
 
         CheckContainsVariables();
         for (int i = 0; i < variableData.Count; i++)
-        { 
-            members[i].data = variableData[i];
+        {
+            for (int j = 0; j < members.Count; j++)
+            {
+                if (members[j].TypeName == variableData[i].variableType)
+                    members[j].data = variableData[i];
+            }
+            
         }
     }
 
@@ -47,7 +62,9 @@ public class CustomEnumFlags
         variableData = new List<VariableType.VariableData>();
         for (int i = 0; i < members.Count; i++)
         {
-            variableData.Add(members[i].data);
+            VariableType.VariableData data = members[i].data;
+            data.variableType = members[i].TypeName;
+            variableData.Add(data);
         }
     }
 
@@ -69,9 +86,9 @@ public class CustomEnumFlags
 
     public bool FieldContainsValue(string typename)
     {
-        if (enumfield != null)
+        if (Enumfield != null)
         {            
-            return enumfield.choices.Contains(typename);
+            return Enumfield.choices.Contains(typename);
         }
         return false;
     }
@@ -154,7 +171,10 @@ public class CustomEnumFlags
             for (int i = 0; i < members.Count; i++)
             {
                 if (members[i] != null && members[i].GetType() == variable.GetType())
+                {
+                    ((VariableType)members[i]).saveData = SaveData;
                     ((VariableType)members[i]).SetPropertyField(variableItemElement);
+                }
             }
         }
     }
@@ -273,11 +293,10 @@ public class CustomEnumFlags
                 {
                     if (members[i] != null && members[i].GetType() == variable.GetType())
                     {
-                        ((VariableType)members[i]).onChangeAVariableContentValue = onChange;
+                        ((VariableType)members[i]).onChange = onChange;
+                        
                     }
                 }
-              
-        
     }
 }
 

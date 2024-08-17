@@ -46,7 +46,9 @@ public class StringType : VariableType
     public void SetVariableValue(string value)
     {
         this.data.stringValue = value;
-        onChangeAVariableContentValue?.Invoke();
+
+        onChange?.Invoke();
+        saveData?.Invoke();
     }
 
     public override EnumerableType Copy() {

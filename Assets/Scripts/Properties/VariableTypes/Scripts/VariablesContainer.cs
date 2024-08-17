@@ -96,7 +96,7 @@ public class VariablesContainer
         {
             if (members[i] != null && members[i].GetType() == variable.GetType())
             {
-                ((VariableType)members[i]).OnChange = onChangeAVariableContentValue;
+                ((VariableType)members[i]).OnChange = saveData;
             }
         }
       */  

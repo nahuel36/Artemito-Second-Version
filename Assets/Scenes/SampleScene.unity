@@ -136,13 +136,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 4
   typeName: enum classic
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &123733594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,13 +158,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 3
   typeName: enum with flags
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &131176237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,13 +180,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   typeName: boolean
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &241638882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,13 +202,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   typeName: integer
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!1 &254021856
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +245,7 @@ MonoBehaviour:
     variablesContainer:
       value: 0
       members: []
+      variableData: []
       type: 0
 --- !u!4 &254021858
 Transform:
@@ -271,13 +276,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   typeName: integer
-  isDefaultValue: 1
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &323879552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,13 +298,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 3
   typeName: enum with flags
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &357353727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,13 +335,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 2
   typeName: string
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &440450510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,10 +367,12 @@ MonoBehaviour:
       - {fileID: 1487436055}
       - {fileID: 1289225478}
       - {fileID: 2061930421}
+      variableData: []
       type: 0
   customEnumFlags:
     value: 0
     members: []
+    variableData: []
     type: 0
   copyPropertyObjectContainer: {fileID: 357353727}
   copyPropertyType: Character
@@ -377,6 +387,7 @@ MonoBehaviour:
       - {fileID: 1487436055}
       - {fileID: 1289225478}
       - {fileID: 2061930421}
+      variableData: []
       type: 0
   changeMode: 1
 --- !u!114 &442964921
@@ -393,13 +404,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 4
   typeName: enum classic
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &489856147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,13 +426,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   typeName: boolean
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +651,7 @@ MonoBehaviour:
       - {fileID: 890215580}
       - {fileID: 1550641755}
       - {fileID: 671540338}
+      variableData: []
       type: 0
   interactions: []
   inventoryInteractions:
@@ -660,6 +674,7 @@ MonoBehaviour:
             variablesContainer:
               value: 0
               members: []
+              variableData: []
               type: 0
             interactionType: 0
             verb:
@@ -675,7 +690,7 @@ MonoBehaviour:
       expandedInInspector: 0
       executedTimes: 0
   priority: 0
-  instanceID: 25870
+  instanceID: 25410
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -752,13 +767,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 4
   typeName: enum classic
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &710997687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,13 +1013,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 2
   typeName: string
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: tt
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!1 &894919279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1108,7 @@ MonoBehaviour:
       - {fileID: 1487436055}
       - {fileID: 1289225478}
       - {fileID: 2061930421}
+      variableData: []
       type: 0
   - name: new 2
     expandedInInspector: 0
@@ -1102,6 +1120,7 @@ MonoBehaviour:
       - {fileID: 241638882}
       - {fileID: 323879552}
       - {fileID: 2030191433}
+      variableData: []
       type: 0
   interactions:
   - type: Character
@@ -1139,6 +1158,7 @@ MonoBehaviour:
               - {fileID: 1495691281}
               - {fileID: 131176237}
               - {fileID: 442964921}
+              variableData: []
               type: 0
             interactionType: 0
             verb:
@@ -1158,6 +1178,7 @@ MonoBehaviour:
               - {fileID: 2072823036}
               - {fileID: 123733594}
               - {fileID: 96556196}
+              variableData: []
               type: 0
             interactionType: 0
             verb:
@@ -1178,7 +1199,7 @@ MonoBehaviour:
       expandedInInspector: 1
       executedTimes: 0
   priority: 0
-  instanceID: 25902
+  instanceID: 25442
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:
@@ -1270,13 +1291,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   typeName: integer
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 1
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!1 &1114186077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,14 +1444,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 3
   typeName: enum with flags
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: <?xml version="1.0" encoding="utf-16"?><door-closed selected="true"
-    value0="s" value1="r"><door-closed-2 selected="false" /></door-closed>
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &1350154658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1444,13 +1466,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 2
   typeName: string
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: pp
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &1366759804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1802,13 +1825,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 2
   typeName: string
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: a
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &1495691281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1823,13 +1847,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 3
   typeName: enum with flags
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &1550641755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1844,13 +1869,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 3
   typeName: enum with flags
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &1658760894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1930,13 +1956,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   typeName: boolean
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!1 &1835742334
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,13 +2162,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   typeName: boolean
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: false
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &1915541771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2156,13 +2184,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   typeName: boolean
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &1927404231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2177,13 +2206,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   typeName: integer
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &1996339966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2198,13 +2228,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   typeName: integer
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!1 &1999380010
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,13 +2325,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 4
   typeName: enum classic
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &2061930421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2315,14 +2347,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 4
   typeName: enum classic
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: <?xml version="1.0" encoding="utf-16"?><talked selected="true" value="y"><talked-2
-    selected="false" /></talked>
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!114 &2072823036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2337,13 +2369,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 2
   typeName: string
-  isDefaultValue: 0
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
   changedIngame: 0
-  stringValue: 
   stringIngameValue: 
-  objectValue: {fileID: 0}
   objectIngameValue: {fileID: 0}
-  isString: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
