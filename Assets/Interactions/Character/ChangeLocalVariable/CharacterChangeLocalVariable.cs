@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Xml.Linq;
-
 using UnityEditor;
-using Unity.Collections.LowLevel.Unsafe;
 using System;
-
 
 
 #if UNITY_EDITOR
@@ -20,7 +17,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
     public LocalProperty propertyToSet;
     public CustomEnumFlags customEnumFlags;
     public PropertyObjectType copyPropertyObjectContainer;
-    public string copyPropertyType;
+    public string copyPropertyObjectType;
     public GenericProperty copyPropertyVariable;
     public enum modes { 
         setValue,
@@ -29,14 +26,32 @@ public class CharacterSetLocalVariable : CharacterInteraction
     public modes changeMode;
     public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
     {
+        VariableType[] variables = EnumerablesUtility.GetAllVariableTypes();
         if (changeMode == modes.setValue)
         {
-            //for(int i=0,)
-            propertyToSet.variablesContainer.SetValue("string", customEnumFlags.GetStringValue("string"));
+            for (int i = 0; i < variables.Length; i++)
+            {
+                if (customEnumFlags.ContainsValue(variables[i]))
+                { 
+                    if(variables[i].data.isString)
+                        propertyToSet.variablesContainer.SetValue(variables[i].TypeName, customEnumFlags.GetStringValue(variables[i].TypeName));
+                    else
+                        propertyToSet.variablesContainer.SetValue(variables[i].TypeName, customEnumFlags.GetObjectValue(variables[i].TypeName));
+                }
+            }
         }//FALTA EL DEFAULT
         else 
         {
-            propertyToSet.variablesContainer.SetValue("string", copyPropertyVariable.variablesContainer.GetStringValue("string"));
+            for (int i = 0; i < variables.Length; i++)
+            {
+                if (customEnumFlags.ContainsValue(variables[i]))
+                {
+                    if (variables[i].data.isString)
+                        propertyToSet.variablesContainer.SetValue(variables[i].TypeName, copyPropertyVariable.variablesContainer.GetStringValue(variables[i].TypeName));
+                    else
+                        propertyToSet.variablesContainer.SetValue(variables[i].TypeName, copyPropertyVariable.variablesContainer.GetObjectValue(variables[i].TypeName));
+                }
+            }
         }
     }
 
@@ -147,15 +162,15 @@ public class CharacterSetLocalVariable : CharacterInteraction
             VisualElement objectField = copyModeVE.Q<VisualElement>("ObjectField");
             DropdownField variables = copyModeVE.Q<DropdownField>("Variables");
 
-            EnumerablesUtility.ShowDropdownField(copyPropertyType, objectTypeField, ()=>
+            EnumerablesUtility.ShowDropdownField(copyPropertyObjectType, objectTypeField, ()=>
             {
-                copyPropertyType = objectTypeField.value;
+                copyPropertyObjectType = objectTypeField.value;
 
                 UpdateCopyPropertyObjectContainer();
 
                 objectField.Clear();
 
-                if (copyPropertyType != null && copyPropertyObjectContainer != null)
+                if (copyPropertyObjectType != null && copyPropertyObjectContainer != null)
                 { 
 
                     copyPropertyObjectContainer.SetPropertyEditorField(objectField);
@@ -226,7 +241,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
         for (int i = 0; i < props.Length; i++)
         {
-            if (copyPropertyType == props[i].TypeName &&
+            if (copyPropertyObjectType == props[i].TypeName &&
                 (copyPropertyObjectContainer == null || copyPropertyObjectContainer.TypeName != props[i].TypeName))
             {
                 copyPropertyObjectContainer = (PropertyObjectType)props[i].Copy();
@@ -242,7 +257,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
         if(copyPropertyObjectContainer != null)
             action.copyPropertyObjectContainer = (PropertyObjectType)copyPropertyObjectContainer.Copy();
         action.changeMode = changeMode;
-        action.copyPropertyType = copyPropertyType;
+        action.copyPropertyObjectType = copyPropertyObjectType;
         action.copyPropertyVariable = copyPropertyVariable;
         action.customEnumFlags = customEnumFlags.Copy();
         return action;
