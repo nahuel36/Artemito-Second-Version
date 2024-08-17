@@ -17,13 +17,14 @@ public class CustomEnumFlagsEditor
     private EnumFlagsField field;
     public List<string> choices = new List<string>();
     public List<int> choicesMasks = new List<int>();
-    public void Show(string enumFieldName, CustomEnumFlags value, VisualElement element, Action OnChange = null)
+    public void Show(string enumFieldName, CustomEnumFlags value, VisualElement element, Action OnChange = null, Action OnUpdateField = null)
     {
         field = element.Q<EnumFlagsField>(enumFieldName);
         field.choices = choices;
         field.choicesMasks = choicesMasks;
         field.value = (GenericEnum)value.GetIntValue();
         value.enumfield = field;
+        OnUpdateField?.Invoke();
         field.RegisterValueChangedCallback((evt) => callback(evt, value));
         value.OnValueChange += () => {
             OnChange?.Invoke(); };

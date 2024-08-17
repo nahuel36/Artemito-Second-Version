@@ -31,6 +31,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
     {
         if (changeMode == modes.setValue)
         {
+            //for(int i=0,)
             propertyToSet.variablesContainer.SetValue("string", customEnumFlags.GetStringValue("string"));
         }//FALTA EL DEFAULT
         else 

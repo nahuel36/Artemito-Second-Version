@@ -7,13 +7,23 @@ using UnityEngine.UIElements;
 [System.Serializable]
 public class VariableType : EnumerableType
 {
-    public bool isDefaultValue = false;
+    [System.Serializable]
+    public class VariableData {
+        [SerializeField] public string stringValue;
+        [SerializeField] public UnityEngine.Object objectValue;
+        [SerializeField] public bool isString;
+        public bool isDefaultValue = false;
+    }
+
+    public VariableData data = new VariableData();
+
+    
     [SerializeField] public bool changedIngame = false;
-    [SerializeField] public string stringValue;
+
     [SerializeField] public string stringIngameValue;
-    [SerializeField] public UnityEngine.Object objectValue;
+    
     [SerializeField] public UnityEngine.Object objectIngameValue;
-    [SerializeField] public bool isString;
+    
     public Action onChangeAVariableContentValue;
     public virtual void SetPropertyField(VisualElement element)
     {        
@@ -22,9 +32,9 @@ public class VariableType : EnumerableType
 
     public virtual void SetValue<T>(T value)
     {   
-        this.isDefaultValue = false;
+        this.data.isDefaultValue = false;
         this.changedIngame = true;
-        if(isString)
+        if(data.isString)
             this.stringIngameValue = value as string;
         else
             this.objectIngameValue = value as UnityEngine.Object;
@@ -37,7 +47,7 @@ public class VariableType : EnumerableType
         if (changedIngame)
             return stringIngameValue;
         else
-            return stringValue;
+            return data.stringValue;
     }
 
     public virtual UnityEngine.Object GetObjectValue()
@@ -45,7 +55,7 @@ public class VariableType : EnumerableType
         if (changedIngame)
             return objectIngameValue;
         else
-            return objectValue;
+            return data.objectValue;
     }
 
 }

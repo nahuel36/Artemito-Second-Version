@@ -14,14 +14,14 @@ public class EnumWithFlagsType : VariableType
     {
         typeName = "enum with flags";
         Index = 3;
-        isString = true;
+        data.isString = true;
     }
 
     private void OnEnable()
     {
         typeName = "enum with flags";
         Index = 3;
-        isString = true;
+        data.isString = true;
     }
 
     public override void SetPropertyField(VisualElement root)
@@ -124,12 +124,12 @@ public class EnumWithFlagsType : VariableType
 
     public System.Enum GetSelectedVariables(List<Settings.EnumVariablesType> variables)
     {
-        if (string.IsNullOrEmpty(stringValue)) return (GenericEnum)0;
+        if (string.IsNullOrEmpty(data.stringValue)) return (GenericEnum)0;
 
 
         int integerValue = 0;
 
-        XmlReader reader = XmlReader.Create(new StringReader(stringValue));
+        XmlReader reader = XmlReader.Create(new StringReader(data.stringValue));
         try
         {
             while (reader.Read())
@@ -158,7 +158,7 @@ public class EnumWithFlagsType : VariableType
 
         int integerValue = 0;
 
-        XmlReader reader = XmlReader.Create(new StringReader(stringValue));
+        XmlReader reader = XmlReader.Create(new StringReader(data.stringValue));
         try
         {
             while (reader.Read())
@@ -221,7 +221,7 @@ public class EnumWithFlagsType : VariableType
         writer.WriteEndDocument();
         writer.Flush();
 
-        stringValue = sw.ToString();
+        data.stringValue = sw.ToString();
 
         onChangeAVariableContentValue?.Invoke();
     }
@@ -259,7 +259,7 @@ public class EnumWithFlagsType : VariableType
         writer.WriteEndDocument();
         writer.Flush();
 
-        stringValue = sw.ToString();
+        data.stringValue = sw.ToString();
 
         onChangeAVariableContentValue?.Invoke();
     }
@@ -268,8 +268,8 @@ public class EnumWithFlagsType : VariableType
     public override EnumerableType Copy()
     {
         EnumWithFlagsType newEnum = new EnumWithFlagsType();
-        newEnum.isDefaultValue = isDefaultValue;
-        newEnum.stringValue = stringValue;
+        newEnum.data.isDefaultValue = data.isDefaultValue;
+        newEnum.data.stringValue = data.stringValue;
         newEnum.stringIngameValue = stringIngameValue;
         newEnum.changedIngame = changedIngame;
         return newEnum;

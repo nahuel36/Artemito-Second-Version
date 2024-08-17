@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,8 +16,10 @@ public class CustomEnumFlags
     }
 
 
-    [SerializeField] [HideInInspector] private int value = 0;
-    [SerializeField] List<EnumerableType> members;
+    [SerializeField] private int value = 0;
+    [SerializeField] List<VariableType> members;
+    public List<VariableType.VariableData> variableData = new List<VariableType.VariableData>();
+
     public delegate void CustomEnumFlagsDelegate();
     public event CustomEnumFlagsDelegate OnValueChange;
     public EnumFlagsField enumfield;
@@ -26,7 +29,27 @@ public class CustomEnumFlags
         SetIntValue(valueToSet);
     }
 
+    public void LoadData()
+    {
+        if (members == null)
+            members = new List<VariableType>();
 
+        CheckContainsVariables();
+        for (int i = 0; i < variableData.Count; i++)
+        { 
+            members[i].data = variableData[i];
+        }
+    }
+
+    public void SaveData()
+    {
+        CheckContainsVariables();
+        variableData = new List<VariableType.VariableData>();
+        for (int i = 0; i < members.Count; i++)
+        {
+            variableData.Add(members[i].data);
+        }
+    }
 
     public void AddValue(EnumerableType valueToAdd)
     {
@@ -47,7 +70,7 @@ public class CustomEnumFlags
     public bool FieldContainsValue(string typename)
     {
         if (enumfield != null)
-        {
+        {            
             return enumfield.choices.Contains(typename);
         }
         return false;
@@ -67,7 +90,7 @@ public class CustomEnumFlags
         value = valueToSet;
 
         if (members == null)
-            members = new List<EnumerableType>();
+            members = new List<VariableType>();
 
         CheckContainsVariables();
 
@@ -83,17 +106,28 @@ public class CustomEnumFlags
             {
                 if (FieldContainsValue(variables[i].TypeName))
                 {
+                    List<int> list = new List<int>(); 
                     bool contains = false;
                     for (int j = 0; j < members.Count; j++)
                     {
-                        if (variables[i]!= null && members[j] != null && members[j].GetType() == variables[i].GetType())
+                        if (members[j] == null || string.IsNullOrEmpty(members[j].TypeName)||(contains == true && members[j].TypeName == variables[i].TypeName))
                         {
-                            contains = true;
+                            list.Add(j);
+                        }
+                        if (contains == false && (members[j] != null && members[j].TypeName == variables[i].TypeName))
+                        {
+                            contains = true;   
                         }
                     }
-                    if (contains == false)
+
+                    for (int k = list.Count-1; k >= 0 ; k--)
                     {
-                        members.Add((VariableType)ScriptableObject.CreateInstance(variables[i].GetType()));
+                        members.RemoveAt(list[k]);
+                    }
+
+                    if (contains == false && ContainsValue(variables[i]))
+                    {
+                        members.Add((VariableType)(variables[i].Copy()));
                     }
                 }
                 else
@@ -101,7 +135,7 @@ public class CustomEnumFlags
                     if (members == null) return;
                     for (int j = members.Count-1; j >= 0; j--)
                     {
-                        if (members[j] == null || members[j].GetType() == variables[i].GetType())
+                        if (members[j] == null || members[j].TypeName == variables[i].TypeName)
                         {
                             members.RemoveAt(j);
                         }
@@ -135,16 +169,16 @@ public class CustomEnumFlags
             {
                 if (members[i] != null && members[i].GetType() == variable.GetType())
                 {
-                    variableItemElement.Q<Toggle>("Default").value = ((VariableType)members[i]).isDefaultValue;
+                    variableItemElement.Q<Toggle>("Default").value = ((VariableType)members[i]).data.isDefaultValue;
                     int index = i;
-                    if (((VariableType)members[i]).isDefaultValue)
+                    if (((VariableType)members[i]).data.isDefaultValue)
                         variableItemElement.Q<VisualElement>("Value").visible = false;
                     else
                         variableItemElement.Q<VisualElement>("Value").visible = true;
                     variableItemElement.Q<Toggle>("Default").RegisterValueChangedCallback((newvalue) => {
                         int indexi = index;
-                        ((VariableType)members[indexi]).isDefaultValue = newvalue.newValue;
-                        if (((VariableType)members[indexi]).isDefaultValue)
+                        ((VariableType)members[indexi]).data.isDefaultValue = newvalue.newValue;
+                        if (((VariableType)members[indexi]).data.isDefaultValue)
                             variableItemElement.Q<VisualElement>("Value").visible = false;
                         else
                             variableItemElement.Q<VisualElement>("Value").visible = true;
@@ -164,13 +198,14 @@ public class CustomEnumFlags
         }
     }
 
-    internal CustomEnumFlags Copy()
+    public CustomEnumFlags Copy()
     {
         CustomEnumFlags newEnum = new CustomEnumFlags(value);
-        newEnum.members = new List<EnumerableType>();
-        for (int i = 0; i < members.Count; i++)
+        newEnum.members = new List<VariableType>();
+        for (int i = 0; members !=null   && i < members.Count ; i++)
         {
-            newEnum.members.Add(members[i].Copy());
+            if (members[i])
+                newEnum.members.Add((VariableType)members[i].Copy());
         }
         return newEnum;
     }
@@ -190,7 +225,7 @@ public class CustomEnumFlags
         {
             if (members[i].TypeName == type)
             { 
-                if(((VariableType)members[i]).isString)
+                if(((VariableType)members[i]).data.isString)
                     return ((VariableType)members[i]).GetStringValue();
             }
         }
@@ -203,7 +238,7 @@ public class CustomEnumFlags
         {
             if (members[i].TypeName == type)
             {
-                if (((VariableType)members[i]).isString)
+                if (((VariableType)members[i]).data.isString)
                     return ((VariableType)members[i]).GetObjectValue();
             }
         }
@@ -227,7 +262,7 @@ public class CustomEnumFlags
         {
             if (members[i].TypeName == type)
             {
-                ((VariableType)members[i]).isDefaultValue = true;
+                ((VariableType)members[i]).data.isDefaultValue = true;
             }
         }
     }

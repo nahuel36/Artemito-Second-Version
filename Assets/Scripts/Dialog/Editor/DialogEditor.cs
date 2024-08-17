@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -15,8 +16,27 @@ public class DialogEditor : Editor
     {
         Dialog thisDialog = ((Dialog)target);
 
-        // Each editor window contains a root VisualElement object
         VisualElement root = new VisualElement();
+
+        for (int i = 0; i < thisDialog.subDialogs.Count; i++)
+        {
+            for (int j = 0; j < thisDialog.subDialogs[i].options.Count; j++)
+            {
+                for (int k = 0; k < thisDialog.subDialogs[i].options[j].local_properties.Count; k++)
+                {
+                    if (thisDialog.isDuplicate)
+                    {
+                        //thisDialog.subDialogs[i].options[j].local_properties[k].variablesContainer = thisDialog.subDialogs[i].options[j].local_properties[k].variablesContainer.Copy();
+                    }
+                }
+            }
+        }
+        thisDialog.isDuplicate = false;
+
+
+        // Each editor window contains a root VisualElement object
+
+
 
         // Instantiate UXML
         VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
@@ -38,7 +58,7 @@ public class DialogEditor : Editor
 
                 subDialogTittleField.value = thisDialog.subDialogs[subdialogIndex].text;
 
-                subDialogTittleField.RegisterValueChangedCallback((value) => 
+                subDialogTittleField.RegisterValueChangedCallback((value) =>
                     thisDialog.subDialogs[subdialogIndex].text = value.newValue);
 
                 subdialogVE.Add(subDialogTittleField);
@@ -57,20 +77,34 @@ public class DialogEditor : Editor
 
                         optionTittleField.value = thisDialog.subDialogs[subdialogIndex].options[optionIndex].initialText;
 
-                        optionTittleField.RegisterValueChangedCallback((value) => 
+                        optionTittleField.RegisterValueChangedCallback((value) =>
                             thisDialog.subDialogs[subdialogIndex].options[optionIndex].initialText = value.newValue);
 
-                        LocalAndGlobalProperties.CreateGUI(thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties, optionVE.Q("LocalAndGlobalProperties"),()=>
-                            {
-                                serializedObject.ApplyModifiedProperties();
-                                EditorUtility.SetDirty(target);
-                            }
-                        );
 
+                        LocalAndGlobalProperties.CreateGUI(thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties, optionVE.Q("LocalAndGlobalProperties"), 
+                        () =>
+                        {
+                            serializedObject.ApplyModifiedProperties();
+                            EditorUtility.SetDirty(target);
+                            for (int k = 0; k < thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties.Count; k++)
+                            {
+                                thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties[k].variablesContainer.SaveData();
+                            }
+                        },
+                        ()=>
+                        {
+                            for (int k = 0; k < thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties.Count; k++)
+                            {
+                                thisDialog.subDialogs[subdialogIndex].options[optionIndex].local_properties[k].variablesContainer.LoadData();
+                            }
+                            
+                        }
+                        );
+                        
                         return optionVE;
                     },
 
-                    OnAdd = () => 
+                    OnAdd = () =>
                     {
                         DialogOption newDialogOption = new DialogOption();
                         newDialogOption.initialText = "new option";
@@ -95,6 +129,8 @@ public class DialogEditor : Editor
         };
 
         subDialogsList.Init(labelFromUXML.Q<VisualElement>("SubDialogs"), true);
+
+
 
         return root;
     }

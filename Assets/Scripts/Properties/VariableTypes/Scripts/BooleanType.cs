@@ -8,14 +8,14 @@ public class BooleanType: VariableType
     public BooleanType() {
         typeName = "boolean";
         Index = 0;
-        isString = true;
+        data.isString = true;
     }
 
     private void OnEnable()
     {
         typeName = "boolean";
         Index = 0;
-        isString = true;
+        data.isString = true;
     }
 
     public override void SetPropertyField(VisualElement root)
@@ -35,10 +35,10 @@ public class BooleanType: VariableType
 
     public bool GetVariableValue()
     {
-        if (string.IsNullOrEmpty(stringValue))
+        if (string.IsNullOrEmpty(data.stringValue))
             return false;
 
-        if (stringValue.ToLower() == "true")
+        if (data.stringValue.ToLower() == "true")
             return true;
         else
             return false;
@@ -46,7 +46,7 @@ public class BooleanType: VariableType
 
     public void SetVariableValue(bool value)
     {
-        stringValue = value.ToString().ToLower();
+        data.stringValue = value.ToString().ToLower();
         onChangeAVariableContentValue?.Invoke();
     }
 
@@ -55,8 +55,8 @@ public class BooleanType: VariableType
         BooleanType newEnum = new BooleanType();
         newEnum.typeName = typeName;
         newEnum.Index = Index;
-        newEnum.stringValue = stringValue;
-        newEnum.isDefaultValue = isDefaultValue;
+        newEnum.data.stringValue = data.stringValue;
+        newEnum.data.isDefaultValue = data.isDefaultValue;
         return newEnum;
     }
 }

@@ -9,14 +9,14 @@ public class IntegerType : VariableType
     {
         typeName = "integer";
         Index = 1;
-        isString = true;
+        data.isString = true;
     }
 
     private void OnEnable()
     {
         typeName = "integer";
         Index = 1;
-        isString = true;
+        data.isString = true;
     }
 
     public override void SetPropertyField(VisualElement root)
@@ -37,14 +37,14 @@ public class IntegerType : VariableType
     public int GetVariableValue()
     {
         int integerValue = -1; 
-        if(int.TryParse(stringValue, out integerValue))
+        if(int.TryParse(data.stringValue, out integerValue))
             return integerValue;
         return -1;
     }
 
     public void SetVariableValue(int value)
     {
-        stringValue = value.ToString();
+        data.stringValue = value.ToString();
 
         onChangeAVariableContentValue?.Invoke();
     }
@@ -52,11 +52,11 @@ public class IntegerType : VariableType
     public override EnumerableType Copy()
     {
         IntegerType newEnum = new IntegerType();
-        newEnum.isDefaultValue = isDefaultValue;
+        newEnum.data.isDefaultValue = data.isDefaultValue;
         newEnum.typeName = typeName;
         newEnum.Index = Index;
-        newEnum.isString = isString;
-        newEnum.stringValue = stringValue;
+        newEnum.data.isString = data.isString;
+        newEnum.data.stringValue = data.stringValue;
         return newEnum;
     }
 }

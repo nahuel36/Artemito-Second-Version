@@ -6,8 +6,10 @@ using UnityEngine;
 [System.Serializable]
 public class EnumerableType : ScriptableObject
 {
-    [SerializeField][HideInInspector] private int index;
-    protected string typeName;
+    
+        [SerializeField] private int index;
+        [SerializeField] protected string typeName;
+    
 
     public int Index
     {

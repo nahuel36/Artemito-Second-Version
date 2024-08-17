@@ -1,0 +1,4 @@
+SLN2BFF START >>>>
+[ERROR] Solution file is not found. (C:\Users\nahue\OneDrive\Documents\ConvertingToUIToolkit\CPU)
+Usage: sln2bff [--solution-platform platform name] [--solution-configuration configuration name] solution-file-path [--root source-root-dir-path] [--verbose]
+<<<< SLN2BFF END

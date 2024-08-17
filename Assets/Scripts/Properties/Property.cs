@@ -16,7 +16,7 @@ public class GenericProperty
     //[SerializeField]public bool[] useDefaultValues;
     //[SerializeField]public UnityEngine.Object[] objectValues; //funciona
     public CustomEnumFlags variablesContainer;
-
+    
     public virtual GenericProperty Copy()
     { 
         GenericProperty prop = new GenericProperty(); 
@@ -36,7 +36,7 @@ public class InteractionProperty : GenericProperty
     public Verb verb;
     public int itemIndex;
     public int interactuableID;
-
+    
     public override GenericProperty Copy()
     {
         InteractionProperty prop = new InteractionProperty();
@@ -58,7 +58,6 @@ public class InteractionProperty : GenericProperty
 public class LocalProperty : GenericProperty
 {
     
-
     public override GenericProperty Copy()
     {
         LocalProperty prop = new LocalProperty();

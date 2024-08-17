@@ -15,14 +15,14 @@ public class EnumClassicType : VariableType
     {
         typeName = "enum classic";
         Index = 4;
-        isString = true;
+        data.isString = true;
     }
 
     private void OnEnable()
     {
         typeName = "enum classic";
         Index = 4;
-        isString = true;
+        data.isString = true;
     }
 
     public override void SetPropertyField(VisualElement root)
@@ -123,11 +123,11 @@ public class EnumClassicType : VariableType
 
     public System.Enum GetSelectedVariables(List<Settings.EnumVariablesType> variables)
     {
-        if(string.IsNullOrEmpty(stringValue)) return (GenericEnum)0;
+        if(string.IsNullOrEmpty(data.stringValue)) return (GenericEnum)0;
 
         int integerValue = 0;
 
-        XmlReader reader = XmlReader.Create(new StringReader(stringValue));
+        XmlReader reader = XmlReader.Create(new StringReader(data.stringValue));
         try
         {
             while (reader.Read())
@@ -154,9 +154,9 @@ public class EnumClassicType : VariableType
     public string GetVariableValue(Settings.EnumVariablesType variable)
     {
         string value = "";
-        if (!string.IsNullOrEmpty(stringValue))
+        if (!string.IsNullOrEmpty(data.stringValue))
         {
-            XmlReader reader = XmlReader.Create(new StringReader(stringValue));
+            XmlReader reader = XmlReader.Create(new StringReader(data.stringValue));
             try
             {
                 while (reader.Read())
@@ -217,7 +217,7 @@ public class EnumClassicType : VariableType
         writer.WriteEndDocument();
         writer.Flush();
 
-        stringValue = sw.ToString();
+        data.stringValue = sw.ToString();
 
         onChangeAVariableContentValue?.Invoke();
     }
@@ -255,7 +255,7 @@ public class EnumClassicType : VariableType
         writer.WriteEndDocument();
         writer.Flush();
 
-        stringValue = sw.ToString();
+        data.stringValue = sw.ToString();
 
         onChangeAVariableContentValue?.Invoke();
     }
@@ -264,8 +264,8 @@ public class EnumClassicType : VariableType
     public override EnumerableType Copy()
     {
         EnumClassicType newEnum = new EnumClassicType();
-        newEnum.isDefaultValue = isDefaultValue;
-        newEnum.stringValue = stringValue;
+        newEnum.data.isDefaultValue = data.isDefaultValue;
+        newEnum.data.stringValue = data.stringValue;
         newEnum.stringIngameValue = stringIngameValue;
         newEnum.changedIngame = changedIngame;
         return newEnum;

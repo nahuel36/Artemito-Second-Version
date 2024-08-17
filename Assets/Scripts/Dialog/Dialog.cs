@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -57,8 +59,18 @@ public class Dialog : ScriptableObject
     public int current_entryDialogIndex;
     public Rect enterNodeRect;
     public Rect exitNodeRect;
+    public int instanceID = 0;
+    public bool isDuplicate = false;
+    
+    public void OnEnable() {
+        if (instanceID != GetInstanceID() && instanceID != 0)
+        {
+            isDuplicate = true;
+        }
 
-        
+    }
+
+       
 
     public void ChangeSubDialogRect(int index, Rect rect)
     {
@@ -175,5 +187,5 @@ public class Dialog : ScriptableObject
         return null;
     }
 
-
+    
 }

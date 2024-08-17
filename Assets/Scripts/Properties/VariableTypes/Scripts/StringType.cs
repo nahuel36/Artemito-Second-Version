@@ -10,14 +10,14 @@ public class StringType : VariableType
     {
         typeName = "string";
         Index = 2;
-        isString = true;
+        data.isString = true;
     }
 
     private void OnEnable()
     {
         typeName = "string";
         Index = 2;
-        isString = true;
+        data.isString = true;
     }
 
     public override void SetPropertyField(VisualElement root)
@@ -40,21 +40,21 @@ public class StringType : VariableType
        // if (property.variableValues == null || Index >= property.variableValues.Length)
          //   return "";
 
-        return stringValue;
+        return data.stringValue;
     }
 
     public void SetVariableValue(string value)
     {
-        this.stringValue = value;
+        this.data.stringValue = value;
         onChangeAVariableContentValue?.Invoke();
     }
 
     public override EnumerableType Copy() {
-        StringType newEnum = new StringType();
-        newEnum.stringValue = stringValue;
-        newEnum.objectValue = objectValue;
+        StringType newEnum = Object.Instantiate(this);
+        newEnum.data.stringValue = data.stringValue;
+        newEnum.data.objectValue = data.objectValue;
         newEnum.changedIngame = changedIngame;
-        newEnum.isDefaultValue = isDefaultValue;
+        newEnum.data.isDefaultValue = data.isDefaultValue;
         return newEnum;
     }
 }
