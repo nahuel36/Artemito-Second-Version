@@ -30,32 +30,7 @@ public class CustomEnumFlagsEditor
 
     private void callback(ChangeEvent<Enum> evt, CustomEnumFlags value)
     {
-        if (value.type == CustomEnumFlags.contentType.variable)
-        {
-            List<int> indexs = new List<int>();
-            for (int i = 0; i < field.choices.Count; i++)
-            {
-                if ((Convert.ToInt32((GenericEnum)evt.newValue) & (1 << i)) != 0)
-                    indexs.Add(i);
-            }
-            int finalValue = 0;
-            VariableType[] variables = EnumerablesUtility.GetAllVariableTypes();
-            for (int i = 0; i < indexs.Count; i++)
-            {
-                for (int j = 0; j < variables.Length; j++)
-                {
-                    if (field.choices[indexs[i]] == variables[j].TypeName)
-                    {
-                        finalValue = finalValue | (1 << variables[j].Index);
-                    }
-                }
-            }
-            value.SetIntValue(finalValue);
-        }
-        else
-        { 
-            value.SetIntValue(Convert.ToInt32((GenericEnum)evt.newValue));
-        }
+        value.SetIntValue(Convert.ToInt32((GenericEnum)evt.newValue));
     }
 
     public void SetChoices(Func<int, string> func, int Lenght)

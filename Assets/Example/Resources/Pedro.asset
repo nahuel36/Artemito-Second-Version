@@ -32,8 +32,9 @@ MonoBehaviour:
       - name: property1
         expandedInInspector: 1
         variablesContainer:
-          value: 6
+          value: 14
           members:
+          - {fileID: 0}
           - {fileID: 0}
           - {fileID: 0}
           variableData:
@@ -47,6 +48,12 @@ MonoBehaviour:
             isString: 1
             isDefaultValue: 0
             variableType: string
+          - stringValue: <?xml version="1.0" encoding="utf-16"?><door-closed selected="true"
+              value0="s"><door-closed-2 selected="false" /></door-closed>
+            objectValue: {fileID: 0}
+            isString: 1
+            isDefaultValue: 0
+            variableType: enum with flags
           type: 0
       global_properties: []
       current_local_properties: []

@@ -122,6 +122,29 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &76521712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  typeName: integer
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
 --- !u!114 &96556196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +164,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -163,6 +187,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -185,6 +210,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -207,6 +233,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -281,6 +308,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -303,6 +331,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -340,6 +369,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -370,12 +400,25 @@ MonoBehaviour:
       variableData: []
       type: 0
   customEnumFlags:
-    value: 0
-    members: []
-    variableData: []
+    value: 5
+    members:
+    - {fileID: 1983875345}
+    - {fileID: 1505066364}
+    - {fileID: 76521712}
+    variableData:
+    - stringValue: popo
+      objectValue: {fileID: 0}
+      isString: 1
+      isDefaultValue: 0
+      variableType: string
+    - stringValue: 
+      objectValue: {fileID: 0}
+      isString: 1
+      isDefaultValue: 0
+      variableType: enum with flags
     type: 0
   copyPropertyObjectContainer: {fileID: 357353727}
-  copyPropertyType: Character
+  copyPropertyObjectType: 
   copyPropertyVariable:
     name: a
     expandedInInspector: 0
@@ -389,7 +432,7 @@ MonoBehaviour:
       - {fileID: 2061930421}
       variableData: []
       type: 0
-  changeMode: 1
+  changeMode: 0
 --- !u!114 &442964921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +452,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -431,6 +475,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -690,7 +735,7 @@ MonoBehaviour:
       expandedInInspector: 0
       executedTimes: 0
   priority: 0
-  instanceID: 25410
+  instanceID: 25400
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -772,6 +817,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -1018,6 +1064,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -1199,7 +1246,7 @@ MonoBehaviour:
       expandedInInspector: 1
       executedTimes: 0
   priority: 0
-  instanceID: 25442
+  instanceID: 25432
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:
@@ -1296,6 +1343,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -1449,6 +1497,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -1471,6 +1520,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -1830,6 +1880,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -1852,6 +1903,30 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
+--- !u!114 &1505066364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99bf2602a91aa04fa824042da1dc66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 3
+  typeName: enum with flags
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: enum with flags
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -1874,6 +1949,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -1961,6 +2037,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -2167,6 +2244,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -2189,6 +2267,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -2211,6 +2290,30 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
+--- !u!114 &1983875345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: StringType(Clone)
+  m_EditorClassIdentifier: 
+  index: 2
+  typeName: string
+  data:
+    stringValue: popo
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: string
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -2233,6 +2336,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -2330,6 +2434,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -2352,6 +2457,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
@@ -2374,6 +2480,7 @@ MonoBehaviour:
     objectValue: {fileID: 0}
     isString: 1
     isDefaultValue: 0
+    variableType: 
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}

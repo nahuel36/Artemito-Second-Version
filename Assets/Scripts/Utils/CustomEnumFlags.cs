@@ -93,6 +93,27 @@ public class CustomEnumFlags
         return false;
     }
 
+    public bool ContainsValueByFields(VariableType variable)
+    {
+        if (type == CustomEnumFlags.contentType.variable)
+        {
+            List<int> indexs = new List<int>();
+            for (int i = 0; i < enumfield.choices.Count; i++)
+            {
+                if ((value & (1 << i)) != 0)
+                    indexs.Add(i);
+            }
+            for (int i = 0; i < indexs.Count; i++)
+            {
+                if (enumfield.choices[indexs[i]] == variable.TypeName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        return ContainsValue(variable);
+    }
     public void RemoveValue(EnumerableType valueToRemove)
     {
         value = value & ~(1 << valueToRemove.Index);
@@ -142,7 +163,7 @@ public class CustomEnumFlags
                         members.RemoveAt(list[k]);
                     }
 
-                    if (contains == false && ContainsValue(variables[i]))
+                    if (contains == false && ContainsValueByFields(variables[i]))
                     {
                         members.Add((VariableType)(variables[i].Copy()));
                     }
