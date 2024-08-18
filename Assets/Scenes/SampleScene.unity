@@ -122,6 +122,30 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &54235764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99bf2602a91aa04fa824042da1dc66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 3
+  typeName: enum with flags
+  data:
+    stringValue: <?xml version="1.0" encoding="utf-16"?><door-closed selected="true"
+      value0="s"><door-closed-2 selected="false" /></door-closed>
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: enum with flags
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
 --- !u!114 &76521712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,21 +359,6 @@ MonoBehaviour:
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
---- !u!114 &357353727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
-  m_Name: CharacterType(Clone)
-  m_EditorClassIdentifier: 
-  index: 0
-  typeName: Character
-  character: {fileID: 894919281}
 --- !u!114 &434099212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,7 +409,7 @@ MonoBehaviour:
       variableData: []
       type: 0
   customEnumFlags:
-    value: 5
+    value: 1
     members:
     - {fileID: 1983875345}
     - {fileID: 1505066364}
@@ -417,22 +426,36 @@ MonoBehaviour:
       isDefaultValue: 0
       variableType: enum with flags
     type: 0
-  copyPropertyObjectContainer: {fileID: 357353727}
-  copyPropertyObjectType: 
+  copyPropertyObjectContainer: {fileID: 456922746}
+  copyPropertyObjectType: Dialog Option
   copyPropertyVariable:
-    name: a
-    expandedInInspector: 0
+    name: property1
+    expandedInInspector: 1
     variablesContainer:
       value: 14
       members:
-      - {fileID: 1910837966}
-      - {fileID: 1060157882}
-      - {fileID: 1487436055}
-      - {fileID: 1289225478}
-      - {fileID: 2061930421}
-      variableData: []
+      - {fileID: 2049856677}
+      - {fileID: 772185825}
+      - {fileID: 54235764}
+      variableData:
+      - stringValue: 3
+        objectValue: {fileID: 0}
+        isString: 1
+        isDefaultValue: 0
+        variableType: integer
+      - stringValue: po
+        objectValue: {fileID: 0}
+        isString: 1
+        isDefaultValue: 0
+        variableType: string
+      - stringValue: <?xml version="1.0" encoding="utf-16"?><door-closed selected="true"
+          value0="s"><door-closed-2 selected="false" /></door-closed>
+        objectValue: {fileID: 0}
+        isString: 1
+        isDefaultValue: 0
+        variableType: enum with flags
       type: 0
-  changeMode: 0
+  changeMode: 1
 --- !u!114 &442964921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +479,23 @@ MonoBehaviour:
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
+--- !u!114 &456922746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220500725fb8e5b4d9c5a8bf9ee8d214, type: 3}
+  m_Name: DialogOptionType(Clone)
+  m_EditorClassIdentifier: 
+  index: 3
+  typeName: Dialog Option
+  dialog: {fileID: 11400000, guid: 92bd660cddc483549806e36f4f49e429, type: 2}
+  subDialog: 0
+  dialogOption: 0
 --- !u!114 &489856147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,6 +1085,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756070791}
   m_CullTransparentMesh: 1
+--- !u!114 &772185825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: StringType(Clone)
+  m_EditorClassIdentifier: 
+  index: 2
+  typeName: string
+  data:
+    stringValue: po
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: string
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
 --- !u!114 &890215580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2435,6 +2498,29 @@ MonoBehaviour:
     isString: 1
     isDefaultValue: 0
     variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
+--- !u!114 &2049856677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  typeName: integer
+  data:
+    stringValue: 3
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: integer
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}

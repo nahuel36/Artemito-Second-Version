@@ -31,7 +31,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
         {
             for (int i = 0; i < variables.Length; i++)
             {
-                if (customEnumFlags.ContainsValue(variables[i]))
+                if (customEnumFlags.ContainsValueByFields(variables[i]))
                 { 
                     if(variables[i].data.isString)
                         propertyToSet.variablesContainer.SetValue(variables[i].TypeName, customEnumFlags.GetStringValue(variables[i].TypeName));
@@ -44,7 +44,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
         {
             for (int i = 0; i < variables.Length; i++)
             {
-                if (customEnumFlags.ContainsValue(variables[i]))
+                if (customEnumFlags.ContainsValueByFields(variables[i]))
                 {
                     if (variables[i].data.isString)
                         propertyToSet.variablesContainer.SetValue(variables[i].TypeName, copyPropertyVariable.variablesContainer.GetStringValue(variables[i].TypeName));
