@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 public class InventoryInteractionsCustomEditor : Editor
 {
-    public static void ShowGUI(VisualElement root, List<InventoryItemAction> inventoryInteractions, UnityEngine.Object myTarget, bool isDuplicate) 
+    public static void ShowGUI(VisualElement root, List<InventoryItemInteractions> inventoryInteractions, UnityEngine.Object myTarget, bool isDuplicate) 
     {
         VisualElement invInteractionsVE = new VisualElement();
 
@@ -15,16 +15,20 @@ public class InventoryInteractionsCustomEditor : Editor
 
         invInteractionsVE.Add(tittle);
 
-        CustomListView<InventoryItemAction> listViewInvInteractions = new CustomListView<InventoryItemAction>();
+        CustomListView<InventoryItemInteractions> listViewInvInteractions = new CustomListView<InventoryItemInteractions>();
         listViewInvInteractions.ItemsSource = inventoryInteractions;
 
         listViewInvInteractions.ItemContent = (indexInteraction) => {
-            Foldout foldout = new Foldout();
-            foldout.text = "interaction " + (indexInteraction + 1).ToString();
-            AttempsCustomEditor attempsCustomEditor = (AttempsCustomEditor)CreateInstance(typeof(AttempsCustomEditor));
-            VisualElement attempsVE = attempsCustomEditor.ShowGUI(inventoryInteractions[indexInteraction].attempsContainer, myTarget, isDuplicate);
-            foldout.Add(attempsVE);
-            return foldout;
+            if (inventoryInteractions[indexInteraction].interactions != null)
+            {
+                Foldout foldout = new Foldout();
+                foldout.text = "interaction " + (indexInteraction + 1).ToString();
+                AttempsCustomEditor attempsCustomEditor = (AttempsCustomEditor)CreateInstance(typeof(AttempsCustomEditor));
+                VisualElement attempsVE = attempsCustomEditor.ShowGUI(inventoryInteractions[indexInteraction].interactions.attempsContainer, myTarget, isDuplicate);
+                foldout.Add(attempsVE);
+                return foldout;
+            }
+            else return null;
         };
 
         listViewInvInteractions.highlightedColor = Color.black;
@@ -36,8 +40,9 @@ public class InventoryInteractionsCustomEditor : Editor
 
         listViewInvInteractions.OnAdd = () =>
         {
-            InventoryItemAction newinventoryItem = new InventoryItemAction();
-            newinventoryItem.attempsContainer = new AttempsContainer();
+            InventoryItemInteractions newinventoryItem = new InventoryItemInteractions();
+            newinventoryItem.interactions = new Interactions();
+            newinventoryItem.interactions.attempsContainer = new AttempsContainer();
             return newinventoryItem;
         };
 

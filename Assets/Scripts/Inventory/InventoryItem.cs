@@ -12,7 +12,7 @@ public class InventoryItem//:PNCPropertyInterface
     public float cuantity = 1;
     //public LocalProperty[] local_properties = new LocalProperty[0];
     //public GlobalProperty[] global_properties;
-    //public List<InventoryItemAction> inventoryActions;
+    //public List<InventoryItemInteractions> inventoryActions;
     //public List<VerbInteractions> verbs;
     public bool expandedInInspector = false;
     public int specialIndex = -1;

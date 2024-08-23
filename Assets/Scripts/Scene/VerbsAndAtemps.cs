@@ -11,38 +11,43 @@ public class Verb
     public int index;
 }
 
-[System.Serializable]
-public class VerbInteractions
+public class Interactions
 {
-    public Verb verb = new Verb();
-    public bool use = true;
     public AttempsContainer attempsContainer = new AttempsContainer();
 }
 
 
 [System.Serializable]
-public class InventoryItemAction
+public class VerbInteractions
 {
-    public int specialIndex = -1;
-    public Verb verb;
-    public RoomInteractuable sceneObject;
-    public AttempsContainer attempsContainer;
+    public Verb verb = new Verb();
+    //public bool use = true;
+    public Interactions interactions;
+}
 
-    public InventoryItemAction CopyItem(InventoryItemAction interactionOrigin)
+
+[System.Serializable]
+public class InventoryItemInteractions
+{
+   // public int specialIndex = -1;
+    public Verb verb;
+    // public RoomInteractuable sceneObject;
+    public Interactions interactions; 
+    public InventoryItemInteractions CopyItem(InventoryItemInteractions interactionOrigin)
     {
-        InventoryItemAction interactionDestiny = new InventoryItemAction();
-        interactionDestiny.attempsContainer = new AttempsContainer();
-        interactionDestiny.attempsContainer.attempsIteration = interactionOrigin.attempsContainer.attempsIteration;
-        interactionDestiny.attempsContainer.executedTimes = interactionOrigin.attempsContainer.executedTimes;
-        interactionDestiny.attempsContainer.expandedInInspector = interactionOrigin.attempsContainer.expandedInInspector;
-        interactionDestiny.attempsContainer.attemps = new List<InteractionsAttemp>();
-        for (int i = 0; i < interactionOrigin.attempsContainer.attemps.Count; i++)
+        InventoryItemInteractions interactionDestiny = new InventoryItemInteractions();
+        interactionDestiny.interactions.attempsContainer = new AttempsContainer();
+        interactionDestiny.interactions.attempsContainer.attempsIteration = interactionOrigin.interactions.attempsContainer.attempsIteration;
+        interactionDestiny.interactions.attempsContainer.executedTimes = interactionOrigin.interactions.attempsContainer.executedTimes;
+        interactionDestiny.interactions.attempsContainer.expandedInInspector = interactionOrigin.interactions.attempsContainer.expandedInInspector;
+        interactionDestiny.interactions.attempsContainer.attemps = new List<InteractionsAttemp>();
+        for (int i = 0; i < interactionOrigin.interactions.attempsContainer.attemps.Count; i++)
         {
-            interactionDestiny.attempsContainer.attemps.Add(interactionOrigin.attempsContainer.attemps[i].CopyItem(interactionOrigin.attempsContainer.attemps[i]));
+            interactionDestiny.interactions.attempsContainer.attemps.Add(interactionOrigin.interactions.attempsContainer.attemps[i].CopyItem(interactionOrigin.interactions.attempsContainer.attemps[i]));
         }
-        interactionDestiny.sceneObject = interactionOrigin.sceneObject;
+        //interactionDestiny.sceneObject = interactionOrigin.sceneObject;
         interactionDestiny.verb = interactionOrigin.verb;
-        interactionDestiny.specialIndex = interactionOrigin.specialIndex;
+        //interactionDestiny.specialIndex = interactionOrigin.specialIndex;
         return interactionDestiny;
     }
 }

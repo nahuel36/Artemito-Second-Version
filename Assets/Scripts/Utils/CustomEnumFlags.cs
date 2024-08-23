@@ -97,6 +97,7 @@ public class CustomEnumFlags
     {
         if (type == CustomEnumFlags.contentType.variable)
         {
+            if (enumfield == null) return false;
             List<int> indexs = new List<int>();
             for (int i = 0; i < enumfield.choices.Count; i++)
             {

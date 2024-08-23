@@ -7,13 +7,13 @@ public abstract class RoomInteractuable : PropertiesContainerInScene
 {
     // Start is called before the first frame update
     public List<Interaction> interactions;
-    public List<InventoryItemAction> inventoryInteractions;
+    public List<InventoryItemInteractions> inventoryInteractions;
     public int priority = 0;
     public int instanceID = 0;
     public bool isDuplicate = false;
     public void RunInteraction()
     {
-        InteractionUtils.RunAttempsInteraction(inventoryInteractions[0].attempsContainer, InteractionObjectsType.verbInObject, null, null, new RoomInteractuable[] { this });
+        InteractionUtils.RunAttempsInteraction(inventoryInteractions[0].interactions.attempsContainer, InteractionObjectsType.verbInObject, null, null, new RoomInteractuable[] { this });
     }
 
     public new void Awake()
