@@ -88,7 +88,10 @@ public class DialogEditor : Editor
                             EditorUtility.SetDirty(target);
                         }
                         );
-                        
+
+                        VisualElement interVE = RootInteractionCustomEditor.ShowGUI(thisDialog.subDialogs[subdialogIndex].options[optionIndex].interactions.interactions, thisDialog, thisDialog.isDuplicate);
+                        optionVE.Add(interVE);
+
                         return optionVE;
                     },
 
