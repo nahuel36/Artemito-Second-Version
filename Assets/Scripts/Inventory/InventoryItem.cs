@@ -12,8 +12,8 @@ public class InventoryItem//:PNCPropertyInterface
     public float cuantity = 1;
     //public LocalProperty[] local_properties = new LocalProperty[0];
     //public GlobalProperty[] global_properties;
-    //public List<InventoryItemInteractions> inventoryActions;
-    //public List<VerbInteractions> verbs;
+    //public List<InventoryItemRootInteractions> inventoryActions;
+    //public List<VerbRootInteractions> verbs;
     public bool expandedInInspector = false;
     public int specialIndex = -1;
     public int priority = 0;
@@ -51,7 +51,7 @@ public class InventoryItem//:PNCPropertyInterface
 
     public void RunVerbInteraction(Verb verbToRunString)
     {
-        VerbInteractions verbToRun = InteractionUtils.FindVerb(verbToRunString, verbs);
+        VerbRootInteractions verbToRun = InteractionUtils.FindVerb(verbToRunString, verbs);
 
         if (verbToRun != null)
             InteractionUtils.RunAttempsInteraction(verbToRun.attempsContainer, InteractionObjectsType.verbInInventory, verbToRunString, new InventoryItem[] { this });

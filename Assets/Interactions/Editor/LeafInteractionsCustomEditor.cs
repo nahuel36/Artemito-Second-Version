@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using System;
 
 [System.Serializable]
-public class InteractionsCustomEditor : Editor
+public class LeafInteractionsCustomEditor : Editor
 {
 
     CustomListView<LeafInteraction> listCustom;
@@ -49,7 +49,7 @@ public class InteractionsCustomEditor : Editor
 
             VisualElement visualElem = InteractionVT.CloneTree();
 
-            InteractionSelect interactionSelect = (InteractionSelect)CreateInstance(typeof(InteractionSelect));
+            LeafInteractionSelect interactionSelect = (LeafInteractionSelect)CreateInstance(typeof(LeafInteractionSelect));
 
             visualElem.Q("InteractionSelect").Clear();
             visualElem.Q("InteractionSelect").Add(interactionSelect.ShowAndConfigure(interactions[index]));

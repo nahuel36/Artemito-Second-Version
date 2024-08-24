@@ -33,7 +33,7 @@ public class CharacterCustomEditor : Editor
         VisualElementsUtils.HideVisualElement(root.Q("Interaction"));
         
 
-        InventoryInteractionsCustomEditor.ShowGUI(root, myTarget.inventoryInteractions, myTarget, myTarget.isDuplicate);
+        InventoryRootInteractionsCustomEditor.ShowGUI(root, myTarget.inventoryInteractions, myTarget, myTarget.isDuplicate);
 
         if (myTarget.isDuplicate)
         {

@@ -19,13 +19,13 @@ public class RootInteractions
 }
 
 [System.Serializable]
-public class DialogInteraction
+public class DialogRootInteraction
 {
     public RootInteractions interactions = new RootInteractions();
 }
 
 [System.Serializable]
-public class VerbInteractions
+public class VerbRootInteractions
 {
     public Verb verb = new Verb();
     //public bool use = true;
@@ -34,15 +34,15 @@ public class VerbInteractions
 
 
 [System.Serializable]
-public class InventoryItemInteractions
+public class InventoryItemRootInteractions
 {
    // public int specialIndex = -1;
     public Verb verb;
     // public RoomInteractuable sceneObject;
     public RootInteractions interactions = new RootInteractions(); 
-    public InventoryItemInteractions CopyItem(InventoryItemInteractions interactionOrigin)
+    public InventoryItemRootInteractions CopyItem(InventoryItemRootInteractions interactionOrigin)
     {
-        InventoryItemInteractions interactionDestiny = new InventoryItemInteractions();
+        InventoryItemRootInteractions interactionDestiny = new InventoryItemRootInteractions();
         interactionDestiny.interactions = new RootInteractions();
         interactionDestiny.interactions.attempsContainer = new AttempsContainer();
         interactionDestiny.interactions.attempsContainer.attempsIteration = interactionOrigin.interactions.attempsContainer.attempsIteration;

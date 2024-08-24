@@ -7,7 +7,7 @@ public abstract class RoomInteractuable : PropertiesContainerInScene
 {
     // Start is called before the first frame update
     public List<LeafInteraction> interactions;
-    public List<InventoryItemInteractions> inventoryInteractions;
+    public List<InventoryItemRootInteractions> inventoryInteractions;
     public int priority = 0;
     public int instanceID = 0;
     public bool isDuplicate = false;

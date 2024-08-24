@@ -10,7 +10,7 @@ public class DialogOption
     public string initialText;
     public string currentText;
     public int index;
-    public DialogInteraction interactions;
+    public DialogRootInteraction interactions;
     public int subDialogDestinyIndex;
     public enum state{ 
         enabled = 0, 

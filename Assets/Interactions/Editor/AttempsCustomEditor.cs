@@ -25,7 +25,7 @@ public class AttempsCustomEditor : Editor
             foldout.text = "attemp " + (indexAttemp + 1).ToString();
             interactionVE.Add(foldout);
             VisualElement visualElement = new VisualElement();
-            InteractionsCustomEditor interactionCustomEditor = (InteractionsCustomEditor)CreateInstance(typeof(InteractionsCustomEditor));
+            LeafInteractionsCustomEditor interactionCustomEditor = (LeafInteractionsCustomEditor)CreateInstance(typeof(LeafInteractionsCustomEditor));
             interactionCustomEditor.ShowGUI(visualElement, attempsContainer.attemps[indexAttemp].interactions, myTarget, isDuplicate, true);
             foldout.Add(visualElement);
             return interactionVE;

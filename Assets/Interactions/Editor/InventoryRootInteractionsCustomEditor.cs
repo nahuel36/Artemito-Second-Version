@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
-public class InventoryInteractionsCustomEditor : Editor
+public class InventoryRootInteractionsCustomEditor : Editor
 {
-    public static void ShowGUI(VisualElement root, List<InventoryItemInteractions> inventoryInteractions, UnityEngine.Object myTarget, bool isDuplicate) 
+    public static void ShowGUI(VisualElement root, List<InventoryItemRootInteractions> inventoryInteractions, UnityEngine.Object myTarget, bool isDuplicate) 
     {
         VisualElement invInteractionsVE = new VisualElement();
 
@@ -15,7 +15,7 @@ public class InventoryInteractionsCustomEditor : Editor
 
         invInteractionsVE.Add(tittle);
 
-        CustomListView<InventoryItemInteractions> listViewInvInteractions = new CustomListView<InventoryItemInteractions>();
+        CustomListView<InventoryItemRootInteractions> listViewInvInteractions = new CustomListView<InventoryItemRootInteractions>();
         listViewInvInteractions.ItemsSource = inventoryInteractions;
 
         listViewInvInteractions.ItemContent = (indexInteraction) => {
@@ -39,7 +39,7 @@ public class InventoryInteractionsCustomEditor : Editor
 
         listViewInvInteractions.OnAdd = () =>
         {
-            InventoryItemInteractions newinventoryItem = new InventoryItemInteractions();
+            InventoryItemRootInteractions newinventoryItem = new InventoryItemRootInteractions();
             newinventoryItem.interactions = new RootInteractions();
             newinventoryItem.interactions.attempsContainer = new AttempsContainer();
             return newinventoryItem;
