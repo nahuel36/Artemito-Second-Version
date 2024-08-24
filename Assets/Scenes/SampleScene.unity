@@ -469,8 +469,14 @@ MonoBehaviour:
       isLikeGive: 0
       isLikeUse: 0
       index: 0
+    interactions:
+      attempsContainer:
+        attempsIteration: 0
+        attemps: []
+        expandedInInspector: 0
+        executedTimes: 0
   priority: 0
-  instanceID: 25404
+  instanceID: 27714
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -899,8 +905,21 @@ MonoBehaviour:
       isLikeGive: 0
       isLikeUse: 0
       index: 0
+    interactions:
+      attempsContainer:
+        attempsIteration: 0
+        attemps:
+        - interactions:
+          - type: Character
+            subtype: ChangeLocalVariable
+            interaction_properties: []
+            action: {fileID: 972384639}
+            expandedInInspector: 0
+          expandedInInspector: 0
+        expandedInInspector: 0
+        executedTimes: 0
   priority: 0
-  instanceID: 25438
+  instanceID: 27744
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:
@@ -930,6 +949,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471ccc4ac988d82438f23dadc7630f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &924367524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  typeName: Character
+  character: {fileID: 0}
+--- !u!114 &972384639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterType: {fileID: 924367524}
+  propertyToSet:
+    name: new property
+    expandedInInspector: 0
+    variablesContainer:
+      value: 0
+      members: []
+      variableData: []
+      type: 0
+  customEnumFlags:
+    value: 0
+    members: []
+    variableData: []
+    type: 0
+  copyPropertyObjectContainer: {fileID: 0}
+  copyPropertyObjectType: 
+  copyPropertyVariable:
+    name: new property
+    expandedInInspector: 0
+    variablesContainer:
+      value: 0
+      members: []
+      variableData: []
+      type: 0
+  changeMode: 0
 --- !u!1 &1043966020
 GameObject:
   m_ObjectHideFlags: 0

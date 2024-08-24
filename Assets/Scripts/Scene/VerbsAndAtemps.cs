@@ -11,6 +11,7 @@ public class Verb
     public int index;
 }
 
+[System.Serializable]
 public class Interactions
 {
     public AttempsContainer attempsContainer = new AttempsContainer();
@@ -22,7 +23,7 @@ public class VerbInteractions
 {
     public Verb verb = new Verb();
     //public bool use = true;
-    public Interactions interactions;
+    public Interactions interactions = new Interactions();
 }
 
 
@@ -32,10 +33,11 @@ public class InventoryItemInteractions
    // public int specialIndex = -1;
     public Verb verb;
     // public RoomInteractuable sceneObject;
-    public Interactions interactions; 
+    public Interactions interactions = new Interactions(); 
     public InventoryItemInteractions CopyItem(InventoryItemInteractions interactionOrigin)
     {
         InventoryItemInteractions interactionDestiny = new InventoryItemInteractions();
+        interactionDestiny.interactions = new Interactions();
         interactionDestiny.interactions.attempsContainer = new AttempsContainer();
         interactionDestiny.interactions.attempsContainer.attempsIteration = interactionOrigin.interactions.attempsContainer.attempsIteration;
         interactionDestiny.interactions.attempsContainer.executedTimes = interactionOrigin.interactions.attempsContainer.executedTimes;
