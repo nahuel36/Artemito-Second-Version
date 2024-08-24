@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 public class AttempsCustomEditor : Editor
 {
-    public VisualElement ShowGUI(AttempsContainer attempsContainer, UnityEngine.Object myTarget, bool isDuplicate)
+    public static VisualElement ShowGUI(AttempsContainer attempsContainer, UnityEngine.Object myTarget, bool isDuplicate)
     {
         VisualElement InvAttempsVE = new VisualElement();
 
