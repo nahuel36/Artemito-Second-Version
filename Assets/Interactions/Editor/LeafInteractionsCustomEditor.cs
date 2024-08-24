@@ -95,18 +95,17 @@ public class LeafInteractionsCustomEditor : Editor
 
         if (string.IsNullOrEmpty(interaction.type) || string.IsNullOrEmpty(interaction.subtype)) return;
 
-        List<string> files = FileUtils.GetFilesList(Application.dataPath + "/RootInteractions/" + interaction.type + "/"  + interaction.subtype + "/");
+        List<string> files = FileUtils.GetFilesList(Application.dataPath + "/Interactions/" + interaction.type + "/"  + interaction.subtype + "/");
 
         for (int i = 0; i < files.Count; i++)
         {
-            InteractionAction var = AssetDatabase.LoadAssetAtPath<InteractionAction>("Assets/RootInteractions/" + interaction.type + "/"  + interaction.subtype + "/" + files[i]);
+            InteractionAction var = AssetDatabase.LoadAssetAtPath<InteractionAction>("Assets/Interactions/" + interaction.type + "/"  + interaction.subtype + "/" + files[i]);
             if (var != null && ((interaction.action != null && var.GetType() != interaction.action.GetType()) || interaction.action == null))
             {
                 interaction.action = (InteractionAction)ScriptableObject.CreateInstance(var.GetType());
             }
 
         }
-
         if (interaction.action != null)
         {
             interaction.action.SetEditorField(visualElem, interaction);

@@ -19,11 +19,20 @@ MonoBehaviour:
     - initialText: 1
       currentText: 
       index: 0
-      attempsContainer:
-        attempsIteration: 0
-        attemps: []
-        expandedInInspector: 0
-        executedTimes: 0
+      interactions:
+        interactions:
+          attempsContainer:
+            attempsIteration: 0
+            attemps:
+            - interactions:
+              - type: Character
+                subtype: ChangeLocalVariable
+                interaction_properties: []
+                action: {fileID: 0}
+                expandedInInspector: 0
+              expandedInInspector: 0
+            expandedInInspector: 0
+            executedTimes: 0
       subDialogDestinyIndex: 0
       initialState: 0
       currentState: 0
