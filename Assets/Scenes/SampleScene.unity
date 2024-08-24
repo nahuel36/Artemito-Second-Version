@@ -476,7 +476,7 @@ MonoBehaviour:
         expandedInInspector: 0
         executedTimes: 0
   priority: 0
-  instanceID: 26570
+  instanceID: 25384
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -919,7 +919,7 @@ MonoBehaviour:
         expandedInInspector: 0
         executedTimes: 0
   priority: 0
-  instanceID: 26600
+  instanceID: 25414
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:

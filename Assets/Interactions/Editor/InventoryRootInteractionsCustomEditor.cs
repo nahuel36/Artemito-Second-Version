@@ -23,7 +23,7 @@ public class InventoryRootInteractionsCustomEditor : Editor
             {
                 Foldout foldout = new Foldout();
                 foldout.text = "interaction " + (indexInteraction + 1).ToString();
-                VisualElement attempsVE = AttempsCustomEditor.ShowGUI(inventoryInteractions[indexInteraction].interactions.attempsContainer, myTarget, isDuplicate);
+                VisualElement attempsVE = RootInteractionCustomEditor.ShowGUI(inventoryInteractions[indexInteraction].interactions, myTarget, isDuplicate);
                 foldout.Add(attempsVE);
                 return foldout;
             }
