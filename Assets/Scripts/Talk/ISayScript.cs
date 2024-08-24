@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ISayScript
 {
-    string SayWithScript(Interaction interaction);
+    string SayWithScript(LeafInteraction interaction);
 }
 
 

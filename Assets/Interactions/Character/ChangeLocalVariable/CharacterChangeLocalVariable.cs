@@ -24,7 +24,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
         copyOtherProperty
     }
     public modes changeMode;
-    public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
+    public override void ExecuteAction(List<InteractionProperty> properties, LeafInteraction interaction)
     {
         VariableType[] variables = EnumerablesUtility.GetAllVariableTypes();
         if (changeMode == modes.setValue)
@@ -70,7 +70,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
         }
     }
 
-    public override void SetEditorField(VisualElement visualElement, Interaction interaction)
+    public override void SetEditorField(VisualElement visualElement, LeafInteraction interaction)
     {
 #if UNITY_EDITOR
         base.SetEditorField(visualElement, interaction);

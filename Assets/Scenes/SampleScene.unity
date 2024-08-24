@@ -476,7 +476,7 @@ MonoBehaviour:
         expandedInInspector: 0
         executedTimes: 0
   priority: 0
-  instanceID: 27714
+  instanceID: 26570
   isDuplicate: 0
 --- !u!4 &591124407
 Transform:
@@ -919,7 +919,7 @@ MonoBehaviour:
         expandedInInspector: 0
         executedTimes: 0
   priority: 0
-  instanceID: 27744
+  instanceID: 26600
   isDuplicate: 0
 --- !u!4 &894919282
 Transform:
@@ -963,7 +963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   typeName: Character
-  character: {fileID: 0}
+  character: {fileID: 894919281}
 --- !u!114 &972384639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,11 +978,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterType: {fileID: 924367524}
   propertyToSet:
-    name: new property
+    name: a
     expandedInInspector: 0
     variablesContainer:
-      value: 0
-      members: []
+      value: 14
+      members:
+      - {fileID: 1910837966}
+      - {fileID: 1060157882}
+      - {fileID: 1487436055}
+      - {fileID: 1289225478}
+      - {fileID: 2061930421}
       variableData: []
       type: 0
   customEnumFlags:

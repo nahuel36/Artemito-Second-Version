@@ -11,7 +11,7 @@ public class CharacterInteraction : InteractionAction
 {
     public CharacterType characterType;
 
-    public override void SetEditorField(VisualElement visualElement, Interaction interaction)
+    public override void SetEditorField(VisualElement visualElement, LeafInteraction interaction)
     {
 #if UNITY_EDITOR
         if(characterType == null)

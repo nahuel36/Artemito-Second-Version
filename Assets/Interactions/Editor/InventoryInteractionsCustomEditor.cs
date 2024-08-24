@@ -9,7 +9,7 @@ public class InventoryInteractionsCustomEditor : Editor
     {
         VisualElement invInteractionsVE = new VisualElement();
 
-        Label tittle = new Label("Inventory");
+        Label tittle = new Label("Inventory RootInteractions");
 
         tittle.style.unityFontStyleAndWeight = FontStyle.Bold;
 
@@ -40,7 +40,7 @@ public class InventoryInteractionsCustomEditor : Editor
         listViewInvInteractions.OnAdd = () =>
         {
             InventoryItemInteractions newinventoryItem = new InventoryItemInteractions();
-            newinventoryItem.interactions = new Interactions();
+            newinventoryItem.interactions = new RootInteractions();
             newinventoryItem.interactions.attempsContainer = new AttempsContainer();
             return newinventoryItem;
         };

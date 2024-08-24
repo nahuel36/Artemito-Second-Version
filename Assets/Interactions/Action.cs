@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UIElements;
 public class InteractionAction : ScriptableObject
 {
-    public virtual void SetEditorField(VisualElement visualElement, Interaction interaction)
+    public virtual void SetEditorField(VisualElement visualElement, LeafInteraction interaction)
     { 
         
     }
 
-    public virtual void ExecuteAction(List<InteractionProperty> properties, Interaction interaction) 
+    public virtual void ExecuteAction(List<InteractionProperty> properties, LeafInteraction interaction) 
     { 
 
     }

@@ -37,13 +37,13 @@ public class InventoryItem//:PNCPropertyInterface
             return null;
     }
 
-    public void SetLocalProperty(Interaction interact, LocalProperty property)
+    public void SetLocalProperty(LeafInteraction interact, LocalProperty property)
     {
         CommandSetLocalProperty command = new CommandSetLocalProperty();
         command.Queue(property, interact);
     }
 
-    internal void SetGlobalProperty(Interaction interaction, GlobalProperty property)
+    internal void SetGlobalProperty(LeafInteraction interaction, GlobalProperty property)
     {
         CommandSetGlobalProperty command = new CommandSetGlobalProperty();
         command.Queue(property, interaction);

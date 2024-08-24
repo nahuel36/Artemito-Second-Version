@@ -23,7 +23,7 @@ public class FlagsTest : MonoBehaviour
     public List<string> myList = new List<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
     public int enumeratorFlag;
     public string testName;
-    public List<Interaction> interactions;
+    public List<LeafInteraction> interactions;
     public void OnEnable()
     {
        // enumerator = CreateEnumFromArrays(myList);

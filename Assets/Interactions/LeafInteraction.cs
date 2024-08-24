@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
-public class Interaction 
+public class LeafInteraction 
 {
     public string type;
     public string subtype;
@@ -13,8 +13,8 @@ public class Interaction
     public InteractionAction action;
     public bool expandedInInspector;
 
-    public Interaction CopyItem(Interaction interOrigin) {
-        Interaction interDestiny = new Interaction();
+    public LeafInteraction CopyItem(LeafInteraction interOrigin) {
+        LeafInteraction interDestiny = new LeafInteraction();
         interDestiny.type = interOrigin.type;
         interDestiny.subtype = interOrigin.subtype;
         interDestiny.action = interOrigin.action.Copy();

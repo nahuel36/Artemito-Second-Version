@@ -6,7 +6,7 @@ using UnityEngine;
 public class InitializeInteractionCommand : ICommand
 {
     public UnityEngine.Events.UnityEvent<List<InteractionProperty>> action;
-    private Interaction interaction;
+    private LeafInteraction interaction;
     public async Task Execute()
     {
         await Task.Yield();
@@ -19,7 +19,7 @@ public class InitializeInteractionCommand : ICommand
 
     }
 
-    public void Queue(Interaction interaction, bool runInBackground)
+    public void Queue(LeafInteraction interaction, bool runInBackground)
     {
         this.interaction = interaction;
         if (!runInBackground)

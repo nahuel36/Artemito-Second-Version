@@ -135,12 +135,12 @@ public class InteractionUtils : MonoBehaviour
 
     }
 
-    private static int CheckConditionals(int actualindex, Interaction interaction)
+    private static int CheckConditionals(int actualindex, LeafInteraction interaction)
     {
         return actualindex;
     }
 
-    public static UnityEvent<List<InteractionProperty>> InitializeInteraction(Interaction interaction)
+    public static UnityEvent<List<InteractionProperty>> InitializeInteraction(LeafInteraction interaction)
     {
         UnityEvent<List<InteractionProperty>> action = new UnityEvent<List<InteractionProperty>>();
 

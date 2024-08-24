@@ -179,7 +179,7 @@ public class ExInventoryListEditor : Editor
             GUIStyle tittleStyle = new GUIStyle();
             tittleStyle.normal.textColor = Color.white;
             tittleStyle.fontSize = 14;
-            GUILayout.Label("<b>Inventory Interactions</b>", tittleStyle);
+            GUILayout.Label("<b>Inventory RootInteractions</b>", tittleStyle);
             GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
 
@@ -214,7 +214,7 @@ public class ExInventoryListEditor : Editor
         GUIStyle tittleStyle = new GUIStyle();
         tittleStyle.normal.textColor = Color.white;
         tittleStyle.fontSize = 14;
-        GUILayout.Label("<b>Interactions</b>", tittleStyle);
+        GUILayout.Label("<b>RootInteractions</b>", tittleStyle);
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();
         /*

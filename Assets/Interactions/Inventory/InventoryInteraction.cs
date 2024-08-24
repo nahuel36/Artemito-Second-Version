@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class InventoryInteraction : InteractionAction
 {
     public InventoryItem inventoryItem;
-    public override void SetEditorField(VisualElement visualElement, Interaction interaction)
+    public override void SetEditorField(VisualElement visualElement, LeafInteraction interaction)
     {
 #if UNITY_EDITOR
         DropdownField inventoryDropdown = new DropdownField();
@@ -20,7 +20,7 @@ public class InventoryInteraction : InteractionAction
 #endif
     }
 
-    private void OnChangeItem(ChangeEvent<string> evt, Interaction interaction)
+    private void OnChangeItem(ChangeEvent<string> evt, LeafInteraction interaction)
     {
         InventoryItem[] items = Resources.Load<InventoryList>("Inventory").items;
         for (int i = 0; i < items.Length; i++)

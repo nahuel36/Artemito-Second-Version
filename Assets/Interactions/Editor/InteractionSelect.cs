@@ -9,15 +9,15 @@ using System;
 
 public class InteractionSelect : Editor
 {
-    Interaction interaction;
+    LeafInteraction interaction;
     VisualElement labelFromUXML;
     [SerializeField] VisualTreeAsset interactionSelect;
 
-    public delegate void OnSelectTypesEvents(Interaction interactP);
+    public delegate void OnSelectTypesEvents(LeafInteraction interactP);
     public event OnSelectTypesEvents OnChangeTypeEvent;
     public event OnSelectTypesEvents OnChangeSubTypeEvent;
 
-    public VisualElement ShowAndConfigure(Interaction interactionP) 
+    public VisualElement ShowAndConfigure(LeafInteraction interactionP) 
     {
         VisualElement root = new VisualElement();
 
@@ -59,7 +59,7 @@ public class InteractionSelect : Editor
 
     }
 
-    private void OnChangeType(Interaction interactP, ChangeEvent<string> evt, VisualElement element)
+    private void OnChangeType(LeafInteraction interactP, ChangeEvent<string> evt, VisualElement element)
     {
         interaction.type = evt.newValue;
         SetSubtypeChoices(true, element);

@@ -14,7 +14,7 @@ public class SayWithScript : CharacterInteraction
 {
     [HideInInspector][SerializeField]GameObject scriptObject;
     ObjectField scriptField;
-    public override void SetEditorField(VisualElement visualElement, Interaction interaction)
+    public override void SetEditorField(VisualElement visualElement, LeafInteraction interaction)
     {
 #if UNITY_EDITOR 
         base.SetEditorField(visualElement, interaction);
@@ -39,7 +39,7 @@ public class SayWithScript : CharacterInteraction
             scriptField.value = scriptObject;
     }
 
-    public override void ExecuteAction(List<InteractionProperty> properties, Interaction interaction)
+    public override void ExecuteAction(List<InteractionProperty> properties, LeafInteraction interaction)
     {
         scriptObject = (GameObject)scriptField.value;
 

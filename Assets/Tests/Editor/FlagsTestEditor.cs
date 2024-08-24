@@ -139,7 +139,7 @@ public class FlagsTestEditor : Editor
 
     private void OnAdded(IEnumerable<int> obj)
     {
-        myTarget.interactions[myTarget.interactions.Count - 1] = new Interaction();
+        myTarget.interactions[myTarget.interactions.Count - 1] = new LeafInteraction();
     }
 
     private void callback(ChangeEvent<Enum> evt)

@@ -9,12 +9,12 @@ using System;
 public class InteractionsCustomEditor : Editor
 {
 
-    CustomListView<Interaction> listCustom;
-    List<Interaction> interactions;
+    CustomListView<LeafInteraction> listCustom;
+    List<LeafInteraction> interactions;
 
     [SerializeField] VisualTreeAsset InteractionsVT;
     [SerializeField] VisualTreeAsset InteractionVT;
-    public void ShowGUI(VisualElement root, List<Interaction> interactions, UnityEngine.Object myTarget, bool isDuplicate, bool generateVisualTree=false) 
+    public void ShowGUI(VisualElement root, List<LeafInteraction> interactions, UnityEngine.Object myTarget, bool isDuplicate, bool generateVisualTree=false) 
     {
         if (isDuplicate)
         {
@@ -87,7 +87,7 @@ public class InteractionsCustomEditor : Editor
         listCustom.Init(root.Q<VisualElement>("CustomListView"));
     }
 
-    private void UpdateAction(Interaction interaction, int index, VisualElement visualElem)
+    private void UpdateAction(LeafInteraction interaction, int index, VisualElement visualElem)
     {
         if (interaction != interactions[index]) return;
 
@@ -95,11 +95,11 @@ public class InteractionsCustomEditor : Editor
 
         if (string.IsNullOrEmpty(interaction.type) || string.IsNullOrEmpty(interaction.subtype)) return;
 
-        List<string> files = FileUtils.GetFilesList(Application.dataPath + "/Interactions/" + interaction.type + "/"  + interaction.subtype + "/");
+        List<string> files = FileUtils.GetFilesList(Application.dataPath + "/RootInteractions/" + interaction.type + "/"  + interaction.subtype + "/");
 
         for (int i = 0; i < files.Count; i++)
         {
-            InteractionAction var = AssetDatabase.LoadAssetAtPath<InteractionAction>("Assets/Interactions/" + interaction.type + "/"  + interaction.subtype + "/" + files[i]);
+            InteractionAction var = AssetDatabase.LoadAssetAtPath<InteractionAction>("Assets/RootInteractions/" + interaction.type + "/"  + interaction.subtype + "/" + files[i]);
             if (var != null && ((interaction.action != null && var.GetType() != interaction.action.GetType()) || interaction.action == null))
             {
                 interaction.action = (InteractionAction)ScriptableObject.CreateInstance(var.GetType());
@@ -118,10 +118,10 @@ public class InteractionsCustomEditor : Editor
         EditorUtility.SetDirty(myTarget);
     }
 
-    private Interaction OnAdded(UnityEngine.Object myTarget)
+    private LeafInteraction OnAdded(UnityEngine.Object myTarget)
     {
         SaveTargetChanges(myTarget);
-        return new Interaction();
+        return new LeafInteraction();
     }
 
 }

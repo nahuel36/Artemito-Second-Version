@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestSayScript : MonoBehaviour, ISayScript
 {
-    public string SayWithScript(Interaction interaction)
+    public string SayWithScript(LeafInteraction interaction)
     {
         return "hello " + interaction.GetCharacter().local_properties[0].variablesContainer.GetStringValue("string") + interaction.interaction_properties[0].variablesContainer.GetStringValue("string");
     }

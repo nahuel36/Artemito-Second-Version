@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,18 +13,23 @@ public class Verb
 }
 
 [System.Serializable]
-public class Interactions
+public class RootInteractions
 {
     public AttempsContainer attempsContainer = new AttempsContainer();
 }
 
+[System.Serializable]
+public class DialogInteraction
+{
+    public RootInteractions interactions = new RootInteractions();
+}
 
 [System.Serializable]
 public class VerbInteractions
 {
     public Verb verb = new Verb();
     //public bool use = true;
-    public Interactions interactions = new Interactions();
+    public RootInteractions interactions = new RootInteractions();
 }
 
 
@@ -33,11 +39,11 @@ public class InventoryItemInteractions
    // public int specialIndex = -1;
     public Verb verb;
     // public RoomInteractuable sceneObject;
-    public Interactions interactions = new Interactions(); 
+    public RootInteractions interactions = new RootInteractions(); 
     public InventoryItemInteractions CopyItem(InventoryItemInteractions interactionOrigin)
     {
         InventoryItemInteractions interactionDestiny = new InventoryItemInteractions();
-        interactionDestiny.interactions = new Interactions();
+        interactionDestiny.interactions = new RootInteractions();
         interactionDestiny.interactions.attempsContainer = new AttempsContainer();
         interactionDestiny.interactions.attempsContainer.attempsIteration = interactionOrigin.interactions.attempsContainer.attempsIteration;
         interactionDestiny.interactions.attempsContainer.executedTimes = interactionOrigin.interactions.attempsContainer.executedTimes;
@@ -72,13 +78,13 @@ public class AttempsContainer
 [System.Serializable]
 public class InteractionsAttemp
 {
-    public List<Interaction> interactions = new List<Interaction>();
+    public List<LeafInteraction> interactions = new List<LeafInteraction>();
     public bool expandedInInspector;
 
     public InteractionsAttemp CopyItem(InteractionsAttemp attempOrigin)
     {
         InteractionsAttemp attempDestiny = new InteractionsAttemp();
-        attempDestiny.interactions = new List<Interaction>();
+        attempDestiny.interactions = new List<LeafInteraction>();
         for (int i = 0; i < attempOrigin.interactions.Count; i++)
         {
             attempDestiny.interactions.Add(attempOrigin.interactions[i].CopyItem(attempOrigin.interactions[i]));

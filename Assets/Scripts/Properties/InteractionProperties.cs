@@ -19,7 +19,7 @@ public class InteractionProperties : Editor
         // Each editor window contains a root VisualElement object
         // Instantiate UXML
 
-        Label tittle = new Label("Interaction Properties");
+        Label tittle = new Label("LeafInteraction Properties");
 
         tittle.style.unityFontStyleAndWeight = FontStyle.Bold;
 
