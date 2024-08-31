@@ -6,6 +6,8 @@ using System.Xml.Linq;
 using UnityEditor;
 using System;
 using Unity.VisualScripting;
+using System.Linq;
+
 
 
 
@@ -205,13 +207,20 @@ public class CharacterSetLocalVariable : CharacterInteraction
         UpdateVariableTypes(newElement);
 
             DropdownField changeModeField = newElement.Q<DropdownField>("ChangeMode");
-            changeModeField.bindingPath = "changeMode";
-            changeModeField.Bind(new SerializedObject(this));
+            //changeModeField.bindingPath = "changeMode";
+            //changeModeField.Bind(new SerializedObect(this));
+            changeModeField.choices = Enum.GetNames(typeof(modes)).ToList();
+        changeModeField.value = Enum.GetName(typeof(modes), changeMode);
 
-            
-
-            changeModeField.RegisterValueChangedCallback(value => updateMode(newElement));
+        changeModeField.RegisterValueChangedCallback(value =>
+        {
+            modes newmode;
+            Enum.TryParse<modes>(value.newValue,out newmode);
+            changeMode = newmode;
             updateMode(newElement);
+        });
+        
+        updateMode(newElement);
 
 
             visualElement.Add(newElement);
