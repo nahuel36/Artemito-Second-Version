@@ -34,28 +34,35 @@ MonoBehaviour:
                   - {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
                   - {fileID: 0}
                   strings:
-                  - 
-                  - 
+                  - Character
+                  - copyOtherProperty
                   properties: []
                   localProperties:
-                  - name: new property
+                  - name: a
                     expandedInInspector: 0
                     variablesContainer:
-                      value: 0
-                      members: []
+                      value: 14
+                      members:
+                      - {fileID: 0}
+                      - {fileID: 0}
+                      - {fileID: 0}
                       variableData: []
                       type: 0
-                  - name: new property
+                  - name: a
                     expandedInInspector: 0
                     variablesContainer:
-                      value: 0
-                      members: []
+                      value: 14
+                      members:
+                      - {fileID: 0}
+                      - {fileID: 0}
+                      - {fileID: 0}
                       variableData: []
                       type: 0
                   globalProperties: []
                   customEnumFlags:
-                  - value: 0
-                    members: []
+                  - value: 2
+                    members:
+                    - {fileID: 0}
                     variableData: []
                     type: 0
                 expandedInInspector: 0

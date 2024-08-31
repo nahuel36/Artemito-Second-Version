@@ -39,10 +39,10 @@ public class CharacterSetLocalVariable : CharacterInteraction
         }
     }
       
-    public UnityEngine.Object copyPropertyObjectContainer{
+    public PropertyObjectType copyPropertyObjectContainer{
         get {
             CheckDataInitialized();
-            return data.unityObjects[1];
+            return data.unityObjects[1] as PropertyObjectType;
         }
         set { 
             CheckDataInitialized();
@@ -89,8 +89,33 @@ public class CharacterSetLocalVariable : CharacterInteraction
         }   
 
     }
-        
-        
+
+    public override ActionData GetData()
+    {
+        ActionData data = base.GetData();
+        if (copyPropertyObjectContainer.data != null && copyPropertyObjectContainer.data.unityObjects != null && copyPropertyObjectContainer.data.unityObjects.Count > 0)
+        {
+            if (data.unityObjects == null)
+                data.unityObjects = new List<UnityEngine.Object>();
+            if (data.unityObjects.Count < 2)
+                data.unityObjects.Add(new UnityEngine.Object());
+            data.unityObjects[1] = characterType.data.unityObjects[1];
+        }
+
+
+        return data;
+    }
+
+    public override void LoadData(ActionData data)
+    {
+        base.LoadData(data);
+
+        if (copyPropertyObjectContainer == null)
+            copyPropertyObjectContainer = CreateInstance<PropertyObjectType>();
+
+        copyPropertyObjectContainer.data = new PropertyObjectType.Data();
+        copyPropertyObjectContainer.data.unityObjects = data.unityObjects;
+    }
 
     public override void CheckDataInitialized() 
     {
@@ -361,7 +386,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
         action.characterType = (CharacterType)characterType?.Copy();
         action.propertyToSet = propertyToSet;
         if(copyPropertyObjectContainer != null)
-            action.copyPropertyObjectContainer = ((PropertyObjectType)copyPropertyObjectContainer).Copy();
+            action.copyPropertyObjectContainer = (PropertyObjectType)copyPropertyObjectContainer.Copy();
         action.changeMode = changeMode;
         action.copyPropertyObjectType = copyPropertyObjectType;
         action.copyPropertyVariable = copyPropertyVariable;

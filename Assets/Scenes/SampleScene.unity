@@ -122,30 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &19610684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  typeName: boolean
-  data:
-    stringValue: 
-    objectValue: {fileID: 0}
-    isString: 1
-    isDefaultValue: 0
-    variableType: 
-  changedIngame: 0
-  stringIngameValue: 
-  objectIngameValue: {fileID: 0}
---- !u!114 &72796903
+--- !u!114 &47941515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,14 +132,60 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   index: 0
   typeName: Character
   data:
     unityObjects:
-    - {fileID: 7317265237573364319}
+    - {fileID: 591124406}
     - {fileID: 1745664746}
+--- !u!114 &165288451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  typeName: integer
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
+--- !u!114 &194287636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  index: 2
+  typeName: string
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
 --- !u!114 &241638882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +261,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &317958688
+--- !u!114 &306072836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,11 +270,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 1
-  typeName: integer
+  index: 0
+  typeName: boolean
   data:
     stringValue: 
     objectValue: {fileID: 0}
@@ -376,29 +399,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &541084989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  index: 2
-  typeName: string
-  data:
-    stringValue: 
-    objectValue: {fileID: 0}
-    isString: 1
-    isDefaultValue: 0
-    variableType: 
-  changedIngame: 0
-  stringIngameValue: 
-  objectIngameValue: {fileID: 0}
 --- !u!1 &591124405
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ MonoBehaviour:
         expandedInInspector: 0
         executedTimes: 0
   priority: 0
-  instanceID: 26406
+  instanceID: 25924
   isDuplicate: 1
 --- !u!4 &591124407
 Transform:
@@ -515,29 +515,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.18, y: 4.86}
   m_EdgeRadius: 0
---- !u!114 &638774463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99bf2602a91aa04fa824042da1dc66e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 3
-  typeName: enum with flags
-  data:
-    stringValue: 
-    objectValue: {fileID: 0}
-    isString: 1
-    isDefaultValue: 0
-    variableType: 
-  changedIngame: 0
-  stringIngameValue: 
-  objectIngameValue: {fileID: 0}
 --- !u!114 &705412742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,30 +538,7 @@ MonoBehaviour:
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
---- !u!114 &711703237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  typeName: boolean
-  data:
-    stringValue: 
-    objectValue: {fileID: 0}
-    isString: 1
-    isDefaultValue: 0
-    variableType: 
-  changedIngame: 0
-  stringIngameValue: 
-  objectIngameValue: {fileID: 0}
---- !u!114 &720844701
+--- !u!114 &711592161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -594,7 +548,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   index: 2
   typeName: string
@@ -675,6 +629,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &990635130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99bf2602a91aa04fa824042da1dc66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 3
+  typeName: enum with flags
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
 --- !u!1 &1043966020
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +796,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overInteractuable: {fileID: 0}
   comparePoint: {fileID: 0}
+--- !u!114 &1244798545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99bf2602a91aa04fa824042da1dc66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 3
+  typeName: enum with flags
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
 --- !u!1 &1279160873
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +899,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1317087905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  index: 2
+  typeName: string
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
 --- !u!1 &1384114877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1245,79 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1437442354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  typeName: integer
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
+--- !u!114 &1489837131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    unityObjects:
+    - {fileID: 591124406}
+    - {fileID: 1745664746}
+    strings:
+    - Character
+    - copyOtherProperty
+    properties: []
+    localProperties:
+    - name: new property
+      expandedInInspector: 0
+      variablesContainer:
+        value: 4
+        members:
+        - {fileID: 1086972617}
+        variableData: []
+        type: 0
+    - name: new property
+      expandedInInspector: 0
+      variablesContainer:
+        value: 4
+        members:
+        - {fileID: 1086972617}
+        variableData: []
+        type: 0
+    globalProperties: []
+    customEnumFlags:
+    - value: -1
+      members:
+      - {fileID: 1044289561}
+      variableData:
+      - stringValue: popo
+        objectValue: {fileID: 0}
+        isString: 1
+        isDefaultValue: 0
+        variableType: string
+      type: 0
+  characterType: {fileID: 47941515}
 --- !u!114 &1616840839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,63 +1407,8 @@ MonoBehaviour:
   typeName: Character
   data:
     unityObjects:
-    - {fileID: 7317265237573364319}
---- !u!114 &1763572017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    unityObjects:
-    - {fileID: 7317265237573364319}
+    - {fileID: 591124406}
     - {fileID: 1745664746}
-    strings:
-    - Character
-    - copyOtherProperty
-    properties: []
-    localProperties:
-    - name: a
-      expandedInInspector: 0
-      variablesContainer:
-        value: 14
-        members:
-        - {fileID: 711703237}
-        - {fileID: 1616840839}
-        - {fileID: 705412742}
-        - {fileID: 2074554434}
-        variableData: []
-        type: 0
-    - name: a
-      expandedInInspector: 0
-      variablesContainer:
-        value: 14
-        members:
-        - {fileID: 19610684}
-        - {fileID: 317958688}
-        - {fileID: 541084989}
-        - {fileID: 638774463}
-        variableData: []
-        type: 0
-    globalProperties: []
-    customEnumFlags:
-    - value: 2
-      members:
-      - {fileID: 1044289561}
-      variableData:
-      - stringValue: popo
-        objectValue: {fileID: 0}
-        isString: 1
-        isDefaultValue: 0
-        variableType: string
-      type: 0
-  characterType: {fileID: 72796903}
 --- !u!1 &1835742334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,7 +1818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: instanceID
-      value: 26524
+      value: 26044
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: isDuplicate
@@ -1794,19 +1835,19 @@ PrefabInstance:
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[0].variablesContainer.members.Array.data[0]
       value: 
-      objectReference: {fileID: 19610684}
+      objectReference: {fileID: 306072836}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[0].variablesContainer.members.Array.data[1]
       value: 
-      objectReference: {fileID: 317958688}
+      objectReference: {fileID: 1437442354}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[0].variablesContainer.members.Array.data[2]
       value: 
-      objectReference: {fileID: 541084989}
+      objectReference: {fileID: 194287636}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[0].variablesContainer.members.Array.data[3]
       value: 
-      objectReference: {fileID: 638774463}
+      objectReference: {fileID: 990635130}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[0].variablesContainer.members.Array.data[4]
       value: 
@@ -1814,7 +1855,7 @@ PrefabInstance:
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[1].variablesContainer.members.Array.data[0]
       value: 
-      objectReference: {fileID: 720844701}
+      objectReference: {fileID: 1317087905}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[1].variablesContainer.members.Array.data[1]
       value: 
@@ -1834,7 +1875,7 @@ PrefabInstance:
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].action
       value: 
-      objectReference: {fileID: 1763572017}
+      objectReference: {fileID: 1489837131}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.strings.Array.size
       value: 2
@@ -1862,7 +1903,7 @@ PrefabInstance:
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.unityObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 7317265237573364319}
+      objectReference: {fileID: 591124406}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.unityObjects.Array.data[1]
       value: 
@@ -1877,15 +1918,15 @@ PrefabInstance:
       objectReference: {fileID: 7317265237573364319}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[0].name
-      value: a
+      value: new property
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[1].name
-      value: a
+      value: new property
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.customEnumFlags.Array.data[0].value
-      value: 2
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.customEnumFlags.Array.data[0].members.Array.size
@@ -1901,11 +1942,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[0].variablesContainer.value
-      value: 14
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[1].variablesContainer.value
-      value: 14
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.customEnumFlags.Array.data[0].variableData.Array.data[0].isString
@@ -1913,11 +1954,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[0].variablesContainer.members.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[1].variablesContainer.members.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.customEnumFlags.Array.data[0].variableData.Array.data[0].stringValue
@@ -1930,7 +1971,7 @@ PrefabInstance:
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[0].variablesContainer.members.Array.data[0]
       value: 
-      objectReference: {fileID: 711703237}
+      objectReference: {fileID: 1086972617}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[0].variablesContainer.members.Array.data[1]
       value: 
@@ -1946,19 +1987,19 @@ PrefabInstance:
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[1].variablesContainer.members.Array.data[0]
       value: 
-      objectReference: {fileID: 19610684}
+      objectReference: {fileID: 1086972617}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[1].variablesContainer.members.Array.data[1]
       value: 
-      objectReference: {fileID: 317958688}
+      objectReference: {fileID: 165288451}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[1].variablesContainer.members.Array.data[2]
       value: 
-      objectReference: {fileID: 541084989}
+      objectReference: {fileID: 711592161}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[1].variablesContainer.members.Array.data[3]
       value: 
-      objectReference: {fileID: 638774463}
+      objectReference: {fileID: 1244798545}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

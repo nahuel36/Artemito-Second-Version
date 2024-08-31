@@ -289,11 +289,25 @@ MonoBehaviour:
     subtype: Say
     interaction_properties: []
     action: {fileID: 0}
+    actionData:
+      unityObjects: []
+      strings: []
+      properties: []
+      localProperties: []
+      globalProperties: []
+      customEnumFlags: []
     expandedInInspector: 0
   - type: Inventory
     subtype: 
     interaction_properties: []
     action: {fileID: 0}
+    actionData:
+      unityObjects: []
+      strings: []
+      properties: []
+      localProperties: []
+      globalProperties: []
+      customEnumFlags: []
     expandedInInspector: 0
   inventoryInteractions:
   - verb:
@@ -310,6 +324,35 @@ MonoBehaviour:
             subtype: ChangeLocalVariable
             interaction_properties: []
             action: {fileID: 0}
+            actionData:
+              unityObjects:
+              - {fileID: 7052131098228558504}
+              - {fileID: 0}
+              strings:
+              - Character
+              - copyOtherProperty
+              properties: []
+              localProperties:
+              - name: new property
+                expandedInInspector: 0
+                variablesContainer:
+                  value: 0
+                  members: []
+                  variableData: []
+                  type: 0
+              - name: new property
+                expandedInInspector: 0
+                variablesContainer:
+                  value: 0
+                  members: []
+                  variableData: []
+                  type: 0
+              globalProperties: []
+              customEnumFlags:
+              - value: 0
+                members: []
+                variableData: []
+                type: 0
             expandedInInspector: 0
           expandedInInspector: 0
         expandedInInspector: 0
