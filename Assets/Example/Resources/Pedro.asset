@@ -29,6 +29,35 @@ MonoBehaviour:
                 subtype: ChangeLocalVariable
                 interaction_properties: []
                 action: {fileID: 0}
+                actionData:
+                  unityObjects:
+                  - {fileID: 0}
+                  - {fileID: 0}
+                  strings:
+                  - 
+                  - 
+                  properties: []
+                  localProperties:
+                  - name: new property
+                    expandedInInspector: 0
+                    variablesContainer:
+                      value: 0
+                      members: []
+                      variableData: []
+                      type: 0
+                  - name: new property
+                    expandedInInspector: 0
+                    variablesContainer:
+                      value: 0
+                      members: []
+                      variableData: []
+                      type: 0
+                  globalProperties: []
+                  customEnumFlags:
+                  - value: 0
+                    members: []
+                    variableData: []
+                    type: 0
                 expandedInInspector: 0
               expandedInInspector: 0
             expandedInInspector: 0

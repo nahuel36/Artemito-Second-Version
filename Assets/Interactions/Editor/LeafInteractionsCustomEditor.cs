@@ -24,6 +24,7 @@ public class LeafInteractionsCustomEditor : Editor
             }
         }
 
+        
 
 
         if (generateVisualTree)
@@ -41,6 +42,28 @@ public class LeafInteractionsCustomEditor : Editor
         
         Func<int, VisualElement> itemContent = (i) =>
         {
+            if (interactions[i].action != null) {
+
+                if (interactions[i].actionData != null)
+                    interactions[i].action.LoadData(interactions[i].actionData);
+
+                interactions[i].action.SaveData = () =>
+                {
+                    interactions[i].actionData = interactions[i].action.data;
+
+                };
+
+            }
+            if (interactions[i].action is CharacterInteraction)
+            {
+                ((CharacterInteraction)interactions[i].action).characterType.data = interactions[i].characterData;
+                ((CharacterInteraction)interactions[i].action).characterType.saveData = () =>
+                {
+                    interactions[i].characterData = ((CharacterInteraction)interactions[i].action).characterType.data;
+                    EditorUtility.SetDirty(myTarget);
+                };
+            }
+
             Foldout foldout = new Foldout();
 
             foldout.text = "interaction " + (i+1).ToString();

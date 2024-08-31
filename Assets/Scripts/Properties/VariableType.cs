@@ -25,7 +25,6 @@ public class VariableType : EnumerableType
     
     [SerializeField] public UnityEngine.Object objectIngameValue;
     
-    public Action saveData;
     public Action onChange;
 
     public virtual void SetPropertyField(VisualElement element)

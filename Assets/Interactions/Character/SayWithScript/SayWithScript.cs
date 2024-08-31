@@ -48,7 +48,7 @@ public class SayWithScript : CharacterInteraction
         string saystring = ((GameObject)scriptObject).GetComponent<ISayScript>().SayWithScript(interaction);
 
         CommandTalk normalTalk = new CommandTalk();
-        normalTalk.Queue(characterType.character.messageTalker, saystring, false, false);
+        normalTalk.Queue(((Character)((CharacterType)characterType).character).messageTalker, saystring, false, false);
     }
 
     public override InteractionAction Copy()

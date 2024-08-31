@@ -7,7 +7,7 @@ public class PropertyObjectType : EnumerableType
 {
     public delegate void ChangePropertyEditorField();
     public virtual event ChangePropertyEditorField onPropertyEditorChange;
-
+    
     public virtual void SetPropertyEditorField(VisualElement element) { 
         
     }

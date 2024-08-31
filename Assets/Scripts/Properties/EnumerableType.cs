@@ -9,7 +9,8 @@ public class EnumerableType : ScriptableObject
     
         [SerializeField] private int index;
         [SerializeField] protected string typeName;
-    
+    public Action saveData;
+
 
     public int Index
     {
