@@ -9,9 +9,10 @@ public class PropertiesContainerInScene : MonoBehaviour
 
     public void Awake()
     {
-        for (int i = 0; i < local_properties.Count; i++)
-        {
-            local_properties[i].variablesContainer.InitializeVariables();
-        } 
+        if(Application.isPlaying)
+            for (int i = 0; i < local_properties.Count; i++)
+            {
+                local_properties[i].variablesContainer.InitializeVariables();
+            } 
     }
 }
