@@ -12,7 +12,13 @@ using UnityEngine.UIElements;
 public class DialogOptionType : PropertyObjectType
 {
     public override event ChangePropertyEditorField onPropertyEditorChange;
-    public Dialog dialog;
+    public Dialog dialog { 
+        get {
+            CheckInitializedData();
+            return data.unityObjects[0] as Dialog; } 
+        set {
+            CheckInitializedData();
+            data.unityObjects[0] = value; } }
     public int subDialog;
     public int dialogOption;
     public DialogOptionType()
@@ -27,6 +33,14 @@ public class DialogOptionType : PropertyObjectType
         TypeName = "Dialog Option";
     }
 
+    public void CheckInitializedData()
+    {
+        if (data == null)
+            data = new Data();
+        if (data.unityObjects == null || data.unityObjects.Count < 1)
+            data.unityObjects = new List<UnityEngine.Object> { new Character() };
+    }
+
     public override void SetPropertyEditorField(VisualElement element)
     {
         base.SetPropertyEditorField(element);
@@ -37,11 +51,15 @@ public class DialogOptionType : PropertyObjectType
 
         dialogField.label = "Dialog";
         dialogField.objectType = typeof(Dialog);
-        dialogField.bindingPath = "dialog";
-        dialogField.Bind(new SerializedObject(this));
+        //dialogField.bindingPath = "dialog";
+        //dialogField.Bind(new SerializedObject(this));
+        if(dialog)
+            dialogField.value = dialog;
         dialogField.RegisterValueChangedCallback((value) =>
         {
+            dialog = value.newValue as Dialog;
             UpdateSubdialogs(subdialogField);
+            saveData?.Invoke();
         });
         element.Add(dialogField);
 
@@ -119,6 +137,7 @@ public class DialogOptionType : PropertyObjectType
         DialogOptionType dialogOptionType = Instantiate(this);
         dialogOptionType.Index = Index;
         dialogOptionType.TypeName = TypeName;
+        dialogOptionType.data = data;
         return dialogOptionType;
     }
 }

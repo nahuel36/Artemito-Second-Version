@@ -31,10 +31,10 @@ MonoBehaviour:
                 action: {fileID: 0}
                 actionData:
                   unityObjects:
-                  - {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
+                  - {fileID: 11400000}
                   - {fileID: 0}
                   strings:
-                  - Character
+                  - Dialog Option
                   - copyOtherProperty
                   properties: []
                   localProperties:
@@ -48,15 +48,29 @@ MonoBehaviour:
                       - {fileID: 0}
                       variableData: []
                       type: 0
-                  - name: a
-                    expandedInInspector: 0
+                  - name: property1
+                    expandedInInspector: 1
                     variablesContainer:
                       value: 14
                       members:
                       - {fileID: 0}
                       - {fileID: 0}
                       - {fileID: 0}
-                      variableData: []
+                      variableData:
+                      - stringValue: 3
+                        isString: 1
+                        isDefaultValue: 0
+                        variableType: integer
+                      - stringValue: po
+                        isString: 1
+                        isDefaultValue: 0
+                        variableType: string
+                      - stringValue: <?xml version="1.0" encoding="utf-16"?><door-closed
+                          selected="true" value0="s"><door-closed-2 selected="false"
+                          /></door-closed>
+                        isString: 1
+                        isDefaultValue: 0
+                        variableType: enum with flags
                       type: 0
                   globalProperties: []
                   customEnumFlags:
@@ -100,6 +114,24 @@ MonoBehaviour:
             isDefaultValue: 0
             variableType: enum with flags
           type: 0
+      global_properties: []
+      current_local_properties: []
+      current_global_properties: []
+    - initialText: new option
+      currentText: 
+      index: 0
+      interactions:
+        interactions:
+          attempsContainer:
+            attempsIteration: 0
+            attemps: []
+            expandedInInspector: 0
+            executedTimes: 0
+      subDialogDestinyIndex: 0
+      initialState: 0
+      currentState: 0
+      say: 1
+      local_properties: []
       global_properties: []
       current_local_properties: []
       current_global_properties: []

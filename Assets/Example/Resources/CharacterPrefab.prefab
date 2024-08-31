@@ -333,24 +333,29 @@ MonoBehaviour:
               - copyOtherProperty
               properties: []
               localProperties:
-              - name: new property
+              - name: new 2
                 expandedInInspector: 0
                 variablesContainer:
-                  value: 0
-                  members: []
+                  value: 4
+                  members:
+                  - {fileID: 0}
                   variableData: []
                   type: 0
-              - name: new property
+              - name: a
                 expandedInInspector: 0
                 variablesContainer:
-                  value: 0
-                  members: []
+                  value: 14
+                  members:
+                  - {fileID: 0}
+                  - {fileID: 0}
+                  - {fileID: 0}
                   variableData: []
                   type: 0
               globalProperties: []
               customEnumFlags:
-              - value: 0
-                members: []
+              - value: -1
+                members:
+                - {fileID: 0}
                 variableData: []
                 type: 0
             expandedInInspector: 0
