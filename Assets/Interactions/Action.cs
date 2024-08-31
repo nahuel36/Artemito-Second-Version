@@ -9,7 +9,7 @@ public class InteractionAction : ScriptableObject
     [System.Serializable]
     public class ActionData
     {
-        public UnityEngine.Object[] unityObjects;
+        public List<UnityEngine.Object> unityObjects;
         public string[] strings;
         public InteractionProperty[] properties;
         public LocalProperty[] localProperties;
@@ -36,6 +36,11 @@ public class InteractionAction : ScriptableObject
     public virtual void LoadData(ActionData data)
     {
         this.data = data;
+    }
+
+    public virtual ActionData GetData()
+    { 
+        return data;
     }
 
     public Action SaveData;

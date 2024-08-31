@@ -49,21 +49,11 @@ public class LeafInteractionsCustomEditor : Editor
 
                 interactions[i].action.SaveData = () =>
                 {
-                    interactions[i].actionData = interactions[i].action.data;
-
-                };
-
-            }
-            if (interactions[i].action is CharacterInteraction)
-            {
-                ((CharacterInteraction)interactions[i].action).characterType.data = interactions[i].characterData;
-                ((CharacterInteraction)interactions[i].action).characterType.saveData = () =>
-                {
-                    interactions[i].characterData = ((CharacterInteraction)interactions[i].action).characterType.data;
+                    interactions[i].actionData = interactions[i].action.GetData();
                     EditorUtility.SetDirty(myTarget);
                 };
-            }
 
+            }
             Foldout foldout = new Foldout();
 
             foldout.text = "interaction " + (i+1).ToString();

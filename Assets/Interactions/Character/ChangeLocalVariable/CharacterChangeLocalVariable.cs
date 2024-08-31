@@ -103,8 +103,8 @@ public class CharacterSetLocalVariable : CharacterInteraction
         if (data.customEnumFlags == null || data.customEnumFlags.Length < 1)
             data.customEnumFlags = new CustomEnumFlags[1];
 
-        if (data.unityObjects == null || data.unityObjects.Length < 2)
-            data.unityObjects = new UnityEngine.Object[2];
+        if (data.unityObjects.Count < 2)
+            data.unityObjects.Add(new Character());
 
         if(data.strings == null || data.strings.Length < 2)
             data.strings = new string[2];

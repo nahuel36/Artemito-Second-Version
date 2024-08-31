@@ -31,7 +31,7 @@ MonoBehaviour:
                 action: {fileID: 0}
                 actionData:
                   unityObjects:
-                  - {fileID: 0}
+                  - {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
                   - {fileID: 0}
                   strings:
                   - 

@@ -11,21 +11,14 @@ using UnityEditor.UIElements;
 [System.Serializable]
 public class CharacterType : PropertyObjectType
 {
-    [System.Serializable]
-    public class Data
-    {
-        public Character[] unityObjects;
-    }
-
-    public Data data;
-
-
+    
+    
     public override event ChangePropertyEditorField onPropertyEditorChange;
     public Character character
     {
         get {
             CheckInitializedData();
-            return (Character)data.unityObjects[0];
+            return data.unityObjects[0] as Character;
         }
         set {
             CheckInitializedData();
@@ -50,8 +43,8 @@ public class CharacterType : PropertyObjectType
     {
         if(data == null)
             data = new Data();
-        if (data.unityObjects == null || data.unityObjects.Length<1)
-            data.unityObjects = new Character[1];
+        if (data.unityObjects == null || data.unityObjects.Count<1)
+            data.unityObjects = new List<UnityEngine.Object> { new Character()};
     }
 
     public override void SetPropertyEditorField(VisualElement element)

@@ -122,7 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &155387277
+--- !u!114 &6910843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,10 +132,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   index: 2
   typeName: string
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
+--- !u!114 &118946644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  typeName: integer
   data:
     stringValue: 
     objectValue: {fileID: 0}
@@ -168,7 +191,7 @@ MonoBehaviour:
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
---- !u!114 &244167668
+--- !u!114 &246178649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,11 +200,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
+  m_Name: 
   m_EditorClassIdentifier: 
-  index: 2
-  typeName: string
+  index: 1
+  typeName: integer
   data:
     stringValue: 
     objectValue: {fileID: 0}
@@ -191,48 +214,6 @@ MonoBehaviour:
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
---- !u!114 &249284195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    unityObjects:
-    - {fileID: 0}
-    - {fileID: 0}
-    strings:
-    - 
-    - setValue
-    properties: []
-    localProperties:
-    - name: new property
-      expandedInInspector: 0
-      variablesContainer:
-        value: 0
-        members: []
-        variableData: []
-        type: 0
-    - name: new property
-      expandedInInspector: 0
-      variablesContainer:
-        value: 0
-        members: []
-        variableData: []
-        type: 0
-    globalProperties: []
-    customEnumFlags:
-    - value: 0
-      members: []
-      variableData: []
-      type: 0
-  characterType: {fileID: 1831523935}
 --- !u!1 &254021856
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,52 +266,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &302342118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
-  m_Name: StringType(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  index: 2
-  typeName: string
-  data:
-    stringValue: 
-    objectValue: {fileID: 0}
-    isString: 1
-    isDefaultValue: 0
-    variableType: 
-  changedIngame: 0
-  stringIngameValue: 
-  objectIngameValue: {fileID: 0}
---- !u!114 &314484462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  typeName: boolean
-  data:
-    stringValue: 
-    objectValue: {fileID: 0}
-    isString: 1
-    isDefaultValue: 0
-    variableType: 
-  changedIngame: 0
-  stringIngameValue: 
-  objectIngameValue: {fileID: 0}
 --- !u!114 &323879552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +289,24 @@ MonoBehaviour:
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
+--- !u!114 &375889498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  index: 0
+  typeName: Character
+  data:
+    unityObjects:
+    - {fileID: 7317265237573364319}
+    - {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +399,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &541663227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    unityObjects:
+    - {fileID: 7317265237573364319}
+    - {fileID: 0}
+    strings:
+    - 
+    - 
+    properties: []
+    localProperties:
+    - name: new property
+      expandedInInspector: 0
+      variablesContainer:
+        value: 0
+        members: []
+        variableData: []
+        type: 0
+    - name: new property
+      expandedInInspector: 0
+      variablesContainer:
+        value: 0
+        members: []
+        variableData: []
+        type: 0
+    globalProperties: []
+    customEnumFlags:
+    - value: 0
+      members: []
+      variableData: []
+      type: 0
+  characterType: {fileID: 375889498}
 --- !u!1 &591124405
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +477,7 @@ MonoBehaviour:
     variablesContainer:
       value: 4
       members:
-      - {fileID: 302342118}
+      - {fileID: 1935058395}
       variableData: []
       type: 0
   interactions: []
@@ -499,7 +494,7 @@ MonoBehaviour:
         expandedInInspector: 0
         executedTimes: 0
   priority: 0
-  instanceID: 25926
+  instanceID: 25384
   isDuplicate: 1
 --- !u!4 &591124407
 Transform:
@@ -562,6 +557,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.18, y: 4.86}
   m_EdgeRadius: 0
+--- !u!114 &605273295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  index: 2
+  typeName: string
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
 --- !u!1 &750812587
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +648,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &853582548
+--- !u!114 &869196368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -639,57 +657,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
-  m_Name: 
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  index: 1
-  typeName: integer
-  data:
-    stringValue: 
-    objectValue: {fileID: 0}
-    isString: 1
-    isDefaultValue: 0
-    variableType: 
-  changedIngame: 0
-  stringIngameValue: 
-  objectIngameValue: {fileID: 0}
---- !u!114 &909626197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  typeName: boolean
-  data:
-    stringValue: 
-    objectValue: {fileID: 0}
-    isString: 1
-    isDefaultValue: 0
-    variableType: 
-  changedIngame: 0
-  stringIngameValue: 
-  objectIngameValue: {fileID: 0}
---- !u!114 &1018173215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fbbdb101debc844bb4b6a7822f7e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 1
-  typeName: integer
+  index: 2
+  typeName: string
   data:
     stringValue: 
     objectValue: {fileID: 0}
@@ -797,7 +769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overInteractuable: {fileID: 0}
   comparePoint: {fileID: 0}
---- !u!114 &1264531968
+--- !u!114 &1133397380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -806,14 +778,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
+  m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  typeName: Character
+  typeName: boolean
   data:
-    unityObjects:
-    - {fileID: 7317265237573364319}
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
+--- !u!114 &1159019356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9a7d3541fb85c43a49a88e05c0d2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  typeName: boolean
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
 --- !u!1 &1279160873
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,8 +867,6 @@ MonoBehaviour:
       localProperties: []
       globalProperties: []
       customEnumFlags: []
-    characterData:
-      unityObjects: []
     expandedInInspector: 0
   - type: 
     subtype: 
@@ -880,8 +879,6 @@ MonoBehaviour:
       localProperties: []
       globalProperties: []
       customEnumFlags: []
-    characterData:
-      unityObjects: []
     expandedInInspector: 0
 --- !u!4 &1279160875
 Transform:
@@ -898,7 +895,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1366112063
+--- !u!114 &1280169082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -912,29 +909,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 3
   typeName: enum with flags
-  data:
-    stringValue: 
-    objectValue: {fileID: 0}
-    isString: 1
-    isDefaultValue: 0
-    variableType: 
-  changedIngame: 0
-  stringIngameValue: 
-  objectIngameValue: {fileID: 0}
---- !u!114 &1369324554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  index: 2
-  typeName: string
   data:
     stringValue: 
     objectValue: {fileID: 0}
@@ -1267,7 +1241,25 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1509632015
+--- !u!114 &1578497120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  index: 0
+  typeName: Character
+  data:
+    unityObjects:
+    - {fileID: 7317265237573364319}
+    - {fileID: 0}
+--- !u!114 &1609429166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1290,7 +1282,7 @@ MonoBehaviour:
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
---- !u!114 &1715308042
+--- !u!114 &1733941632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1299,20 +1291,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
+  m_Name: 
   m_EditorClassIdentifier: 
-  index: 2
-  typeName: string
   data:
-    stringValue: 
-    objectValue: {fileID: 0}
-    isString: 1
-    isDefaultValue: 0
-    variableType: 
-  changedIngame: 0
-  stringIngameValue: 
-  objectIngameValue: {fileID: 0}
+    unityObjects:
+    - {fileID: 7317265237573364319}
+    - {fileID: 0}
+    strings:
+    - 
+    - 
+    properties: []
+    localProperties:
+    - name: new property
+      expandedInInspector: 0
+      variablesContainer:
+        value: 0
+        members: []
+        variableData: []
+        type: 0
+    - name: new property
+      expandedInInspector: 0
+      variablesContainer:
+        value: 0
+        members: []
+        variableData: []
+        type: 0
+    globalProperties: []
+    customEnumFlags:
+    - value: 0
+      members: []
+      variableData: []
+      type: 0
+  characterType: {fileID: 1578497120}
 --- !u!1 &1738388318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,23 +1374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1893150242}
---- !u!114 &1831523935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef5d05aea9c9614583ba046c55ecabc, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  index: 0
-  typeName: Character
-  data:
-    unityObjects:
-    - {fileID: 7317265237573364319}
 --- !u!1 &1835742334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,6 +1581,52 @@ MonoBehaviour:
   changedIngame: 0
   stringIngameValue: 
   objectIngameValue: {fileID: 0}
+--- !u!114 &1935058395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: StringType(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  index: 2
+  typeName: string
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
+--- !u!114 &1985062666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7ae04e33ada4c8e603f239747ff8, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  index: 2
+  typeName: string
+  data:
+    stringValue: 
+    objectValue: {fileID: 0}
+    isString: 1
+    isDefaultValue: 0
+    variableType: 
+  changedIngame: 0
+  stringIngameValue: 
+  objectIngameValue: {fileID: 0}
 --- !u!1 &1999380010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,48 +1702,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999380010}
   m_CullTransparentMesh: 1
---- !u!114 &2004158807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c88d9567c8a353418a97d6fd4a7e841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    unityObjects:
-    - {fileID: 0}
-    - {fileID: 0}
-    strings:
-    - 
-    - setValue
-    properties: []
-    localProperties:
-    - name: new property
-      expandedInInspector: 0
-      variablesContainer:
-        value: 0
-        members: []
-        variableData: []
-        type: 0
-    - name: new property
-      expandedInInspector: 0
-      variablesContainer:
-        value: 0
-        members: []
-        variableData: []
-        type: 0
-    globalProperties: []
-    customEnumFlags:
-    - value: 0
-      members: []
-      variableData: []
-      type: 0
-  characterType: {fileID: 1264531968}
 --- !u!114 &2030191433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1825,19 +1823,19 @@ PrefabInstance:
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[0].variablesContainer.members.Array.data[0]
       value: 
-      objectReference: {fileID: 314484462}
+      objectReference: {fileID: 1133397380}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[0].variablesContainer.members.Array.data[1]
       value: 
-      objectReference: {fileID: 853582548}
+      objectReference: {fileID: 118946644}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[0].variablesContainer.members.Array.data[2]
       value: 
-      objectReference: {fileID: 155387277}
+      objectReference: {fileID: 1985062666}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[0].variablesContainer.members.Array.data[3]
       value: 
-      objectReference: {fileID: 1509632015}
+      objectReference: {fileID: 1609429166}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[0].variablesContainer.members.Array.data[4]
       value: 
@@ -1845,7 +1843,7 @@ PrefabInstance:
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[1].variablesContainer.members.Array.data[0]
       value: 
-      objectReference: {fileID: 1369324554}
+      objectReference: {fileID: 869196368}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: local_properties.Array.data[1].variablesContainer.members.Array.data[1]
       value: 
@@ -1865,7 +1863,27 @@ PrefabInstance:
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].action
       value: 
-      objectReference: {fileID: 249284195}
+      objectReference: {fileID: 1733941632}
+    - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
+      propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.strings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
+      propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.unityObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
+      propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.customEnumFlags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
+      propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
+      propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.unityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 7317265237573364319}
     - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].characterData.unityObjects.Array.size
       value: 1
@@ -1874,6 +1892,14 @@ PrefabInstance:
       propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].characterData.unityObjects.Array.data[0]
       value: 
       objectReference: {fileID: 7317265237573364319}
+    - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
+      propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[0].name
+      value: new property
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
+      propertyPath: inventoryInteractions.Array.data[0].interactions.attempsContainer.attemps.Array.data[0].interactions.Array.data[0].actionData.localProperties.Array.data[1].name
+      value: new property
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
