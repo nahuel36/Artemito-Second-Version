@@ -11,9 +11,7 @@ public class InteractionAction : ScriptableObject
     {
         public List<UnityEngine.Object> unityObjects;
         public string[] strings;
-        public InteractionProperty[] properties;
-        public LocalProperty[] localProperties;
-        public GlobalProperty[] globalProperties;
+        public GenericProperty[] properties;
         public CustomEnumFlags[] customEnumFlags;
     }
 

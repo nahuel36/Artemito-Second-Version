@@ -18,14 +18,14 @@ using UnityEditor.UIElements;
 [System.Serializable]
 public class CharacterSetLocalVariable : CharacterInteraction
 {
-    public LocalProperty propertyToSet { 
+    public GenericProperty propertyToSet { 
         get {
             CheckDataInitialized();
-            return data.localProperties[0]; 
+            return data.properties[0]; 
         }
         set {
             CheckDataInitialized();
-            data.localProperties[0] = value;
+            data.properties[0] = value;
         }    
     }
     public CustomEnumFlags customEnumFlags{
@@ -38,17 +38,8 @@ public class CharacterSetLocalVariable : CharacterInteraction
             data.customEnumFlags[0] = value;
         }
     }
-      
-    public PropertyObjectType copyPropertyObjectContainer{
-        get {
-            CheckDataInitialized();
-            return data.unityObjects[1] as PropertyObjectType;
-        }
-        set { 
-            CheckDataInitialized();
-            data.unityObjects[1] = value;
-        }
-    }
+
+    public PropertyObjectType copyPropertyObjectContainer;
         
     public string copyPropertyObjectType
     {
@@ -61,15 +52,15 @@ public class CharacterSetLocalVariable : CharacterInteraction
             data.strings[0] = value;
         }
     }
-    public LocalProperty copyPropertyVariable
+    public GenericProperty copyPropertyVariable
     {
         get {
             CheckDataInitialized();
-            return data.localProperties[1];
+            return data.properties[1];
         }
         set {
             CheckDataInitialized();
-            data.localProperties[1] = value;
+            data.properties[1] = value;
         }
     }
     public enum modes { 
@@ -93,13 +84,13 @@ public class CharacterSetLocalVariable : CharacterInteraction
     public override ActionData GetData()
     {
         ActionData data = base.GetData();
-        if (copyPropertyObjectContainer.data != null && copyPropertyObjectContainer.data.unityObjects != null && copyPropertyObjectContainer.data.unityObjects.Count > 0)
+        if (copyPropertyObjectContainer != null && copyPropertyObjectContainer.data != null && copyPropertyObjectContainer.data.unityObjects != null && copyPropertyObjectContainer.data.unityObjects.Count > 0)
         {
             if (data.unityObjects == null)
                 data.unityObjects = new List<UnityEngine.Object>();
             if (data.unityObjects.Count < 2)
                 data.unityObjects.Add(new UnityEngine.Object());
-            data.unityObjects[1] = characterType.data.unityObjects[1];
+            data.unityObjects[1] = copyPropertyObjectContainer.data.unityObjects[0];
         }
 
 
@@ -110,11 +101,22 @@ public class CharacterSetLocalVariable : CharacterInteraction
     {
         base.LoadData(data);
 
-        if (copyPropertyObjectContainer == null)
-            copyPropertyObjectContainer = CreateInstance<PropertyObjectType>();
-
-        copyPropertyObjectContainer.data = new PropertyObjectType.Data();
-        copyPropertyObjectContainer.data.unityObjects = data.unityObjects;
+        if (!string.IsNullOrEmpty(copyPropertyObjectType))
+        {
+            copyPropertyObjectContainer = (PropertyObjectType)CreateInstance(copyPropertyObjectType);
+            copyPropertyObjectContainer.saveData = SaveData;
+            copyPropertyObjectContainer.data = new PropertyObjectType.Data();
+            copyPropertyObjectContainer.data.unityObjects = new List<UnityEngine.Object>
+        {
+            new UnityEngine.Object()
+        };
+            if (data != null && data.unityObjects != null && data.unityObjects.Count > 1)
+            {
+                copyPropertyObjectContainer.data.unityObjects[0] = data.unityObjects[1];
+            }
+        }
+        
+       
     }
 
     public override void CheckDataInitialized() 
@@ -124,8 +126,8 @@ public class CharacterSetLocalVariable : CharacterInteraction
         if (data == null)
             data = new ActionData();
         
-        if(data.localProperties == null || data.localProperties.Length<2)
-            data.localProperties = new LocalProperty[2];
+        if(data.properties == null || data.properties.Length<2)
+            data.properties = new LocalProperty[2];
 
         if (data.customEnumFlags == null || data.customEnumFlags.Length < 1)
             data.customEnumFlags = new CustomEnumFlags[1];
@@ -174,12 +176,16 @@ public class CharacterSetLocalVariable : CharacterInteraction
         propertyField.choices = new List<string>();
         propertyField.value = null;
         if (((CharacterType)characterType).character!=null)
-        { 
+        {
+            Debug.Log("finding variable " + (propertyToSet==null).ToString());
             for (int i = 0; i < ((Character)((CharacterType)characterType).character).local_properties.Count; i++)
             {
                 propertyField.choices.Add(((Character)((CharacterType)characterType).character).local_properties[i].name);
-                if(((Character)((CharacterType)characterType).character).local_properties[i].name == propertyToSet?.name)
+                if (((Character)((CharacterType)characterType).character).local_properties[i].name == propertyToSet?.name)
+                {
+                    Debug.Log("founded variable");
                     propertyField.value = propertyToSet?.name;
+                }
             }
         }
     }
@@ -288,30 +294,34 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
             EnumerablesUtility.ShowDropdownField(copyPropertyObjectType, objectTypeField, ()=>
             {
+                
                 copyPropertyObjectType = objectTypeField.value;
 
                 UpdateCopyPropertyObjectContainer();
 
-                
 
                 objectField.Clear();
 
-                if (copyPropertyObjectType != null && copyPropertyObjectContainer != null)
+                if (!string.IsNullOrEmpty(copyPropertyObjectType) && copyPropertyObjectContainer != null)
                 { 
 
-                    ((PropertyObjectType)copyPropertyObjectContainer).SetPropertyEditorField(objectField);
+                    (copyPropertyObjectContainer).SetPropertyEditorField(objectField);
 
-                    ((PropertyObjectType)copyPropertyObjectContainer).onPropertyEditorChange += () =>
+                    (copyPropertyObjectContainer).onPropertyEditorChange += () =>
                     {
                         //copyPropertyVariable = null;//no funciona porque al inicio se ejecuta
-                            UpdateDropdownCopyVariables(newElement, variables);
+                        UpdateDropdownCopyVariables(newElement, variables);
+                        UpdateCopyPropertyObjectContainer();
                     };
-
+                    
                     UpdateDropdownCopyVariables(newElement, variables);
 
                 }
 
-                SaveData?.Invoke();
+                if (!string.IsNullOrEmpty(copyPropertyObjectType))
+                {
+                    SaveData?.Invoke();
+                }
             });
                 
 
@@ -330,7 +340,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
         DropdownField dropdown = new DropdownField();
         dropdown.value = null;
         dropdown.label = "Property to copy";
-        List<LocalProperty> localProperties = ((PropertyObjectType)copyPropertyObjectContainer).GetLocalPropertys();
+        List<LocalProperty> localProperties = (copyPropertyObjectContainer).GetLocalPropertys();
         if (localProperties != null && localProperties.Count > 0)
         {
             string localPropertyToCopy = string.Empty;
@@ -371,10 +381,11 @@ public class CharacterSetLocalVariable : CharacterInteraction
 
         for (int i = 0; i < props.Length; i++)
         {
-            if (copyPropertyObjectType == props[i].TypeName &&
-                (copyPropertyObjectContainer == null || ((PropertyObjectType)copyPropertyObjectContainer).TypeName != props[i].TypeName))
+            if (copyPropertyObjectType == props[i].name &&
+                (copyPropertyObjectContainer == null || (copyPropertyObjectContainer).TypeName != props[i].TypeName))
             {
                 copyPropertyObjectContainer = (PropertyObjectType)props[i].Copy();
+                copyPropertyObjectContainer.saveData = SaveData;
                 SaveData?.Invoke();
             }
         }
@@ -386,7 +397,7 @@ public class CharacterSetLocalVariable : CharacterInteraction
         action.characterType = (CharacterType)characterType?.Copy();
         action.propertyToSet = propertyToSet;
         if(copyPropertyObjectContainer != null)
-            action.copyPropertyObjectContainer = (PropertyObjectType)copyPropertyObjectContainer.Copy();
+            action.copyPropertyObjectContainer = copyPropertyObjectContainer.Copy() as PropertyObjectType;
         action.changeMode = changeMode;
         action.copyPropertyObjectType = copyPropertyObjectType;
         action.copyPropertyVariable = copyPropertyVariable;

@@ -38,6 +38,7 @@ public class CharacterInteraction : InteractionAction
                 data.unityObjects= new List<UnityEngine.Object>();
             if (data.unityObjects.Count < 1)
                 data.unityObjects.Add(new Character());
+            if(characterType.data.unityObjects != null && characterType.data.unityObjects.Count > 0)
             data.unityObjects[0] = characterType.data.unityObjects[0];
         }
             
@@ -53,7 +54,10 @@ public class CharacterInteraction : InteractionAction
             characterType = CreateInstance<CharacterType>();
 
         characterType.data = new PropertyObjectType.Data();
-        characterType.data.unityObjects = data.unityObjects;
+        characterType.data.unityObjects = new List<UnityEngine.Object>();
+        characterType.data.unityObjects.Add(new Character());
+        if(data != null && data.unityObjects != null && data.unityObjects.Count > 0) 
+            characterType.data.unityObjects[0] = data.unityObjects[0];
     }
     public override void SetEditorField(VisualElement visualElement, LeafInteraction interaction)
     {

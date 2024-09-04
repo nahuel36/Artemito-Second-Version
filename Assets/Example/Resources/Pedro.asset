@@ -31,13 +31,12 @@ MonoBehaviour:
                 action: {fileID: 0}
                 actionData:
                   unityObjects:
-                  - {fileID: 11400000}
-                  - {fileID: 0}
+                  - {fileID: 7052131098228558504, guid: 85bf8aead25d96243b52ced0abc91aa1, type: 3}
+                  - {fileID: 7052131098228558504, guid: 850b0fe1b056c1849a26c59ba129d946, type: 3}
                   strings:
-                  - Dialog Option
+                  - CharacterType
                   - copyOtherProperty
-                  properties: []
-                  localProperties:
+                  properties:
                   - name: a
                     expandedInInspector: 0
                     variablesContainer:
@@ -48,33 +47,16 @@ MonoBehaviour:
                       - {fileID: 0}
                       variableData: []
                       type: 0
-                  - name: property1
-                    expandedInInspector: 1
+                  - name: new 2
+                    expandedInInspector: 0
                     variablesContainer:
-                      value: 14
+                      value: 4
                       members:
                       - {fileID: 0}
-                      - {fileID: 0}
-                      - {fileID: 0}
-                      variableData:
-                      - stringValue: 3
-                        isString: 1
-                        isDefaultValue: 0
-                        variableType: integer
-                      - stringValue: po
-                        isString: 1
-                        isDefaultValue: 0
-                        variableType: string
-                      - stringValue: <?xml version="1.0" encoding="utf-16"?><door-closed
-                          selected="true" value0="s"><door-closed-2 selected="false"
-                          /></door-closed>
-                        isString: 1
-                        isDefaultValue: 0
-                        variableType: enum with flags
+                      variableData: []
                       type: 0
-                  globalProperties: []
                   customEnumFlags:
-                  - value: 2
+                  - value: -1
                     members:
                     - {fileID: 0}
                     variableData: []

@@ -117,13 +117,13 @@ public class EnumerablesUtility
 
         for (int i = 0; i < props.Length; i++)
         {
-            dropdownField.choices.Add(props[i].TypeName);
+            dropdownField.choices.Add(props[i].name);
         }
         dropdownField.RegisterValueChangedCallback((value) => 
         {
             dropdownField.value = value.newValue;
             UpdateFieldAction?.Invoke();
-
+            
         });
         UpdateFieldAction?.Invoke();;        
     }
